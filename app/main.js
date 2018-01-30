@@ -30,6 +30,10 @@ define('less', function () {
     return less;
 });
 
+define('download', function () {
+    return download;
+});
+
 define(['durandal/app', 'durandal/system', 'underscore', 'bootstrapper', 'templateSettings', 'publishSettings', 'includedModules/modulesInitializer',
         'modules/index', 'modules/publishModeProvider'
     ],
