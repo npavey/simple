@@ -21,7 +21,7 @@
 
                 var colors = {
                     basic: $element.css('color') || valueAccessor().basicColor || getDefaultBasicColor(),
-                    progress: $element.css('border-color') || valueAccessor().progressColor || templateSettings.getColorValue('@secondary-color'),
+                    progress: $element.css('border-top-color') || $element.css('border-color') || valueAccessor().progressColor || templateSettings.getColorValue('@secondary-color'),
                     mastered: $element.css('outline-color') || valueAccessor().masteredColor || templateSettings.getColorValue('@correct-color')
                 };
     
