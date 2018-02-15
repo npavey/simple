@@ -2,7 +2,7 @@
     <div tabindex="0" class="tree-of-content-panel-tail" data-bind="click: toggleIsExpanded.bind($data), localize: { title: isExpanded() ? '[collapse]' : '[expand]'}, submitOnEnter">
         <i class="tree-of-content-panel-tail-icon material-icons" data-bind="text: isExpanded() ? '&#xE314;' : 'menu'"></i>
     </div>
-    <div class="tree-of-content-container" data-bind="css: { expanded: isExpanded }, treeOfContentAnimations: { expanded: isExpanded }">
+    <div class="tree-of-content-container" data-bind="css: { expanded: isExpanded }, treeOfContentAnimations: { expanded: isExpanded }, attr: { 'aria-hidden': !isExpanded() }">
         <div class="tree-of-content" data-bind="scrollbar: { checkDOMChanges: true }">
             <header class="tree-of-content-header">
                 <button class="tree-of-content-header-btn menu" data-bind="click: toggleIsExpanded.bind($data)">
