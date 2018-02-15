@@ -169,5 +169,8 @@
     "[course score reason]": "Können Sie uns den Grund für diese Bewertung nennen?",
     "[download]": "Herunterladen",
     "[go to results]": "Zu den Resultaten",
-    "[next section]": "Nächster Abschnitt"
+    "[next section]": "Nächster Abschnitt",
+    "[success]": "Erfolgreich bestanden",
+    "[failed]": "Nicht bestanden",
+    "[close course and logout]": "Kurs schließen"
 }

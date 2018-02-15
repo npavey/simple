@@ -82,5 +82,7 @@
     "[sections]": "Sezioni",
     "[forgot password email sent]": "Ti abbiamo inviato una e-mail con le istruzioni su come reimpostare la password.",
     "[question page title]": "Domanda",
-    "[sections page title]": "Sezioni"
+    "[sections page title]": "Sezioni",
+    "[success]": "Successo",
+    "[failed]": "Fallito"
 }

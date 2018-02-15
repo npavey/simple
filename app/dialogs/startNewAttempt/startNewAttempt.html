@@ -1,0 +1,31 @@
+﻿<section class="fullscreen-popup-container start-new-attempt" data-bind="css: { attached: isCompositionComplete }, keyDown: { 27: { handler: hide } }">
+    <div class="fp-content-row">
+        <div class="fp-content-cell">
+            <div class="fp-content">
+                <div class="fp-content-step evaluation" data-bind="css: { show: isCompositionComplete }">
+                    <h3 data-translate-text="[start new attempt dialog title]"></h3>
+                    <div class="note">
+                        <p><span class="material-icons text-main-color">info</span> <span data-translate-text="[start new attempt dialog text]"></span></p>
+                    </div>
+                    <div class="result-buttons" data-bind="autofocus">
+                        <button class="button block cancel default" data-bind="click: hide, css: { disabled: isStartingNewAttempt }, disable: isStartingNewAttempt" data-translate-text="[back]" data-translate-title="[back]"></button>
+                        <button href="#" class="button block primary autofocus submit" data-bind="click: startNewAttempt, disable: isStartingNewAttempt, css: { progress: isStartingNewAttempt }"
+                            data-translate-title="[start new attempt]">
+                            <!-- ko if: isStartingNewAttempt -->
+                            <span class="button-caption-loader"></span>
+                            <span>&nbsp;</span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: isStartingNewAttempt -->
+                            <span class="button-caption" data-translate-text="[start new attempt]"></span>
+                            <!-- /ko -->
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay-close-button" data-bind="click: hide">
+                <span class="overlay-close-button-icon material-icons">clear</span>
+                <div class="overlay-close-button-title">esc</div>
+            </div>
+        </div>
+    </div>
+</section>

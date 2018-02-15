@@ -21,7 +21,8 @@
         }, {
             route: 'finish',
             moduleId: 'resultPage/resultPage',
-            title: TranslationPlugin.getTextByKey('[results page title]')
+            title: TranslationPlugin.getTextByKey('[results page title]'),
+            showExitButtonInReviewMode: true
         }, {
             route: '404(/:url)',
             moduleId: 'viewmodels/404',

@@ -66,6 +66,9 @@
 
         return {
             initialize: initialize,
-            course: course
+            course: course,
+            isInReviewAttemptMode: function () {
+                return !!this.course.isFinished;
+            }
         };
     });

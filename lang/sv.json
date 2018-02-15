@@ -156,5 +156,8 @@
     "[login page title]": "Inloggning",
     "[limited access page title]": "Begränsad behörighet",
     "[sign in page title]": "Logga in",
-    "[register page title]": "Registrera"
+    "[register page title]": "Registrera",
+    "[success]": "Godkänt",
+    "[failed]": "Underkänt",
+    "[close course and logout]": "Stäng kursen"
 }

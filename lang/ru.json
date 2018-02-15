@@ -82,5 +82,7 @@
     "[take a break and continue later]": "Сделать паузу и продолжить позже",
     "[finish course when tracking disabled]": "Закончить курс",
     "[ok finish course]": "Да, закончить курс",
-    "[question page title]": "Вопрос"
+    "[question page title]": "Вопрос",
+    "[success]": "Успех",
+    "[failed]": "Неудача"
 }

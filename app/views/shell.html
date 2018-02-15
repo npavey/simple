@@ -8,7 +8,7 @@
         <div class="fullscreen-header-overlay"></div>
         <div class="fullscreen-header-brightness-holder"></div>
         <section class="header-items-holder-wrapper">
-            <div class="header-items-holder">
+            <div class="header-items-holder" data-bind="css: { 'review-attempt' : viewSettings().isInReviewAttemptMode }">
                 <span class="logo-img">
                     <!-- ko if: viewSettings().rootLinkEnabled  -->
                     <!-- ko if: logoUrl -->

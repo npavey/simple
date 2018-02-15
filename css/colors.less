@@ -840,7 +840,8 @@ body {
     }
 }
 
-.summary-extended-background{
+.summary-extended-background,
+.results-summary-heading {
     background-color: @content-body-color;
 }
 
@@ -1252,6 +1253,30 @@ body {
 }
 
 /*#region RESULT PAGE */
+.overall-progress{
+    .canvas-styles{
+        color: fade(@text-color, 20%);
+    }
+    .overall-progress-progressbar-text{
+        .score{
+            color: fade(@text-color, 70%);
+        }
+    }
+    .overall-progress-progressbar {
+        &.success { 
+            .overall-progress-progressbar-canvas {                              
+                border-color: @correct-color;
+            }
+        }
+        
+        &.fail { 
+            .overall-progress-progressbar-canvas {                        
+                border-color: @incorrect-color;
+            }
+        }
+    }
+}
+
 .content-container.module-resultPage{
     background-color: fade(@content-body-color, 50%);
     #content{
@@ -1259,15 +1284,6 @@ body {
             .course-title{				
                 .course-label{
                     color: fade(@text-color, 50%);
-                }
-            }
-
-            .overall-progress{
-                .canvas-styles{
-                    color: fade(@text-color, 20%);
-                }
-                .overall-progress-progressbar-text{
-                    color: fade(@text-color, 70%);
                 }
             }
         }
@@ -1692,8 +1708,23 @@ body {
                     }
                 }
             }
+
+            .note{
+                background: fade(@main-color, 5%);
+                border-top: 4px solid fade(@main-color, 50%);
+            }
         }
     }
 }
 
 /*#endregion Media editor audio*/
+
+.text-main-color{
+    color: @main-color;
+}
+.correct-color{
+    color: @correct-color;
+}
+.incorrect-color{
+    color: @incorrect-color;
+}

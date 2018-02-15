@@ -1,24 +1,35 @@
-<section data-bind="blockBodyScroll: npsDialog.isVisible()">
+<section data-bind="blockBodyScroll: npsDialog.isVisible() || newAttemptDialog.isVisible()">
     <div class="result-header">
         <div class="course-title">
-            <span class="course-label" data-translate-text="[course]"></span>
             <span class="course-caption" data-bind='fontScale: title'>""</span>
         </div>
         <div class="overall-progress-wrapper">
             <div class="overall-progress">
                 <div class="overall-progress-progressbar-wrapper">
-                    <div class="overall-progress-progressbar">
+                    <div class="overall-progress-progressbar" data-bind="css: { success: isCompleted, fail: !isCompleted }">
                         <canvas class="overall-progress-progressbar-canvas canvas-styles result" width="159" height="159" data-bind="circleProgress: { progress: score(), lineWidth:3,radius:75, isMastered: isCompleted }"></canvas>
-                        <div class="overall-progress-progressbar-text" data-bind="text: score()">0</div>
+                        <div class="overall-progress-progressbar-text">
+                            <div class="score" data-bind="text: score()">0</div>
+                            <!-- ko if: isCompleted -->
+                            <div class="status correct-color" data-translate-text="[success]"></div>
+                            <!-- /ko -->
+                            <!-- ko ifnot: isCompleted -->
+                            <div class="status incorrect-color" data-translate-text="[failed]"></div>
+                            <!-- /ko -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="result-buttons">
-            <!-- ko if: finish -->
             <span class="button-wrapper" data-bind="autofocus">
                 <span class="button-wrapper">
+                    <!-- ko ifnot: isInReviewAttemptMode -->
                     <button class="button block default cancel" data-bind="click: close" data-translate-text="[continue course]" data-translate-title="[continue course]"></button>
+                    <!-- /ko -->
+                    <!-- ko if: isInReviewAttemptMode -->
+                    <button class="button block cancel" data-bind="click: close, css: { primary: isCompleted, default: !isCompleted, autofocus: isCompleted }" data-translate-text="[review attempt]" data-translate-title="[review attempt]"></button>
+                    <!-- /ko -->
                 </span>
                 <!-- ko if: (!xAPIEnabled && !crossDeviceEnabled) || scormEnabled -->
                 <button class="button block primary autofocus submit" data-bind="click: finish"
@@ -26,6 +37,7 @@
                         data-translate-title="[finish course]"></button>
                 <!-- /ko -->
                 <!-- ko if: (xAPIEnabled || crossDeviceEnabled) && !scormEnabled -->
+                <!-- ko ifnot: isInReviewAttemptMode -->
                 <!-- ko if: stayLoggedIn -->
                 <button class="button block primary autofocus submit" data-bind="click: finish" data-translate-text="[finish course]" data-translate-title="[finish course]"></button>
                 <!-- /ko -->
@@ -33,14 +45,22 @@
                 <button class="button block primary autofocus submit" data-bind="click: finish" data-translate-text="[submit results and logout]" data-translate-title="[submit results and logout]"></button>
                 <!-- /ko -->
                 <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko if: isInReviewAttemptMode -->
+                <button class="button block submit" data-bind="click: newAttemptDialog.show, css: { primary: !isCompleted, default: isCompleted, autofocus: !isCompleted }" data-translate-text="[start new attempt]" data-translate-title="[start new attempt]"></button>
+                <!-- /ko -->
             </span>
-            <!-- /ko -->
         </div>
-        <!-- ko if: crossDeviceEnabled && !scormEnabled -->
+        <!-- ko if: crossDeviceEnabled && !scormEnabled && !isInReviewAttemptMode -->
         <button class="button check small mb10" type="submit" data-bind="click: toggleStayLoggedIn, css: { active: stayLoggedIn }">
             <span data-translate-text="[keep me logged-in for the next courses]" data-translate-title="[keep me logged-in for the next courses]"></span>
         </button>
         <!-- /ko -->
+    </div>
+    <div class="results-summary-heading">
+        <div class="section-wrapper">
+            <h3 data-translate-text="[detailed summary]"></h3>
+        </div>
     </div>
     <div class="result-page-content" data-bind="foreach: sections">
         <div class="section noselect">
@@ -79,5 +99,8 @@
     </div>
     <!-- ko if: npsDialog.isVisible -->
     <!-- ko compose: { view: 'dialogs/nps/nps', model: 'dialogs/nps/nps', activationData: { close: npsDialog.hide, callbacks: npsDialog.callbacks } } --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: newAttemptDialog.isVisible -->
+    <!-- ko compose: { view: 'dialogs/startNewAttempt/startNewAttempt', model: 'dialogs/startNewAttempt/startNewAttempt', activationData: { close: newAttemptDialog.hide, callbacks: newAttemptDialog.callbacks } } --><!-- /ko -->
     <!-- /ko -->
 </section>

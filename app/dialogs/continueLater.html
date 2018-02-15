@@ -64,7 +64,12 @@
                     </div>
                     <div class="popup-button-wrapper">
                         <button class="button small default" data-bind="click: exit, changeClass: { delay: 500, fromClass: 'default', toClass: 'primary', value: isSecretLinkSent }">
+                            <!-- ko if: keepMeLoggedIn -->
                             <span data-translate-text="[close course]"></span>
+                            <!-- /ko -->
+                            <!-- ko ifnot: keepMeLoggedIn -->
+                            <span data-translate-text="[close course and logout]"></span>
+                            <!-- /ko -->
                         </button>
                     </div>
                     <div class="popup-button-wrapper">

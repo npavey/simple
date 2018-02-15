@@ -171,5 +171,8 @@
     "[go to results]": "Ga naar resultaten",
     "[next section]": "Volgende sectie",
     "[review attempt]": "Bekijk deze poging",
-    "[start new attempt]": "Begin nieuwe poging"
+    "[start new attempt]": "Begin nieuwe poging",
+    "[success]": "Gelukt",
+    "[failed]": "Niet gelukt",
+    "[close course and logout]": "Sluit cursus"
 }

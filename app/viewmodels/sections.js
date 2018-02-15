@@ -44,13 +44,13 @@
                 });
             }
 
-
         return {
             activate: activate,
             isNavigationLocked: router.isNavigationLocked,
             caption: 'Sections and questions',
             courseTitle: courseTitle,
             sectionsLayout: sectionsLayout,
+            isInReviewAttemptMode: context.isInReviewAttemptMode(),
 
             masteryScore: masteryScore,
             sections: sections

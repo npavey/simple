@@ -167,5 +167,8 @@
     "[you can close the page now]": "现在您可关闭页面",
     "[you rated this course with an]": "您对该课程的评分为",
     "[course score reason]": "您可以告知我们给出该评分的原因吗？",
-    "[download]": "下载"
+    "[download]": "下载",
+    "[success]": "成功",
+    "[failed]": "失败",
+    "[close course and logout]": "关闭课程"
 }

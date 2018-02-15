@@ -165,5 +165,12 @@
     "[go to results]": "До результатів",
     "[next section]": "Наступна секція",
     "[review attempt]": "Переглянути відповіді",
-    "[start new attempt]": "Нова спроба"
+    "[start new attempt]": "Нова спроба",
+    "[view]": "Переглянути",
+    "[success]": "Успіх",
+    "[failed]": "Невдача",
+    "[detailed summary]": "Детальний звіт",
+    "[start new attempt dialog title]": "Почати нову спробу?",
+    "[start new attempt dialog text]": "Якщо ви почнете нову спробу, ви більше не зможете переглянути свою попередню спробу.",
+    "[close course and logout]": "Закрити курс"
 }

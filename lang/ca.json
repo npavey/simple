@@ -165,5 +165,8 @@
     "[you can close the page now]": "Ja podeu tancar la pàgina",
     "[you rated this course with an]": "Has puntuat aquest curs amb un",
     "[course score reason]": "Podria dir-nos el motiu d'aquesta puntuació?",
-    "[download]": "descarregar"
+    "[download]": "descarregar",
+    "[success]": "aprovat",
+    "[failed]": "desaprovat",
+    "[close course and logout]": "Tanca el curs"
 }

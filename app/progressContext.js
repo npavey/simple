@@ -9,12 +9,14 @@
                     url: null,
                     answers: {},
                     user: null,
-                    attemptId: system.guid()
+                    attemptId: system.guid(),
+                    finished: false
                 }
             },
             context = {
                 get: get,
                 remove: remove,
+                finish: finish,
 
                 use: use,
                 ready: ready,
@@ -30,14 +32,30 @@
                 return;
             }
 
-            context.status(self.storage.saveProgress(self.progress) ? statuses.saved : statuses.error);
+            var savedProgressResults = self.storage.saveProgress(self.progress);
+            if (_.isObject(savedProgressResults) && _.isFunction(savedProgressResults.then)
+                && _.isFunction(savedProgressResults.fail)) {
+                savedProgressResults.then(function () {
+                    context.status(statuses.saved);
+                }).fail(function () {
+                    context.status(statuses.error);
+                });
+            } else {
+                context.status(savedProgressResults ? statuses.saved : statuses.error);
+            }
 
             if (_.isFunction(self.storage.saveResults)) {
                 self.storage.saveResults();
             }
+
+            return savedProgressResults;
         }
 
         function navigated(obj, instruction) {
+            if (self.progress.finished) {
+                return;
+            }
+
             if (instruction.config.moduleId === 'xApi/viewmodels/xAPIError' ||
                 instruction.config.moduleId === 'viewmodels/404' ||
                 instruction.config.moduleId === 'account/account' ||
@@ -72,14 +90,19 @@
             }
         }
 
-        function finish() {
-            if (!self.storage) {
-                return;
+        function finish(callback) {
+            callback = callback || function () { };
+
+            if (self.progress) {
+                self.progress.finished = true;
+                var promise = save();
+                if (_.isObject(promise) && _.isFunction(promise.then)) {
+                    promise.then(callback);
+                    return;
+                }
             }
 
-            if (_.isFunction(self.storage.saveResults)) {
-                self.storage.saveResults();
-            }
+            callback();
         }
 
         function get() {
@@ -87,7 +110,7 @@
         }
 
         function remove(callback) {
-            callback = callback || function () {};
+            callback = callback || function () { };
             if (!self.storage) {
                 callback();
                 return;
@@ -114,7 +137,6 @@
                 restore(userContext.getCurrentUser());
 
                 eventManager.subscribeForEvent(eventManager.events.answersSubmitted).then(questionAnswered);
-                eventManager.subscribeForEvent(eventManager.events.courseFinished).then(finish);
 
                 app.on('user:authenticated').then(authenticated);
                 app.on('user:authentication-skipped').then(authenticationSkipped);
@@ -142,7 +164,8 @@
                     url: null,
                     answers: {},
                     user: null,
-                    attemptId: system.guid()
+                    attemptId: system.guid(),
+                    finished: false
                 }
             }
         }
@@ -162,14 +185,22 @@
 
             if (context.ready()) {
                 progress = context.get();
-                if (_.isObject(progress) && _.isObject(progress.answers)) {
-                    _.each(dataContext.course.sections, function (section) {
-                        _.each(section.questions, function (question) {
-                            if (!_.isNullOrUndefined(progress.answers[question.shortId])) {
-                                question.progress(progress.answers[question.shortId]);
-                            }
+                if (_.isObject(progress)) {
+                    if (progress.finished) {
+                        dataContext.course.finish(null, true);
+                    }
+                    if (_.isObject(progress.answers)) {
+                        _.each(dataContext.course.sections, function (section) {
+                            _.each(section.questions, function (question) {
+                                if (!_.isNullOrUndefined(progress.answers[question.shortId])) {
+                                    question.progress(progress.answers[question.shortId]);
+                                }
+                                if (progress.finished) {
+                                    question.isAnswered = true;
+                                }
+                            });
                         });
-                    });
+                    }
                 }
                 window.location.hash = !_.isString(progress.url) ? '' : progress.url.replace('objective', 'section'); //fix for old links
             }

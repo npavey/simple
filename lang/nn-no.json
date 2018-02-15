@@ -123,5 +123,7 @@
     "[finish course when tracking disabled]": "Avslutt kurset",
     "[ok finish course]": "Ok, avslutt kurset",
     "[question page title]": "Spørsmål",
-    "[sections page title]": "Avsnitt"
+    "[sections page title]": "Avsnitt",
+    "[success]": "Bestått",
+    "[failed]": "Ikke bestått"
 }

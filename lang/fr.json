@@ -167,5 +167,10 @@
     "[you can close the page now]": "Vous pouvez maintenant fermer la page",
     "[you rated this course with an]": "Vous avez attribué à ce cours la note",
     "[course score reason]": "Pouvez-vous nous indiquer le motif de ce score ?",
-    "[download]": "Télécharger"
+    "[download]": "Télécharger",
+    "[go to results]": "Voir les résultats",
+    "[next section]": "Section suivante",
+    "[success]": "Réussi avec succès",
+    "[failed]": "Pas réussi",
+    "[close course and logout]": "Terminer le cours"
 }

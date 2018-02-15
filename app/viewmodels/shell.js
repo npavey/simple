@@ -33,6 +33,7 @@ define([
             }
             return '';
         });
+
         viewmodel.isInReviewMode = router.getQueryStringValue('reviewApiUrl');
 
         router.on('router:route:activating')
@@ -87,6 +88,9 @@ define([
                     viewmodel.title = app.title = context.course.title;
                     viewmodel.createdOn = context.course.createdOn;
                     progressContext.restoreProgress();
+                    if (context.isInReviewAttemptMode()) {
+                        xApiInitializer.deactivate();
+                    }
                     app.trigger(constants.events.appInitialized);
                 });
             }
@@ -103,15 +107,23 @@ define([
             var settings = {
                 rootLinkEnabled: false,
                 exitButtonVisible: false,
-                treeOfContentVisible: false
+                treeOfContentVisible: false,
+                isInReviewAttemptMode: false
             };
 
             var activeInstruction = router.activeInstruction();
             if (_.isObject(activeInstruction)) {
                 settings.rootLinkEnabled = !!activeInstruction.config.rootLinkEnabled && !router.isNavigationLocked();
-                settings.exitButtonVisible = !!activeInstruction.config.showExitButton && !templateSettings.hideFinishActionButtons;
+                settings.exitButtonVisible = showExitButton(activeInstruction.config) && !templateSettings.hideFinishActionButtons;
                 settings.treeOfContentVisible = templateSettings.treeOfContent.enabled && !!activeInstruction.config.displayTreeOfContent;
             }
+            settings.isInReviewAttemptMode = context.isInReviewAttemptMode();
+
             return settings;
+        }
+
+        function showExitButton(activeInstructionConfig) {
+            return !!activeInstructionConfig.showExitButton ||
+                (!!activeInstructionConfig.showExitButtonInReviewMode && context.isInReviewAttemptMode());
         }
     });

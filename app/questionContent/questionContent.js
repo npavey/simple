@@ -136,7 +136,7 @@ define(['knockout', 'plugins/router', 'constants', 'modules/questionsNavigation'
             this.feedbackView = this.activeQuestionViewModel.feedbackView || 'questions/feedback.html';
             this.submitViewModel = this.activeQuestionViewModel.customSubmitViewModel || '';
 
-            this.hideTryAgain = templateSettings.hideTryAgain;
+            this.hideTryAgain = templateSettings.hideTryAgain || context.isInReviewAttemptMode();
 
             updateNavigationState(this);
 
@@ -158,7 +158,7 @@ define(['knockout', 'plugins/router', 'constants', 'modules/questionsNavigation'
         }
 
         function updateNavigationState(viewModel) {
-            if (context.course.score() === 100 || (!viewModel.navigationContext.nextSectionUrl && viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex)) {
+            if ((context.course.score() === 100 && !context.isInReviewAttemptMode()) || (!viewModel.navigationContext.nextSectionUrl && viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex)) {
                 viewModel.isGoToResultsVisible(true);
                 viewModel.isGoToNextSectionVisible(false);
             } else if (viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex) {

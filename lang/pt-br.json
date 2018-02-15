@@ -167,5 +167,8 @@
     "[you can close the page now]": "Você já pode fechar a página",
     "[you rated this course with an]": "Você classificou este curso com",
     "[course score reason]": "Você poderia nos dizer qual é o motivo para esta pontuação?",
-    "[download]": "Baixe"
+    "[download]": "Baixe",
+    "[success]": "Sucesso",
+    "[failed]": "Falhou",
+    "[close course and logout]": "Fechar curso"
 }

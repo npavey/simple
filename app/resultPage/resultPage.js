@@ -27,6 +27,8 @@ define([
         close: close,
         finish: finish,
         npsDialog: new Dialog(),
+        newAttemptDialog: new Dialog(),
+        isInReviewAttemptMode: course.isFinished,
 
         //properties
         crossDeviceEnabled: false,
@@ -34,6 +36,7 @@ define([
         xAPIEnabled: false,
         scormEnabled: false,
         stayLoggedIn: ko.observable(false),
+        progressStorageActivated: false,
 
         //methods
         toggleStayLoggedIn: toggleStayLoggedIn
@@ -43,11 +46,14 @@ define([
 
     function activate() {
         viewModel.npsDialog.isVisible(false);
+        viewModel.newAttemptDialog.isVisible(false);
         viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
+        
         viewModel.allowContentPagesScoring = templateSettings.allowContentPagesScoring;
 
         viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
         viewModel.scormEnabled = publishModeProvider.isScormEnabled;
+        viewModel.progressStorageActivated = viewModel.crossDeviceEnabled && !viewModel.scormEnabled;
 
         viewModel.stayLoggedIn(userContext.user.keepMeLoggedIn);
         viewModel.sections = _.chain(course.sections)
@@ -57,7 +63,7 @@ define([
             .map(mapSection)
             .value();
     }
-
+    
     function close() {
         router.navigate("#sections");
     }
@@ -71,7 +77,10 @@ define([
             viewModel.status(statuses.sendingRequests);
         }
 
-        progressContext.remove(function() {
+        var finishHandler = viewModel.progressStorageActivated ?
+            progressContext.finish : progressContext.remove;
+
+        finishHandler(function() {
             course.finish(onCourseFinished);
         });
     }

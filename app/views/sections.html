@@ -20,7 +20,12 @@
             <!-- ko if: $root.sectionsLayout==="Tiles" -->
             <div class="section-image-holder">
                 <div class="section-image" data-bind="containImage: { imageUrl: imageUrl, imageWidth: imageWidth, imageHeight: imageHeight }"></div>
+                <!-- ko ifnot: $root.isInReviewAttemptMode -->
                 <button tabindex="-1" class="button small primary" data-translate-text="[start]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                <!-- /ko -->
+                <!-- ko if: $root.isInReviewAttemptMode -->
+                <button tabindex="-1" class="button small primary" data-translate-text="[view]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                <!-- /ko -->
             </div>
             <!-- ko if: affectProgress -->
             <div class="section-progress">
@@ -72,7 +77,12 @@
                     <!-- /ko -->
                 </div>
                 <div class="section-start-button-holder">
+                    <!-- ko ifnot: $root.isInReviewAttemptMode -->
                     <button class="button small primary" data-translate-text="[start]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                    <!-- /ko -->
+                    <!-- ko if: $root.isInReviewAttemptMode -->
+                    <button class="button small primary" data-translate-text="[view]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                    <!-- /ko -->                    
                 </div>
             </div>
             <!--/ko-->

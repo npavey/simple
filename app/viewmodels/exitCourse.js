@@ -24,6 +24,7 @@
 
         score: null,
         isCompleted: false,
+        isInReviewAttemptMode: false,
         xAPIEnabled: false,
         scormEnabled: false,
         hideFinishActionButtons: false,
@@ -58,6 +59,7 @@
     function activate(type) {
         viewModel.score = context.course.score;
         viewModel.isCompleted = context.course.isCompleted();
+        viewModel.isInReviewAttemptMode = context.isInReviewAttemptMode();
         viewModel.type(type);
         viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
         viewModel.scormEnabled = publishModeProvider.isScormEnabled;

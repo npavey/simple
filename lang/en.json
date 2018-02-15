@@ -171,5 +171,12 @@
     "[go to results]": "Go to results",
     "[next section]": "Next section",
     "[review attempt]": "Review this attempt",
-    "[start new attempt]": "Start a new attempt"
+    "[start new attempt]": "Start a new attempt",
+    "[view]": "View",
+    "[success]": "Success",
+    "[failed]": "Failed",
+    "[detailed summary]": "Detailed summary",
+    "[start new attempt dialog title]": "Start a new attempt?",
+    "[start new attempt dialog text]": "When you start a new attempt - you won't be able to review your previous attempt any more.",
+    "[close course and logout]": "Close course and logout"
 }

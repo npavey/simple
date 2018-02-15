@@ -107,6 +107,9 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
                         return activateXapi(function () {
                             viewmodel.requestProcessing(false);
                             progressContext.restoreProgress();
+                            if (context.isInReviewAttemptMode()) {
+                                xApiInitializer.deactivate();
+                            }
                             eventManager.courseStarted();
                         });
                     });

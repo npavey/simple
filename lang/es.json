@@ -169,5 +169,8 @@
     "[course score reason]": "¿Podría darnos una razón para esta puntuación?",
     "[download]": "Descargar",
     "[go to results]": "Ir a los resultados",
-    "[next section]": "Siguiente sección"
+    "[next section]": "Siguiente sección",
+    "[success]": "Aprobado",
+    "[failed]": "Desaprobado",
+    "[close course and logout]": "Cerrar curso"
 }

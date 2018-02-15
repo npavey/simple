@@ -131,5 +131,7 @@
     "[submit results and logout]": "Send inn svar og logg ut",
     "[forgot password]": "Glemt passord",
     "[question page title]": "Spørsmål",
-    "[sections page title]": "Avsnitt"
+    "[sections page title]": "Avsnitt",
+    "[success]": "Bestått",
+    "[failed]": "Ikke bestått"
 }

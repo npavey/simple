@@ -156,5 +156,6 @@
     "[login page title]": "Login",
     "[limited access page title]": "Ograniczony dostęp",
     "[sign in page title]": "Zaloguj się",
-    "[register page title]": "Zarejestruj się"
+    "[register page title]": "Zarejestruj się",
+    "[close course and logout]": "Zamknij kurs"
 }

@@ -47,11 +47,15 @@
                 return course.isCompleted() ? constants.course.statuses.completed : constants.course.statuses.failed;
             };
 
-            course.finish = function(callback) {
+            course.finish = function(callback, withoutEvent) {
                 course.isFinished = true;
-                eventManager.courseFinished(course, function() {
-                    callback();
-                });
+                if (withoutEvent) {
+                    callback && callback();
+                } else {
+                    eventManager.courseFinished(course, function() {
+                        callback && callback();
+                    });
+                }
             };
 
             course.finalize = function(callback) {

@@ -67,8 +67,11 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
                         progressContext.use(provider);
                         return activateXapi(function () {
                             viewmodel.requestProcessing(false);
-                            eventManager.courseStarted();
                             progressContext.restoreProgress();
+                            if (context.isInReviewAttemptMode()) {
+                                xApiInitializer.deactivate();
+                            }
+                            eventManager.courseStarted();
                         });
                     });
                 }).fail(function (reason) {

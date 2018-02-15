@@ -2052,6 +2052,10 @@ textarea {
 
             .exit-course-button {
                 transition: background .2s;
+
+                &.finished {
+                    margin-bottom: 5px;
+                }
             }
         }
     }
@@ -4999,13 +5003,13 @@ textarea {
     height: 1000px;
 
     .header-items-holder {
-        margin-left: 50px;
         z-index: 1;
     }
 }
 
 .result-header,
-.result-page-content {
+.result-page-content,
+.results-summary-heading {
     opacity: 0;
 }
 
@@ -5043,15 +5047,9 @@ textarea {
                 display: inline-flex;
                 flex-direction: column;
                 margin-bottom: 50px;
+                padding-top: 50px;
                 height: auto;
                 align-items: flex-start;
-
-                .course-label {
-                    font-size: 14px;
-                    text-transform: uppercase;
-                    line-height: normal;
-                    margin-bottom: 18px;
-                }
 
                 .course-caption {
                     width: 100%;
@@ -5072,14 +5070,20 @@ textarea {
                         height: 160px;
 
                         .overall-progress-progressbar-text {
-                            font-size: 36px;
-                            margin-top: -20px;
-                            margin-left: -5px;
+                            margin-top: -30px;
 
-                            &::after {
-                                display: inline-block;
-                                content: '%';
-                                width: 0;
+                            .score{
+                                font-size: 36px;
+                                margin-bottom: 8px;
+                                margin-left: 5px;
+                                &::after {
+                                    content: '%';
+                                }
+                            }
+
+                            .status{
+                                font-size: 18px;
+                                text-transform: uppercase;
                             }
                         }
                     }
@@ -5093,7 +5097,6 @@ textarea {
                     .button {
                         height: 44px;
                         width: 237px;
-                        line-height: 1px;
                         margin-top: 50px;
                         font-size: 16px;
                     }
@@ -5113,7 +5116,6 @@ textarea {
                     font-size: 15px;
                     font-weight: 700;
                     padding-right: 10px;
-                    transform: scaleX(1.3);
                     content: '\e908';
                     font-family: 'Custom Icons';
                 }
@@ -5122,6 +5124,22 @@ textarea {
             .button.small {
                 width: 295px;
                 margin-left: -30px;
+            }
+        }
+
+        .results-summary-heading{
+            padding: 50px 0;
+            text-align: left;
+            opacity: 1;
+
+            .section-wrapper{
+                width: 800px;
+                margin: 0 auto;
+            }
+
+            h3{
+                font-size: 28px;
+                font-weight: normal;
             }
         }
 
@@ -5352,10 +5370,6 @@ textarea {
     .header.module-resultPage {
         .header-items-holder-wrapper {
             overflow: hidden;
-
-            .header-items-holder {
-                padding-left: 0px;
-            }
         }
     }
 }
@@ -5369,6 +5383,7 @@ textarea {
 
         .result-header,
         .section-header-wrapper,
+        .results-summary-heading .section-wrapper,
         .section-content {
             padding-left: 20px;
             padding-right: 20px;
