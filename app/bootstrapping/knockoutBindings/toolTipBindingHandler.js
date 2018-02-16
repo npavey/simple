@@ -5,8 +5,8 @@
                lineWidth = valueAccessor().lineWidth || 4,
                score = valueAccessor().progress || 0,
                masteryScore = valueAccessor().masteryScore,
-               centerX = element.width / 2,
-               centerY = element.height / 2,
+               centerX = $element.width() / 2,
+               centerY = $element.height() / 2,
                radius = valueAccessor().radius || (centerX < centerY ? centerX : centerY - lineWidth / 2 - 1),
                $canvasParent = $element.parent();
             if (masteryScore) {
