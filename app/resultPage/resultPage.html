@@ -57,11 +57,13 @@
         </button>
         <!-- /ko -->
     </div>
+    <!-- ko if: sections.length -->
     <div class="results-summary-heading">
         <div class="section-wrapper">
             <h3 data-translate-text="[detailed summary]"></h3>
         </div>
     </div>
+    <!-- /ko -->
     <div class="result-page-content" data-bind="foreach: sections">
         <div class="section noselect">
             <div class="section-header" data-bind="css: {correct: isCorrect, wrong: !isCorrect}">
