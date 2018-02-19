@@ -64,6 +64,6 @@
 
     <!-- /ko -->    
     <!-- ko if: continueLaterPopup.isVisible -->
-        <!-- ko compose: { view: 'dialogs/continueLater', model: 'dialogs/continueLater', activationData: [ continueLaterPopup.actions, continueLaterPopup.isVisible ] } --><!-- /ko -->
+        <!-- ko compose: { view: 'dialogs/continueLater', model: 'dialogs/continueLater', compositionComplete: continueLaterPopup.compositionComplete, activationData: [ continueLaterPopup.actions, continueLaterPopup.isVisible ] } --><!-- /ko -->
     <!-- /ko -->
 </section>

@@ -100,9 +100,9 @@
         </div>
     </div>
     <!-- ko if: npsDialog.isVisible -->
-    <!-- ko compose: { view: 'dialogs/nps/nps', model: 'dialogs/nps/nps', activationData: { close: npsDialog.hide, callbacks: npsDialog.callbacks } } --><!-- /ko -->
+    <!-- ko compose: { view: 'dialogs/nps/nps', model: 'dialogs/nps/nps', compositionComplete: npsDialog.compositionComplete, activationData: { close: npsDialog.hide, callbacks: npsDialog.callbacks } } --><!-- /ko -->
     <!-- /ko -->
     <!-- ko if: newAttemptDialog.isVisible -->
-    <!-- ko compose: { view: 'dialogs/startNewAttempt/startNewAttempt', model: 'dialogs/startNewAttempt/startNewAttempt', activationData: { close: newAttemptDialog.hide, callbacks: newAttemptDialog.callbacks } } --><!-- /ko -->
+    <!-- ko compose: { view: 'dialogs/startNewAttempt/startNewAttempt', model: 'dialogs/startNewAttempt/startNewAttempt', compositionComplete: newAttemptDialog.compositionComplete, activationData: { close: newAttemptDialog.hide, callbacks: newAttemptDialog.callbacks } } --><!-- /ko -->
     <!-- /ko -->
 </section>

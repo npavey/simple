@@ -10,7 +10,7 @@
                     <h1 class="fp-title" data-bind="text: evaluationStepTitle"></h1>
                     <h2 class="fp-subtitle" data-translate-text="[rate your overall experience]"></h2>
                     <div class="fp-rating-container">
-                        <div class="rating-control" data-bind="rating: { value: score, max: 10, onValueUpdated: goToFeedbackStep }"></div>
+                        <div class="rating-control" data-bind="if: isEvaluationStep, rating: { value: score, max: 10, onValueUpdated: goToFeedbackStep }"></div>
                         <div class="fp-rating-tips">
                             <span class="fp-rating-tip left" data-translate-text="[poor]"></span>
                             <span class="fp-rating-tip right" data-translate-text="[excellent]"></span>
@@ -26,10 +26,10 @@
                     </figure>
                     <h2 class="fp-subtitle" data-translate-text="[course score reason]"></h2>
                         <div class="fp-field">
-                            <div class="fp-field-input" data-bind="hasFocus: isFeedbackEditing, editableText: { text: feedback, onEnterKeyPress: submit }, scrollbar: { checkDOMChanges: true }" contentEditable="true"></div>
+                            <div class="fp-field-input" data-bind="hasFocus: isFeedbackEditing, editableText: { text: feedback, onEnterKeyPress: submit }, scrollbar: { checkDOMChanges: true }, attr: { contentEditable: isFeedbackStep }"></div>
                         </div>
                         <div class="btn-submit-wrapper">
-                            <button href="#" class="button small primary" data-bind="click: submit, disable: isReporting, css: { progress: isReporting }" data-translate-title="[submit]">                                
+                            <button href="#" class="button small primary" data-bind="click: submit, disable: isReporting() || !isFeedbackStep(), css: { progress: isReporting }" data-translate-title="[submit]">
                                 <!-- ko if: isReporting -->
                                     <span class="button-caption-loader"></span>
                                 <!-- /ko -->
