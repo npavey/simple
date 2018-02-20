@@ -25,10 +25,10 @@
     "[completed]": "zakończony",
     "[text matching question hint]": "Przeciągnij elementy z kolumny po prawej stronie na lewo, aby dopasować pary",
     "[text matching question drop here]": "Upuść tutaj",
-    "[statement question true text]": "TRUE",
-    "[statement question false text]": "FALSE",
-    "[statement question true tooltip]": "TRUE",
-    "[statement question false tooltip]": "FALSE",
+    "[statement question true text]": "Prawda",
+    "[statement question false text]": "Fałsz",
+    "[statement question true tooltip]": "Prawda",
+    "[statement question false tooltip]": "Fałsz",
     "[drag and drop question all texts are placed]": "Wyszystkie teksty zostały umieszczone",
     "[drag and drop question drop here]": "Upuść tutaj",
     "[fill in the blank choose answer]": "Wybierz odpowiedź...",
@@ -157,5 +157,7 @@
     "[limited access page title]": "Ograniczony dostęp",
     "[sign in page title]": "Zaloguj się",
     "[register page title]": "Zarejestruj się",
+    "[go to results]": "przejdź do wyniku",
+    "[next section]": "następna sekcja",
     "[close course and logout]": "Zamknij kurs"
 }
