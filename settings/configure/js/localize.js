@@ -51,6 +51,7 @@
         'failed': 'Failed',
         'progressed': 'Progressed',
         'save progress cross device': 'Save progress cross device (requires login and password):',
+        'save progress cross device hint': '(will not affect progress saving in SCORM/LMS)',
         'allow social media': 'Allow login via social media',
 
         //mastery score
