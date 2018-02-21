@@ -31,7 +31,7 @@
                     <button class="button block cancel" data-bind="click: close, css: { primary: isCompleted, default: !isCompleted, autofocus: isCompleted }" data-translate-text="[review attempt]" data-translate-title="[review attempt]"></button>
                     <!-- /ko -->
                 </span>
-                <!-- ko if: (!xAPIEnabled && !crossDeviceEnabled) || scormEnabled -->
+                <!-- ko if: ((!xAPIEnabled && !crossDeviceEnabled) || scormEnabled) && !isInReviewAttemptMode -->
                 <button class="button block primary autofocus submit" data-bind="click: finish"
                         data-translate-text="[finish course]"
                         data-translate-title="[finish course]"></button>

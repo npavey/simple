@@ -36,7 +36,6 @@ define([
         xAPIEnabled: false,
         scormEnabled: false,
         stayLoggedIn: ko.observable(false),
-        progressStorageActivated: false,
 
         //methods
         toggleStayLoggedIn: toggleStayLoggedIn
@@ -53,7 +52,6 @@ define([
 
         viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
         viewModel.scormEnabled = publishModeProvider.isScormEnabled;
-        viewModel.progressStorageActivated = viewModel.crossDeviceEnabled && !viewModel.scormEnabled;
 
         viewModel.stayLoggedIn(userContext.user.keepMeLoggedIn);
         viewModel.sections = _.chain(course.sections)
@@ -77,7 +75,7 @@ define([
             viewModel.status(statuses.sendingRequests);
         }
 
-        var finishHandler = viewModel.progressStorageActivated ?
+        var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
             progressContext.finish : progressContext.remove;
 
         finishHandler(function() {
