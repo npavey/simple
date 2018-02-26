@@ -124,6 +124,8 @@
     "[ok finish course]": "Ok, avslutt kurset",
     "[question page title]": "Spørsmål",
     "[sections page title]": "Avsnitt",
+    "[go to results]": "Gå til resultatene",
+    "[next section]": "Neste seksjon",
     "[success]": "Bestått",
     "[failed]": "Ikke bestått"
 }
