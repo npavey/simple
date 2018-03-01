@@ -5,12 +5,11 @@
         error: 'error'
     };
 
-    var serviceUrl, cookieDomain = null;
-    if (has('release')) {
-        serviceUrl = '//pdf-staging.easygenerator.com';
-        cookieDomain = 'easygenerator.com';
+    var serviceUrl = null;
+    if(hasHostname('elearning-branches.easygenerator.com') || hasHostname('elearning-staging.easygenerator.com') || hasHostname('localhost')) {
+        serviceUrl = '//pdf-test.easygenerator.com';
     } else {
-        serviceUrl = '//localhost:3035';
+        serviceUrl = '//pdf.easygenerator.com';
     }
 
     ko.bindingHandlers.downloadAsPdf = {
@@ -18,7 +17,8 @@
 
             var
                 $element = $(element),
-                title = (valueAccessor().title || $element.attr('title')) + ' ' + getDateTimeString(),
+                courseId = valueAccessor().courseId,
+                filename = getFullPdfFilename((valueAccessor().title || $element.attr('title'))),
                 version = valueAccessor().version;
             
             if (location.href.indexOf('/preview/') !== -1) {
@@ -42,7 +42,7 @@
 
             var convertionUrl = new Url(serviceUrl + '/convert/')
                 .addQueryStringParam('url', getBaseUrl() + '/pdf/index.html')
-                .addQueryStringParam('filename', title)
+                .addQueryStringParam('courseIdentifier', courseId)
                 .addQueryStringParam('version', version);
 
             var timeoutId;
@@ -63,7 +63,7 @@
                         return response.blob();
                     })
                     .then(function(blob) {
-                        download(blob, getPdfTitle(title), blob.type);
+                        download(blob, filename, blob.type);
                         setStatus($element, buttonStatuses.default);
                     })
                     .catch(function() {
@@ -114,7 +114,11 @@
     }
 
     /* Fix for IE11 and Edge (files can`t saved without extension) */
-    function getPdfTitle(title) {
+    function getFullPdfFilename(title) {
         return title + '.pdf';
+    }
+
+    function hasHostname(hostname) {
+        return location.host.indexOf(hostname) !== -1;
     }
 })

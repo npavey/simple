@@ -4,6 +4,7 @@ define([
 
         'use strict';
         var viewmodel = {
+            courseId: '',
             title: '',
             logoUrl: '',
             createdOn: '',
@@ -22,6 +23,7 @@ define([
         function activate(viewSettings, pdfExportEnabled) {
             viewmodel.viewSettings = viewSettings;
             viewmodel.pdfExportEnabled = pdfExportEnabled;
+            viewmodel.courseId = context.course.id;
             viewmodel.title = context.course.title;
             viewmodel.logoUrl = templateSettings.logoUrl;
             viewmodel.createdOn = context.course.createdOn;
