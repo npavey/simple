@@ -55,6 +55,7 @@
                     event.preventDefault();
                     $selectWrapper.click();
                 }
+                event.stopPropagation();
             });
         },
         show: function ($element, options, callback) {

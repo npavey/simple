@@ -15,13 +15,18 @@
                 var source = $('[data-group-id=' + blank.id + ']', $element),
                     handler = function () {
                         blank.value = source.val().trim();
+                    },
+                    stopPropagationHandler = function (event) {
+                        event.stopPropagation();
                     };
 
                 source.val(undefined)
-                    .on('blur change', handler);
+                    .on('blur change', handler)
+                    .on('keydown', stopPropagationHandler);
 
                 ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
                     source.off('blur change', handler);
+                    source.off('keydown', stopPropagationHandler);
                 });
             });
         },
