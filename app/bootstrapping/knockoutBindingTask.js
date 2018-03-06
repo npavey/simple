@@ -31,6 +31,7 @@ define([
     'bootstrapping/knockoutBindings/containImageBinding',
     'bootstrapping/knockoutBindings/lessColorBinding',
     'bootstrapping/knockoutBindings/editableTextBindingHandler',
+    'bootstrapping/knockoutBindings/headerHeightDepender',
     'viewmodels/questions/dragAndDrop/bindingHandlers/draggableTextBindingHandler',
     'viewmodels/questions/dragAndDrop/bindingHandlers/draggableTextContainerBindingHandler',
     'viewmodels/questions/dragAndDrop/bindingHandlers/dropspotBindingHandler',

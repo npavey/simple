@@ -3,59 +3,8 @@
     <!-- ko compose: 'treeOfContent/treeOfContent' -->
     <!-- /ko -->
     <!-- /ko -->
-    <section class="header clearfix" data-bind="css: 'module-' + cssName()">
-        <div class="header-overlay"></div>
-        <div class="fullscreen-header-overlay"></div>
-        <div class="fullscreen-header-brightness-holder"></div>
-        <section class="header-items-holder-wrapper">
-            <div class="header-items-holder" data-bind="css: { 'review-attempt' : viewSettings().isInReviewAttemptMode }">
-                <span class="logo-img">
-                    <!-- ko if: viewSettings().rootLinkEnabled  -->
-                    <!-- ko if: logoUrl -->
-                    <a href="#sections">
-                        <img alt="" src="" data-bind="attr: { src: logoUrl }">
-                    </a>
-                    <!-- /ko -->
-                    <!-- ko ifnot: logoUrl -->
-                    <a href="#sections">
-                        <span class="default-logo"></span>
-                    </a>
-                    <!-- /ko -->
-                    <!-- /ko -->
-                    <!-- ko ifnot: viewSettings().rootLinkEnabled -->
-                    <!-- ko if: logoUrl -->
-                    <img alt="" src="" data-bind="attr: { src: logoUrl }">
-                    <!-- /ko -->
-                    <!-- ko ifnot: logoUrl -->
-                    <span class="default-logo"></span>
-                    <!-- /ko -->
-                    <!-- /ko -->
-                </span>
-
-                <!-- ko if: pdfExportEnabled -->
-                <div class="download-course-container">
-                    <div class="download-course-wrapper">
-                        <div class="download-as-pdf-button default" data-translate-title="[download course in pdf format]" data-bind="downloadAsPdf: { title: title, version: +new Date(createdOn) }"></div>
-                        <div class="download-as-pdf-status-wrapper">
-                            <div class="download-as-pdf-status">
-                                <span class="default" data-translate-text="[download as pdf]"></span>
-                                <span class="proggress" data-translate-text="[download as pdf preparing]"></span>
-                                <span class="error" data-translate-text="[download as pdf error]"></span>
-                            </div>
-                        </div>
-                        <span class="disabled-tooltip-text">This option doesn't work in preview. Publish the course to use the PDF download option.</span>
-                    </div>
-                </div>
-                <!-- /ko -->
-                <div class="summary-container">
-                    <!-- ko if: viewSettings().exitButtonVisible -->
-                    <!-- ko compose: 'viewmodels/exitCourse' -->
-                    <!-- /ko -->
-                    <!-- /ko -->
-                </div>
-            </div>
-        </section>
-    </section>
+    <!-- ko compose: {model: 'header/header', activationData: [viewSettings, pdfExportEnabled]} -->
+    <!-- /ko -->
     <section class="content-container" data-bind="css: { 'review-mode' : isInReviewMode }, css: 'module-' + cssName()">
         <div id="content" class="content-wrapper">
             <!-- ko router: { cacheViews: false, transition: 'entrance' } -->
