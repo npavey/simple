@@ -24,7 +24,6 @@
     "perfect-scrollbar": "~0.6.10",
     "clipboard": "^1.5.10",
     "downloadjs": "^1.4.7",
-    "fetch": "^2.0.3",
-    "jquery.actual": "^1.0.19"
+    "fetch": "^2.0.3"
   }
 }

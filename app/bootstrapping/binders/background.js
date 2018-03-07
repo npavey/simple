@@ -39,6 +39,14 @@ define(['templateSettings'], function (templateSettings) {
     function apply(background) {
 
         var elementsClasses = {
+            header: {
+                element: ".header",
+                brightness: ".header-overlay"
+            },
+            fullscreenHeader: {
+                element: ".fullscreen-header-overlay",
+                brightness: ".fullscreen-header-brightness-holder"
+            },
             body: {
                 element: "body",
                 brightness: ".body-layout-wrapper"
@@ -55,6 +63,22 @@ define(['templateSettings'], function (templateSettings) {
 
         if (background.body.brightness) {
             applyBrightness(elementsClasses.body.brightness, background.body.brightness);
+        };
+
+        var headerClasses = elementsClasses.header;
+
+        if (!background.body.enabled) {
+            headerClasses = elementsClasses.fullscreenHeader;
+        }
+
+        if (background.header.image && background.header.image.url && background.header.image.url.length) {
+            applyImage(headerClasses.element, background.header.image.url, background.header.image.option);
+        };
+        if (background.header.color && background.header.color.length) {
+            applyColor(headerClasses.element, background.header.color);
+        };
+        if (background.header.brightness) {
+            applyBrightness(headerClasses.brightness, background.header.brightness);
         };
     }
 
