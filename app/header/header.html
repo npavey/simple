@@ -1,0 +1,62 @@
+<section class="header clearfix" data-bind="css: 'module-' + cssName(), style: { height: (height() ? height() + 'px' : '') }">
+    <!-- ko if: backgroundProps.image.option == 'fullscreen' -->
+    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundColor: backgroundProps.color }"></div>
+    <!-- /ko -->
+    <!-- ko if: backgroundProps.image.option == 'repeat' -->
+    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: '0 0', backgroundSize: 'auto', backgroundRepeat: 'repeat', backgroundColor: backgroundProps.color }"></div>
+    <!-- /ko -->
+    <!-- ko if: backgroundProps.brightness > 0 -->
+    <div class="header-brightness-holder" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: {backgroundColor: 'white', opacity: backgroundProps.brightness }"></div>
+    <!-- /ko -->
+    <!-- ko ifnot: backgroundProps.brightness > 0 -->
+    <div class="header-brightness-holder" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: {backgroundColor: 'black', opacity: -backgroundProps.brightness }"></div>
+    <!-- /ko -->
+    <section class="header-items-holder-wrapper">
+        <div class="header-items-holder" data-bind="css: { 'review-attempt' : viewSettings().isInReviewAttemptMode }">
+            <span class="logo-img">
+                <!-- ko if: viewSettings().rootLinkEnabled  -->
+                <!-- ko if: logoUrl -->
+                <a href="#sections">
+                    <img alt="" src="" data-bind="attr: { src: logoUrl }">
+                </a>
+                <!-- /ko -->
+                <!-- ko ifnot: logoUrl -->
+                <a href="#sections">
+                    <span class="default-logo"></span>
+                </a>
+                <!-- /ko -->
+                <!-- /ko -->
+                <!-- ko ifnot: viewSettings().rootLinkEnabled -->
+                <!-- ko if: logoUrl -->
+                <img alt="" src="" data-bind="attr: { src: logoUrl }">
+                <!-- /ko -->
+                <!-- ko ifnot: logoUrl -->
+                <span class="default-logo"></span>
+                <!-- /ko -->
+                <!-- /ko -->
+            </span>
+
+            <!-- ko if: pdfExportEnabled -->
+            <div class="download-course-container">
+                <div class="download-course-wrapper">
+                    <div class="download-as-pdf-button default" data-translate-title="[download course in pdf format]" data-bind="downloadAsPdf: { title: title, version: +new Date(createdOn) }"></div>
+                    <div class="download-as-pdf-status-wrapper">
+                        <div class="download-as-pdf-status">
+                            <span class="default" data-translate-text="[download as pdf]"></span>
+                            <span class="proggress" data-translate-text="[download as pdf preparing]"></span>
+                            <span class="error" data-translate-text="[download as pdf error]"></span>
+                        </div>
+                    </div>
+                    <span class="disabled-tooltip-text">This option doesn't work in preview. Publish the course to use the PDF download option.</span>
+                </div>
+            </div>
+            <!-- /ko -->
+            <div class="summary-container">
+                <!-- ko if: viewSettings().exitButtonVisible -->
+                <!-- ko compose: 'viewmodels/exitCourse' -->
+                <!-- /ko -->
+                <!-- /ko -->
+            </div>
+        </div>
+    </section>
+</section>
