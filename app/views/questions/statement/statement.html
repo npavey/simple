@@ -19,7 +19,7 @@
     <!-- /ko -->
     <!-- ko if: statements.length -->
     <ul class="statement">
-        <li class="statement-headers-group">
+        <li class="statement-headers-group" aria-hidden="true">
             <div class="statement-option" data-translate-text="[statement question true text]" data-translate-title="[statement question true tooltip]">
                 True
             </div>
@@ -29,30 +29,36 @@
         </li>
         <!-- ko ifnot: isPreview() -->
         <!-- ko foreach: statements -->
-        <li class="statement-item" data-bind="css:{ enabled: !$parent.isAnswered(), checked: isTrueChecked() || isFalseChecked() }">
-            <span class="statement-option ">
+        <li class="statement-item" data-bind="css:{ enabled: !$parent.isAnswered(), checked: isTrueChecked() || isFalseChecked() }, attr: { 'aria-labelledby': id, 'aria-setsize': $parent.statements.length, 'aria-posinset': $index() + 1 }" role="radiogroup" >
+            <span class="statement-option" >
                 <span class="radio-icon-wrapper">
-                    <button class="radio-icon" data-bind="click:$parent.markStatementAsTrue.bind($parent), css: { checked: isTrueChecked() }, attr:{ disabled: $parent.isAnswered() }"></button>
+                    <button class="radio-icon" data-bind="click:$parent.markStatementAsTrue.bind($parent), css: { checked: isTrueChecked() }, attr:{ 'aria-checked': isTrueChecked() ? 'true' : 'false', disabled: $parent.isAnswered() }" role="radio" aria-setsize="2" aria-posinset="1">
+                        <span class="radio-label" data-translate-text="[statement question true text]"></span>
+                    </button>
                 </span>
             </span>
             <span class="statement-option-separator-wrapper">
                 <span class="statement-option-separator"></span>
             </span>
-            <span class="statement-option">
+            <span class="statement-option" >
                 <span class="radio-icon-wrapper">
-                    <button class="radio-icon checked" data-bind="click:$parent.markStatementAsFalse.bind($parent), css: { checked: isFalseChecked() }, attr:{ disabled: $parent.isAnswered() }"></button>
+                    <button class="radio-icon checked" data-bind="click:$parent.markStatementAsFalse.bind($parent), css: { checked: isFalseChecked() }, attr:{ 'aria-checked': isFalseChecked() ? 'true' : 'false', disabled: $parent.isAnswered() }" role="radio" aria-setsize="2" aria-posinset="2">
+                        <span class="radio-label" data-translate-text="[statement question false text]"></span>
+                    </button>
                 </span>
             </span>
-            <span class="statement-label" data-bind="text: text"></span>
+            <span class="statement-label" data-bind="text: text, attr: { id: id }"></span>
         </li>
         <!-- /ko -->
         <!-- /ko -->
         <!-- ko if: isPreview() -->
         <!-- ko foreach: statements -->
-        <li class="statement-item" data-bind="css:{ checked: isTrueChecked() || isFalseChecked() }">
-            <span class="statement-option ">
+        <li class="statement-item" data-bind="css:{ checked: isTrueChecked() || isFalseChecked() }, attr: { 'aria-labelledby': id, 'aria-setsize': $parent.statements.length, 'aria-posinset': $index() + 1 }" role="radiogroup">
+            <span class="statement-option">
                 <span class="radio-icon-wrapper">
-                    <button class="radio-icon" data-bind="css: { checked: isTrueChecked() }" disabled="disabled"></button>
+                    <button class="radio-icon" data-bind="css: { checked: isTrueChecked() }, attr: { 'aria-checked': isTrueChecked() ? 'true' : 'false' }" disabled="disabled" role="radio" aria-setsize="2" aria-posinset="1">
+                        <span class="radio-label" data-translate-text="[statement question true text]"></span>
+                    </button>
                 </span>
             </span>
             <span class="statement-option-separator-wrapper">
@@ -60,10 +66,12 @@
             </span>
             <span class="statement-option">
                 <span class="radio-icon-wrapper">
-                    <button class="radio-icon checked" disabled="disabled" data-bind="css: { checked: isFalseChecked() }"></button>
+                    <button class="radio-icon checked" data-bind="css: { checked: isFalseChecked() }, attr: { 'aria-checked': isFalseChecked() ? 'true' : 'false' }" disabled="disabled" role="radio" aria-setsize="2" aria-posinset="2">
+                        <span class="radio-label" data-translate-text="[statement question false text]"></span>
+                    </button>
                 </span>
             </span>
-            <span class="statement-label" data-bind="text: text"></span>
+            <span class="statement-label" data-bind="text: text, attr: { id: id }"></span>
         </li>
         <!-- /ko -->
         <!-- /ko -->
