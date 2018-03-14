@@ -29,6 +29,7 @@
                 if (!self.xApiSettings.enabled && !self.npsSettings.enabled)
                     return;
 
+                routingManager.mapRoutes();
                 self.isCourseStarted = checkIsCourseStarted();
                 return initializeTracking()
                     .then(function() {
@@ -77,7 +78,6 @@
         function activateXapiReporting() {
             xApiSettingsConfig.initxApi(self.xApiSettings);
             activityProvider.subscribeToxApiEvents();
-            routingManager.mapRoutes();
 
             statementQueueHandler.handle();
             xApiInitializer.isLrsReportingInitialized = true;
