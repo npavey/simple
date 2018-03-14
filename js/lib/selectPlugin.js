@@ -51,7 +51,7 @@
 
             $selectWrapper.on('keydown', function (event) {
                 var key = event.which;
-                if (key == 13) {
+                if (key === 13 || key === 40) {
                     event.preventDefault();
                     $selectWrapper.click();
                 }
@@ -74,7 +74,7 @@
                     top: ($element.offset().top + $element.outerHeight()) + 'px',
                     width: ($element.outerWidth() + 45) + 'px'
                 })
-                .append($('<ul tabindex="-1"/>')
+                .append($('<ul tabindex="-1" role="listbox" />')
                     .on('click', 'li', function () {
                         var text = $(this).text();
                         $element.find('.' + cssClasses.current)
@@ -90,15 +90,37 @@
                     })
                     .on('keydown', 'li', function (event) {
                         var key = event.which;
-                        if (key == 13) {
-                            event.preventDefault();
+                        event.preventDefault();
+
+                        if (key === 13) {
                             $(this).click();
+                        }
+
+                        if (key === 27) {
+                            handler();
+                        }
+
+                        if ((key === 9 && !event.shiftKey) || key === 40) {
+                            if (this.parentElement.lastElementChild !== this) {
+                                 this.nextSibling.focus();
+                            } else {
+                                // In case we gonna need to cycle control
+                                // this.parentElement.firstElementChild.focus();
+                            }
+                        }
+
+                        if ((key === 9 && event.shiftKey) || key === 38) {
+                            if (this.parentElement.firstElementChild !== this) {
+                                 this.previousSibling.focus();
+                            } else {
+                                // this.parentElement.lastElementChild.focus();
+                            }
                         }
                     })
                     .append(getOptionsMarkup()))
                     .appendTo('body');
 
-            container.find('ul').first().focus();
+            container.find('ul li').first().focus();
 
             var handler = function () {
                 container.remove();
@@ -116,7 +138,7 @@
                 var optionsMarkup = [];
                 for (var i = 0; i < options.length; i++) {
                     if (options[i].value !== $element.find('.' + cssClasses.current).text()) {
-                        optionsMarkup.push($('<li tabindex="0"/>').text(options[i].value));
+                        optionsMarkup.push($('<li tabindex="0" role="option" aria-posinset="' +  (i + 1) + '" aria-setsize="' + options.length + '"/>').text(options[i].value));
                     }
                 }
                 return optionsMarkup;
