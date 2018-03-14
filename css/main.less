@@ -624,6 +624,7 @@ textarea {
         display: block;
         margin: 20px 0;
         max-width: 100%;
+        line-height: 1;
         clear: both;
 
         &[style*="float:left"],
@@ -846,7 +847,6 @@ textarea {
 
         .text-wrapper {
             display: table-cell;
-            width: 600px;
 
             .text-block {
                 float: left;
@@ -861,8 +861,9 @@ textarea {
                         overflow: hidden;
                         margin-bottom: 8px;
                         display: inline-block;
-                        white-space: normal;
                         vertical-align: middle;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
 
                         &:hover {
                             text-decoration: underline;
