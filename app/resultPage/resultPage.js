@@ -77,7 +77,8 @@ define([
 
         var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
             progressContext.finish : progressContext.remove;
-
+            
+        course.setFinishedStatus();
         finishHandler(function() {
             course.finish(onCourseFinished);
         });

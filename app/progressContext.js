@@ -44,10 +44,7 @@
                 context.status(savedProgressResults ? statuses.saved : statuses.error);
             }
 
-            if (_.isFunction(self.storage.saveResults)) {
-                self.storage.saveResults();
-            }
-
+            saveResults();
             return savedProgressResults;
         }
 
@@ -115,7 +112,7 @@
                 callback();
                 return;
             }
-
+            saveResults();
             if (_.isFunction(self.storage.removeProgress)) {
                 var promise = self.storage.removeProgress();
                 if (_.isObject(promise) && _.isFunction(promise.then)) {
@@ -125,6 +122,12 @@
                 }
             } else {
                 callback();
+            }
+        }
+
+        function saveResults() {
+            if (_.isFunction(self.storage.saveResults)) {
+                self.storage.saveResults();
             }
         }
 

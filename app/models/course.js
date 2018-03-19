@@ -47,6 +47,10 @@
                 return course.isCompleted() ? constants.course.statuses.completed : constants.course.statuses.failed;
             };
 
+            course.setFinishedStatus = function(status) {
+                course.isFinished = true;
+            }
+
             course.finish = function(callback, withoutEvent) {
                 course.isFinished = true;
                 if (withoutEvent) {
