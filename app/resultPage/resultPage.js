@@ -20,7 +20,6 @@ define([
         score: course.score,
         title: course.title,
         sections: [],
-        isCompleted: course.isCompleted(),
         status: ko.observable(statuses.readyToFinish),
         statuses: statuses,
         activate: activate,
@@ -31,6 +30,7 @@ define([
         isInReviewAttemptMode: course.isFinished,
 
         //properties
+        isCompleted: false,
         crossDeviceEnabled: false,
         allowContentPagesScoring: false,
         xAPIEnabled: false,
@@ -60,6 +60,8 @@ define([
             })
             .map(mapSection)
             .value();
+
+        viewModel.isCompleted = course.isCompleted();
     }
     
     function close() {
