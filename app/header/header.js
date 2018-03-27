@@ -22,7 +22,7 @@ define([
         function activate(viewSettings, pdfExportEnabled) {
             viewmodel.viewSettings = viewSettings;
             viewmodel.pdfExportEnabled = pdfExportEnabled;
-            viewmodel.version = context.course.id + context.course.createdOn;
+            viewmodel.version = context.course.id + (+new Date(context.course.createdOn));
             viewmodel.title = context.course.title;
             viewmodel.logoUrl = templateSettings.logoUrl;
 
