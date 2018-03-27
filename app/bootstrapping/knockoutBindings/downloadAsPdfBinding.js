@@ -17,7 +17,6 @@
 
             var
                 $element = $(element),
-                courseId = valueAccessor().courseId,
                 filename = getFullPdfFilename((valueAccessor().title || $element.attr('title'))),
                 version = valueAccessor().version;
             
@@ -42,7 +41,6 @@
 
             var convertionUrl = new Url(serviceUrl + '/convert/')
                 .addQueryStringParam('url', getBaseUrl() + '/pdf/index.html')
-                .addQueryStringParam('courseIdentifier', courseId)
                 .addQueryStringParam('version', version);
 
             var timeoutId;
