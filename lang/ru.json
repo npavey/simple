@@ -84,5 +84,9 @@
     "[ok finish course]": "Да, закончить курс",
     "[question page title]": "Вопрос",
     "[success]": "Успех",
-    "[failed]": "Неудача"
+    "[failed]": "Неудача",
+    "[detailed summary]": "Детальный отчет",
+    "[start new attempt dialog title]": "Начать новую попытку?",
+    "[start new attempt dialog text]": "Когда вы начнете новую попытку, вы больше не сможете просматривать предыдущую попытку.",
+    "[close course and logout]": "Закрыть курс"
 }

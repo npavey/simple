@@ -89,7 +89,7 @@
     "[login email field]": "Email",
     "[login use e-mail]": "Use e-mail",
     "[authorize with]": "Authorize with:",
-    "[confirn your name and email]": "OK, name and email are correct",
+    "[confirm your name and email]": "OK, name and email are correct",
     "[secret link]": "Secret link to your saved progress:",
     "[password]": "Password",
     "[continue anytime]": "Continue anytime on any device",
@@ -178,5 +178,5 @@
     "[detailed summary]": "Detailed summary",
     "[start new attempt dialog title]": "Start a new attempt?",
     "[start new attempt dialog text]": "When you start a new attempt - you won't be able to review your previous attempt any more.",
-    "[close course and logout]": "Close course and logout"
+    "[close course and logout]": "Close the course and logout"
 }

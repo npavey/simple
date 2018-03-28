@@ -89,7 +89,7 @@
     "[login email field]": "E-Mail",
     "[login use e-mail]": "E-Mail verwenden",
     "[authorize with]": "Autorisieren mit:",
-    "[confirn your name and email]": "OK, Name und E-Mail sind korrekt",
+    "[confirm your name and email]": "OK, Name und E-Mail sind korrekt",
     "[secret link]": "Geheimer Link zu Ihrem gespeicherten Fortschritt:",
     "[password]": "Kennwort",
     "[continue anytime]": "Jederzeit auf jedem Gerät fortfahren",
@@ -172,5 +172,8 @@
     "[next section]": "Nächster Abschnitt",
     "[success]": "Erfolgreich bestanden",
     "[failed]": "Nicht bestanden",
+    "[detailed summary]": "Detaillierte Zusammenfassung",
+    "[start new attempt dialog title]": "Einen neuen Versuch starten?",
+    "[start new attempt dialog text]": "Wenn Sie einen neuen Versuch starten, können Sie Ihren vorherigen Versuch nicht mehr ansehen",
     "[close course and logout]": "Kurs schließen"
 }
