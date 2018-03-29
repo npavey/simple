@@ -14,14 +14,14 @@
                     router.navigate('404');
                     return;
                 }
-                this.sectionsLayout = templateSettings.sectionsLayout,
+                this.sectionsLayout = templateSettings.sectionsLayout;
                 this.masteryScore = templateSettings.masteryScore.score;
 
-                if(sectionsLayout === "List") {
+                if (sectionsLayout === "List") {
                     sectionThumbnail.width = 100;
                     sectionThumbnail.height = 70;
                 }
-                
+
                 this.sections = _.map(course.sections, function (item) {
                     return {
                         id: item.id,
@@ -51,11 +51,16 @@
             courseTitle: courseTitle,
             sectionsLayout: sectionsLayout,
             isInReviewAttemptMode: context.isInReviewAttemptMode(),
+            getSectionButtonAccessibilityLabel: getSectionButtonAccessibilityLabel,
 
             masteryScore: masteryScore,
             sections: sections
         };
 
+        function getSectionButtonAccessibilityLabel(buttonTranslationKey, section) {
+            return TranslationPlugin.getTextByKey(buttonTranslationKey) + ' ' + section.title + ' ' + section.score + '% ' + section.scoreTooltipText;
+        }
+        
         function getScoreTooltipText(masteryScore, score) {
             var scoreToComplete = masteryScore - score;
             return scoreToComplete > 0 ? scoreToComplete + '% ' + TranslationPlugin.getTextByKey('[to complete]') : TranslationPlugin.getTextByKey('[completed]');

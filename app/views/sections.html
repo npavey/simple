@@ -15,21 +15,23 @@
             <span class="sections-title" data-translate-text="[sections]"></span>
         </h1>
     <!-- /ko -->
-    <ul tabindex="-1" class="sections-list autofocus" data-bind="foreach: sections">
+    <ul class="sections-list autofocus" data-bind="foreach: sections">
         <li tabindex="0" class="sections-list-item" data-bind="click: goToFirstQuestion, submitOnEnter, css: { disabled: $parent.isNavigationLocked }, css:$root.sectionsLayout, reviewable: {type: 'section', property: 'title', id: id, title: title}">
             <!-- ko if: $root.sectionsLayout==="Tiles" -->
             <div class="section-image-holder">
                 <div class="section-image" data-bind="containImage: { imageUrl: imageUrl, imageWidth: imageWidth, imageHeight: imageHeight }"></div>
                 <!-- ko ifnot: $root.isInReviewAttemptMode -->
-                <button tabindex="-1" class="button small primary" data-translate-text="[start]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                <button tabindex="-1" class="button small primary" data-translate-text="[start]" 
+                    data-bind="css: { disabled: $parent.isNavigationLocked }, attr: { 'aria-label': $parent.getSectionButtonAccessibilityLabel('[start]', $data) }"></button>
                 <!-- /ko -->
                 <!-- ko if: $root.isInReviewAttemptMode -->
-                <button tabindex="-1" class="button small primary" data-translate-text="[view]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                <button tabindex="-1" class="button small primary" data-translate-text="[view]"
+                    data-bind="css: { disabled: $parent.isNavigationLocked }, attr: { 'aria-label': $parent.getSectionButtonAccessibilityLabel('[view]', $data) }"></button>
                 <!-- /ko -->
             </div>
             <!-- ko if: affectProgress -->
-            <div class="section-progress">
-                <canvas tabindex="0" class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2, basicColor: '#fff' },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
+            <div class="section-progress" aria-hidden="true">
+                <canvas class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2, basicColor: '#fff' },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
                 <span class="section-progress-text-wrapper" data-bind="text:score+'%'"></span>
             </div>
             <!-- /ko -->
@@ -37,7 +39,7 @@
             <div class="section-progress-no-questions" data-translate-text="[there are no questions]">No questions</div>
             <!-- /ko -->
             <div class="section-info">
-                <span data-bind="text: title">section title</span>
+                <span data-bind="text: title" aria-hidden="true">section title</span>
             </div>
             <!--/ko-->
             <!-- ko if: $root.sectionsLayout==="List" -->
@@ -46,13 +48,13 @@
                     <div class="section-image" data-bind="containImage: { imageUrl: imageUrl, imageWidth: imageWidth, imageHeight: imageHeight }"></div>
                 </div>
                 <div class="section-info-holder">
-                    <div class="section-info-title" data-bind="text: title"></div>
-                    <div class="section-info-title clamped" data-bind="text: title"></div>
+                    <div class="section-info-title" aria-hidden="true" data-bind="text: title"></div>
+                    <div class="section-info-title clamped" aria-hidden="true" data-bind="text: title"></div>
                     <!-- ko ifnot: affectProgress -->
                     <span class="section-progress-no-questions" data-translate-text="[there are no questions]">No questions</span>
                     <!-- /ko -->
                     <!-- ko if: affectProgress -->
-                    <div class="section-progress">
+                    <div class="section-progress" aria-hidden="true">
                         <div class="progressbar-wrapper canvas-styles">
                             <div class='progressbar'>
                                 <div class="progressbar-value" data-bind="style: {width: score+'%'}, css:{mastered:score >= $parent.masteryScore}"></div>
@@ -78,10 +80,12 @@
                 </div>
                 <div class="section-start-button-holder">
                     <!-- ko ifnot: $root.isInReviewAttemptMode -->
-                    <button class="button small primary" data-translate-text="[start]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                    <button tabindex="-1" class="button small primary" data-translate-text="[start]"
+                        data-bind="css: { disabled: $parent.isNavigationLocked }, attr: { 'aria-label': $parent.getSectionButtonAccessibilityLabel('[start]', $data) }"></button>
                     <!-- /ko -->
                     <!-- ko if: $root.isInReviewAttemptMode -->
-                    <button class="button small primary" data-translate-text="[view]" data-bind="css: { disabled: $parent.isNavigationLocked }"></button>
+                    <button tabindex="-1" class="button small primary" data-translate-text="[view]"
+                        data-bind="css: { disabled: $parent.isNavigationLocked }, attr: { 'aria-label': $parent.getSectionButtonAccessibilityLabel('[view]', $data) }"></button>
                     <!-- /ko -->                    
                 </div>
             </div>
