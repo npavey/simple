@@ -414,18 +414,17 @@ body {
         text-decoration: @Normal-textDecoration;
 
         table {
+            th {
+                background-color: fade(@secondary-color, 50%);
+            }
 
             thead {
-                th {
-                    background-color: fade(@secondary-color, 50%);
-                }
-
                 + caption {
                     + tbody {
                         tr {
                             &:first-child {
                                 td, th {
-                                    background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px, fade(@secondary-color, 10%) 100%);
+                                    background-image: linear-gradient(@content-body-color 0px, @content-body-color 2px, transparent 2px, transparent 100%);
                                 }
                             }
                         }
@@ -436,7 +435,7 @@ body {
                     tr {
                         &:first-child {
                             td, th {
-                                background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px,fade(@secondary-color, 10%) 100%);
+                                background-image: linear-gradient(@content-body-color 0px, @content-body-color 2px, transparent 2px, transparent 100%);
                             }
                         }
                     }
@@ -452,7 +451,7 @@ body {
             tr {
                 + tr {
                     td, th {
-                        background: linear-gradient(rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0) 2px, fade(@secondary-color, 10%) 2px, fade(@secondary-color, 10%) 100%);
+                        background-image: linear-gradient(@content-body-color 0px, @content-body-color 2px, transparent 2px, transparent 100%);
                     }
                 }
             }
