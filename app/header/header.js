@@ -4,9 +4,9 @@ define([
 
         'use strict';
         var viewmodel = {
+            version: '',
             title: '',
             logoUrl: '',
-            createdOn: '',
             viewSettings: null,
             backgroundProps: null,
             pdfExportEnabled: ko.observable(false),
@@ -22,9 +22,9 @@ define([
         function activate(viewSettings, pdfExportEnabled) {
             viewmodel.viewSettings = viewSettings;
             viewmodel.pdfExportEnabled = pdfExportEnabled;
+            viewmodel.version = context.course.id + (+new Date(context.course.createdOn));
             viewmodel.title = context.course.title;
             viewmodel.logoUrl = templateSettings.logoUrl;
-            viewmodel.createdOn = context.course.createdOn;
 
             var background = templateSettings.background;
 
