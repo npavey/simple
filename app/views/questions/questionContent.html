@@ -9,9 +9,9 @@
             <a class="expand-button" data-bind="css:{expand:!isExpanded()}"></a>
         </div>
             <section id="learning-contents" class="learning-contents" data-animate="">
-                <ul class="learning-content-items unstyled">
+                <ul class="learning-content-items unstyled" role="none">
                     <!-- ko foreach: learningContents-->
-                    <li class="learning-content-item styled-content" data-bind="contentBlock: content"></li>
+                    <li class="learning-content-item styled-content" data-bind="contentBlock: content" role="none"></li>
                     <!-- /ko -->
                 </ul>
             </section>
