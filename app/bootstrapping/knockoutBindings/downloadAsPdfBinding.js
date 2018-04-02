@@ -7,9 +7,9 @@
 
     var serviceUrl = null;
     if(hasHostname('elearning-branches.easygenerator.com') || hasHostname('elearning-staging.easygenerator.com') || hasHostname('localhost')) {
-        serviceUrl = '//pdf-docker-live.easygenerator.com';
+        serviceUrl = '//pdf-docker-staging.easygenerator.com';
     } else {
-        serviceUrl = '//pdf.easygenerator.com';
+        serviceUrl = '//pdf-docker-live.easygenerator.com';
     }
 
     ko.bindingHandlers.downloadAsPdf = {
