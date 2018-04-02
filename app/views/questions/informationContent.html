@@ -8,7 +8,12 @@
         <section id="learning-contents" class="learning-contents">
             <ul class="learning-content-items unstyled">
                 <!-- ko foreach: learningContents-->
+                <!-- ko if: !children -->
                 <li class="learning-content-item styled-content" data-bind="contentBlock: content"></li>
+                <!-- /ko -->
+                <!-- ko ifnot: !children -->
+                <li class="learning-content-item" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
+                <!-- /ko -->
                 <!-- /ko -->
             </ul>
         </section>

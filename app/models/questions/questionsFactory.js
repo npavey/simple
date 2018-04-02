@@ -25,14 +25,10 @@
                 title: question.title,
                 type: question.type,
                 learningContents: _.map(question.learningContents, function (learningContent) {
-                    return new ContentBlock({
-                        id: learningContent.id
-                    });
+                    return mapContentBlock(learningContent);
                 }),
                 questionInstructions: _.map(question.questionInstructions, function (instruction) {
-                    return new ContentBlock({
-                        id: instruction.id
-                    });
+                    return mapContentBlock(instruction);
                 }),
                 score: 0,
                 voiceOver: question.voiceOver,
@@ -88,5 +84,14 @@
                 default:
                     return null;
             }
+        }
+
+        function mapContentBlock(item) {
+            return new ContentBlock({
+                id: item.id,
+                children: _.map(item.children, function(childrenItem) {
+                    return mapContentBlock(childrenItem);
+                })
+            });
         }
     });

@@ -1718,6 +1718,50 @@ body {
 
 /*#endregion Media editor audio*/
 
+/*#region EXPANDABLE BLOCK*/
+
+.expandable-block {
+    &::before {
+        background-color: @main-color;
+    }
+
+    &::after {
+        background-color: fade(@text-color, 10%);
+    }
+
+    &:hover,
+    &:focus {
+        &::after {
+            background-color: fade(@main-color, 30%);
+        }
+
+        .expandable-block-content {
+            .expand-button {
+                .material-icons {
+                    color: fade(@main-color, 30%);
+                }
+            }
+        }
+    }
+
+    .expandable-block-content {
+        .expandable-block-content-title {
+            font-family: @main-font-fontFamily;
+            color: @text-color;
+        }
+
+        .expand-button {
+            background-color: transparent;
+
+            .material-icons {
+                color: fade(@text-color, 50%);
+            }
+        }
+    }
+}
+
+/*#endregion*/
+
 .text-main-color{
     color: @main-color;
 }

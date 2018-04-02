@@ -3,7 +3,12 @@
     <section id="question-instructions" class="question-instructions" data-animate="">
         <ul class="question-instruction-items unstyled">
             <!-- ko foreach: questionInstructions-->
+            <!-- ko if: !children -->
             <li class="question-instruction-item styled-content" data-bind="contentBlock: content"></li>
+            <!-- /ko -->
+            <!-- ko ifnot: !children -->
+            <li class="question-instruction-item" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
+            <!-- /ko -->
             <!-- /ko -->
         </ul>
     </section>
