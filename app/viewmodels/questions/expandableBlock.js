@@ -1,23 +1,21 @@
 define(['knockout'], function (ko) {
     "use strict";
 
-    var viewModel = {
-        content: undefined,
-        children: undefined,
-        isExpanded: ko.observable(),
-        activate: activate,
-        toggleExpand: toggleExpand
+    function ExpandableBlock() {
+        this.content = undefined;
+        this.children = undefined;
+        this.isExpanded = ko.observable();
     };
 
-    return viewModel;
-
-    function activate(data) {
-        viewModel.content = data.content;
-        viewModel.children = data.children;
-        viewModel.isExpanded(false)
+    ExpandableBlock.prototype.activate = function(data) {
+        this.content = data.content;
+        this.children = data.children;
+        this.isExpanded(false);
     }
 
-    function toggleExpand() {
-        return viewModel.isExpanded(!viewModel.isExpanded());
+    ExpandableBlock.prototype.toggleExpand = function() {
+        return this.isExpanded(!this.isExpanded());
     }
+
+    return ExpandableBlock;
 });
