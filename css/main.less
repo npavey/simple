@@ -2788,7 +2788,7 @@ textarea {
 
 .content {
     border-radius: 5px;
-    padding: 45px 30px;
+    padding: 65px 30px 45px;
     margin: 20px auto;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
 
@@ -5344,6 +5344,12 @@ textarea {
 .expandable-block-wrapper {
     & + .expandable-block-wrapper {
         margin-top: -31px;
+    }
+
+    &:last-child {
+        & .expandable-block {
+            margin-bottom: 40px;
+        }
     }
 }
 
