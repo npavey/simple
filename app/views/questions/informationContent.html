@@ -12,7 +12,7 @@
                 <li class="learning-content-item styled-content" data-bind="contentBlock: content"></li>
                 <!-- /ko -->
                 <!-- ko ifnot: !children -->
-                <li class="learning-content-item" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
+                <li class="learning-content-item expandable-block-wrapper" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
                 <!-- /ko -->
                 <!-- /ko -->
             </ul>

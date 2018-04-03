@@ -5341,6 +5341,12 @@ textarea {
 
 /*#region EXPANDABLE BLOCK*/
 
+.expandable-block-wrapper {
+    & + .expandable-block-wrapper {
+        margin-top: -31px;
+    }
+}
+
 .expandable-block {
     position: relative;
     padding: 0 22px;
