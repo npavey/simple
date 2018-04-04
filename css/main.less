@@ -5382,30 +5382,14 @@ textarea {
     &.collapsed {
         &::before {
             opacity: 0;
-            transition: opacity linear .2s;
         }
 
         &::after {
             opacity: 1;
-            transition: opacity linear .2s;
         }
 
         .expandable-block-content {
             padding-bottom: 24px;
-            transition: padding-bottom linear .2s;
-        }
-    }
-
-    &:hover,
-    &:focus {
-        &::after {
-            transition: background-color linear .2s;
-        }
-
-        .expandable-block-content {
-            .expand-button {
-                transition: color linear .2s;
-            }
         }
     }
 
@@ -5429,21 +5413,16 @@ textarea {
             position: relative;
             padding: 0;
 
-            span {
+            .expand-button-icon {
                 position: absolute;
                 top: 10px;
                 right: 16px;
-                transition: color linear .2s;
+                transition: color linear .2s, opacity linear .2s;
+                opacity: 0;
             }
 
             .visible {
                 opacity: 1;
-                transition: opacity linear .2s;
-            }
-
-            .hide {
-                opacity: 0;
-                transition: opacity linear .2s;
             }
         }
     }

@@ -11,10 +11,10 @@
             <section id="learning-contents" class="learning-contents" data-animate="">
                 <ul class="learning-content-items unstyled">
                     <!-- ko foreach: learningContents-->
-                    <!-- ko if: !children -->
+                    <!-- ko ifnot: children.length -->
                     <li class="learning-content-item styled-content" data-bind="contentBlock: content"></li>
                     <!-- /ko -->
-                    <!-- ko ifnot: !children -->
+                    <!-- ko if: children.length -->
                     <li class="learning-content-item expandable-block-wrapper" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
                     <!-- /ko -->
                     <!-- /ko -->

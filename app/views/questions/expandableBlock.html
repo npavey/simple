@@ -2,13 +2,13 @@
     <div class="expandable-block-content" data-bind="click: toggleExpand, submitOnEnter">
         <div class="expandable-block-content-title" data-bind="html: content"></div>
         <button class="expand-button" data-bind="css: { expand: !isExpanded() }">
-            <span class="material-icons expand-button-icon" data-bind="css: { hide: !isExpanded(), visible: isExpanded() }">remove</span>
-            <span class="material-icons expanded-button-icon" data-bind="css: { hide: isExpanded(), visible: !isExpanded() }">add</span>
+            <span class="material-icons expand-button-icon" data-bind="css: { visible: isExpanded() }">remove</span>
+            <span class="material-icons expand-button-icon" data-bind="css: { visible: !isExpanded() }">add</span>
         </button>
     </div>
     <!-- ko if: children.length > 0 -->
     <ul class="expandable-block-children-items unstyled" data-animate>
-        <!-- ko foreach: children-->
+        <!-- ko foreach: children -->
         <li class="expandable-block-children styled-content" data-bind="contentBlock: content"></li>
         <!-- /ko -->
     </ul>
