@@ -78,11 +78,13 @@
     }
     
     function loadQuestionInstructions() {
-        return this.loadContent(this.questionInstructions);
+        var promises = this.loadContent(this.questionInstructions);
+        return Q.allSettled(promises);
     }
 
     function loadLearningContent() {
-        return this.loadContent(this.learningContents);
+        var promises = this.loadContent(this.learningContents);
+        return Q.allSettled(promises);
     }
 
     function load() {
@@ -131,7 +133,7 @@
             requests.splice.apply(requests, [requests.length, 0].concat(childrenRequests));
         });
 
-        return Q.allSettled(requests);
+        return requests;
     }
 
     function loadPage(contentUrl) {
