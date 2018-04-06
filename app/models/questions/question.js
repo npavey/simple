@@ -78,13 +78,11 @@
     }
     
     function loadQuestionInstructions() {
-        var promises = this.loadContent(this.questionInstructions);
-        return Q.allSettled(promises);
+        return this.loadContent(this.questionInstructions);
     }
 
     function loadLearningContent() {
-        var promises = this.loadContent(this.learningContents);
-        return Q.allSettled(promises);
+        return this.loadContent(this.learningContents);
     }
 
     function load() {
@@ -120,27 +118,21 @@
 
     function loadContent(items) {
         var that = this;
-        var requests = [];
-        _.each(items, function (item) {
+        var promises = [];
+        _.each(items, function(item) {
             if (_.isNullOrUndefined(item.content)) {
-                requests.push(loadPage('content/' + that.sectionId + '/' + that.id + '/' + item.id + '.html')
-                    .then(function (response) {
-                        item.content = response;
-                    }));
+                promises.push(loadPage('content/' + that.sectionId + '/' + that.id + '/' + item.id + '.html').then(function(content) {
+                    item.content = content;
+                    return that.loadContent(item.children);
+                }));
             }
-
-            var childrenRequests = that.loadContent(item.children)
-            requests.splice.apply(requests, [requests.length, 0].concat(childrenRequests));
         });
 
-        return requests;
+        return Q.allSettled(promises);
     }
 
     function loadPage(contentUrl) {
-        return http.get(contentUrl)
-            .then(function (response) {
-                return response;
-            });
+        return http.get(contentUrl);
     }
 
 });
