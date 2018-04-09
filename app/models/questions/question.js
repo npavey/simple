@@ -120,12 +120,13 @@
         var that = this;
         var promises = [];
         _.each(items, function(item) {
-            if (_.isNullOrUndefined(item.content)) {
-                promises.push(loadPage('content/' + that.sectionId + '/' + that.id + '/' + item.id + '.html').then(function(content) {
+            if (typeof item.content === typeof undefined) {
+                promises.push(loadPage(item.contentUrl).then(function(content) {
                     item.content = content;
-                    return that.loadContent(item.children);
                 }));
             }
+
+            return that.loadContent(item.children);
         });
 
         return Q.allSettled(promises);
