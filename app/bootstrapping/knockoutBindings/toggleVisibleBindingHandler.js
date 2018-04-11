@@ -4,7 +4,8 @@
         update: function (element, valueAccessor) {
             var $element = $(element),
                 isExpanded = valueAccessor().isExpanded,
-                $animationContainer = $element.find('[data-animate]'),
+                animationContainer = $element.find('[data-animate]')[0],
+                $animationContainer = $(animationContainer);
                 speed = 300;
             if (isExpanded) {
                 $animationContainer.slideDown(speed);
