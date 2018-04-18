@@ -25,14 +25,10 @@
                 title: question.title,
                 type: question.type,
                 learningContents: _.map(question.learningContents, function (learningContent) {
-                    return new ContentBlock({
-                        id: learningContent.id
-                    });
+                    return mapContentBlock(learningContent, sectionId, question.id);
                 }),
                 questionInstructions: _.map(question.questionInstructions, function (instruction) {
-                    return new ContentBlock({
-                        id: instruction.id
-                    });
+                    return mapContentBlock(instruction, sectionId, question.id);
                 }),
                 score: 0,
                 voiceOver: question.voiceOver,
@@ -88,5 +84,14 @@
                 default:
                     return null;
             }
+        }
+
+        function mapContentBlock(item, sectionId, questionId) {
+            var contentUrl = 'content/' + sectionId + '/' + questionId + '/' + item.id + '.html';
+            var children = _.map(item.children, function(childItem) {
+                return mapContentBlock(childItem, sectionId, questionId);
+            })
+            
+            return new ContentBlock(item.id, contentUrl, children)
         }
     });

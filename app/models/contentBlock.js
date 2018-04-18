@@ -1,9 +1,12 @@
 ﻿define([],
     function () {
 
-        function ContentBlock(spec) {
-            this.id = spec.id;
-            this.content = null;
+        function ContentBlock(id, contentUrl, children) {
+            this.id = id;
+            this.contentUrl = contentUrl;
+            this.children = children;
+
+            this.content;
         }
 
         return ContentBlock;

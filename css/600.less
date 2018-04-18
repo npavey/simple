@@ -297,4 +297,23 @@
         }
     }
 
+    .expandable-block {
+        padding: 0;
+    
+        &::before {
+            left: -20px;
+        }
+
+        .expandable-block-content {
+            .expandable-block-content-title {
+                line-height: normal;
+            }
+
+            .expand-button {
+                .expand-button-icon {
+                    right: 0;
+                }
+            }
+        }
+    }
 }

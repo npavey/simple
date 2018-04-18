@@ -36,6 +36,13 @@
                 <section>
                     <!-- ko foreach: question.learningContents -->
                     <h4 data-bind="html: html"></h4>
+                    <!-- ko if: children.length -->
+                    <section>
+                        <!-- ko foreach: children -->
+                        <h4 data-bind="html: html"></h4>
+                        <!-- /ko -->
+                    </section>
+                    <!-- /ko -->
                     <!-- /ko -->
                 </section>
                 <!-- /ko -->
@@ -44,6 +51,13 @@
                 <section>
                     <!-- ko foreach: question.questionInstructions -->
                     <h4 data-bind="html: html"></h4>
+                    <!-- ko if: children.length -->
+                    <section>
+                        <!-- ko foreach: children -->
+                        <h4 data-bind="html: html"></h4>
+                        <!-- /ko -->
+                    </section>
+                    <!-- /ko -->
                     <!-- /ko -->
                 </section>
                 <!-- /ko -->

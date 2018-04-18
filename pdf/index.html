@@ -48,7 +48,19 @@
                 <!-- ko if: question.learningContents.length > 0 -->
                 <ul class="learning-content-items content">
                     <!-- ko foreach: question.learningContents -->
+                    <!-- ko ifnot: children.length -->
                     <li class="learning-content-item styled-content" data-bind="loadHtml: html"></li>
+                    <!-- /ko -->
+                    <!-- ko if: children.length -->
+                    <li class="expandable-block-wrapper">
+                        <div class="expandable-block-title" data-bind="loadHtml: html"></div>
+                        <ul class="expandable-block-items">
+                            <!-- ko foreach: children -->
+                            <li class="expandable-block-item styled-content" data-bind="loadHtml: html"></li>
+                            <!-- /ko -->
+                        </ul>
+                    </li>
+                    <!-- /ko -->
                     <!-- /ko -->
                 </ul>
                 <!-- /ko -->
@@ -58,6 +70,15 @@
                 <ul class="learning-content-items content with-icon">
                     <!-- ko foreach: question.learningContents -->
                     <li class="learning-content-item styled-content" data-bind="loadHtml: html"></li>
+                    <!-- ko if: children.length -->
+                    <li class="expandable-block-wrapper">
+                            <ul class="expandable-block-items">
+                                <!-- ko foreach: children -->
+                                <li class="expandable-block-item styled-content" data-bind="loadHtml: html"></li>
+                                <!-- /ko -->
+                            </ul>
+                        </li>
+                        <!-- /ko -->
                     <!-- /ko -->
                 </ul>
                 <!-- /ko -->
@@ -67,6 +88,13 @@
                 <div class="question-content-wrapper">
                     <!-- ko foreach: question.questionInstructions -->
                     <div class="question-content styled-content" data-bind="loadHtml: html"></div>
+                    <!-- ko if:  -->
+                    <ul class="expandable-block-items">
+                        <!-- ko foreach: children -->
+                        <li class="expandable-block-item styled-content" data-bind="loadHtml: html"></li>
+                        <!-- /ko -->
+                    </ul>
+                    <!-- /ko -->
                     <!-- /ko -->
                 </div>
                 <!-- /ko -->

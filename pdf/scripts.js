@@ -138,6 +138,13 @@
 						learningContent.html = response;
 						calcImages(response);
 					}));
+
+					ko.utils.arrayForEach(learningContent.children, function (child) {
+						promises.push($.get('../content/' + section.id + '/' + question.id + '/' + child.id + '.html', function (response) {
+							child.html = response;
+							calcImages(response);
+						}));
+					});
 				});
 
 				ko.utils.arrayForEach(question.questionInstructions, function (questionInstruction) {
@@ -145,6 +152,13 @@
 						questionInstruction.html = response;
 						calcImages(response);
 					}));
+
+					ko.utils.arrayForEach(questionInstruction.children, function (child) {
+						promises.push($.get('../content/' + section.id + '/' + question.id + '/' + child.id + '.html', function (response) {
+							child.html = response;
+							calcImages(response);
+						}));
+					});
 				});
 
 				if (question.type === 'fillInTheBlank' && question.hasContent) {

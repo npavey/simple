@@ -41,6 +41,8 @@
 
         this.learningContentExperienced = learningContentExperienced;
 
+        this.loadContent = loadContent;
+
         this.progress = function (data) {
             if (!this.affectProgress && !this.hasOwnProperty('isSurvey'))
                 return 0;
@@ -76,33 +78,11 @@
     }
     
     function loadQuestionInstructions() {
-        var that = this;
-        var requests = [];
-        _.each(that.questionInstructions, function (item) {
-            if (_.isNullOrUndefined(item.content)) {
-                requests.push(http.get('content/' + that.sectionId + '/' + that.id + '/' + item.id + '.html')
-                    .then(function (response) {
-                        item.content = response;
-                    }));
-            }
-        });
-        
-        return Q.allSettled(requests);
+        return this.loadContent(this.questionInstructions);
     }
 
     function loadLearningContent() {
-        var that = this;
-        var requests = [];
-        _.each(that.learningContents, function (item) {
-            if (_.isNullOrUndefined(item.content)) {
-                requests.push(http.get('content/' + that.sectionId + '/' + that.id + '/' + item.id + '.html')
-                    .then(function (response) {
-                        item.content = response;
-                    }));
-            }
-        });
-
-        return Q.allSettled(requests);
+        return this.loadContent(this.learningContents);
     }
 
     function load() {
@@ -123,17 +103,37 @@
             incorrectFeedbackContentUrl = feedbackUrlPath + 'incorrectFeedback.html';
 
         if (that.feedback.hasCorrect) {
-            requests.push(http.get(correctFeedbackContentUrl).then(function (content) {
+            requests.push(loadPage(correctFeedbackContentUrl).then(function (content) {
                 that.feedback.correct = content;
             }));
         }
         if (that.feedback.hasIncorrect) {
-            requests.push(http.get(incorrectFeedbackContentUrl).then(function (content) {
+            requests.push(loadPage(incorrectFeedbackContentUrl).then(function (content) {
                 that.feedback.incorrect = content;
             }));
         }
 
         return Q.allSettled(requests);
+    }
+
+    function loadContent(items) {
+        var that = this;
+        var promises = [];
+        _.each(items, function(item) {
+            if (typeof item.content === typeof undefined) {
+                promises.push(loadPage(item.contentUrl).then(function(content) {
+                    item.content = content;
+                }));
+            }
+
+            return that.loadContent(item.children);
+        });
+
+        return Q.allSettled(promises);
+    }
+
+    function loadPage(contentUrl) {
+        return http.get(contentUrl);
     }
 
 });

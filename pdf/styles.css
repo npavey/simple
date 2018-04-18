@@ -242,3 +242,34 @@ body {
 }
  
 /*#endregion .eg-content-editor*/
+
+/*#region Expandable block*/
+
+.expandable-block-wrapper {
+    padding: 0 22px;
+    position: relative;
+}
+
+.expandable-block-wrapper:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    opacity: 1;
+    background-color: #43aaa3;
+}
+
+.expandable-block-title {
+    font-size: 20px;
+    line-height: 2;
+    padding-bottom: 24px;
+}
+
+.expandable-block-wrapper .styled-content:before {
+    display: none;
+}
+
+/*#endregion Expandable block*/

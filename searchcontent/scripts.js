@@ -24,12 +24,24 @@
 						promises.push($.get('../content/' + section.id + '/' + question.id + '/' + learningContent.id + '.html', function (response) {
 							learningContent.html = response;
 						}));
+
+						ko.utils.arrayForEach(learningContent.children, function (child) {
+							promises.push($.get('../content/' + section.id + '/' + question.id + '/' + child.id + '.html', function (response) {
+								child.html = response;
+							}));
+						});
 					});
 
 					ko.utils.arrayForEach(question.questionInstructions, function (questionInstruction) {
 						promises.push($.get('../content/' + section.id + '/' + question.id + '/' + questionInstruction.id + '.html', function (response) {
 							questionInstruction.html = response;
 						}));
+
+						ko.utils.arrayForEach(questionInstruction.children, function (child) {
+							promises.push($.get('../content/' + section.id + '/' + question.id + '/' + child.id + '.html', function (response) {
+								child.html = response;
+							}));
+						});
 					});
 
 					if (question.type === 'fillInTheBlank' && question.hasContent) {
