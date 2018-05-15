@@ -7,9 +7,9 @@
                 $animationContainer = $element.children('[data-animate]'),
                 speed = 300;
             if (isExpanded) {
-                $animationContainer.slideDown(speed);
+                $animationContainer.css('height', '').hide().slideDown(speed);
             } else {
-                $animationContainer.slideUp(speed);
+                $animationContainer.animate({height: 0}, speed);
             }
         }
     }
