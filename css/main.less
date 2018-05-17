@@ -4105,15 +4105,15 @@ textarea {
     height: 43px;
     background: url(img/pdf/pdf-button-bkg.png) 0 0 no-repeat;
     cursor: pointer;
-    z-index: 1;
+    z-index: 2;
 }
 
-.download-as-pdf-button.proggress {
+.download-course-wrapper.proggress .download-as-pdf-button {
     pointer-events: none;
     cursor: default;
 }
 
-.download-as-pdf-button.default:after {
+.download-course-wrapper.default .download-as-pdf-button:after {
     content: '';
     position: absolute;
     top: 11px;
@@ -4124,7 +4124,7 @@ textarea {
     background: url(img/pdf/pdf-button-default.png) 0 0 no-repeat;
 }
 
-.download-as-pdf-button.proggress:after {
+.download-course-wrapper.proggress .download-as-pdf-button:after {
     content: '';
     position: absolute;
     top: 13px;
@@ -4135,7 +4135,8 @@ textarea {
     background: url(img/pdf/pdf-button-proggress.gif) 0 0 no-repeat;
 }
 
-.download-as-pdf-button.error:after {
+.download-course-wrapper.error .download-as-pdf-button:after,
+.download-course-wrapper.server-error .download-as-pdf-button:after {
     content: '';
     position: absolute;
     top: 13px;
@@ -4150,18 +4151,19 @@ textarea {
     position: absolute;
     left: 31px;
     top: 50%;
-    width: 220px;
+    width: 650px;
     height: 30px;
     margin-top: -15px;
     margin-left: 5px;
     transition: opacity linear 0.2s, margin-left linear 0.2s;
     opacity: 0;
+    z-index: 1;
 }
 
 .download-as-pdf-status {
     display: inline-block;
     min-width: 125px;
-    max-width: 220px;
+    max-width: 650px;
     height: 100%;
     padding: 2px 7px;
     background-color: #f27071;
@@ -4173,10 +4175,11 @@ textarea {
     cursor: default;
 }
 
-.download-as-pdf-button:hover ~ .download-as-pdf-status-wrapper,
-.download-as-pdf-button:focus ~ .download-as-pdf-status-wrapper,
-.download-as-pdf-button.proggress ~ .download-as-pdf-status-wrapper,
-.download-as-pdf-button.error ~ .download-as-pdf-status-wrapper {
+.download-course-wrapper:hover .download-as-pdf-status-wrapper,
+.download-course-wrapper:focus .download-as-pdf-status-wrapper,
+.download-course-wrapper.proggress .download-as-pdf-status-wrapper,
+.download-course-wrapper.error .download-as-pdf-status-wrapper,
+.download-course-wrapper.server-error .download-as-pdf-status-wrapper {
     opacity: 1;
     margin-left: 0;
 }
@@ -4189,9 +4192,10 @@ textarea {
     overflow: hidden;
 }
 
-.download-as-pdf-button.default ~ .download-as-pdf-status-wrapper .default,
-.download-as-pdf-button.proggress ~ .download-as-pdf-status-wrapper .proggress,
-.download-as-pdf-button.error ~ .download-as-pdf-status-wrapper .error {
+.download-course-wrapper.default .download-as-pdf-status-wrapper .default,
+.download-course-wrapper.proggress .download-as-pdf-status-wrapper .proggress,
+.download-course-wrapper.error .download-as-pdf-status-wrapper .error,
+.download-course-wrapper.server-error .download-as-pdf-status-wrapper .server-error {
     display: inline-block;
 }
 

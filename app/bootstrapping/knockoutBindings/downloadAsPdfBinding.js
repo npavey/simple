@@ -2,7 +2,8 @@
     var buttonStatuses = {
         default: 'default',
         proggress: 'proggress',
-        error: 'error'
+        error: 'error',
+        serverError: 'server-error'
     };
 
     var serviceUrl = null;
@@ -55,7 +56,12 @@
                 fetch(convertionUrl.value)
                     .then(function(response) {
                         if(response.status !== 200) {
-                            throw new Error();
+                            return response.json().then(function (error) {
+                                if(error.message) {
+                                    throw new Error(error.message);
+                                }
+                                throw new Error();
+                            });
                         }
 
                         return response.blob();
@@ -64,8 +70,13 @@
                         download(blob, filename, blob.type);
                         setStatus($element, buttonStatuses.default);
                     })
-                    .catch(function() {
-                        setStatus($element, buttonStatuses.error);
+                    .catch(function(error) {
+                        if(error.message) {
+                            var el = $element.find('.server-error').text(error.message);
+                            setStatus($element, buttonStatuses.serverError);
+                        } else {
+                            setStatus($element, buttonStatuses.error);
+                        }
                         timeoutId = setTimeout(function () {
                             setStatus($element, buttonStatuses.default);
                         }, 5000);
@@ -79,7 +90,8 @@
         $element
             .toggleClass(buttonStatuses.default, status === buttonStatuses.default)
             .toggleClass(buttonStatuses.proggress, status === buttonStatuses.proggress)
-            .toggleClass(buttonStatuses.error, status === buttonStatuses.error);
+            .toggleClass(buttonStatuses.error, status === buttonStatuses.error)
+            .toggleClass(buttonStatuses.serverError, status === buttonStatuses.serverError);
     }
 
     function getDateTimeString() {
