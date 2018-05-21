@@ -31,6 +31,8 @@
 
 			$(element).html($output.html());
 
+			$('.spot', element).remove();
+
 			function wrapElement($element) {
 				var imageWrapper = '<figure class="image-wrapper"></figure>',
 					tableWrapper = '<figure class="table-wrapper"></figure>';
