@@ -51,7 +51,7 @@ function removeDebugBlocks() {
     });
 };
 
-gulp.task('process-less', function () {
+gulp.task('styles', function () {
     gulp.src(['./css/main.less', './css/ie.less', './css/edge.less'])
         .pipe($.plumber({
             errorHandler: function (error) {
@@ -71,8 +71,8 @@ gulp.task('process-less', function () {
         .pipe(gulp.dest('./css/'));
 });
 
-gulp.task('watch', ['process-less'], function () {
-    gulp.watch('./css/*.less', ['process-less']);
+gulp.task('watch', ['styles'], function () {
+    gulp.watch('./css/*.less', ['styles']);
 });
 
 gulp.task('build', ['pre-build', 'build-app', 'build-settings', 'build-pdf-app'], function () {
@@ -93,7 +93,7 @@ gulp.task('assets', ['clean', 'bower'], function () {
         .pipe(gulp.dest(output + '/css/img'));
 });
 
-gulp.task('pre-build', ['clean', 'bower', 'assets', 'process-less'], function () {
+gulp.task('pre-build', ['clean', 'bower', 'assets', 'styles'], function () {
 });
 
 gulp.task('build-app', ['pre-build'], function () {

@@ -1,6 +1,6 @@
 define([
-    'knockout', 'underscore', 'plugins/router', 'context', 'templateSettings', 'constants'
-], function (ko, _, router, context, templateSettings, constants) {
+    'knockout', 'underscore', 'plugins/router', 'context', 'templateSettings', 'publishSettings', 'constants'
+], function (ko, _, router, context, templateSettings, publishSettings, constants) {
 
         'use strict';
         var viewmodel = {
@@ -9,6 +9,7 @@ define([
             logoUrl: '',
             viewSettings: null,
             backgroundProps: null,
+            pdfServiceUrl: null,
             pdfExportEnabled: ko.observable(false),
             height: ko.observable(null),
 
@@ -22,6 +23,7 @@ define([
         function activate(viewSettings, pdfExportEnabled) {
             viewmodel.viewSettings = viewSettings;
             viewmodel.pdfExportEnabled = pdfExportEnabled;
+            viewmodel.pdfServiceUrl = '//' + publishSettings.pdfConverterUrl;
             viewmodel.version = context.course.id + (+new Date(context.course.createdOn));
             viewmodel.title = context.course.title;
             viewmodel.logoUrl = templateSettings.logoUrl;

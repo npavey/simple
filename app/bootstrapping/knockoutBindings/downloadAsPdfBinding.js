@@ -1,4 +1,4 @@
-﻿define(['download'], function (download) {
+﻿define(['helpers/fileDownloader'], function (fileDownloader) {
     var buttonStatuses = {
         default: 'default',
         proggress: 'proggress',
@@ -6,19 +6,13 @@
         serverError: 'server-error'
     };
 
-    var serviceUrl = null;
-    if(hasHostname('elearning-branches.easygenerator.com') || hasHostname('elearning-staging.easygenerator.com') || hasHostname('localhost')) {
-        serviceUrl = '//pdf-docker-staging.easygenerator.com';
-    } else {
-        serviceUrl = '//pdf-docker-live.easygenerator.com';
-    }
-
     ko.bindingHandlers.downloadAsPdf = {
         init: function (element, valueAccessor) {
 
             var
                 $element = $(element),
                 filename = getFullPdfFilename((valueAccessor().title || $element.attr('title'))),
+                serviceUrl = valueAccessor().serviceUrl,
                 version = valueAccessor().version;
             
             if (location.href.indexOf('/preview/') !== -1) {
@@ -53,21 +47,9 @@
                 }
                 
                 setStatus($element, buttonStatuses.proggress);
-                fetch(convertionUrl.value)
-                    .then(function(response) {
-                        if(response.status !== 200) {
-                            return response.json().then(function (error) {
-                                if(error.message) {
-                                    throw new Error(error.message);
-                                }
-                                throw new Error();
-                            });
-                        }
 
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        download(blob, filename, blob.type);
+                fileDownloader.downloadFile(convertionUrl.value, filename)
+                    .then(function(){
                         setStatus($element, buttonStatuses.default);
                     })
                     .catch(function(error) {

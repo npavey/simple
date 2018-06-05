@@ -38,7 +38,7 @@
 
             <!-- ko if: pdfExportEnabled -->
             <div class="download-course-container">
-                <div class="download-course-wrapper default" data-bind="downloadAsPdf: { title: title, version: version }">
+                <div class="download-course-wrapper default" data-bind="downloadAsPdf: { title: title, serviceUrl: pdfServiceUrl, version: version }">
                     <div class="download-as-pdf-button" data-translate-title="[download course in pdf format]"></div>
                     <div class="download-as-pdf-status-wrapper">
                         <div class="download-as-pdf-status">

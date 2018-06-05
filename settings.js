@@ -25,9 +25,10 @@
     "treeOfContent":{
         "enabled": true
     },
-    "showConfirmationPopup":true,
+    "showConfirmationPopup": true,
     "allowCrossDeviceSaving": true,
     "allowLoginViaSocialMedia": true,
+    "allowCertificateDownload": false,
     "hideFinishActionButtons": false,
     "copyright": "Copyright © {year} Easygenerator"
 }

@@ -4961,6 +4961,22 @@ textarea {
 .result-page-content,
 .results-summary-heading {
     opacity: 0;
+
+    .section-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .results-summary-caption {
+            margin-bottom: 10px;
+            margin-right: 20px;
+        }
+
+        .button.download-certificate{
+            min-width: 200px;
+            max-width: 300px;
+        }
+    }
 }
 
 .content-container.module-resultPage {
@@ -5046,7 +5062,8 @@ textarea {
                 .button-wrapper {
                     .button {
                         height: 44px;
-                        width: 237px;
+                        width: auto;
+                        min-width: 237px;
                         margin-top: 50px;
                         font-size: 16px;
                     }
