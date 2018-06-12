@@ -95,7 +95,7 @@
                     val = defaultTemplateSettings[property];
                 }
 
-                if (val) {
+                if (val !== null) {
                     field(handler ? handler(val) : val);
                 }
             }
