@@ -2,9 +2,11 @@ define([
     'knockout', 'underscore', 'durandal/app', 'durandal/composition', 'plugins/router',
     'routing/routes', 'context', 'includedModules/modulesInitializer', 'templateSettings',
     'progressContext', 'constants', 'userContext', 'errorsHandler',
-    'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 'modules/questionsNavigation'
+    'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 
+    'modules/questionsNavigation', 'modules/lti'
 ], function (ko, _, app, composition, router, routes, context, modulesInitializer, templateSettings,
-    progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, questionsNavigation) {
+    progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, 
+    questionsNavigation, lti) {
 
         'use strict';
         var viewmodel = {
@@ -61,6 +63,7 @@ define([
         function activate() {
             return context.initialize()
                 .then(userContext.initialize)
+                .then(lti.initialize)
                 .then(account.enable)
                 .then(initializeProgressProvider)
                 .then(initxApi)
