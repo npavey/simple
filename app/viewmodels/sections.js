@@ -1,5 +1,5 @@
-﻿define(['context', 'repositories/courseRepository', 'plugins/router', 'windowOperations', 'templateSettings'],
-    function (context, repository, router, windowOperations, templateSettings) {
+﻿define(['context', 'repositories/courseRepository', 'plugins/router', 'templateSettings'],
+    function (context, repository, router, templateSettings) {
 
         var
             sections = [],

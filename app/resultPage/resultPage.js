@@ -1,10 +1,10 @@
 define([
     'repositories/courseRepository', 'templateSettings', 'plugins/router', 'progressContext',
     'userContext', 'xApi/xApiInitializer', 'includedModules/modulesInitializer',
-    'windowOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog',
+    'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog',
     'modules/progress/progressStorage/certificateProvider', 'helpers/fileDownloader', 'localizationManager'
 ], function(courseRepository, templateSettings, router, progressContext, userContext,
-    xApiInitializer, modulesInitializer, windowOperations, constants, auth, publishModeProvider, Dialog, certificateProvider, fileDownloader, localizationManager) {
+    xApiInitializer, modulesInitializer, appOperations, constants, auth, publishModeProvider, Dialog, certificateProvider, fileDownloader, localizationManager) {
     "use strict";
 
     var course = courseRepository.get();
@@ -143,8 +143,11 @@ define([
             auth.signout();
 
         course.finalize(function() {
-            if (params.close)
-                windowOperations.close();
+            if (params.close){
+                appOperations.close({ 
+                    shouldCloseWindow: !viewModel.canDownloadCertificate 
+                });
+            }
         });
     }
 

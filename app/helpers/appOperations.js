@@ -4,14 +4,15 @@
         "use strict";
 
         var
-            windowOperations = {
+            appOperations = {
                 close: close
             };
 
-        return windowOperations;
+        return appOperations;
 
-        function close() {
-            if (window.opener && window !== window.opener) {
+        function close(spec) {
+            spec = spec || { shouldCloseWindow: true };
+            if (spec.shouldCloseWindow && window.opener && window !== window.opener) {
                 window.close();
             }
             app.trigger(constants.events.appClosed);

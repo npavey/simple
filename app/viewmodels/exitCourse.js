@@ -1,8 +1,8 @@
 ﻿define([
-    'durandal/app', 'windowOperations', 'repositories/courseRepository', 'progressContext',
+    'durandal/app', 'helpers/appOperations', 'repositories/courseRepository', 'progressContext',
     'plugins/router', 'templateSettings', 'constants',
     'xApi/xApiInitializer', 'includedModules/modulesInitializer', 'context', 'modules/publishModeProvider','dialogs/dialog'
-], function(app, windowOperations, courseRepository, progressContext, router, templateSettings,
+], function(app, appOperations, courseRepository, progressContext, router, templateSettings,
     constants, xApiInitializer, modulesInitializer, context, publishModeProvider, Dialog) {
     "use strict";
 
@@ -76,7 +76,7 @@
         }
 
         course.finalize(function() {
-            windowOperations.close();
+            appOperations.close();
         });
     }
 
