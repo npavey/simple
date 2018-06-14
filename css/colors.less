@@ -79,11 +79,12 @@ body {
 
     &.primary {
         color: @button-text-color;
-        border-color: shade(@main-color,10%);
+        border-color: @main-color;
         background-color: @main-color;
 
         &:not(.disabled):hover, &:not(.disabled):focus {
             background-color: shade(@main-color,10%);
+            border-color: shade(@main-color,10%);
         }
     }
 
@@ -889,14 +890,21 @@ body {
                     color: @main-color;
                 }
             }
+
+            section {
+                background-color: shade(@content-body-color, 5%);
+                border-color: @main-color;
+
+                ul {
+                    li {
+                        color: @text-color;
+                    }
+                }
+            }
         }
 
         footer {
-            background-color: fade(@main-color, 10%);
-
-            &.background-transparent {
-                background-color: transparent;
-            }
+            background-color: transparent;
         }
 
         .popup-switch-options {
@@ -1058,13 +1066,11 @@ body {
 
 .tree-of-content-panel {
     .tree-of-content-panel-tail {
-        background-color: tint(@main-color,20%);
+        background-color: @content-body-color;
+        color: fade(@text-color,80%);
 
         &:hover, &:focus {
             background-color: @main-color;
-        }
-
-        .tree-of-content-panel-tail-icon {
             color: @button-text-color;
         }
     }
@@ -1079,14 +1085,12 @@ body {
 
     &.expanded {
         .tree-of-content-panel-tail {
-            background-color: shade(@content-body-color,10%);
-
-            .tree-of-content-panel-tail-icon {
-                color: fade(@text-color,80%);
-            }
+            background-color: @content-body-color;
+            color: fade(@text-color,80%);
 
             &:hover, &:focus {
-                background-color: shade(@content-body-color,15%);
+                background-color: @main-color;
+                color: @button-text-color;
             }
         }
     }
@@ -1107,7 +1111,7 @@ body {
     }
 
     .tree-of-content-container {
-        background-color: shade(@content-body-color,10%);
+        background-color: @content-body-color;
 
         .tree-of-content-section-title-icon {
             color: fade(@text-color,80%);

@@ -194,7 +194,6 @@ textarea {
 
 .button {
     position: relative;
-    border-radius: 5px;
     cursor: pointer;
     font-weight: 400;
     outline: none;
@@ -205,6 +204,7 @@ textarea {
     white-space: nowrap;
     font-size: 18px;
     border: 2px solid black;
+    border-radius: 2px;
     opacity: 1;
     transition: all .2s, opacity .3s linear;
 
@@ -1014,20 +1014,10 @@ textarea {
     position: relative;
     top: 0;
     left: 0;
-    height: 341px;
+    height: 435px;
     box-shadow: 0px 60px 90px -90px rgba(0, 0, 0, 0.75);
     
     transition: height .2s ease-out;
-
-    &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 0;
-        height: 3px;
-        width: 100%;
-        z-index: 101;
-    }
 
     .header-items-holder-wrapper {
         display: table;
@@ -2746,7 +2736,7 @@ textarea {
 
 .content-wrapper {
     max-width: @content-width;
-    margin: -178px auto 20px;
+    margin: -182px auto 20px;
     position: relative;
 
     &.review-mode {
@@ -2787,10 +2777,9 @@ textarea {
 }
 
 .content {
-    border-radius: 5px;
     padding: 65px 30px 45px;
     margin: 20px auto;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
 
     &.information-content {
         padding: 30px 30px;
@@ -2972,8 +2961,7 @@ textarea {
 }
 
 .sections-list-item {
-    border-radius: 5px;
-    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
     transition: all .2s;
 
     &.disabled {
@@ -3019,8 +3007,6 @@ textarea {
     height: 170px;
     overflow: hidden;
     transform: translate(0);
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
 }
 
 .Tiles .section-image-holder .button {
@@ -3132,8 +3118,6 @@ textarea {
     height: 180px;
     text-align: left;
     overflow: hidden;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
 }
 
 /*#endregion Tiles*/
@@ -4257,7 +4241,8 @@ textarea {
         box-shadow: 1px 2px 1px 0px rgba(0,0,0,.2);
         cursor: pointer;
         text-align: center;
-        transition: background-color 0.2s ease-out, left 0.2s ease-out;
+        transition: 0.2s ease-out;
+        transition-property: background-color, left, color;
         z-index: 101;
 
         .tree-of-content-panel-tail-icon {
