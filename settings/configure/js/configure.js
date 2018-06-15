@@ -60,11 +60,21 @@
             });
     };
 
+    viewModel.onBeforeCertificateDownloadUpdated = function (newValue) {
+        if (newValue && !viewModel.canUpdateAllowCertificateDownload){
+            window.egApi.showCertificatesUpgradePopup();
+            return false;
+        }
+
+        return true;
+    };
+
     viewModel.init = function () {
         var api = window.egApi;
         return api.init().then(function () {
             var manifest = api.getManifest(),
-                settings = api.getSettings();
+                settings = api.getSettings(),
+                user = api.getUser();
 
             var defaultTemplateSettings = manifest && manifest.defaultTemplateSettings ? manifest.defaultTemplateSettings : {};
 
@@ -74,6 +84,7 @@
             viewModel.trackingData = new app.TrackingDataModel(settings.xApi || defaultTemplateSettings.xApi);
 
             viewModel.languages = new app.LanguagesModel(manifest.languages, settings.languages || defaultTemplateSettings.languages);
+            viewModel.canUpdateAllowCertificateDownload = user.hasTeamAccess();
 
             initField(viewModel.showConfirmationPopup, 'showConfirmationPopup');
             initField(viewModel.allowContentPagesScoring, 'allowContentPagesScoring');

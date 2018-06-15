@@ -38,15 +38,20 @@
         init: function (element, valueAccessor) {
             var switchToggle = ko.bindingHandlers.switchToggle,
                 viewModel = switchToggle.viewModel(element, valueAccessor),
-                value = ko.unwrap(valueAccessor().value());
+                value = ko.unwrap(valueAccessor().value()),
+                onBeforeValueUpdated = valueAccessor().onBeforeValueUpdated;
 
             viewModel.setInitialValue(value);
 
             switchToggle.onClick(element, function () {
-                viewModel.toggle();
-
                 var currentValue = ko.unwrap(valueAccessor().value());
-                valueAccessor().value(!currentValue);
+                var newValue = !currentValue;
+                if(onBeforeValueUpdated && !onBeforeValueUpdated(newValue)){
+                    return;
+                }
+
+                viewModel.toggle();
+                valueAccessor().value(newValue);
             });
         },
         update: function (element, valueAccessor) {

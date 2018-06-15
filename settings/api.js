@@ -3,6 +3,13 @@
         isInited: false
     };
 
+    var accessTypes = {
+        free: 0,
+        starter: 1,
+        team: 4,
+        academy: 5
+    };
+
     var
         baseUrl = location.protocol + '//' + location.host,
         identifyUrl = baseUrl + '/auth/identity',
@@ -21,7 +28,8 @@
         getSettings: getSettings,
         saveSettings: saveSettings,
         sendNotificationToEditor: sendNotificationToEditor,
-        showSettings: showSettings
+        showSettings: showSettings,
+        showCertificatesUpgradePopup: showCertificatesUpgradePopup
     };
 
     function getSettingsToken() {
@@ -32,7 +40,7 @@
         headers.Authorization += (getURLParameter('token') || getSettingsToken());
 
         /* DEBUG */
-        var userDataPromise = $.Deferred().resolve([{ data: { subscription: { accessType: 1, expirationDate: new Date(2016, 1, 1) } } }]);
+        var userDataPromise = $.Deferred().resolve([{ data: { subscription: { accessType: 1, expirationDate: new Date(2020, 1, 1) } } }]);
         var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
         var manifestPromise = $.getJSON(manifestUrl);
         /* END_DEBUG */
@@ -105,11 +113,10 @@
 
     function getUserModel(userData) {
         userData = userData.data;
-        var user = { accessType: 0 };
-        var starterAccessType = 1;
+        var user = new User(accessTypes.free);
         if (userData.subscription &&
             userData.subscription.accessType &&
-            userData.subscription.accessType >= starterAccessType &&
+            userData.subscription.accessType >= accessTypes.starter &&
             new Date(userData.subscription.expirationDate) >= new Date()
         ) {
             user.accessType = userData.subscription.accessType;
@@ -171,6 +178,10 @@
         postMessageToEditor({ type: 'notification', data: { success: isSuccess, message: message } });
     }
 
+    function showCertificatesUpgradePopup() {
+        postMessageToEditor({ type: 'upgrade-popup', data: { type: 'certificates' } });
+    }
+
     function showSettings() {
         postMessageToEditor({ type: 'show-settings' });
     }
@@ -193,6 +204,13 @@
             }
         }
         return undefined;
+    }
+
+    function User(accessType){
+        this.accessType = accessType,
+        this.hasTeamAccess= function() {
+            return this.accessType >= accessTypes.team && this.accessType !== accessTypes.academy;
+        };
     }
 
 })();

@@ -15,9 +15,6 @@
         'show download as pdf button': 'Show button "Download course in PDF format"',
         'conduct learner satisfaction survey': 'Conduct learner satisfaction survey',
         'allow users to download certificates': 'Allow users to download certificates',
-        'trial': 'trial',
-        'try out team plan feature': 'Try out a new <mark>Team plan</mark> feature.',
-        'download certificates availability hint': 'Available for all plans until June 21, 2018',
 
         //results tracking tab
         'results tracking': 'Results Tracking',

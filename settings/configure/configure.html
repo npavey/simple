@@ -98,19 +98,12 @@
                             <div class="settings-caption">
                                 <div class="caption-content">
                                     <div data-bind="localize: 'allow users to download certificates'"></div>
-                                    <div class="trial-mark-block">
-                                        <div class="trial-mark" data-bind="localize: 'trial'"></div>
-                                        <div class="trial-mark-hint">
-                                            <div data-bind="localize: 'try out team plan feature'"></div>
-                                            <div data-bind="localize: 'download certificates availability hint'"></div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="settings-column">
                                 <div class="switcher">
                                     <div class="switcher-text" data-bind="css: { disabled: allowCertificateDownload() }, localize: 'forbid'"></div>
-                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: allowCertificateDownload }">
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: allowCertificateDownload, onBeforeValueUpdated: onBeforeCertificateDownloadUpdated }">
                                         <div class="switch-toggle-wrapper">
                                             <div class="switch-toggle-on"></div>
                                             <div class="switch-toogle-blob"></div>
