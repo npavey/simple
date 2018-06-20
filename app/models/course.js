@@ -56,14 +56,18 @@
                 if (withoutEvent) {
                     callback && callback();
                 } else {
-                    eventManager.courseFinished(course, function() {
-                        callback && callback();
-                    });
+                    eventManager.courseFinished(course)
+                        .fail(function (error) {
+                            alert(error);
+                        })
+                        .fin(function () {
+                            callback && callback();
+                        });
                 }
             };
 
             course.finalize = function(callback) {
-                eventManager.courseFinalized(function() {
+                eventManager.courseFinalized().then(function() {
                     eventManager.turnAllEventsOff();
                     if (callback) {
                         callback();
@@ -71,8 +75,11 @@
                 });
             }
 
-            course.evaluate = function(score, callbacks) {
-                eventManager.courseEvaluated(score, callbacks);
+            course.evaluate = function(score, callback) {
+                eventManager.courseEvaluated(score)
+                    .fin(function () {
+                        callback && callback();
+                    });
             }
 
             return course;
