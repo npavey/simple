@@ -904,6 +904,34 @@
     {
       "code": "da",
       "url": "lang/da.json"
+    },
+    {
+      "code": "ar",
+      "url": "lang/ar.json"
+    },
+    {
+      "code": "ro",
+      "url": "lang/ro.json"
+    },
+    {
+      "code": "cs",
+      "url": "lang/cs.json"
+    },
+    {
+      "code": "fi",
+      "url": "lang/fi.json"
+    },
+    {
+      "code": "el",
+      "url": "lang/el.json"
+    },
+    {
+      "code": "lv",
+      "url": "lang/lv.json"
+    },
+    {
+      "code": "hu",
+      "url": "lang/hu.json"
     }
   ],
   "defaultTemplateSettings": {

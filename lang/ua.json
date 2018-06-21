@@ -182,5 +182,12 @@
     "[detailed summary]": "Детальний звіт",
     "[start new attempt dialog title]": "Почати нову спробу?",
     "[start new attempt dialog text]": "Якщо Ви почнете нову спробу, Ви більше не зможете переглянути свою попередню спробу.",
-    "[close course and logout]": "Закрити курс"
+    "[close course and logout]": "Закрити курс",
+    "[results send error title]": "Ваш прогрес був збережений, але webhook НЕ був надісланий автору",
+    "[try to submit again key]": "Будь-ласка, спробуйте відправити результати ще раз",
+    "[contanct with author key]": "Будь-ласка, повідомте про це автору, якщо проблема досі існує",
+    "[general-message-key]": "Помилка:",
+    "[error-message-key]": "не вдалося підключитися до хосту",
+    "[resend-results-key]": "Відправити результати ще раз",
+    "[close without reporting results]": "Завершити курс без відправки моїх результатів"
 }

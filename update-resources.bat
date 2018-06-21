@@ -1,5 +1,5 @@
 @echo off
 
-call easyresources generate --worksheetName "Simple course" --outputPath "lang" --excludeLocalizations "ar,hu"
+call easyresources generate --worksheetName "Simple course" --outputPath "lang" --excludeLocalizations ""
 
 pause

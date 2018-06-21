@@ -87,6 +87,13 @@
         'pl': 'Polish',
         'kin': 'Kinyarwanda',
         'ca': 'Catalan',
+        'ar': 'Arabic',
+        'ro': 'Romanian',
+        'cs': 'Czech',
+        'fi': 'Finnish',
+        'el': 'Greek',
+        'lv': 'Latvian',
+        'hu': 'Hungarian',
 
         'choose language for your course': 'Choose language for your course',
         'defaultText': 'Default',
