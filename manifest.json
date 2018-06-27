@@ -1,5 +1,5 @@
 ﻿{
-  "name": "TJU: Simple course",
+  "name": "FDU: Simple course",
   "shortDescription":
     "A basic eLearning course template designed for The Learning House\n\nDetails:\nThe simple course will allow you to create a course that is divided into several parts (sections or learning objectives). Each section can contain both content items and questions. This way you can create a basic 'simple' eLearning course.",
   "thumbnail": "preview/thumbnail.png",
@@ -31,7 +31,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/tju/tju-logo.png"
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png"
           },
           "colors": [
             {
@@ -40,11 +40,11 @@
             },
             {
               "key": "@main-color",
-              "value": "#152456"
+              "value": "#002f6c"
             },
             {
               "key": "@secondary-color",
-              "value": "#a0c9db"
+              "value": "#d8bec2"
             },
             {
               "key": "@button-text-color",
@@ -69,7 +69,7 @@
               "color": null,
               "image": {
                 "url":
-                  "https://content.learninghouse.com/clients/_easygenerator/_template-assets/tju/tju-background.png",
+                  "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
                 "option": "fullscreen"
               }
             },
@@ -162,7 +162,7 @@
             "fontWeight": "normal",
             "textDecoration": "none",
             "fontStyle": "normal",
-            "textBackgroundColor": "#152456",
+            "textBackgroundColor": "#002f6c",
             "isGeneralSelected": true,
             "isGeneralColorSelected": true
           },
@@ -171,7 +171,7 @@
             "key": "links",
             "size": 18,
             "fontFamily": "ProximaNovaA",
-            "color": "#152456",
+            "color": "#002f6c",
             "fontWeight": "normal",
             "textDecoration": "underline",
             "fontStyle": "normal",
