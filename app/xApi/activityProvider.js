@@ -173,14 +173,15 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
                 guard.throwIfNotAnObject(section, 'Section is not found');
 
                 var parts = null;
-
+                var contextObj = {};
+                contextObj.extensions = {};
                 switch (question.type) {
                     case globalConstants.questionTypes.multipleSelect:
                     case globalConstants.questionTypes.singleSelectText:
                         parts = getSelectTextQuestionActivityAndResult(question);
                         break;
                     case globalConstants.questionTypes.fillInTheBlank:
-                        parts = getFillInQuestionActivityAndResult(question);
+                        parts = getFillInQuestionActivityAndResult(question, contextObj);
                         break;
                     case globalConstants.questionTypes.singleSelectImage:
                         parts = getSingleSelectImageQuestionAcitivityAndResult(question);
@@ -189,13 +190,13 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
                         parts = getStatementQuestionActivityAndResult(question);
                         break;
                     case globalConstants.questionTypes.dragAndDrop:
-                        parts = getDragAndDropTextQuestionActivityAndResult(question);
+                        parts = getDragAndDropTextQuestionActivityAndResult(question, contextObj);
                         break;
                     case globalConstants.questionTypes.textMatching:
                         parts = getMatchingQuestionActivityAndResult(question);
                         break;
                     case globalConstants.questionTypes.hotspot:
-                        parts = getHotSpotQuestionActivityAndResult(question);
+                        parts = getHotSpotQuestionActivityAndResult(question, contextObj);
                         break;
                     case globalConstants.questionTypes.openQuestion:
                         parts = getOpenQuestionActivityAndResult(question);
@@ -213,11 +214,10 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
 
                 var parentUrl = activityProvider.rootCourseUrl + '#sections?section_id=' + section.id;
 
-                var contextObj = {};
                 contextObj.contextActivities = new contextActivitiesModel({
                     parent: [createActivity(parentUrl, section.title)]
                 });
-                contextObj.extensions = {};
+
                 contextObj.extensions[constants.extenstionKeys.surveyMode] = question.hasOwnProperty('isSurvey') && question.isSurvey;
                 contextObj.extensions[constants.extenstionKeys.questionType] = question.type;
 
@@ -307,13 +307,10 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
         }
 
         function getSingleSelectImageQuestionAcitivityAndResult(question) {
-
             return {
                 result: new resultModel({
                     score: new scoreModel(question.score() / 100),
-                    response: getItemsIds(question.answers, function (item) {
-                        return item.isChecked;
-                    }).toString()
+                    response: question.checkedAnswerId || ''
                 }),
                 object: new activityModel({
                     id: activityProvider.rootCourseUrl + '#section/' + question.sectionId + '/question/' + question.id,
@@ -333,12 +330,13 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
 
         }
 
-        function getFillInQuestionActivityAndResult(question) {
+        function getFillInQuestionActivityAndResult(question, contextObj) {
+            contextObj.extensions[constants.extenstionKeys.content] = question.content;
             return {
                 result: new resultModel({
                     score: new scoreModel(question.score() / 100),
                     response: _.map(question.answerGroups, function (item) {
-                        return item.answeredText;
+                        return item.answeredText + "[.]" + item.id;
                     }).toString()
                 }),
                 object: new activityModel({
@@ -348,7 +346,7 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
                         interactionType: constants.interactionTypes.fillIn,
                         correctResponsesPattern: [
                             _.flatten(_.map(question.answerGroups, function (item) {
-                                return item.getCorrectText();
+                                return item.getCorrectText() + "[.]" + item.id;
                             })).join("[,]")
                         ]
                     })
@@ -356,8 +354,8 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
             };
         }
 
-        function getHotSpotQuestionActivityAndResult(question) {
-
+        function getHotSpotQuestionActivityAndResult(question, contextObj) {
+            contextObj.extensions[constants.extenstionKeys.imageUrl] = question.background;
             return {
                 result: new resultModel({
                     score: new scoreModel(question.score() / 100),
@@ -381,7 +379,12 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
             }
         }
 
-        function getDragAndDropTextQuestionActivityAndResult(question) {
+        function getDragAndDropTextQuestionActivityAndResult(question, contextObj) {
+            var answerTexts = _.map(question.answers, function (item) {
+                return item.text;
+            }).join("[,]");
+            contextObj.extensions[constants.extenstionKeys.answerTexts] = answerTexts;
+            contextObj.extensions[constants.extenstionKeys.imageUrl] = question.background;
             return {
                 result: new resultModel({
                     score: new scoreModel(question.score() / 100),

@@ -76,7 +76,10 @@
         var extenstionKeys = {
             courseId: "http://easygenerator/expapi/course/id",
             surveyMode: "http://easygenerator/expapi/question/survey",
-            questionType: "http://easygenerator/expapi/question/type"
+            questionType: "http://easygenerator/expapi/question/type",
+            imageUrl: "http://easygenerator/expapi/question/imageUrl",
+            content: "http://easygenerator/expapi/question/content",
+            answerTexts: "http://easygenerator/expapi/question/answers",
         };
 
         var patterns = {

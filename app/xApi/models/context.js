@@ -5,11 +5,9 @@
         }
 
         guard.throwIfNotString(spec.registration, 'You should specify registration field for the context');
-
         var obj = {};
 
         obj.registration = spec.registration;
-
         if (_.isObject(spec.contextActivities)) {
             obj.contextActivities = spec.contextActivities;
         }
