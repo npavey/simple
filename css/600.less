@@ -195,10 +195,18 @@
          }
     }
 
-    .styled-content .content-inner-wrapper .text-wrapper {
-        width: 100%;
+    .styled-content .link-curation-block .content-inner-wrapper {
+        flex-direction: column;
 
-        .static-link-present {
+        & > a {
+            max-width: none;
+
+            .images.parsed {
+                margin-bottom: 20px;
+            }
+        }
+
+        .text-wrapper {
             width: 100%;
         }
     }
