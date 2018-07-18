@@ -337,7 +337,7 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
                     score: new scoreModel(question.score() / 100),
                     response: _.map(question.answerGroups, function (item) {
                         return item.answeredText + "[.]" + item.id;
-                    }).toString()
+                    }).join("[,]")
                 }),
                 object: new activityModel({
                     id: activityProvider.rootCourseUrl + '#section/' + question.sectionId + '/question/' + question.id,
