@@ -976,6 +976,7 @@
        "nps": {
             "enabled": true
         },
+        "hideSectionsPage": false,
         "showConfirmationPopup": true,
         "allowContentPagesScoring": false,
         "allowCrossDeviceSaving": true,

@@ -47,7 +47,7 @@
 
         function _getQuestionUrl(section, question) {
             if (section && question) {
-                return '#/section/' + section.id + '/question/' + question.id;
+                return '#section/' + section.id + '/question/' + question.id;
             }
 
             return undefined;
