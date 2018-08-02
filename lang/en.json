@@ -185,9 +185,10 @@
     "[close course and logout]": "Close the course and logout",
     "[results send error title]": "Your progress has been saved but the webhook has NOT been sent to the author",
     "[try to submit again key]": "Please try to submit results again",
-    "[contanct with author key]": "Contact with course author if the problem still persists",
+    "[contanct with author key]": "Contact the course author if the problem persists",
     "[general-message-key]": "Error message:",
     "[error-message-key]": "couldn't connect to host",
     "[resend-results-key]": "Submit results again",
-    "[close without reporting results]": "Close the course without reporting my results"
+    "[close without reporting results]": "Close the course without reporting {endpointName}",
+    "[webhooks endpoint name key]": "the webhooks"
 }

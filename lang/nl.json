@@ -103,7 +103,7 @@
     "[show]": "Toon",
     "[hide]": "Verberg",
     "[login pasword is not valid]": "voer correct wachtwoord in",
-    "[login email / password combination is not valid]": "Email / watchwoord combinatie is niet juist",
+    "[login email / password combination is not valid]": "Email / wachtwoord combinatie is niet juist",
     "[remember me on this device]": "Herinner mij op dit apparaat",
     "[show other options]": "Laat me de informatie nu zien",
     "[hide other options]": "Verberg info",
@@ -188,6 +188,5 @@
     "[contanct with author key]": "Neem contact op met de curus auteur als het probleem zich blijft voordoen",
     "[general-message-key]": "Foutmelding",
     "[error-message-key]": "kon niet verbinden met de host",
-    "[resend-results-key]": "Dien resultaten opnieuw in",
-    "[close without reporting results]": "Sluit de cursus zonder mijn resultaten in te dienen"
+    "[resend-results-key]": "Dien resultaten opnieuw in"
 }

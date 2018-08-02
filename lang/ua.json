@@ -58,7 +58,7 @@
     "[tracking and tracing error hint]": "Натисніть 'Спробувати ще'. Якщо помилка повторюється і ви бажаєте продовжити курс без відправки результатів - натисніть 'Продовжити'.",
     "[tracking and tracing restart course]": "Спробувати ще",
     "[tracking and tracing continue anyway]": "Продовжити",
-    "[tracking and tracing reporting progress]": "Надсилаемо прогресс...",
+    "[tracking and tracing reporting progress]": "Надсилаемо прогрес...",
     "[type your answer here]": "Вкажіть свою відповідь...",
     "[your answer was stored]": "Ваша відповідь прийнята",
     "[your answer is empty and was not stored]": "Відповідь відсутня",
@@ -162,7 +162,7 @@
     "[sign in page title]": "Авторизація",
     "[register page title]": "Реєстрація",
     "[you have finished your course]": "Ви закінчили курс",
-    "[rate your overall experience]": "Як Ви оцінили б досвід, отриманий від проходження курса?",
+    "[rate your overall experience]": "Як Ви оцінили б досвід, отриманий від проходження курсу?",
     "[poor]": "Погано",
     "[excellent]": "Чудово",
     "[answer anonymously]": "Відповісти анонімно",
@@ -184,10 +184,11 @@
     "[start new attempt dialog text]": "Якщо Ви почнете нову спробу, Ви більше не зможете переглянути свою попередню спробу.",
     "[close course and logout]": "Закрити курс",
     "[results send error title]": "Ваш прогрес був збережений, але webhook НЕ був надісланий автору",
-    "[try to submit again key]": "Будь-ласка, спробуйте відправити результати ще раз",
-    "[contanct with author key]": "Будь-ласка, повідомте про це автору, якщо проблема досі існує",
+    "[try to submit again key]": "Будь ласка, спробуйте відправити результати ще раз",
+    "[contanct with author key]": "Будь ласка, повідомте автору курсу, якщо проблема не зникає",
     "[general-message-key]": "Помилка:",
-    "[error-message-key]": "не вдалося підключитися до хосту",
+    "[error-message-key]": "не вдалося підключитися до хоста",
     "[resend-results-key]": "Відправити результати ще раз",
-    "[close without reporting results]": "Завершити курс без відправки моїх результатів"
+    "[close without reporting results]": "Завершити курс без відправки {endpointName}",
+    "[webhooks endpoint name key]": "вебхукі"
 }
