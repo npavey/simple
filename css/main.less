@@ -144,9 +144,10 @@ textarea {
 /*#region or seperator*/
 
 .or-separator {
-    width: 200px;
+    width: 168px;
     display: inline-block;
-    margin-top: 5px;
+    margin-top: 13px;
+    margin-bottom: 4px;
     overflow: hidden;
     text-align: center;
 
@@ -154,7 +155,7 @@ textarea {
         display: inline-block;
         padding: 0 15px;
         position: relative;
-        font-size: 12px;
+        font-size: 13px;
         cursor: default;
 
         &:before,
@@ -203,7 +204,7 @@ textarea {
     background-color: transparent;
     white-space: nowrap;
     font-size: 18px;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 2px;
     opacity: 1;
     transition: all .2s, opacity .3s linear;
@@ -380,18 +381,6 @@ textarea {
     h1, h2, h3 {
         .margin-bottom;
         text-transform: none;
-    }
-
-    h1 {
-        font-size: 28px;
-    }
-
-    h2 { 
-        font-size: 26px;
-    }
-
-    h3 {
-        font-size: 24px;
     }
 
     cite {
@@ -578,7 +567,7 @@ textarea {
     }
 
     .cropped-image {
-        border-radius: 3px;
+        border-radius: 0;
         z-index: 1;
     }
 
@@ -872,7 +861,6 @@ textarea {
 
             &.parsed {
                 display: flex;
-                border-radius: 4px;
                 overflow: hidden;
                 position: relative;
             }
@@ -1026,7 +1014,7 @@ textarea {
     }
 
     .header-items-holder {
-        height: 90px;
+        height: 140px;
         max-width: 960px;
         width: 100%;
         margin: auto;
@@ -1039,7 +1027,7 @@ textarea {
 
             img {
                 max-width: 300px;
-                max-height: 50px;
+                max-height: 100px;
             }
 
             .default-logo {
@@ -1130,7 +1118,7 @@ textarea {
 
 .radio {
     display: block;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     cursor: pointer;
     line-height: 1.5;
@@ -1198,7 +1186,7 @@ textarea {
 
 .checkbox {
     display: block;
-    border-radius: 5px;
+    border-radius: 2px;
     padding: 10px;
     cursor: pointer;
     line-height: 1.5;
@@ -1256,7 +1244,7 @@ textarea {
 .ranking-item {
     position: relative;
     display: block;
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, .3);
     padding: 16px 15px 16px 40px;
     line-height: 1.5;
@@ -1388,15 +1376,15 @@ textarea {
             vertical-align: middle;
             display: table-cell;
             height: 60px;
-            border-top-right-radius: 5px;
-            border-bottom-right-radius: 5px;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
             padding: 10px;
         }
 
         .statement-option {
             &:first-child {
-                border-top-left-radius: 5px;
-                border-bottom-left-radius: 5px;
+                border-top-left-radius: 2px;
+                border-bottom-left-radius: 2px;
             }
         }
     }
@@ -1564,7 +1552,7 @@ textarea {
 .drag-and-drop-text-draggable {
     max-width: 475px;
     min-width: 130px;
-    border-radius: 5px;
+    border-radius: 2px;
     display: inline-block;
     padding: 6px 10px;
     white-space: nowrap;
@@ -1610,7 +1598,7 @@ textarea {
 .drag-and-drop-text-background {
     position: relative;
     margin: 0 auto;
-    border-radius: 3px;
+    border-radius: 0;
 }
 
 .drag-and-drop-text-dropspot-tooltip-image {
@@ -1645,7 +1633,7 @@ textarea {
 .drag-and-drop-text-dropspot {
     background-color: rgba(21, 46, 64, .6);
     box-shadow: inset 2px 3px 5px 0 rgba(0, 0, 0, 0.25);
-    border-radius: 6px;
+    border-radius: 2px;
     border-width: 1px;
     border-color: #e4e5e5;
     border-style: dashed;
@@ -1709,7 +1697,7 @@ textarea {
         width: 40px;
         height: 40px;
         margin-right: 15px;
-        border-radius: 5px;
+        border-radius: 2px;
         content: 'i';
         font-size: 30px;
         font-family: times;
@@ -1745,7 +1733,7 @@ textarea {
 }
 
 .text-matching-source {
-    border-radius: 5px;
+    border-radius: 2px;
     height: 100%;
     position: relative;
     width: 100%;
@@ -1811,7 +1799,7 @@ textarea {
 }
 
 .text-matching-target {
-    border-radius: 5px;
+    border-radius: 2px;
     display: block;
     height: 100%;
     position: relative;
@@ -1890,7 +1878,7 @@ textarea {
 
 .text-matching-target-placeholder-text-wrapper {
     border-left: 0;
-    border-radius: 5px;
+    border-radius: 2px;
     display: table;
     table-layout: fixed;
     background-color: transparent;
@@ -1935,8 +1923,9 @@ textarea {
     }
 
     .exit-course-button {
-        width: 200px;
-        height: 44px;
+        width: 180px;
+        height: 40px;
+        line-height: 0;
         transition: background .2s;
     }
 
@@ -1965,10 +1954,9 @@ textarea {
     display: none;
     width: 292px;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
     border: 0 none;
     display: inline-block;
-    padding: 13px 25px 13px 25px;
+    padding: 13px 25px 18px;
     display: none;
     overflow: hidden;
 
@@ -1996,6 +1984,11 @@ textarea {
                 }
             }
         }
+
+        .overall-progress-progressbar-text::after {
+            content: '%';
+            font-size: 75%;
+        }
     }
 }
 
@@ -2012,8 +2005,8 @@ textarea {
         overflow: hidden;
         text-overflow: ellipsis;
         position: relative;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
         box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
 
         span {
@@ -2053,7 +2046,7 @@ textarea {
 }
 
 .overall-progress-label {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1;
 }
 
@@ -2132,7 +2125,7 @@ textarea {
         width: auto;
         padding: 0;
         margin: 10px 10px 30px;
-        border-radius: 5px;
+        border-radius: 2px;
         cursor: pointer;
 
         &.checked {
@@ -2456,7 +2449,7 @@ textarea {
     ul {
         list-style: none;
         padding: 0;
-        border-radius: 5px;
+        border-radius: 2px;
         margin-top: 13px;
         box-shadow: 0 0 8px -2px rgba(0, 0, 0, .1);
 
@@ -2479,8 +2472,8 @@ textarea {
             }
 
             &:first-child {
-                border-top-left-radius: 5px;
-                border-top-right-radius: 5px;
+                border-top-left-radius: 2px;
+                border-top-right-radius: 2px;
 
                 &:after {
                     width: 10px;
@@ -2498,8 +2491,8 @@ textarea {
             }
 
             &:last-child {
-                border-bottom-left-radius: 5px;
-                border-bottom-right-radius: 5px;
+                border-bottom-left-radius: 2px;
+                border-bottom-right-radius: 2px;
             }
         }
     }
@@ -2517,7 +2510,7 @@ textarea {
         iframe {
             width: 100%;
             height: 600px;
-            border-radius: 3px;
+            border-radius: 0px;
         }
     }
 
@@ -2626,19 +2619,18 @@ textarea {
 .canvas-styles {
     margin: auto;
     display: block;
-    color: #fff;
 }
 
 .section-image-wrapper .canvas-styles {
     position: absolute;
     left: 50%;
-    margin-left: -46px;
+    margin-left: -40px;
 }
 
 .sections-canvas-wrapper {
-    width: 92px;
-    height: 92px;
-    margin: auto;
+    width: 80px;
+    height: 80px;
+    margin: 6px auto;
     position: relative;
     z-index: 1;
 }
@@ -2651,6 +2643,11 @@ textarea {
     width: 100%;
     font-size: 15px;
     left: 2px;
+
+    &::after {
+        content: '%';
+        font-size: 75%;
+    }
 }
 
 .section-progress:hover .mastered-score-tooltip,
@@ -2703,7 +2700,6 @@ textarea {
             border-style: solid;
             border-width: 7px 6px 0 6px;
             border-color: transparent;
-            border-top-color: rgba(84, 102, 119, .9);
         }
     }
 }
@@ -2754,7 +2750,7 @@ textarea {
     display: table-cell;
     height: 125px;
     width: 100%;
-    padding: 15px 20px 0 0;
+    padding: 37px 20px 0 0;
     margin: 0;
     font-size: 26px;
     font-weight: normal;
@@ -2830,9 +2826,11 @@ textarea {
         .summary-wrapper {
             .summary-extended-wrapper {
                 display: block;
-                top: -110px;
                 position: absolute;
-                border-radius: 0 0 5px 5px;
+                padding-bottom: 21px;
+                top: -110px;
+                border-radius: 0 0 1px 1px;
+                box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.1);
             }
 
             .summary-short {
@@ -2912,7 +2910,6 @@ textarea {
 
 .section-image-wrapper {
     position: relative;
-    border-radius: 10px;
     width: 100%;
     height: 100px;
     background-size: cover;
@@ -2934,7 +2931,6 @@ textarea {
         display: none;
         width: 100%;
         height: 100%;
-        border-radius: 10px;
         background-color: rgba(0, 0, 0, 0.5);
     }
 }
@@ -2952,9 +2948,15 @@ textarea {
     text-align: center;
     width: 100%;
     top: 50%;
-    font-size: 21px;
+    left: 4px;
+    font-size: 16px;
     margin-top: -12px;
     font-weight: 100;
+
+    &::after {
+        content: '%';
+        font-size: 75%;
+    }
 }
 
 .sections-list-item {
@@ -2971,130 +2973,6 @@ textarea {
 }
 
 /*#region Tiles*/
-
-.Tiles.sections-list-item {
-    display: inline-block;
-    width: 290px;
-    height: 350px;
-    position: relative;
-    cursor: pointer;
-    margin: 20px 20px;
-    vertical-align: top;
-}
-
-.Tiles.sections-list-item:nth-child(3n) {
-    margin-right: 0;
-}
-
-.Tiles.sections-list-item:nth-child(3n+1) {
-    margin-left: 0;
-}
-
-.Tiles.sections-list-item .content {
-    padding: 0;
-    height: 100%;
-    margin: 0;
-    border: 0;
-}
-
-.Tiles .section-image-holder {
-    position: relative;
-    vertical-align: middle;
-    width: 100%;
-    height: 170px;
-    overflow: hidden;
-    transform: translate(0);
-}
-
-.Tiles .section-image-holder .button {
-    position: absolute;
-    top: 62px;
-    left: 62px;
-    z-index: 11;
-    transition: opacity .2s;
-    opacity: 0;
-}
-
-.Tiles.sections-list-item:hover .section-image-holder .button,
-.Tiles.sections-list-item:focus .section-image-holder .button {
-    opacity: 1;
-    padding: 0;
-}
-
-.Tiles.sections-list-item .section-image-holder .section-image {
-    transform: none;
-    overflow: hidden;
-    transition: transform 0.6s ease;
-}
-
-.Tiles.sections-list-item:hover .section-image-holder .section-image,
-.Tiles.sections-list-item:focus .section-image-holder .section-image {
-    transform: scale(1.06, 1.06);
-}
-
-.Tiles.sections-list-item .section-image-holder:after {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 10;
-    background-color: transparent;
-    transition: background .2s;
-}
-
-.Tiles.sections-list-item:hover .section-image-holder:after,
-.Tiles.sections-list-item:focus .section-image-holder:after {
-    background-color: rgba(66, 81, 95, .7);
-}
-
-.Tiles .section-progress-no-questions {
-    position: absolute;
-    z-index: 1;
-    top: 148px;
-    width: 112px;
-    height: 22px;
-    right: 0px;
-    background-color: #fff;
-    font-size: 12px;
-    color: #63798e;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    border-style: solid;
-    border-color: #e0ebf2;
-    border-width: 2px;
-    border-top-left-radius: 6px;
-    border-right-width: 0;
-    line-height: 18px;
-    z-index: 11;
-}
-
-.Tiles .section-progress {
-    position: absolute;
-    width: 48px;
-    height: 48px;
-    z-index: 1;
-    border-radius: 50%;
-    right: 5px;
-    top: 112px;
-    background-color: rgba(255, 255, 255, 0.5);
-    z-index: 11;
-    box-shadow: 0px 0px 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.Tiles .section-image {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    background-size: initial;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-}
-
 .section-info {
     display: table-cell;
     width: 100%;
@@ -3107,14 +2985,173 @@ textarea {
     padding-right: 60px;
 }
 
-.Tiles.sections-list-item .section-info {
-    padding: 10px 15px;
-    font-size: 13px;
-    line-height: 19px;
-    display: block;
-    height: 180px;
-    text-align: left;
-    overflow: hidden;
+.Tiles {
+    &.sections-list-item {
+        display: inline-block;
+        width: 290px;
+        height: 350px;
+        position: relative;
+        cursor: pointer;
+        margin: 20px 20px;
+        vertical-align: top;
+    }
+
+    &.sections-list-item:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    &.sections-list-item:nth-child(3n+1) {
+        margin-left: 0;
+    }
+
+    &.sections-list-item .content {
+        padding: 0;
+        height: 100%;
+        margin: 0;
+        border: 0;
+    }
+
+    .section-image-holder {
+        position: relative;
+        vertical-align: middle;
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+        transform: translate(0);
+    }
+
+    .section-image-holder .button {
+        position: absolute;
+        top: 62px;
+        left: 62px;
+        z-index: 11;
+        opacity: 0;
+        
+        transition: .2s;
+	    transition-property: background, opacity, color, border;
+    }
+
+    &.sections-list-item:hover .section-image-holder .button,
+    &.sections-list-item:focus .section-image-holder .button {
+        opacity: 1;
+        padding: 0;
+    }
+
+    &.sections-list-item .section-image-holder .section-image {
+        transform: none;
+        overflow: hidden;
+        transition: transform 0.6s ease;
+    }
+
+    &.sections-list-item:hover .section-image-holder .section-image,
+    &.sections-list-item:focus .section-image-holder .section-image {
+        transform: scale(1.06, 1.06);
+    }
+
+    &.sections-list-item .section-image-holder:after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        background-color: transparent;
+        transition: background .2s;
+    }
+
+    &.sections-list-item:hover .section-image-holder:after,
+    &.sections-list-item:focus .section-image-holder:after {
+        background-color: rgba(66, 81, 95, .7);
+    }
+
+    .section-progress-no-questions {
+        position: absolute;
+        top: 148px;
+        width: 112px;
+        height: 22px;
+        right: 0px;
+        background-color: #fff;
+        font-size: 12px;
+        color: #63798e;
+        text-align: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        border-style: solid;
+        border-color: #e0ebf2;
+        border-width: 2px;
+        border-top-left-radius: 6px;
+        border-right-width: 0;
+        line-height: 18px;
+        z-index: 11;
+    }
+
+    .section-progress {
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        right: 5px;
+        top: 112px;
+        z-index: 11;
+    }
+
+    .section-image {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        background-size: initial;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+
+    &.sections-list-item .section-info {
+        padding: 24px 32px;
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 1.56;
+        display: block;
+        height: 180px;
+        text-align: left;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            left: 0;
+            bottom: 0;
+            height: 15px;
+            width: 100%;
+        }
+    }
+
+    .mastered-score-tooltip {
+        margin-left: -2px;
+        margin-bottom: -2px;
+
+        .material-icons {
+            font-size: 8px;
+        }
+    }
+
+    .section-progress {
+        width: 44px;
+        height: 44px;
+
+        .canvas-styles {
+            margin-left: -2px;
+            margin-top: -2px;
+            column-width: 1px;
+        }
+    }
+
+    .section-progress-text-wrapper {
+        margin-top: -10px;
+        font-size: 14px;
+    }
 }
 
 /*#endregion Tiles*/
@@ -3132,7 +3169,7 @@ textarea {
         cursor: pointer;
         margin: 20px 0px;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 2px;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
     }
     &.sections-list-item .section-image-holder {
@@ -3165,6 +3202,7 @@ textarea {
         padding: 0 70px 0px 10px;
         word-break: break-word;
         font-size: 14px;
+        font-weight: bold;
         line-height: 24px;
         text-align: left;
 
@@ -3397,80 +3435,85 @@ textarea {
     vertical-align: middle;
     width: 160px;
     text-align: center;
-    border-left: 1px solid rgba(0, 0, 0, .2);
 }
 
 .question-navigation-bar {
     min-width: 135px;
-    height: 40px;
+    height: 30px;
     display: table;
-    border-radius: 20px;
     font-size: 16px;
-    background-color: rgba(222, 222, 222, .7);
-    color: #252728;
     float: right;
 
+    &.bottom {
+        margin-bottom: 20px;
+    }
+
     a {
-        border-radius: 50%;
         display: table-cell;
-        height: 100%;
-        width: 38px;
         position: relative;
+        width: 35px;
         text-align: center;
-        top: 7px;
 
         &:before {
-            height: 20px;
-            width: 20px;
-            border: 2px solid #fff;
             content: '';
-            display: inline-block;
-            border-radius: 50%;
             position: absolute;
-            left: 50%;
+            display: inline-block;
             margin-left: -10px;
-            transition: border .2s;
+            height: 30px;
+            width: 30px;
+            left: 50%;
+            transition: background .2s, box-shadow .2s;
         }
 
         &:after {
+            content: '';
+            position: absolute;
+            display: inline-block;
+            margin-top: 11px;
+            margin-left: 3px;
             height: 6px;
             width: 6px;
-            content: '';
-            display: inline-block;
-            position: absolute;
-            border-color: #fff;
+            left: 50%;
             border-style: solid;
             border-width: 2px 2px 0 0;
-            margin-top: 8px;
             border-radius: 2px;
-            left: 50%;
-            margin-left: -3px;
             transition: border .2s;
         }
 
         &.previous {
             &:after {
-                margin-left: 0;
+                margin-left: 3px;
                 transform: rotate(225deg);
             }
         }
 
         &.next {
             &:after {
+                margin-left: 0;
                 transform: rotate(45deg);
             }
         }
 
         &.disabled {
-            &:before,
-            &:after {
-                border-color: #f1f1f1;
+            opacity: .7;
+        }
+
+        &:not(.disabled) {
+            &:hover, &:focus {
+                &:before {
+                    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+                }
+
+                &:after {
+                    border-width: 2px 2px 0 0;
+                }
             }
         }
     }
 
     .navigation-progress {
         display: table-cell;
+        padding-left: 10px;
         width: 60px;
         vertical-align: middle;
         text-align: center;
@@ -3484,16 +3527,19 @@ textarea {
 
 .navigation-home-link-wrapper {
     display: table-cell;
-    width: 50px;
+    width: 70px;
     vertical-align: middle;
     position: relative;
     cursor: pointer;
 }
 
 .navigation-home-link {
-    height: 50px;
-    width: 50px;
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
+    border-width: 1px;
+    border-style: solid;
+    border-image: initial;
     background-repeat: no-repeat;
     background-position: center;
     text-align: center;
@@ -3505,8 +3551,8 @@ textarea {
 
     &.material-icons {
         font-size: 36px;
-        line-height: 48px;
-        transition: background .2s;
+        line-height: 63px;
+        transition: background .2s, color .2s, border .2s;
     }
 }
 
@@ -3610,12 +3656,6 @@ textarea {
 }
 
 .learning-content {
-    &.collapsed {
-        .learning-content-title {
-            border-bottom-left-radius: 5px;
-        }
-    }
-
     position: relative;
 
     .learning-content-title {
@@ -3624,7 +3664,6 @@ textarea {
         left: 0;
         height: 40px;
         border-bottom-right-radius: 35px;
-        border-top-left-radius: 5px;
         display: table;
         padding-left: 10px;
         font-size: 15px;
@@ -4131,7 +4170,7 @@ textarea {
     position: absolute;
     left: 31px;
     top: 50%;
-    width: 650px;
+    max-width: 650px;
     height: 30px;
     margin-top: -15px;
     margin-left: 5px;
@@ -4147,7 +4186,7 @@ textarea {
     height: 100%;
     padding: 2px 7px;
     background-color: #f27071;
-    border-radius: 0 4px 4px 0;
+    border-radius: 0 2px 2px 0;
     box-shadow: 1px 2px 3px -1px rgba(0, 0, 0, 0.3);
     text-align: center;
     font-size: 13px;
@@ -4234,8 +4273,6 @@ textarea {
         height: 42px;
         top: 25px;
         left: 0px;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
         box-shadow: 1px 2px 1px 0px rgba(0,0,0,.2);
         cursor: pointer;
         text-align: center;
@@ -4354,7 +4391,7 @@ textarea {
                 }
 
                 .tree-of-content-questions-wrapper {
-                    padding-left: 25px;
+                    padding: 20px 0 30px 25px;
                     border-bottom-style: solid;
                     border-bottom-width: 1px;
 
@@ -4365,16 +4402,14 @@ textarea {
                 }
 
                 .tree-of-content-question-item {
-                    transition: background-color 0.2s ease-out;
-
                     .tree-of-content-question-title-wrapper {
-                        padding: 20px 12px 15px 2px;
+                        padding: 10px 12px 10px 2px;
                         display: block;
 
                         &:hover,
                         &:focus {
                             margin: 0px;
-                            padding: 20px 20px 15px 10px;
+                            padding: 10px 20px 10px 10px;
                         }
 
                         &.navigatable {
@@ -4405,10 +4440,10 @@ textarea {
 
                     &.active {
                         .tree-of-content-question-title-wrapper {
+                            margin: 0;
+                            padding: 10px 20px 10px 10px;
                             border-bottom-style: solid;
                             border-bottom-width: 1px;
-                            margin: 0px;
-                            padding: 20px 20px 15px 10px;
                         }
 
                         .tree-of-content-question-title-icon.question:before {
@@ -4856,7 +4891,7 @@ textarea {
         text-align: center;
         background: rgba(84,102,119,.9);
         color: #fff;
-        border-radius: 5px;
+        border-radius: 2px;
         line-height: 17px;
         opacity: 0;
         margin-top: -10px;
@@ -4936,6 +4971,8 @@ textarea {
 /*#region RESULT PAGE */
 .header.module-resultPage {
     .header-items-holder {
+        padding-left: 50px;
+        max-width: 100%;
         z-index: 1;
     }
 }
@@ -5003,7 +5040,6 @@ textarea {
                 .course-caption {
                     width: 100%;
                     font-size: 36px;
-                    font-weight: bold;
                 }
             }
 
@@ -5027,6 +5063,7 @@ textarea {
                                 margin-left: 5px;
                                 &::after {
                                     content: '%';
+                                    font-size: 75%;
                                 }
                             }
 

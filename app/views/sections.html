@@ -29,8 +29,8 @@
             </div>
             <!-- ko if: affectProgress -->
             <div class="section-progress" aria-hidden="true">
-                <canvas class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2, basicColor: '#fff' },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
-                <span class="section-progress-text-wrapper" data-bind="text:score+'%'"></span>
+                <canvas class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2 },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
+                <span class="section-progress-text-wrapper" data-bind="text:score"></span>
             </div>
             <!-- /ko -->
             <!-- ko ifnot: affectProgress -->

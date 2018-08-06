@@ -223,23 +223,32 @@ body {
 }
 
 .navigation-home-link {
-    background-color: tint(@main-color,20%);
-    color: @button-text-color;
+    background-color: transparent;
+    border-color: tint(@main-color,20%);
+    color: tint(@main-color,20%);
 
     &:not(.disabled):hover, &:not(.disabled):focus {
         background-color: @main-color;
-    }
-
-    &:not(.disabled):focus {
-        box-shadow: 0 0 0 2px shade(@main-color,10%);
+        border-color: @main-color;
+        color: @button-text-color;
     }
 }
 
 .question-navigation-bar {
+    color: @text-color;
+
     a {
+        &:before {
+            background-color: tint(@main-color,20%);
+        }
+                        
+        &:after {
+            border-color: @button-text-color;
+        }
+
         &:not(.disabled):hover, &:not(.disabled):focus {
-            &:before, &:after {
-                border-color: @main-color;
+            &:before {
+                background-color: @main-color;
             }
         }
     }
@@ -269,11 +278,12 @@ body {
 }
 
 .mastered-score-tooltip {
-    background-color: @secondary-color;
-    color: @button-text-color;
+    background-color: @content-body-color;
+    color: @text-color;
 
     &.mastered {
         background-color: @correct-color;
+        color: @button-text-color;
     }
 }
 
@@ -860,6 +870,10 @@ body {
 
     .popup {
 
+        .close-btn {
+            color: @text-color;
+        }
+
         article {
             background-color: @content-body-color;
 
@@ -973,12 +987,12 @@ body {
 
 .text-404 {
     .title-404 {
-        color: @main-color;
+        color: @text-color;
     }
 }
 
 .canvas-styles {
-    color: fade(@text-color, 5%);
+    color: fade(white, 50%);
     border-color: @secondary-color;
     outline-color: @correct-color;
 }
@@ -1037,7 +1051,28 @@ body {
 
     &.Tiles {
         &:hover, &:focus {
-            box-shadow: 0px 0px 0px 3px @main-color;
+            box-shadow: none;
+        }
+
+        .section-info::after {
+            background-color: @content-body-color;
+        }
+
+        .section-image-holder .button {
+            background-color: @content-body-color;
+            border-color: @content-body-color;
+            color: @main-color;
+
+            &:hover, &:focus, &:active {
+                background-color: @main-color;
+                border-color: @main-color;
+                color: @button-text-color;
+            }
+        }
+
+        .section-progress {
+            background-color: fade(@text-color, 40%);
+            color: @button-text-color;
         }
     }
 }
@@ -1158,17 +1193,11 @@ body {
 
                     .tree-of-content-question-item {
                         &.active {
-                            background-color: fade(@main-color,10%);
-
                             .tree-of-content-question-title-wrapper {
                                 border-color: @main-color;
 
                                 .tree-of-content-question-title-icon {
                                     color: @main-color;
-
-                                    &.question:before {
-                                        background-color: @button-text-color;
-                                    }
                                 }
 
                                 .tree-of-content-question-title {
@@ -1287,7 +1316,6 @@ body {
 }
 
 .content-container.module-resultPage{
-    background-color: fade(@content-body-color, 50%);
     #content{
         .result-header{
             .course-title{				
@@ -1320,11 +1348,11 @@ body {
                 }
 
                 .section-header-label{
-                    color: fade(@text-color, 50%);
+                    color: @text-color;
                 }
 
                 .section-header-analytic{
-                    color: fade(@text-color, 50%);
+                    color: @text-color;
                 }
 
                 .section-header-content-readed,

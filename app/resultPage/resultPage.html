@@ -1,13 +1,13 @@
 <section data-bind="blockBodyScroll: npsDialog.isVisible() || newAttemptDialog.isVisible()">
     <div class="result-header" data-bind="headerHeightDepender">
         <div class="course-title">
-            <span class="course-caption" data-bind='fontScale: title'>""</span>
+            <span class="course-caption" data-bind='text: title'>""</span>
         </div>
         <div class="overall-progress-wrapper">
             <div class="overall-progress">
                 <div class="overall-progress-progressbar-wrapper">
                     <div class="overall-progress-progressbar" data-bind="css: { success: isCompleted, fail: !isCompleted }">
-                        <canvas class="overall-progress-progressbar-canvas canvas-styles result" width="159" height="159" data-bind="circleProgress: { progress: score(), lineWidth:3,radius:75, isMastered: isCompleted }"></canvas>
+                        <canvas class="overall-progress-progressbar-canvas canvas-styles result" width="159" height="159" data-bind="circleProgress: { progress: score(), lineWidth:2,radius:75, isMastered: isCompleted }"></canvas>
                         <div class="overall-progress-progressbar-text">
                             <div class="score" data-bind="text: score()">0</div>
                             <!-- ko if: isCompleted -->
