@@ -38,13 +38,14 @@
 
             <!-- ko if: pdfExportEnabled -->
             <div class="download-course-container">
-                <div class="download-course-wrapper">
-                    <div class="download-as-pdf-button default" data-translate-title="[download course in pdf format]" data-bind="downloadAsPdf: { title: title, version: version }"></div>
+                <div class="download-course-wrapper default" data-bind="downloadAsPdf: { title: title, serviceUrl: pdfServiceUrl, version: version }">
+                    <div class="download-as-pdf-button" data-translate-title="[download course in pdf format]"></div>
                     <div class="download-as-pdf-status-wrapper">
                         <div class="download-as-pdf-status">
                             <span class="default" data-translate-text="[download as pdf]"></span>
                             <span class="proggress" data-translate-text="[download as pdf preparing]"></span>
                             <span class="error" data-translate-text="[download as pdf error]"></span>
+                            <span class="server-error"></span>
                         </div>
                     </div>
                     <span class="disabled-tooltip-text">This option doesn't work in preview. Publish the course to use the PDF download option.</span>

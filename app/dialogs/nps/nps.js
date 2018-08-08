@@ -73,15 +73,11 @@
             course.evaluate({
                 score: viewModel.score() / 10,
                 response: viewModel.feedback().trim()
-            }, {
-                success: function() {},
-                fail: function() {},
-                fin: function() {
-                    viewModel.isReporting(false);
-                    viewModel.currentStep(steps.end);
-                    if (_.isFunction(viewModel.callbacks.finalized)) {
-                        viewModel.callbacks.finalized();
-                    }
+            }, function() {
+                viewModel.isReporting(false);
+                viewModel.currentStep(steps.end);
+                if (_.isFunction(viewModel.callbacks.finalized)) {
+                    viewModel.callbacks.finalized();
                 }
             });
         }

@@ -1,16 +1,10 @@
-﻿define(['download'], function (download) {
+﻿define(['helpers/fileDownloader'], function (fileDownloader) {
     var buttonStatuses = {
         default: 'default',
         proggress: 'proggress',
-        error: 'error'
+        error: 'error',
+        serverError: 'server-error'
     };
-
-    var serviceUrl = null;
-    if(hasHostname('elearning-branches.easygenerator.com') || hasHostname('elearning-staging.easygenerator.com') || hasHostname('localhost')) {
-        serviceUrl = '//pdf-docker-staging.easygenerator.com';
-    } else {
-        serviceUrl = '//pdf-docker-live.easygenerator.com';
-    }
 
     ko.bindingHandlers.downloadAsPdf = {
         init: function (element, valueAccessor) {
@@ -18,6 +12,7 @@
             var
                 $element = $(element),
                 filename = getFullPdfFilename((valueAccessor().title || $element.attr('title'))),
+                serviceUrl = valueAccessor().serviceUrl,
                 version = valueAccessor().version;
             
             if (location.href.indexOf('/preview/') !== -1) {
@@ -52,20 +47,18 @@
                 }
                 
                 setStatus($element, buttonStatuses.proggress);
-                fetch(convertionUrl.value)
-                    .then(function(response) {
-                        if(response.status !== 200) {
-                            throw new Error();
-                        }
 
-                        return response.blob();
-                    })
-                    .then(function(blob) {
-                        download(blob, filename, blob.type);
+                fileDownloader.downloadFile(convertionUrl.value, filename)
+                    .then(function(){
                         setStatus($element, buttonStatuses.default);
                     })
-                    .catch(function() {
-                        setStatus($element, buttonStatuses.error);
+                    .catch(function(error) {
+                        if(error.message) {
+                            var el = $element.find('.server-error').text(error.message);
+                            setStatus($element, buttonStatuses.serverError);
+                        } else {
+                            setStatus($element, buttonStatuses.error);
+                        }
                         timeoutId = setTimeout(function () {
                             setStatus($element, buttonStatuses.default);
                         }, 5000);
@@ -79,7 +72,8 @@
         $element
             .toggleClass(buttonStatuses.default, status === buttonStatuses.default)
             .toggleClass(buttonStatuses.proggress, status === buttonStatuses.proggress)
-            .toggleClass(buttonStatuses.error, status === buttonStatuses.error);
+            .toggleClass(buttonStatuses.error, status === buttonStatuses.error)
+            .toggleClass(buttonStatuses.serverError, status === buttonStatuses.serverError);
     }
 
     function getDateTimeString() {
