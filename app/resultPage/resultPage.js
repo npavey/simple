@@ -1,9 +1,10 @@
 define([
     'repositories/courseRepository', 'templateSettings', 'plugins/router', 'progressContext',
     'userContext', 'xApi/xApiInitializer', 'includedModules/modulesInitializer',
-    'windowOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog'
+    'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog',
+    'modules/progress/progressStorage/certificateProvider', 'helpers/fileDownloader', 'localizationManager'
 ], function(courseRepository, templateSettings, router, progressContext, userContext,
-    xApiInitializer, modulesInitializer, windowOperations, constants, auth, publishModeProvider, Dialog) {
+    xApiInitializer, modulesInitializer, appOperations, constants, auth, publishModeProvider, Dialog, certificateProvider, fileDownloader, localizationManager) {
     "use strict";
 
     var course = courseRepository.get();
@@ -12,6 +13,7 @@ define([
 
     var statuses = {
         readyToFinish: 'readyToFinish',
+        preparingCertificate: 'preparingCertificate',
         sendingRequests: 'sendingRequests',
         finished: 'finished'
     };
@@ -25,6 +27,8 @@ define([
         activate: activate,
         close: close,
         finish: finish,
+        isDownloadingCertificate: ko.observable(false),
+        downloadCertificate: downloadCertificate,
         npsDialog: new Dialog(),
         newAttemptDialog: new Dialog(),
         isInReviewAttemptMode: course.isFinished,
@@ -35,6 +39,7 @@ define([
         allowContentPagesScoring: false,
         xAPIEnabled: false,
         scormEnabled: false,
+        canDownloadCertificate: false,
         stayLoggedIn: ko.observable(false),
 
         //methods
@@ -47,6 +52,9 @@ define([
         viewModel.npsDialog.isVisible(false);
         viewModel.newAttemptDialog.isVisible(false);
         viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
+        viewModel.canDownloadCertificate =  templateSettings.allowCrossDeviceSaving 
+                                                && templateSettings.allowCertificateDownload 
+                                                && course.isCompleted();
         
         viewModel.allowContentPagesScoring = templateSettings.allowContentPagesScoring;
 
@@ -73,6 +81,16 @@ define([
             return;
         }
 
+        if(viewModel.canDownloadCertificate){
+            viewModel.status(statuses.preparingCertificate);
+            downloadCertificate().always(doFinishCourse);
+            return;
+        }
+
+        doFinishCourse();
+    }
+
+    function doFinishCourse(){
         if (templateSettings.xApi.enabled && xApiInitializer.isLrsReportingInitialized) {
             viewModel.status(statuses.sendingRequests);
         }
@@ -84,6 +102,19 @@ define([
         finishHandler(function() {
             course.finish(onCourseFinished);
         });
+    }
+
+    function downloadCertificate() {
+        viewModel.isDownloadingCertificate(true);
+        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score)
+            .then(function(url){
+                /* Fix for IE11 and Edge (files can`t saved without extension) */
+                var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
+                return fileDownloader.downloadFile(url, filename);
+            })
+            .always(function(){
+                viewModel.isDownloadingCertificate(false);
+            });
     }
 
     function onCourseFinished() {
@@ -112,8 +143,11 @@ define([
             auth.signout();
 
         course.finalize(function() {
-            if (params.close)
-                windowOperations.close();
+            if (params.close){
+                appOperations.close({ 
+                    shouldCloseWindow: !viewModel.canDownloadCertificate 
+                });
+            }
         });
     }
 

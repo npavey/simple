@@ -29,13 +29,13 @@
                             <li class="tree-of-content-question-item" data-bind="css: { active: isActive }">
                                 <!-- ko if: canNavigate -->
                                 <a class="tree-of-content-question-title-wrapper navigatable" href="#" data-bind="attr: { href: url, tabindex: $parent.isExpanded() && $root.isExpanded() ? '0' : '-1' }">
-                                    <i class="tree-of-content-question-title-icon material-icons" data-bind="css: { question: !isInformationContent }, text: isInformationContent ? 'school' : (isActive() ? 'help' : '&#xE8FD;')"></i>
+                                    <i class="tree-of-content-question-title-icon material-icons" data-bind="css: { question: !isInformationContent }, text: isInformationContent ? 'info_outline' : '&#xE8FD;'"></i>
                                     <span class="tree-of-content-question-title" data-bind="text: title"></span>
                                 </a>
                                 <!-- /ko -->
                                 <!-- ko ifnot: canNavigate -->
                                 <div class="tree-of-content-question-title-wrapper">
-                                    <i class="tree-of-content-question-title-icon material-icons" data-bind="css: { question: !isInformationContent }, text: isInformationContent ? 'school' : (isActive() ? 'help' : '&#xE8FD;')"></i>
+                                    <i class="tree-of-content-question-title-icon material-icons" data-bind="css: { question: !isInformationContent }, text: isInformationContent ? 'info_outline' : '&#xE8FD;'"></i>
                                     <span class="tree-of-content-question-title" data-bind="text: title"></span>
                                 </div>
                                 <!-- /ko -->
