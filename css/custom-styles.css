@@ -22,7 +22,7 @@
 .popup-layout .popup article footer .button-wrapper button {
     font-size: 18px;
     height: 46px;
-    border: 2px solid #143664;
+    border: 2px solid #152456;
 }
 
 .popup-layout .popup {
@@ -55,7 +55,7 @@
 .popup-layout .popup article:not(.without-note) section {
     background-image: none;
     background-color: rgba(238, 238, 238, .4);
-    border-top: 4px solid #143664;
+    border-top: 4px solid #152456;
     padding: 32px 24px;
     width: 368px;
     height: 224px;
@@ -81,9 +81,8 @@
     padding-top: 13px;    
 }
 
-/*Old margin 88px - adjusted to match new margin from commenting out code on line 130*/
 .module-account .content {
-    margin-top: 0px;
+    margin-top: 88px;
 }
 
 .course-action-block.intro .button {
@@ -126,7 +125,7 @@
 }
 
 .content-wrapper {
-    margin: -200px auto 20px;
+    margin: -100px auto 20px;
 }
 
 .button,
@@ -140,9 +139,8 @@
     border-radius: 0;
 }
 
-/*Adjusting margin of content to match the new margin created by commenting out code on line 130 - Previous margin 58px*/
 .module-content .content {
-    margin-top: 0px;
+    margin-top: 58px;
 }
 
 .module-introduction .content {
@@ -152,7 +150,7 @@
 }
 
 .sections .course-action-block .summary-wrapper .summary-extended-wrapper {
-    top: -110px;
+    top: -196px;
     border-radius: 0;
 }
 
@@ -207,7 +205,7 @@
 
     background: #fff;
     border-color: #fff;
-    color: #143664;
+    color: #152456;
 
     transition-property: opacity, background, color, border;
 }
@@ -215,8 +213,8 @@
 /*Main buttons - Primary*/
 .Tiles .section-image-holder .button:not(.disabled):hover,
 .Tiles .section-image-holder .button:not(.disabled):focus {
-    background: #143664;
-    border-color: #143664;
+    background: #152456;
+    border-color: #152456;
     color: #fff;
 }
 
@@ -276,7 +274,7 @@
 /*Primary - ?*/
 .Tiles .section-progress .mastered-score-tooltip:not(.mastered) {
     background-color: #fff;
-    color: #143664 ;
+    color: #152456 ;
 }
 
 /*Default Gray - Take a break button*/
@@ -312,7 +310,7 @@
 
 /*Primary - Menu Bar Icon*/
 .tree-of-content-panel.expanded .tree-of-content-panel-tail .tree-of-content-panel-tail-icon {
-    color: #143664 ;
+    color: #152456 ;
 }
 
 .tree-of-content-panel .tree-of-content-container {
@@ -325,14 +323,14 @@
     font-weight: 300;
     letter-spacing: 0.4px;
 
-    color: #143664 ;    
+    color: #152456 ;    
 }
 
 /*Dk. Primary - Menu Bar hover*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item.active .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:hover .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:focus .tree-of-content-section-title-wrapper {
-    color: #071323 ;
+    color: #080e23 ;
     opacity: 1;
 }
 
@@ -342,7 +340,7 @@
     font-weight: 300;
     letter-spacing: 0.4px;
 
-    color: #143664 ;    
+    color: #152456 ;    
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-questions-wrapper {
@@ -378,7 +376,7 @@
     position: absolute;
     left: 0;
     opacity: .7;
-    color: #143664 ;
+    color: #152456 ;
 }
 
 /*Primary - Menu Bar*/
@@ -388,13 +386,13 @@
     position: absolute;
     left: 0;
     opacity: .7;
-    color: #143664 ;
+    color: #152456 ;
 }
 
 /*Menu Bar borders*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item.active .tree-of-content-question-title-wrapper .tree-of-content-question-title-icon:not(.question)::after,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item.active .tree-of-content-question-title-wrapper .tree-of-content-question-title-icon.question::after { 
-    color: #143664;
+    color: #152456;
     opacity: 1;
 }    
 
@@ -407,7 +405,7 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:last-child:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-section-title-wrapper:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:hover .tree-of-content-question-title {
-    color: #071323 ;
+    color: #080e23 ;
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper {
@@ -437,7 +435,7 @@
 /*Dk. Primary - Menu Bar Focus*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:focus, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:hover {
-    border-color: #071323;
+    border-color: #080e23;
     opacity: 1;
 }
 
@@ -452,7 +450,7 @@
 
 /*Tail Icon - Primary*/
 .tree-of-content-panel .tree-of-content-panel-tail .tree-of-content-panel-tail-icon {
-    color: #143664 ;
+    color: #152456 ;
 }
 
 .tree-of-content-panel:not(.expanded) .tree-of-content-panel-tail:focus {
@@ -460,13 +458,8 @@
     box-shadow: none;
 }
 
-.section-progress-wrapper {
-	display: none;
-}
-
 .navigation-home-link-wrapper {
     width: 65px;
-	display: none;
 }
 
 .navigation-home-link {
@@ -491,8 +484,8 @@
 /*Primary - Navigation Hover*/
 .navigation-home-link:not(.disabled):hover, 
 .navigation-home-link:not(.disabled):focus {
-    border-color: #143664;
-    color: #143664;
+    border-color: #152456;
+    color: #152456;
     opacity: 1;
 
     background-color: transparent;
@@ -504,7 +497,7 @@
     border-radius: 0;
     height: 30px;
     width: 30px;
-    background-color: #143664;
+    background-color: #152456;
     transition: all .2s linear;
 }
 
@@ -529,7 +522,7 @@
 /*Dk. Primary - Disabled Button*/
 .question-navigation-bar a:not(.disabled):hover:before,
 .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #071323;
+    background-color: #080e23;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: all .2s linear;
@@ -537,11 +530,6 @@
 
 .question-navigation-bar {
     background-color: transparent;
-}
-
-.page-header {
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
 .page-header .question-navigation-bar {
@@ -554,7 +542,7 @@
 
 /*Primary - Question Nav visited link*/
 .page-header .question-navigation-bar a:after {    
-    border-color: #143664;
+    border-color: #152456;
 }
 
 .question-navigation-bar a.next:after {
@@ -569,7 +557,7 @@
 /*Primary - Button Hover/Focus*/
 .page-header .question-navigation-bar a:not(.disabled):hover:before,
 .page-header .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #143664;
+    background-color: #152456;
 }
 
 .question-navigation-bar a.disabled:after, 
@@ -580,8 +568,7 @@
 .module-content .section-info {
     line-height: 1.71;
     font-size: 28px;
-    color: #fff; 
-	display: none;
+    color: #fff;    
 }
 
 .question-navigation-bar .navigation-progress {
@@ -604,7 +591,7 @@
 /*Primary*/
 .information-content-title {
     font-size: 32px;
-    color: #143664 ;
+    color: #152456 ;
 }
 
 .styled-content p {
@@ -655,7 +642,7 @@
 /*Primary - Title*/
 .learning-content .learning-content-title {
     border-top-left-radius: 0px;
-	background-color: #143664;
+	background-color: #152456;
 }
 
 .content-container.module-resultPage {
@@ -678,7 +665,7 @@
 
 /*Secondary - Progress Circle*/
 .content-container.module-resultPage #content .result-header .overall-progress .overall-progress-progressbar.fail .canvas-styles {
-    border-color: #fce1d9;
+    border-color: #a0c9db;
 }
 
 .header.module-resultPage .header-items-holder {
@@ -688,7 +675,7 @@
 
 /*Secondary - Progress Circle*/
 .content-container.module-resultPage #content .result-header .overall-progress .overall-progress-progressbar-wrapper .overall-progress-progressbar .overall-progress-progressbar-text .status.incorrect-color {
-    color: #fce1d9;
+    color: #a0c9db;
 }
 
 /*Submit Results button border*/
@@ -700,7 +687,7 @@
     font-size: 18px;
     font-weight: bold;
     letter-spacing: 0.4px;
-    border-color: #143664;
+    border-color: #152456;
 }
 
 .content-container.module-resultPage #content .result-header .button.small {
@@ -716,7 +703,7 @@
 .content-container.module-resultPage #content .result-header .button.check:hover::before, 
 .content-container.module-resultPage #content .result-header .button.check:focus::before,
 .content-container.module-resultPage #content .result-header .button.check.active::before {
-    border-color: #143664;
+    border-color: #152456;
 }
 
 .content-container.module-resultPage #content .result-header .result-buttons .button-wrapper .button.default {    
@@ -729,7 +716,7 @@
 
 /*Primary - Result Page*/
 .content-container.module-resultPage #content .result-header .result-buttons .button-wrapper .button.default:hover {
-    color: #143664;
+    color: #152456;
     background: #fff;
     opacity: 1;
 }
@@ -746,7 +733,7 @@
 /*Primary*/
 .content-container.module-resultPage #content .result-page-content .section-header .section-header-label,
 .content-container.module-resultPage #content .result-page-content .section-header .section-header-analytic {
-    color: #143664 ;
+    color: #152456 ;
 }
 
 .text-404 .title-404 {
@@ -782,13 +769,4 @@
 
 .styled-content .table-wrapper table tbody td {
     background-color: rgba(203, 194, 187, 0.2);
-}
-
-.voiceOver {
-	margin-bottom: 10px;
-}
-
-.question .page-header {
-	margin-top: 10px;
-	margin-bottom: 10px;
 }
