@@ -12,7 +12,7 @@
                         <div class="overall-progress-progressbar-wrapper">
                             <div class="overall-progress-progressbar" data-bind="css: { success: isInReviewAttemptMode && isCompleted, fail: !isCompleted && isInReviewAttemptMode }">
                                 <canvas class="overall-progress-progressbar-canvas canvas-styles" width="80" height="80" data-bind="circleProgress: { progress: score(), lineWidth:2,radius:39, isMastered: isCompleted }"></canvas>
-                                <div class="overall-progress-progressbar-text" data-bind="text: score() + '%'">0%</div>
+                                <div class="overall-progress-progressbar-text" data-bind="text: score()"></div>
                             </div>
                         </div>
                     </div>

@@ -8,9 +8,9 @@
                 <div class="section-image-wrapper" data-bind="style: { 'background-image': 'url(' + section.imageUrl + ')' }, css: { 'affect-progress': section.affectProgress }">
                     <!-- ko if: section.affectProgress -->
                     <div class="sections-canvas-wrapper">
-                        <canvas tabindex="0" class="canvas-styles" width="92" height="92" data-bind="circleProgress: { progress: section.score(), isMastered: isSectionMastered(), lineWidth: 2 },toolTip:{progress: section.score(), masteryScore:masteryScore}"></canvas>
+                        <canvas tabindex="0" class="canvas-styles" width="80" height="80" data-bind="circleProgress: { progress: section.score(), isMastered: isSectionMastered(), lineWidth: 2 },toolTip:{progress: section.score(), masteryScore:masteryScore}"></canvas>
                     </div>
-                    <span class="progress-text" data-bind="text: section.score() + '%'"></span>
+                    <span class="progress-text" data-bind="text: section.score()"></span>
 
                     <!-- /ko -->
                 </div>
@@ -31,7 +31,7 @@
         <!-- /ko -->
         <!-- ko compose: { model: activeViewModel, activationData: [ section.id, question ] } --><!-- /ko -->
     </div>
-    <div class="question-navigation-bar" style="float: right">
+    <div class="question-navigation-bar bottom" style="float: right">
         <a class="previous" data-bind="attr: { href: previousQuestionUrl(), title: 'previous'},css:{disabled : !isPreviousQuestionAvailable()}" data-translate-title="[previous question]">&nbsp;</a>
         <span class="navigation-progress"><span data-bind="text: navigationContext.currentQuestionIndex + ' '"></span><span>/</span><span data-bind="text: ' ' + navigationContext.questionsCount"></span></span>
         <a class="next" data-bind="attr: { href: nextQuestionUrl(), title: 'next' }, css:{disabled: !isNextQuestionAvailable() }" data-translate-title="[next question]">&nbsp;</a>
