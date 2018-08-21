@@ -3,10 +3,10 @@ define([
     'routing/routes', 'context', 'includedModules/modulesInitializer', 'templateSettings',
     'progressContext', 'constants', 'userContext', 'errorsHandler',
     'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 
-    'modules/questionsNavigation', 'modules/lti'
+    'modules/questionsNavigation', 'modules/lti', 'modules/webhooks'
 ], function (ko, _, app, composition, router, routes, context, modulesInitializer, templateSettings,
     progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, 
-    questionsNavigation, lti) {
+    questionsNavigation, lti, webhooks) {
 
         'use strict';
         var viewmodel = {
@@ -65,6 +65,7 @@ define([
                 .then(userContext.initialize)
                 .then(lti.initialize)
                 .then(account.enable)
+                .then(initializeWebhooks)
                 .then(initializeProgressProvider)
                 .then(initxApi)
                 .then(initApp)
@@ -72,6 +73,12 @@ define([
                 .catch(function (e) {
                     console.error(e);
                 });
+
+            function initializeWebhooks() {
+                if(templateSettings.xApi.enabled) {
+                    webhooks.initialize(templateSettings.webhooks);
+                }
+            }
 
             function initxApi() {
                 return xApiInitializer.initialize(templateSettings.xApi, templateSettings.nps);

@@ -19,8 +19,18 @@
         //results tracking tab
         'results tracking': 'Results Tracking',
 
+        'lrs': 'LRS',
+        'webhooks': 'Webhooks',
+
+        'chooseLrsLabel': 'Choose LRS <span>(Learning Record Store <a href="https://help.easygenerator.com/results-tracking/results-tracking-via-lrs" targen="_blunk">Learn more</a>)</span>',
         'default': 'easygenerator (recommended)',
         'custom': 'Custom LRS',
+
+        'addWebhookEndpoinLabel': 'Add a webhook endpoint: <a href="https://google.com" target="_blank">Learn more</a>',
+        'webhookUrlLabel': 'URL to be called',
+        'urlCheckButtonText': 'Check URL',
+        'checkErrorMessage': 'An error appears',
+        'checkSuccessMessage': 'URL successfully reached',
 
         'track and trace settings': 'Track and trace settings',
         'results tracking option': 'Results tracking:',

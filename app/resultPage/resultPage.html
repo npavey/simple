@@ -1,4 +1,4 @@
-<section data-bind="blockBodyScroll: npsDialog.isVisible() || newAttemptDialog.isVisible()">
+<section data-bind="blockBodyScroll: npsDialog.isVisible() || newAttemptDialog.isVisible() || resendResultsDialog.isVisible()">
     <div class="result-header" data-bind="headerHeightDepender">
         <div class="course-title">
             <span class="course-caption" data-bind='text: title'>""</span>
@@ -120,5 +120,8 @@
     <!-- /ko -->
     <!-- ko if: newAttemptDialog.isVisible -->
     <!-- ko compose: { view: 'dialogs/startNewAttempt/startNewAttempt', model: 'dialogs/startNewAttempt/startNewAttempt', compositionComplete: newAttemptDialog.compositionComplete, activationData: { close: newAttemptDialog.hide, callbacks: newAttemptDialog.callbacks } } --><!-- /ko -->
+    <!-- /ko -->
+    <!-- ko if: resendResultsDialog.isVisible -->
+    <!-- ko compose: { view: 'dialogs/resultsResend/resultsResend', model: 'dialogs/resultsResend/resultsResend', compositionComplete: resendResultsDialog.compositionComplete, activationData: { close: resendResultsDialog.hide, callbacks: resendResultsDialog.callbacks, resultsSendErrorTitleKey: resendResultsDialog.resultsSendErrorTitleKey, endpointNameKey: resendResultsDialog.endpointNameKey } } --><!-- /ko -->
     <!-- /ko -->
 </section>

@@ -1800,6 +1800,26 @@ body {
 
 /*#endregion*/
 
+/*region Resend results dialog*/
+
+.fullscreen-popup-container.resend-results {
+    .fp-content-row{
+        .fp-content-cell{
+            .note{
+                background: fade(@incorrect-color, 5%);
+                border-top: 4px solid fade(@incorrect-color, 50%);
+
+                .error-message {
+                    color: #fff;
+                    background-color: fade(@incorrect-color, 50%);
+                }
+            }
+        }
+    }
+}
+
+/*#endregion*/
+
 .text-main-color{
     color: @main-color;
 }

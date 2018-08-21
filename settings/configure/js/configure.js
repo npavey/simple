@@ -12,6 +12,7 @@
         languages: null,
         pdfExport: null,
         nps: null,
+        webhooks: null,
         showConfirmationPopup: ko.observable(true),
         allowContentPagesScoring: ko.observable(false),
         allowCrossDeviceSaving: ko.observable(true),
@@ -26,6 +27,7 @@
         return $.extend({}, settings || currentSettings, {
             pdfExport: viewModel.pdfExport.getData(),
             nps: viewModel.nps.getData(),
+            webhooks: viewModel.webhooks.getData(),
             xApi: viewModel.trackingData.getData(),
             masteryScore: viewModel.masteryScore.getData(),
             languages: viewModel.languages.getData(),
@@ -80,6 +82,7 @@
 
             viewModel.pdfExport = new app.PdfExport(settings.pdfExport || defaultTemplateSettings.pdfExport);
             viewModel.nps = new app.Nps(settings.nps || defaultTemplateSettings.nps);
+            viewModel.webhooks = new app.Webhooks(settings.webhooks || defaultTemplateSettings.webhooks);
             viewModel.masteryScore = new app.MasteryScore(settings.masteryScore || defaultTemplateSettings.masteryScore);
             viewModel.trackingData = new app.TrackingDataModel(settings.xApi || defaultTemplateSettings.xApi);
 

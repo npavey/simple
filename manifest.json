@@ -979,6 +979,9 @@
         "errorTracking": {
             "enabled": false
         },
+        "webhooks": {
+          "url": ""
+        },
         "hideSectionsPage": false,
         "showConfirmationPopup": true,
         "allowContentPagesScoring": false,

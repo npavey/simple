@@ -5,6 +5,7 @@
     app.MasteryScore = MasteryScore;
     app.PdfExport = PdfExport;
     app.Nps = Nps;
+    app.Webhooks = Webhooks;
 
     function PdfExport(pdfExportSettings) {
         var that = this;
@@ -50,6 +51,65 @@
         }
     }
 
+    function Webhooks(webhooksSettings) {
+        var that = this;
+        var statuses = {
+            notChecked: 'notChecked',
+            success: 'success',
+            error: 'error'
+        };
+        var _requestCheckData = {
+            courseId: "courseId",
+            learnerId: "example@example.com",
+            score: 75,
+            finishedOn: (new Date()).toISOString(),
+            status: "passed"
+        };
+
+        that.url = ko.observable('');
+        that.isChecking = ko.observable(false);
+        that.checkStatus = ko.observable(statuses.notChecked);
+        that.statuses = statuses;
+
+        that.getData = getData;
+        that.checkUrl = checkUrl;
+        init(webhooksSettings);
+
+        function init(webhooksSettings) {
+            if (!webhooksSettings && !webhooksSettings.url) {
+                return;
+            }
+
+            that.url(webhooksSettings.url);
+        }
+
+        function getData() {
+            return {
+                url: that.url()
+            }
+        }
+
+        function checkUrl() {
+            that.isChecking(true);
+            
+            $.ajax({
+                url: that.url(),
+                type: 'POST',
+                cache: false,
+                body: JSON.stringify(_requestCheckData)
+            })
+            .done(function() {
+                that.checkStatus(statuses.success);
+            })
+            .fail(function() {
+                that.checkStatus(statuses.error);
+            })
+            .always(function() {
+                that.isChecking(false);
+            });
+        }
+    }
+
     function TrackingDataModel(xApiSettings) {
         var that = this;
 
@@ -57,6 +117,11 @@
 
         that.enableXAPI = ko.observable(true);
         that.allowToSkipTracking = ko.observable(true);
+
+        that.reportsOptions = [
+            new DataTrackingOption('lrs', true),
+            new DataTrackingOption('webhooks')
+        ];
 
         that.lrsOptions = [
             new LrsOption('default', true),
@@ -98,6 +163,7 @@
         };
 
         that.toggleAdvancedSettings = toggleAdvancedSettings;
+        that.selectReports = selectReports;
         that.selectLrs = selectLrs;
         that.selectLrsByName = selectLrsByName;
         that.setStatements = setStatements;
@@ -131,6 +197,13 @@
 
         function toggleAdvancedSettings() {
             that.advancedSettingsExpanded(!that.advancedSettingsExpanded());
+        }
+
+        function selectReports(reportsOption) {
+            ko.utils.arrayForEach(that.reportsOptions, function (reportsOption) {
+                reportsOption.isSelected(false);
+            });
+            reportsOption.isSelected(true);
         }
 
         function selectLrs(lrs) {
@@ -182,6 +255,15 @@
                 },
                 allowedVerbs: allowedVerbs
             };
+        }
+
+        function DataTrackingOption(name, isSelected) {
+            var that = this;
+
+            that.name = name;
+            that.isSelected = ko.observable(isSelected);
+
+            return that;
         }
 
         function LrsOption(name, isSelected) {

@@ -56,6 +56,14 @@
 
             sizeAttrName: 'data-document-size',
             typeAttrName: 'data-document-type'
+        },
+        dialogs: {
+            resendResults: {
+                webhooks: {
+                    resultsSendErrorTitleKey: '[results send error title]',
+                    endpointNameKey: '[webhooks endpoint name key]'
+                }    
+            }
         }
     };
 

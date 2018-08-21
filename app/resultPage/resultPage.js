@@ -1,10 +1,11 @@
 define([
     'repositories/courseRepository', 'templateSettings', 'plugins/router', 'progressContext',
-    'userContext', 'xApi/xApiInitializer', 'includedModules/modulesInitializer',
-    'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog',
-    'modules/progress/progressStorage/certificateProvider', 'helpers/fileDownloader', 'localizationManager'
+    'userContext', 'xApi/xApiInitializer', 'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth',
+    'modules/publishModeProvider', 'dialogs/dialog', 'modules/progress/progressStorage/certificateProvider',
+    'helpers/fileDownloader', 'localizationManager', 'modules/webhooks'
 ], function(courseRepository, templateSettings, router, progressContext, userContext,
-    xApiInitializer, modulesInitializer, appOperations, constants, auth, publishModeProvider, Dialog, certificateProvider, fileDownloader, localizationManager) {
+    xApiInitializer, appOperations, constants, auth, publishModeProvider, 
+    Dialog, certificateProvider, fileDownloader, localizationManager, webhooks) {
     "use strict";
 
     var course = courseRepository.get();
@@ -31,6 +32,7 @@ define([
         downloadCertificate: downloadCertificate,
         npsDialog: new Dialog(),
         newAttemptDialog: new Dialog(),
+        resendResultsDialog: new Dialog(),
         isInReviewAttemptMode: course.isFinished,
 
         //properties
@@ -40,6 +42,7 @@ define([
         xAPIEnabled: false,
         scormEnabled: false,
         canDownloadCertificate: false,
+        certificateDownloaded: false,
         stayLoggedIn: ko.observable(false),
 
         //methods
@@ -51,6 +54,7 @@ define([
     function activate() {
         viewModel.npsDialog.isVisible(false);
         viewModel.newAttemptDialog.isVisible(false);
+        viewModel.resendResultsDialog.isVisible(false);
         viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
         viewModel.canDownloadCertificate =  templateSettings.allowCrossDeviceSaving 
                                                 && templateSettings.allowCertificateDownload 
@@ -81,7 +85,7 @@ define([
             return;
         }
 
-        if(viewModel.canDownloadCertificate){
+        if(viewModel.canDownloadCertificate && !viewModel.certificateDownloaded){
             viewModel.status(statuses.preparingCertificate);
             downloadCertificate().always(doFinishCourse);
             return;
@@ -95,13 +99,18 @@ define([
             viewModel.status(statuses.sendingRequests);
         }
 
-        var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
-            progressContext.finish : progressContext.remove;
-            
-        course.setFinishedStatus();
-        finishHandler(function() {
-            course.finish(onCourseFinished);
-        });
+        if(course.getStatus() === constants.course.statuses.inProgress) {
+            var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
+                progressContext.finish : progressContext.remove;
+                
+            course.setFinishedStatus();
+            return finishHandler(function() {
+                progressContext.status(progressStatuses.ignored);
+                course.finish(sendWebhooks);
+            });
+        }
+
+        sendWebhooks();
     }
 
     function downloadCertificate() {
@@ -114,15 +123,35 @@ define([
             })
             .always(function(){
                 viewModel.isDownloadingCertificate(false);
+                viewModel.certificateDownloaded = true;
             });
+    }
+
+    function sendWebhooks() {
+        if (webhooks.initialized) {
+            return webhooks.sendResults(course)
+                .then(function() {
+                    onCourseFinished();
+                })
+                .catch(function() {
+                    viewModel.status(statuses.readyToFinish);
+                    viewModel.resendResultsDialog.resultsSendErrorTitleKey = constants.dialogs.resendResults.webhooks.resultsSendErrorTitleKey;
+                    viewModel.resendResultsDialog.endpointNameKey = constants.dialogs.resendResults.webhooks.endpointNameKey;
+                    viewModel.resendResultsDialog.show({
+                        resend: webhooks.sendResults.bind(webhooks),
+                        next: onCourseFinished, 
+                    });
+                });
+        } 
+
+        onCourseFinished();
     }
 
     function onCourseFinished() {
         viewModel.status(statuses.finished);
-        progressContext.status(progressStatuses.ignored);
 
         if (templateSettings.nps.enabled && xApiInitializer.isNpsReportingInitialized) {
-            viewModel.npsDialog.show({
+            return viewModel.npsDialog.show({
                 closed: function() {
                    finalize({close: true});
                 },
@@ -130,8 +159,6 @@ define([
                    finalize({close: false});
                 }
             });
-
-            return;
         }
 
         finalize({close: true});
