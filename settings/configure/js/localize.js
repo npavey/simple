@@ -22,7 +22,7 @@
         'lrs': 'LRS',
         'webhooks': 'Webhooks',
 
-        'chooseLrsLabel': 'Choose LRS <span>(Learning Record Store <a href="https://help.easygenerator.com/results-tracking/results-tracking-via-lrs" targen="_blunk">Learn more</a>)</span>',
+        'chooseLrsLabel': 'Choose LRS <span>(Learning Record Store <a href="https://help.easygenerator.com/results-tracking/results-tracking-via-lrs" targen="_blank">Learn more</a>)</span>',
         'default': 'easygenerator (recommended)',
         'custom': 'Custom LRS',
 
