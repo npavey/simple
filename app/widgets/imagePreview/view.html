@@ -6,12 +6,13 @@
                 <div class="image-holder">
                     <div data-bind="imageLoader: { isLoaded: isLoaded, imageUrl: imageUrl}">
                     </div>
-                    <div class="overlay-close-button-holder" data-bind="if: isLoaded">
-                        <a tabindex="0" class="overlay-close-button" data-bind="click: closePreview, hasFocus: isVisible, submitOnEnter, keyDown: { 27: { handler: closePreview } }">&nbsp;</a>
-                    </div>
                     <!--ko ifnot:isLoaded-->
                     <div class="loader-image"></div>
                     <!--/ko-->
+                </div>                
+                <div class="overlay-close-button-holder" data-bind="if: isLoaded">
+                    <a tabindex="0" class="overlay-close-button material-icons" data-bind="click: closePreview, hasFocus: isVisible, submitOnEnter, keyDown: { 27: { handler: closePreview } }">clear</a>
+                    <span class="overlay-close-button-subtext">Esc</span>
                 </div>
             </div>
         </div>
