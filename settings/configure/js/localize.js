@@ -64,6 +64,10 @@
         'save progress cross device': 'Save progress cross device (requires login and password):',
         'save progress cross device hint': '(will not affect progress saving in SCORM/LMS)',
         'allow social media': 'Allow login via social media',
+        'authorsBioTooltip': 'You can use this information to show for your learners on the course introduction page <a href="http://help.easygenerator.com/getting-started/billing-info-and-account-settings" target="blank" >Learn more</a>',
+        'about the author block:': '“About the author” block:',
+        'show about the author block on the introduction course page': 'Show “About the author” block on the introduction course page',
+        'information is taken from your personal information on the profile settings': '(Information is taken from your personal information on the profile settings <a href="/#accountsettings" target="_parent">profile settings</a>)',
 
         //mastery score
         'mastery score settings': 'Mastery score settings',

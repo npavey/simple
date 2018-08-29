@@ -331,6 +331,14 @@ input[type="text"] {
     font-weight: normal;
 }
 
+.settings-hint a{
+    text-decoration: underline;
+}
+
+.settings-hint a:hover{
+    text-decoration: none;
+}
+
 .caption-content {
     display: inline-block;
     position: relative;
@@ -1294,6 +1302,87 @@ input[type="text"] {
         margin-top: -2.5px;
         margin-left: 0;
     }
+
+.settings-caption span{
+    vertical-align: middle;
+}
+
+.setting-tooltip{
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(img/sprites_16.png) -126px 0 no-repeat;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.setting-tooltip:hover{
+    background-position: -126px -21px;
+}
+
+.tooltip-arrow{
+    bottom: -3px;
+    left: 50%;
+    margin-left: -4px;
+    border-width: 3px 4px 0;
+    border-color: transparent;
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-top-color: #fff;
+}
+
+.tooltip.configure-tab{
+    transition: opacity .2s linear,margin .2s linear;
+    opacity: 0;
+    margin-top: -9px;
+    display: block;
+    opacity: 1;
+    width: auto;
+    bottom: auto;
+    padding: 5px 15px;
+    box-sizing: border-box;
+
+    background: #fff;
+    box-shadow: 0 1px 8px 1px rgba(0,0,0,.1);
+    border-radius: 3px;
+    border: none;
+}
+
+.tooltip.configure-tab:after{
+    display: none;
+}
+
+.configure-tab .tooltip-text{
+    font-size: 11px;
+    color: #42515f;
+    line-height: 18px;
+}
+
+.configure-tab .tooltip-text a{
+    position: relative;
+    padding-left: 12px;
+    color: #469dd5;
+    margin-left: 2px;
+}
+
+.configure-tab .tooltip-text a:before{
+    position: absolute;
+    top: 5px;
+    left: 0;
+    content: "";
+    background-image: url('img/link-icon.svg');
+    width: 8px;
+    height: 8px;
+    color: inherit;
+}
+
+.tooltip.shown{
+    margin-top: -3px;
+}
 /*#endregion*/
 
 /*#region choose-language*/

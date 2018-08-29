@@ -987,6 +987,7 @@
         "allowContentPagesScoring": false,
         "allowCrossDeviceSaving": true,
         "allowLoginViaSocialMedia": true,
-        "allowxApiSettings": true
+        "allowxApiSettings": true,
+        "allowAuthorsBio": false
     }
 }

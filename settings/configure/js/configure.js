@@ -13,6 +13,7 @@
         pdfExport: null,
         nps: null,
         webhooks: null,
+        authorsBio: ko.observable(false),
         showConfirmationPopup: ko.observable(true),
         allowContentPagesScoring: ko.observable(false),
         allowCrossDeviceSaving: ko.observable(true),
@@ -28,6 +29,7 @@
             pdfExport: viewModel.pdfExport.getData(),
             nps: viewModel.nps.getData(),
             webhooks: viewModel.webhooks.getData(),
+            allowAuthorsBio: viewModel.authorsBio(),
             xApi: viewModel.trackingData.getData(),
             masteryScore: viewModel.masteryScore.getData(),
             languages: viewModel.languages.getData(),
@@ -92,6 +94,7 @@
             initField(viewModel.showConfirmationPopup, 'showConfirmationPopup');
             initField(viewModel.allowContentPagesScoring, 'allowContentPagesScoring');
             initField(viewModel.allowCrossDeviceSaving, 'allowCrossDeviceSaving');
+            initField(viewModel.authorsBio, 'allowAuthorsBio');
             initField(viewModel.allowSocialLogin, 'allowLoginViaSocialMedia');
             initField(viewModel.allowxApiSettings, 'allowxApiSettings');
             initField(viewModel.allowCertificateDownload, 'allowCertificateDownload');

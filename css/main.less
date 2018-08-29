@@ -2784,6 +2784,81 @@ textarea {
     margin: 20px auto;
 }
 
+.styled-content h3.cource-intro-title{
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    position: relative;
+
+    &:after{
+        content: '';
+        display: block;
+        height: 2px;
+        width: 80px;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.author-information-wrapper{
+    margin-bottom: 50px;
+}
+
+.author-information-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.author-information-image{
+    margin-right: 80px;
+    margin-left: 40px;
+    width: 160px;
+    height: 160px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span{
+        font-size: 96px;
+        text-align: center;
+        opacity: 0.5;
+    }
+}
+
+.author-information-text{
+    width: calc(100% - 280px);
+}
+
+.styled-content h3.author-information-name{
+    margin-bottom: 15px;
+    font-weight: normal;
+}
+
+.author-information-contacts{
+    margin-bottom: 10px;
+    line-height: 1;
+
+    .material-icons{
+        font-size: 16px;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+}
+
+.author-information-email,
+.author-information-phone{
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.author-information-email{
+    margin-right: 15px;
+}
+
 @media (max-width: 768px) {
     .content {
         padding: 65px 20px 45px;
@@ -4794,6 +4869,22 @@ textarea {
                 }
             }
         }
+    }
+
+    .author-information-content{
+        display: block;
+    }
+
+    .cource-intro-title{
+        margin-bottom: 40px;
+    }
+
+    .author-information-image{
+        margin: 0 auto 50px;
+    }
+
+    .author-information-text{
+        width: 100%;
     }
 }
 /*#endregion*/

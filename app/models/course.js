@@ -11,6 +11,10 @@
                 createdBy: spec.createdBy,
                 createdOn: spec.createdOn,
 
+                authorContactEmail: spec.authorContactEmail,
+                authorPersonalPhone: spec.authorPersonalPhone,
+                authorShortBio: spec.authorShortBio,
+
                 hasIntroductionContent: spec.hasIntroductionContent,
                 sections: spec.sections,
                 isFinished: false

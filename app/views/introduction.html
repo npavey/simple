@@ -8,11 +8,45 @@
                 <button class="button small primary autofocus" href="#" data-bind="click: startCourse, css: { disabled: isNavigationLocked }" data-translate-text="[start course]" data-translate-title="[start course]">Start course</button>
             </div>
         </header>
-            <div class="course-intro-text styled-content content">
+        <div class="course-intro-text styled-content content">
+            <!-- ko if: allowAuthorsBio -->
+                <div class="author-information-wrapper">
+                    <h3 class="cource-intro-title" data-bind="text: 'About the author'"></h3>
+                    <div class="author-information-content">
+                        <div class="author-information-image">
+                            <span class="material-icons">person</span>
+                        </div>
+                        <div class="author-information-text">
+                            <h3 class="author-information-name" data-bind="text: createdBy"></h3>
+                            <!-- ko if: authorContactEmail || authorPersonalPhone -->
+                                <div class="author-information-contacts">
+                                    <!-- ko if: authorContactEmail -->
+                                        <div class="author-information-email">
+                                            <i class="material-icons">drafts</i>
+                                            <span data-bind="text: authorContactEmail"></span>
+                                        </div>
+                                    <!-- /ko -->
+                                    <!-- ko if: authorPersonalPhone -->
+                                        <div class="author-information-phone">
+                                            <i class="material-icons">call</i>
+                                            <span data-bind="text: authorPersonalPhone"></span>
+                                        </div>
+                                    <!-- /ko -->
+                                </div>
+                            <!-- /ko -->
+                            <!-- ko if: authorShortBio -->
+                                <div class="author-information-bio" data-bind="text: authorShortBio"></div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                </div>
+            <!-- /ko -->
+            <!-- ko if: content -->
                 <div data-bind="html: content,  elementsWrap: {}, reviewable: {type: 'course', property: 'introduction'}"></div>
-                <!-- ko if: copyright --> 
-                <div class="copyright-text" data-bind="text: copyright"></div>
-                <!-- /ko -->
-            </div>
+            <!-- /ko -->
+            <!-- ko if: copyright --> 
+            <div class="copyright-text" data-bind="text: copyright"></div>
+            <!-- /ko -->
+        </div>
     </div>
 </section>

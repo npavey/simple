@@ -284,3 +284,83 @@ body {
     font-size: 24px;
 }
 /*#endregion Expandable block*/
+
+.styled-content h3.cource-intro-title{
+    padding-bottom: 25px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.styled-content h3.cource-intro-title:after{
+    content: '';
+    display: block;
+    height: 2px;
+    width: 80px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #ccc;
+}
+
+.author-information-wrapper{
+    margin-bottom: 50px;
+}
+
+.author-information-content{
+    text-align: center;
+}
+
+.author-information-image{
+    margin-right: 80px;
+    margin-left: 40px;
+    width: 160px;
+    height: 160px;
+    border: 2px solid #fff;
+    border-radius: 3px;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.1);
+    margin-bottom: 20px;
+    line-height: 152px;
+
+    display: inline-block;
+    vertical-align: top;
+    align-items: center;
+    justify-content: center;
+}
+
+.author-information-image img{
+    vertical-align: middle;
+}
+
+.author-information-text{
+    min-width: 275px;
+    max-width: calc(100% - 290px);
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+
+.author-information-name{
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 15px;
+}
+
+.author-information-contacts{
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.author-information-contacts img{
+    margin-right: 8px;
+}
+
+.author-information-email,
+.author-information-phone{
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.author-information-email{
+    margin-right: 15px;
+}

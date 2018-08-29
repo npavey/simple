@@ -114,7 +114,7 @@
 					});
 				}
 			};
-			$.when.apply($, loadContents(content)).done(function () {
+			$.when.apply($, loadContents(content, configs.templateSettings)).done(function () {
 				ko.applyBindings(content);
 			});
 		});
@@ -125,8 +125,9 @@
 		document.body.classList.add('page-loaded');
 	}
 
-	function loadContents(content) {
+	function loadContents(content, templateSettings) {
 		var promises = [];
+		content.allowAuthorsBio = templateSettings.allowAuthorsBio;
 		if (content.hasIntroductionContent) {
 			promises.push($.get('../content/content.html', function (response) {
 				content.introductionContent = response;

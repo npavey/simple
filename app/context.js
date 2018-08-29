@@ -29,7 +29,10 @@
                     })
                     .value(),
                 createdOn: new Date(response.createdOn),
-                createdBy: response.createdBy
+                createdBy: response.createdBy,
+                authorContactEmail: response.authorContactEmail,
+                authorPersonalPhone: response.authorPersonalPhone,
+                authorShortBio: response.authorShortBio
             });
         }
 
