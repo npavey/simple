@@ -318,6 +318,11 @@ input[type="text"] {
     margin-top: 15px;
 }
 
+.settings-content {
+    display: flex;
+    flex-basis: 100%;
+}
+
 .settings-column {
     -webkit-flex-basis: 35%;
     flex-basis: 35%;
