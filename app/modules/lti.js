@@ -25,10 +25,9 @@ define(['q', 'jquery', 'eventManager', 'modules/progress/progressStorage/auth'],
         }
 
         function onCourseFinished(resultCallbackUrl, course) {
-            var url = new URL(resultCallbackUrl);
-            url.searchParams.append('score', course.score() / 100);
+            var url = resultCallbackUrl + '?score=' + course.score() / 100;
 
-            return sendRequest(url.toString());
+            return sendRequest(url);
         }
 
         function sendRequest(url, attemptNumber, defer) {
