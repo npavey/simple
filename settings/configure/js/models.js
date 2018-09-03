@@ -96,7 +96,8 @@
                 url: that.url(),
                 type: 'POST',
                 cache: false,
-                body: JSON.stringify(_requestCheckData)
+                contentType: 'application/json',
+                data: JSON.stringify(_requestCheckData)
             })
             .done(function() {
                 that.checkStatus(statuses.success);
