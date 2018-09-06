@@ -21,11 +21,12 @@
 
         viewModel.activate = function () {
             return Q.fcall(function () {
-                return http.get('content/content.html').then(function (response) {
-                    viewModel.content = response;
-                }).fail(function () {
-                    viewModel.content = '';
-                });
+                return context.course.hasIntroductionContent 
+                    && http.get('content/content.html').then(function (response) {
+                        viewModel.content = response;
+                    }).fail(function () {
+                        viewModel.content = '';
+                    });
             });
         };
 
