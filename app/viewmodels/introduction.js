@@ -8,6 +8,7 @@
             authorPersonalPhone: context.course.authorPersonalPhone,
             authorShortBio: context.course.authorShortBio,
             createdBy: context.course.createdBy,
+            authorAvatarUrl: context.course.authorAvatarUrl,
             allowAuthorsBio: templateSettings.allowAuthorsBio,
             isNavigationLocked: router.isNavigationLocked()
         }

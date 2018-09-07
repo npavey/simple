@@ -14,6 +14,7 @@
                 authorContactEmail: spec.authorContactEmail,
                 authorPersonalPhone: spec.authorPersonalPhone,
                 authorShortBio: spec.authorShortBio,
+                authorAvatarUrl: spec.authorAvatarUrl,
 
                 hasIntroductionContent: spec.hasIntroductionContent,
                 sections: spec.sections,

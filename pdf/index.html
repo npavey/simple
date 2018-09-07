@@ -28,44 +28,50 @@
         <img class="course-logo" data-bind="event: { load: logoUploaded, error: logoUploaded }, attr: { src: logoUrl }" />
 
         <h1 class="course-caption" data-bind="text: title"></h1>
-
-        <div class="course-intro-text styled-content content">
-            <!-- ko if: allowAuthorsBio -->
-                <div class="author-information-wrapper">
-                    <h3 class="cource-intro-title" data-bind="text: 'About the author'"></h3>
-                    <div class="author-information-content">
-                        <div class="author-information-image">
-                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABD1JREFUeAHtW1tLFVEUXnuOZmWpFXZBjiREhAUhPYiZ4UuBQb1FRE/1S/wtQUT0WBQEgXgpeujB7hSFZEEkXcyy1HOcvm+OisfLcZ/Za87FmQXbmTMze39rfXvt29pbIyWTiymRzwcBd0RkvhnXnQsJF5nKJW8C1zciLWMit7O4j1xM5AjSu0Nk7jSMPi7i19nhmRkRb1SkdlBk4LddnnBfRUhAb43ITDeMRpIt4dSTWREzIlKHNJAJWUbBbBERcLYeXn0JxrcWRLd+aT6ixdwSefDHOovlhxEQcHIv3P0K8BstdbD9bBLN4obIo6+2GWy+Q8ekKaz5f1dRorbxVHIrPOqwSPtzkfdzWlorEsA2P82a36el3BrlgITZtMghkDA2v8b7oh95RedYN0PQ4Sm1+XVB8IL9CrF0RIkADnVBb6+j1YalEIuY7qJEAMf50ENdGCswrAaYYfLm5VEggDM8TnJKLcQktpsoEMDpre0Mz03Z/NzEDKbW+Y+L/KVAAOf2ZRNnbAUCgoVNmRhwx1YgIFjVlYkAd+yEgHJVXaXgangAgxnlEmfshAD3qgvCWO7FhCrBHVvDAxDDK5s4YysQwAAmY3ilFmIS200UCGD0lgHMUgsx3SPHCgTQcEZvGcAsmQArwHQGdF5N5TQYg0JpktnmrJFVAQaED7+z+nSDj5Q8gCgMXTN6G7UQg1g6okgA4/YMXQuit5EJyiaG3h6BUhNYNJjR2tYPuegto7iqAuMZFh/4qVmqMgFUbRybFwxdM3qrFR6n2zdc1zae2kZAAIulJzB0neUGZ4sDDrfGBtHm74o8jGSuEcHOEAlYLrHdHF1OAu8rc3t8pZbJ74SBhIGEgYSBhIGEgfgwEOFM8EQtprC7sHO8B4sjpJrdmBojGRyjke14xpNjOFUSCFaShgGVaTzHWiL1XSSDZL5hAYQ080PkKabX+qJIQGcD7MECKIsTHAbJ3w91tcr3UdQXlIlFUQopMy7y5JcGHQ4K+sjbTWOPopZxeMlv0lDIvgyDZbH3FrgvRUZAigFJxUuRBNDoHtRyBkZ77TCcx10rQLwp6PIKHggyhuAd9mRYEtDvidw/BqN7wHhzBVhcQAUzATKGRPpeiPTPF/gweLUBATz6lsFRlOwpGI4OrZrEoONMDcMrRguF0AoQ0IXTF/45mIzOraoFnaW5J/J4zV2kNQjow9mbyfNwI7j8ZhIPTaLxDppyXmRpBQFdGKflcuW387AVw/5BbsIbMMfIybKYYGD8tepr64umWF3rc8N2Gs3h01/mWCCgaxvuaXyjVTHV/RFmoAbzlvQzkJDB8Ebxzmzyms+ZufSXIxptDjygE6e7/QtL72Jz4x9AxP41PMDriI3Nqwz1OkCA37bqeWwe+G0gwJR4EVNJ7JomeoDlv7JVkuJauvh1ICDekhAQ7/rHGJgQEHMGEg+IuQPIfwZv80iu+oMwAAAAAElFTkSuQmCC" alt="" />
-                        </div>
-                        <div class="author-information-text">
-                            <div class="author-information-name" data-bind="text: createdBy"></div>
-                            <!-- ko if: authorContactEmail || authorPersonalPhone -->
-                                <div class="author-information-contacts">
-                                    <!-- ko if: authorContactEmail -->
-                                        <div class="author-information-email">
-                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAARxJREFUKBWVkc9KAlEUxn8zk1rLaGFgtJAeoFWKFAlu+kdFa1flG/QC0iu4TVeuwwhyIUFR0J8naGO4aem61Jzpu5LMlQayA2fOud/5vnPunePxy/IzsLgHS6dyB1ba0PFtmkDbshlwjiHoKV4r7igmFGvw9Dxm/ojW0zAsCUyBX4ftGyire9mFZgHcomrv4J3Dw5tEGQHuvsAGJC7g9nPcMYz5Wegd6XyoqZceLJ8pacFAEx77IdHOOl+QfFXzeV33QOMDCdmFeAVyqzY1zA1u6oYXeLpe9iosjrJ7vasKL11YW1D3E6EbNidKpLrzoc+dfFOd52yBybWTKBsRt6IqBtOb/m9GNLHtKVr45pfHdO+0yIF8+IdrJW7jG1dNRWARFCn0AAAAAElFTkSuQmCC" alt="" />
-                                            <span data-bind="text: authorContactEmail"></span>
-                                        </div>
-                                    <!-- /ko -->
-                                    <!-- ko if: authorPersonalPhone -->
-                                        <div class="author-information-phone">
-                                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAQJJREFUKBV1kb1qAlEQhb/VSKwsQyCrIlibOoHY5wHs9BnyBEIg5BXsfAIbO1vBIpIq5A9CmsRFEISIYpME3Zxr9upF14HZmTlzzr0zez04a0J4xMq8Ntyp3m8JkdObdlja5PGZBHw5LR+uDbbX1PTenO4vvHhOvZNKkOhH6Fzj1aG12GE5wAGkHmAx0k3P0H93erFpEj6WkJvq9CrkHyEYxzIjUAJjwSf4WYkqcHIPw9k/br4VcV5DWzsLXh7C5Faj5SRsaLwulAvwcyOyEQwUnhyBOWMlulJyIe/JT+UZ+dq2BBY/L8OypurYIjZGO9jSRrNTsaMRzBt9y/U3MW82/QMVvzmncsvjiwAAAABJRU5ErkJggg==" alt="" />
-                                            <span data-bind="text: authorPersonalPhone"></span>
-                                        </div>
-                                    <!-- /ko -->
-                                </div>
-                            <!-- /ko -->
-                            <!-- ko if: authorShortBio -->
-                                <div class="author-information-bio" data-bind="text: authorShortBio"></div>
-                            <!-- /ko -->
+        <!-- ko if: allowAuthorsBio || hasIntroductionContent -->
+            <div class="course-intro-text styled-content content">
+                <!-- ko if: allowAuthorsBio -->
+                    <div class="author-information-wrapper">
+                        <h3 class="cource-intro-title" data-bind="text: 'About the author'"></h3>
+                        <div class="author-information-content">
+                            <div class="author-information-image">
+                                <!-- ko ifnot: authorAvatarUrl -->
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABD1JREFUeAHtW1tLFVEUXnuOZmWpFXZBjiREhAUhPYiZ4UuBQb1FRE/1S/wtQUT0WBQEgXgpeujB7hSFZEEkXcyy1HOcvm+OisfLcZ/Za87FmQXbmTMze39rfXvt29pbIyWTiymRzwcBd0RkvhnXnQsJF5nKJW8C1zciLWMit7O4j1xM5AjSu0Nk7jSMPi7i19nhmRkRb1SkdlBk4LddnnBfRUhAb43ITDeMRpIt4dSTWREzIlKHNJAJWUbBbBERcLYeXn0JxrcWRLd+aT6ixdwSefDHOovlhxEQcHIv3P0K8BstdbD9bBLN4obIo6+2GWy+Q8ekKaz5f1dRorbxVHIrPOqwSPtzkfdzWlorEsA2P82a36el3BrlgITZtMghkDA2v8b7oh95RedYN0PQ4Sm1+XVB8IL9CrF0RIkADnVBb6+j1YalEIuY7qJEAMf50ENdGCswrAaYYfLm5VEggDM8TnJKLcQktpsoEMDpre0Mz03Z/NzEDKbW+Y+L/KVAAOf2ZRNnbAUCgoVNmRhwx1YgIFjVlYkAd+yEgHJVXaXgangAgxnlEmfshAD3qgvCWO7FhCrBHVvDAxDDK5s4YysQwAAmY3ilFmIS200UCGD0lgHMUgsx3SPHCgTQcEZvGcAsmQArwHQGdF5N5TQYg0JpktnmrJFVAQaED7+z+nSDj5Q8gCgMXTN6G7UQg1g6okgA4/YMXQuit5EJyiaG3h6BUhNYNJjR2tYPuegto7iqAuMZFh/4qVmqMgFUbRybFwxdM3qrFR6n2zdc1zae2kZAAIulJzB0neUGZ4sDDrfGBtHm74o8jGSuEcHOEAlYLrHdHF1OAu8rc3t8pZbJ74SBhIGEgYSBhIGEgfgwEOFM8EQtprC7sHO8B4sjpJrdmBojGRyjke14xpNjOFUSCFaShgGVaTzHWiL1XSSDZL5hAYQ080PkKabX+qJIQGcD7MECKIsTHAbJ3w91tcr3UdQXlIlFUQopMy7y5JcGHQ4K+sjbTWOPopZxeMlv0lDIvgyDZbH3FrgvRUZAigFJxUuRBNDoHtRyBkZ77TCcx10rQLwp6PIKHggyhuAd9mRYEtDvidw/BqN7wHhzBVhcQAUzATKGRPpeiPTPF/gweLUBATz6lsFRlOwpGI4OrZrEoONMDcMrRguF0AoQ0IXTF/45mIzOraoFnaW5J/J4zV2kNQjow9mbyfNwI7j8ZhIPTaLxDppyXmRpBQFdGKflcuW387AVw/5BbsIbMMfIybKYYGD8tepr64umWF3rc8N2Gs3h01/mWCCgaxvuaXyjVTHV/RFmoAbzlvQzkJDB8Ebxzmzyms+ZufSXIxptDjygE6e7/QtL72Jz4x9AxP41PMDriI3Nqwz1OkCA37bqeWwe+G0gwJR4EVNJ7JomeoDlv7JVkuJauvh1ICDekhAQ7/rHGJgQEHMGEg+IuQPIfwZv80iu+oMwAAAAAElFTkSuQmCC" alt="" />
+                                <!-- /ko -->
+                                <!-- ko if: authorAvatarUrl -->
+                                    <img data-bind="attr: {src: authorAvatarUrl + '?width=156&height=156&scaleBySmallerSide=true'}" alt="" />
+                                <!-- /ko -->
+                            </div>
+                            <div class="author-information-text">
+                                <div class="author-information-name" data-bind="text: createdBy"></div>
+                                <!-- ko if: authorContactEmail || authorPersonalPhone -->
+                                    <div class="author-information-contacts">
+                                        <!-- ko if: authorContactEmail -->
+                                            <div class="author-information-email">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAMCAYAAAC5tzfZAAAAAXNSR0IArs4c6QAAARxJREFUKBWVkc9KAlEUxn8zk1rLaGFgtJAeoFWKFAlu+kdFa1flG/QC0iu4TVeuwwhyIUFR0J8naGO4aem61Jzpu5LMlQayA2fOud/5vnPunePxy/IzsLgHS6dyB1ba0PFtmkDbshlwjiHoKV4r7igmFGvw9Dxm/ojW0zAsCUyBX4ftGyire9mFZgHcomrv4J3Dw5tEGQHuvsAGJC7g9nPcMYz5Wegd6XyoqZceLJ8pacFAEx77IdHOOl+QfFXzeV33QOMDCdmFeAVyqzY1zA1u6oYXeLpe9iosjrJ7vasKL11YW1D3E6EbNidKpLrzoc+dfFOd52yBybWTKBsRt6IqBtOb/m9GNLHtKVr45pfHdO+0yIF8+IdrJW7jG1dNRWARFCn0AAAAAElFTkSuQmCC" alt="" />
+                                                <span data-bind="text: authorContactEmail"></span>
+                                            </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: authorPersonalPhone -->
+                                            <div class="author-information-phone">
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAAAXNSR0IArs4c6QAAAQJJREFUKBV1kb1qAlEQhb/VSKwsQyCrIlibOoHY5wHs9BnyBEIg5BXsfAIbO1vBIpIq5A9CmsRFEISIYpME3Zxr9upF14HZmTlzzr0zez04a0J4xMq8Ntyp3m8JkdObdlja5PGZBHw5LR+uDbbX1PTenO4vvHhOvZNKkOhH6Fzj1aG12GE5wAGkHmAx0k3P0H93erFpEj6WkJvq9CrkHyEYxzIjUAJjwSf4WYkqcHIPw9k/br4VcV5DWzsLXh7C5Faj5SRsaLwulAvwcyOyEQwUnhyBOWMlulJyIe/JT+UZ+dq2BBY/L8OypurYIjZGO9jSRrNTsaMRzBt9y/U3MW82/QMVvzmncsvjiwAAAABJRU5ErkJggg==" alt="" />
+                                                <span data-bind="text: authorPersonalPhone"></span>
+                                            </div>
+                                        <!-- /ko -->
+                                    </div>
+                                <!-- /ko -->
+                                <!-- ko if: authorShortBio -->
+                                    <div class="author-information-bio" data-bind="text: authorShortBio"></div>
+                                <!-- /ko -->
+                            </div>
                         </div>
                     </div>
-                </div>
-            <!-- /ko -->
-            <!-- ko if: hasIntroductionContent -->
-                <div data-bind="loadHtml: introductionContent"></div>
-            <!-- /ko -->
-        </div>
+                <!-- /ko -->
+                <!-- ko if: hasIntroductionContent -->
+                    <div data-bind="loadHtml: introductionContent"></div>
+                <!-- /ko -->
+            </div>
+        <!-- /ko -->
         <!-- ko foreach: { data: sections, as: 'section' } -->
         <!-- ko if: $root.filterQuestionTypes(section.questions).length > 0 -->
         <h2 class="section-info" data-bind="text: section.title"></h2>

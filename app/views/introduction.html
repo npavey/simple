@@ -14,7 +14,12 @@
                     <h3 class="cource-intro-title" data-bind="text: 'About the author'"></h3>
                     <div class="author-information-content">
                         <div class="author-information-image">
-                            <span class="material-icons">person</span>
+                            <!-- ko ifnot: authorAvatarUrl -->
+                                <span class="material-icons">person</span>
+                            <!-- /ko -->
+                            <!-- ko if: authorAvatarUrl -->
+                                <img data-bind="attr: {src: (authorAvatarUrl + '?width=156&height=156&scaleBySmallerSide=true')}" alt="">
+                            <!-- /ko -->
                         </div>
                         <div class="author-information-text">
                             <h3 class="author-information-name" data-bind="text: createdBy"></h3>

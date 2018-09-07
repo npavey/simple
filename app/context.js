@@ -32,7 +32,8 @@
                 createdBy: response.createdBy,
                 authorContactEmail: response.authorContactEmail,
                 authorPersonalPhone: response.authorPersonalPhone,
-                authorShortBio: response.authorShortBio
+                authorShortBio: response.authorShortBio,
+                authorAvatarUrl: response.authorAvatarUrl
             });
         }
 

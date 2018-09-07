@@ -325,10 +325,19 @@ body {
     vertical-align: top;
     align-items: center;
     justify-content: center;
+
+    position: relative;
+    overflow: hidden;
 }
 
 .author-information-image img{
     vertical-align: middle;
+    position: absolute;
+    top: -6000px;
+    bottom: -6000px;
+    right: -6000px;
+    left: -6000px;
+    margin: auto;
 }
 
 .author-information-text{
