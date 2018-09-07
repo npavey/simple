@@ -199,7 +199,7 @@
                                     question.progress(progress.answers[question.shortId]);
                                 }
                                 if (progress.finished) {
-                                    question.isAnswered = true;
+                                    question.markAsAnswered();
                                 }
                             });
                         });

@@ -33,9 +33,9 @@ define([
         npsDialog: new Dialog(),
         newAttemptDialog: new Dialog(),
         resendResultsDialog: new Dialog(),
-        isInReviewAttemptMode: course.isFinished,
 
         //properties
+        isInReviewAttemptMode: false,
         isCompleted: false,
         crossDeviceEnabled: false,
         allowContentPagesScoring: false,
@@ -52,6 +52,7 @@ define([
     return viewModel;
 
     function activate() {
+        viewModel.isInReviewAttemptMode = course.isFinished;
         viewModel.npsDialog.isVisible(false);
         viewModel.newAttemptDialog.isVisible(false);
         viewModel.resendResultsDialog.isVisible(false);

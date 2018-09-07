@@ -57,7 +57,13 @@
             };
 
             course.finish = function(callback, withoutEvent) {
-                course.isFinished = true;
+                course.setFinishedStatus();
+                course.sections.forEach(function(section) {
+                    section.questions.forEach(function(question) {
+                        question.markAsAnswered();
+                    });
+                });
+                
                 if (withoutEvent) {
                     callback && callback();
                 } else {

@@ -50,7 +50,7 @@
             if (!_.isNullOrUndefined(data)) {
                 _protected.restoreProgress.call(this, data);
 
-                this.isAnswered = true;
+                this.markAsAnswered();
                 this.isCorrectAnswered = this.score() === 100;
             } else {
                 return _protected.getProgress.call(this);
@@ -58,7 +58,7 @@
         };
 
         this.submitAnswer = function () {
-            this.isAnswered = true;
+            this.markAsAnswered();
             
             if (!this.affectProgress && !this.hasOwnProperty('isSurvey'))
                 return;
@@ -68,6 +68,10 @@
             this.isCorrectAnswered = this.score() === 100;
 
             eventManager.answersSubmitted(this, true);
+        }
+
+        this.markAsAnswered = function() {
+            this.isAnswered = true;
         }
     }
 
