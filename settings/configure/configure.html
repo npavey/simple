@@ -134,29 +134,24 @@
                         </div>    
                         <div class="settings-row">
                             <div class="settings-caption">
-                                <span data-bind="localize: 'about the author block:'"></span>
-                                <span class="setting-tooltip" data-bind="tip: {key: 'authorsBioTooltip', maxWidth: 220, triggerEvent: 'click'}"></span>
+                                <span data-bind="localize: 'show about the author block on the introduction course page'"></span>
+                                <span class="setting-tooltip" data-bind="tip: {key: 'authorsBioTooltip', maxWidth: 246, triggerEvent: 'click'}"></span>
+                                <div class="settings-hint" data-bind="localize: 'information is taken from your profile settings'"></div>
                             </div>
-                            <div class="settings-content">
-                                <div class="settings-caption">
-                                    <div data-bind="localize: 'show about the author block on the introduction course page'"></div>
-                                    <div class="settings-hint" data-bind="localize: 'information is taken from your profile settings'"></div>
-                                </div>
-                                <div class="settings-column">
-                                    <div class="switcher">
-                                        <div class="switcher-text" data-bind="css: { disabled: authorsBio() }, localize: 'forbid'"></div>
-                                        <div class="switch-toggle-slider" data-bind="switchToggle: { value: authorsBio }">
-                                            <div class="switch-toggle-wrapper">
-                                                <div class="switch-toggle-on"></div>
-                                                <div class="switch-toogle-blob"></div>
-                                                <div class="switch-toggle-off"></div>
-                                            </div>
+                            <div class="settings-column">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: authorsBio() }, localize: 'hide'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: authorsBio }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
                                         </div>
-                                        <div class="switcher-text" data-bind="css: { disabled: !authorsBio() }, localize: 'allow'"></div>
                                     </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !authorsBio() }, localize: 'show'"></div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                     </div>
                 </div>
             </div>

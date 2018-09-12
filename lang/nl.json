@@ -7,7 +7,7 @@
     "[finish course popup second remark]": "Uw voortgang wordt niet bewaard. Als u de cursus opnieuw start, moet u opnieuw beginnen",
     "[finish course submit first remark]": "Uw definitieve resultaat zal worden gerapporteerd",
     "[finish course submit second remark]": "U kunt dan later niet meer verdergaan",
-    "[finish course take brake first remark]": "U kunt de cursus op elk moment weer openen. U gaat dan verder op het punt waar u gebleven was.",
+    "[finish course take brake first remark]": "U kunt elk moment weer verder op het punt waar u gebleven was.",
     "[finish course take brake second remark]": "Gebruik dezelfde browser om verder te gaan met de cursus",
     "[learning objectives]": "Leerdoelen:",
     "[start]": "Start",
@@ -188,5 +188,7 @@
     "[contanct with author key]": "Neem contact op met de curus auteur als het probleem zich blijft voordoen",
     "[general-message-key]": "Foutmelding",
     "[error-message-key]": "kon niet verbinden met de host",
-    "[resend-results-key]": "Dien resultaten opnieuw in"
+    "[resend-results-key]": "Dien resultaten opnieuw in",
+    "[close without reporting results]": "De cursus sluiten zonder de resulaten in te dienen {endpointName}",
+    "[webhooks endpoint name key]": "de webhooks"
 }
