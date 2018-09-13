@@ -84,8 +84,12 @@
 			content.shuffle = shuffle;
 			content.logoUrl = (configs.templateSettings && configs.templateSettings.branding && configs.templateSettings.branding.logo && configs.templateSettings.branding.logo.url) ? configs.templateSettings.branding.logo.url : defaultLogo;
 			content.isLogoUploaded = ko.observable(false);
+			content.isAvatarUploaded = ko.observable(false);
 			content.logoUploaded = function () {
 				content.isLogoUploaded(true);
+			};
+			content.avatarUploaded = function () {
+				content.isAvatarUploaded(true);
 			};
 			content.isSingleSelectImageAnswersLoaded = ko.observable(false);
 			content.singleSelectImageAnswerLoaded = function () {
@@ -95,8 +99,10 @@
 				}
 			};
 			content.isContentsLoaded = ko.observable(false);
+			
 			content.isPageFullyLoaded = ko.computed(function () {
 				if (content.isLogoUploaded() &&
+					content.isAvatarUploaded() &&
 					content.isContentsLoaded() &&
 					content.isSingleSelectImageAnswersLoaded()) {
 					pageFullyLoaded();
@@ -128,6 +134,9 @@
 	function loadContents(content, templateSettings) {
 		var promises = [];
 		content.allowAuthorsBio = templateSettings.allowAuthorsBio;
+		if(!content.allowAuthorsBio){
+			content.avatarUploaded();
+		}
 		if (content.hasIntroductionContent) {
 			promises.push($.get('../content/content.html', function (response) {
 				content.introductionContent = response;
