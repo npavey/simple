@@ -7,7 +7,8 @@
     "precommit": "npm run lint",
     "lint": "node_modules/.bin/eslint -c .eslintrc app/",
     "postinstall": "node_modules/.bin/bower install",
-    "start": "node_modules/.bin/gulp webserver"
+    "start": "node_modules/.bin/gulp webserver",
+    "resources": "call easyresources generate --worksheetName \"Simple course\" --outputPath \"lang\" --excludeLocalizations \"\""
   },
   "repository": {
     "type": "git",
