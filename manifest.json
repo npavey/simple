@@ -983,6 +983,7 @@
           "url": ""
         },
         "hideSectionsPage": false,
+        "hideContinueLaterButton": false,
         "showConfirmationPopup": true,
         "allowContentPagesScoring": false,
         "allowCrossDeviceSaving": true,

@@ -28,6 +28,7 @@
         xAPIEnabled: false,
         scormEnabled: false,
         hideFinishActionButtons: false,
+        hideContinueLaterButton: false,
         activate: activate
     };
 
@@ -64,6 +65,7 @@
         viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
         viewModel.scormEnabled = publishModeProvider.isScormEnabled;
         viewModel.hideFinishActionButtons = templateSettings.hideFinishActionButtons;
+        viewModel.hideContinueLaterButton = templateSettings.hideContinueLaterButton || false;
     }
 
     function exit() {
