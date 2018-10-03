@@ -159,11 +159,11 @@ define(['knockout', 'plugins/router', 'constants', 'modules/questionsNavigation'
 
         function updateNavigationState(viewModel) {
             if (context.course.score() === 100) {
-                viewModel.isGoToResultsVisible(true);
+                viewModel.isGoToResultsVisible(!templateSettings.hideFinishActionButtons);
                 viewModel.isGoToNextSectionVisible(viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex && viewModel.navigationContext.nextSectionUrl);
             } else {
                 if (viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex) {
-                    viewModel.isGoToResultsVisible(!viewModel.navigationContext.nextSectionUrl);
+                    viewModel.isGoToResultsVisible(!viewModel.navigationContext.nextSectionUrl && !templateSettings.hideFinishActionButtons);
                     viewModel.isGoToNextSectionVisible(!!viewModel.navigationContext.nextSectionUrl);
                 } else {
                     viewModel.isGoToResultsVisible(false);
