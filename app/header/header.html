@@ -5,6 +5,9 @@
     <!-- ko if: backgroundProps.image.option == 'repeat' -->
     <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: '0 0', backgroundSize: 'auto', backgroundRepeat: 'repeat', backgroundColor: backgroundProps.color }"></div>
     <!-- /ko -->
+    <!-- ko if: backgroundProps.image.option == 'original' -->
+    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: '0 0', backgroundSize: 'auto', backgroundRepeat: 'no-repeat', backgroundColor: backgroundProps.color }"></div>
+    <!-- /ko -->
     <!-- ko if: backgroundProps.brightness > 0 -->
     <div class="header-brightness-holder" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: {backgroundColor: 'white', opacity: backgroundProps.brightness }"></div>
     <!-- /ko -->
