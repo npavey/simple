@@ -1,8 +1,8 @@
 ﻿define(['durandal/app', 'plugins/router', './routingManager', './requestManager', './activityProvider', './configuration/xApiSettings', './constants', './statementQueueHandler',
-        './errorsHandler', 'context', 'progressContext', 'userContext', 'eventManager'
+        './errorsHandler', 'context', 'progressContext', 'userContext', 'eventManager', 'helpers/loginHelper', 'constants'
     ],
     function(app, router, routingManager, requestManager, activityProvider, xApiSettingsConfig, constants, statementQueueHandler, errorsHandler, context, progressContext,
-        userContext, eventManager) {
+        userContext, eventManager, loginHelper, appConstants) {
         "use strict";
 
         var self = {
@@ -34,7 +34,7 @@
                 return initializeTracking()
                     .then(function() {
                         activateReporting();
-                        if (!self.isCourseStarted) {
+                        if (loginHelper.getLoginMethod() !== appConstants.loginTypes.byEmailAndName && !self.isCourseStarted) {
                             return eventManager.courseStarted();
                         }
                     })

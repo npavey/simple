@@ -66,6 +66,8 @@ define(['./models/statement', './models/activity', './models/activityDefinition'
         }
 
         function subscribeToNpsEvents() {
+            unsubscribeFromNpsEvents();
+            
             subscribeToEvent(eventManager.events.courseEvaluated, handleCourseEvaluated);
         }
 

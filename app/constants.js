@@ -64,6 +64,11 @@
                     endpointNameKey: '[webhooks endpoint name key]'
                 }    
             }
+        },
+        loginTypes: {
+            byToken: 'byToken',
+            byEmailAndName: 'byEmailAndName',
+            default: 'default'
         }
     };
 
