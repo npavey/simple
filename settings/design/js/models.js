@@ -1,7 +1,31 @@
 (function (app) {
-
+    app.SectionsPageModel = SectionsPageModel;
     app.TreeOfContentModel = TreeOfContentModel;
     app.SectionsLayoutModel = SectionsLayoutModel;
+
+    function SectionsPageModel(settings, saveChanges) {
+        var that = this;
+
+        that.enabled = ko.observable(true);
+        that.getData = getData;
+        init(settings);
+
+        function init(settings) {
+            if (settings && settings.enabled !== undefined) {
+                that.enabled(settings.enabled);
+            }
+
+            that.enabled.subscribe(function () {
+                saveChanges();
+            });
+        }
+
+        function getData() {
+            return {
+                enabled: that.enabled()
+            }
+        }
+    }
 
     function TreeOfContentModel(settings, saveChanges) {
         var that = this;

@@ -58,6 +58,25 @@
                 </div>
             </section>
         </article>
+
+        <article class="flex direction-column settings-item-container">
+            <header class="settings-item-title" data-bind="localize:'Display the section page:'">
+                Display the section page:
+            </header>
+            <section class="settings-item-content flex direction-row flex-wrap" data-bind="with: sectionsPage">
+                <div class="switcher">
+                    <div class="switcher-text" data-bind="css: { disabled: enabled() }, localize: 'Dont show'"></div>
+                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: enabled }">
+                        <div class="switch-toggle-wrapper">
+                            <div class="switch-toggle-on"></div>
+                            <div class="switch-toogle-blob"></div>
+                            <div class="switch-toggle-off"></div>
+                        </div>
+                    </div>
+                    <div class="switcher-text" data-bind="css: { disabled: !enabled() }, localize: 'Show'"></div>
+                </div>
+            </section>
+        </article>
         <!-- /ko -->
         <!-- ko if: isError -->
         <div class="settings-tab-wrapper" data-bind="localize: 'settings are not initialized'"></div>

@@ -9,7 +9,7 @@
             sectionThumbnail = { width: 284, height: 170 },
             
             canActivate = function () {
-                if (templateSettings.hideSectionsPage && !router.isNavigationLocked()) {
+                if (templateSettings.sectionsPage && !templateSettings.sectionsPage.enabled && !router.isNavigationLocked()) {
                     var section = _.find(context.course.sections, function(section) {
                         return section.questions.length > 0;
                     });

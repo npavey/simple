@@ -25,6 +25,10 @@
     "treeOfContent":{
         "enabled": true
     },
+    "sectionsPage": 
+    {
+        "enabled": true
+    },
     "showConfirmationPopup": true,
     "allowCrossDeviceSaving": true,
     "allowLoginViaSocialMedia": true,

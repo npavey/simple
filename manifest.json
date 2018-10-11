@@ -982,7 +982,9 @@
         "webhooks": {
           "url": ""
         },
-        "hideSectionsPage": false,
+        "sectionsPage": {
+            "enabled": true
+        },
         "hideContinueLaterButton": false,
         "showConfirmationPopup": true,
         "allowContentPagesScoring": false,
