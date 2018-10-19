@@ -5,7 +5,8 @@ define(["underscore", "errorTracking/ravenWrapper", "durandal/app"], function(
 ) {
   function ErrorTracker() {
     return {
-      init: init
+      init: init,
+      trackError: trackError
     };
 
     function init(errorTrackingServiceUrl) {
@@ -18,6 +19,14 @@ define(["underscore", "errorTracking/ravenWrapper", "durandal/app"], function(
         .then(function (userInfo) {
           ravenWrapper.initialize(errorTrackingServiceUrl, userInfo.email)
         });
+    }
+
+    function trackError(error) {
+      if(!error) {
+        return;
+      }
+
+      ravenWrapper.captureError(error);
     }
   }
   return new ErrorTracker();

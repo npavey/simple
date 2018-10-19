@@ -1,5 +1,5 @@
-define(['eventManager', 'progressContext', 'userContext'],
-    function (eventManager, progressContext, userContext) {
+define(['eventManager', 'progressContext', 'userContext', 'errorTracking/errorTracker'],
+    function (eventManager, progressContext, userContext, errorTracker) {
         'use strict';
 
         return {
@@ -12,6 +12,9 @@ define(['eventManager', 'progressContext', 'userContext'],
             }
             if (_.isFunction(module.courseFinalized)) {
                 eventManager.subscribeForEvent(eventManager.events.courseFinalized).then(module.courseFinalized);
+            }
+            if (_.isFunction(module.addErrorHandler)) {
+                module.addErrorHandler(errorTracker.trackError);
             }
             if (_.isObject(module.userInfoProvider)) {
                 userContext.use(module.userInfoProvider);

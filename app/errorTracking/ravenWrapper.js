@@ -24,6 +24,14 @@ define(function() {
 
       self.raven.setUserContext({ email: email });
     };
+
+    self.captureError = function(error) {
+      if (!self.raven || !error) {
+        return;
+      }
+
+      self.raven.captureMessage(error, { level: 'error' });
+    };
   }
   return new RavenWrapper();
 });
