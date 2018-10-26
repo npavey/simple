@@ -16,7 +16,11 @@ define([
             isInReviewMode: false,
             title: '',
             createdOn: null,
-            logoUrl: '',
+            logo: {
+                url: '',
+                maxWidth: '',
+                maxHeight: '',
+            },
             pdfExportEnabled: ko.observable(false),
             isClosed: ko.observable(false),
             isNavigatingToAnotherView: ko.observable(false),
@@ -101,7 +105,9 @@ define([
 
             function initApp() {
                 return Q.fcall(function () {
-                    viewmodel.logoUrl = templateSettings.logoUrl;
+                    viewmodel.logo.url = templateSettings.logo.url;
+                    viewmodel.logo.maxWidth = templateSettings.logo.maxWidth || '300px';
+                    viewmodel.logo.maxHeight = templateSettings.logo.maxHeight || '100px';
                     viewmodel.title = app.title = context.course.title;
                     viewmodel.createdOn = context.course.createdOn;
                     progressContext.restoreProgress();

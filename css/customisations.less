@@ -1,0 +1,335 @@
+@main-color: #43aaa3;
+@text-color: #42515f;
+@button-text-color: #fff;
+
+@course-title-font-family: null;
+@course-title-color: null;
+@course-title-size: null;
+@course-title-font-weight: null;
+@course-title-line-height: null;
+
+@section-title-font-family: null;
+@section-title-color: null;
+@section-title-size: null;
+@section-title-font-weight: null;
+@section-title-line-height: null;
+
+@results-course-title-font-family: null;
+@results-course-title-color: null;
+@results-course-title-size: null;
+@results-course-title-font-weight: null;
+@results-course-title-line-height: null;
+
+@section-info-font-family: null;
+@section-info-size: null;
+@section-info-font-weight: null;
+@section-info-line-height: null;
+
+@button-border-radius: null;
+@button-font-weight: null;
+
+@small-button-font-weight: null;
+
+@exit-course-button-line-height: null;
+
+@overall-progress-emty-circle-color: null;
+@section-progress-emty-circle-color: null;
+@question-page-progress-emty-circle-color: null;
+@results-page-progress-emty-circle-color: null;
+
+@tree-of-content-font-size: null;
+
+@navigation-home-link-color: null;
+
+@header-navigation-progress-number-color: null;
+@footer-navigation-progress-number-color: null;
+
+@section-progress-text-wrapper-font-weight: null;
+
+@results-page-overal-progress-score-color: null;
+
+@results-page-continue-course-button-color: null;
+@results-page-continue-course-button-background-color: null;
+
+@results-page-remember-me-button-font-weight: null;
+@results-page-remember-me-button-border-color: null;
+@results-page-remember-me-button-color: null;
+@results-page-remember-me-button-checkbox-border-radius: null;
+@results-page-remember-me-button-checkbox-border-color: null;
+
+@popup-background-color: null;
+@popup-background-close-button-color: null;
+
+@error-page-background-url: null;
+@error-page-background-color: null;
+
+@error-page-text-color: null;
+
+@404-home-button-font-size: null;
+
+@xapi-error-continue-anyway-button-color: null;
+
+.set-property(@property: color, @value) when not(@value = null) {
+    @{property}: @value;
+}
+
+.fade-property(@property: color, @color, @amount: 100%) when not(@color = null) {
+    .set-property(@property, fade(@color, @amount));
+}
+
+.set-background-important-image(@url) when not(@url = null) {
+    background-image: url("@{url}") !important;
+};
+
+.set-background-important-color(@color) when not(@color = null) {
+    background-image: none !important;
+    background-color: @color !important;
+};
+
+.continue-course-button-styles() {
+    &:not(.disabled) {
+        &:hover,
+        &:focus {
+            color: @button-text-color;
+            border-color: @main-color;
+            background-color: @main-color;
+        }
+    }
+}
+
+.continue-course-button() when not(@results-page-continue-course-button-color = null) {
+    .continue-course-button-styles();
+};
+
+.continue-course-button() when not(@results-page-continue-course-button-background-color = null) {
+    .continue-course-button-styles();
+};
+
+.course-title {
+    .set-property(font-family, @course-title-font-family); 
+    .set-property(font-size, @course-title-size);
+    .set-property(color, @course-title-color);
+    .set-property(line-height, @course-title-line-height);
+
+    .course-caption {
+        .set-property(font-weight, @course-title-font-weight);
+    }
+}
+
+.button {
+    .set-property(border-radius, @button-border-radius);
+    .set-property(font-weight, @button-font-weight);
+
+    &.small {
+        .set-property(font-weight, @small-button-font-weight);
+    }
+}
+
+.Tiles {
+    &.sections-list-item {
+        .section-info {
+            .set-property(font-family, @section-info-font-family);
+            .set-property(font-size, @section-info-size);
+            .set-property(font-weight, @section-info-font-weight);
+            .set-property(line-height, @section-info-line-height);
+        }
+    }
+
+    .section-progress-text-wrapper {
+        .set-property(font-weight, @section-progress-text-wrapper-font-weight);
+    }
+
+    .section-progress {
+        .canvas-styles {
+            .set-property(color, @section-progress-emty-circle-color);
+        }
+    }
+}
+
+.section-image-wrapper {
+    .canvas-styles {
+        .set-property(color, @question-page-progress-emty-circle-color);
+    }
+}
+
+.overall-progress {
+    .canvas-styles {
+        .set-property(color, @overall-progress-emty-circle-color);
+    }
+}
+
+.navigation-home-link {
+    .set-property(border-color, @navigation-home-link-color);
+    .set-property(color, @navigation-home-link-color);
+}
+
+.tree-of-content-panel {
+    .tree-of-content-container {
+        .tree-of-content {
+            .set-property(font-size, @tree-of-content-font-size);
+        }
+    }
+}
+
+.exit-course-wrapper {
+    .exit-course-button {
+        .set-property(line-height, @exit-course-button-line-height);
+    }
+}
+
+.content-container {
+    &.module-content {
+        .page-header {
+            .section-info {
+                .set-property(font-family, @section-title-font-family);
+                .set-property(font-size, @section-title-size);
+                .set-property(color, @section-title-color);
+                .set-property(font-weight, @section-title-font-weight);
+                .set-property(line-height, @section-title-line-height);
+            }
+
+            .question-navigation-bar {
+                .navigation-progress {
+                    .set-property(color, @header-navigation-progress-number-color);
+                }
+            }
+        }
+
+        .question-navigation-bar {
+            .navigation-progress {
+                .set-property(color, @footer-navigation-progress-number-color);
+            }
+        }
+    }
+
+    &.module-resultPage {
+        #content {
+            .result-header {
+                .course-title {
+                    .course-caption {
+                        .set-property(font-family, @results-course-title-font-family);
+                        .set-property(font-size, @results-course-title-size);
+                        .set-property(color, @results-course-title-color);
+                        .set-property(font-weight, @results-course-title-font-weight);
+                        .set-property(line-height, @results-course-title-line-height);
+                    }
+                }
+                
+                .overall-progress {
+                    .overall-progress-progressbar-wrapper {
+                        .overall-progress-progressbar {
+                            .overall-progress-progressbar-text {
+                                .score {
+                                    .set-property(color, @results-page-overal-progress-score-color);
+                                }
+                            }
+                        }
+                    }
+                    
+                    .canvas-styles {
+                        .set-property(color, @results-page-progress-emty-circle-color);
+                    }
+                }
+
+                .result-buttons {
+                    .button-wrapper {
+                        .button {
+                            &.default {
+                                .set-property(color, @results-page-continue-course-button-color);
+                                .set-property(border-color, @results-page-continue-course-button-color);
+                                .set-property(background-color, @results-page-continue-course-button-background-color);
+
+                                .continue-course-button();
+                            }
+                        }
+                    }
+                }
+
+                .button {
+                    &.small {
+                        .set-property(font-weight, @results-page-remember-me-button-font-weight);
+                        .set-property(border-color, @results-page-remember-me-button-border-color);
+                        .set-property(color, @results-page-remember-me-button-color);
+                    }
+
+                    &.check {
+                        &:before {
+                            .set-property(border-radius, @results-page-remember-me-button-checkbox-border-radius);
+                            .set-property(border-color, @results-page-remember-me-button-checkbox-border-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.header {
+    &.module-404,
+    &.module-xAPIError {
+        .header-overlay {
+            .set-background-important-image(@error-page-background-url);
+            .set-background-important-color(@error-page-background-color);
+        }
+    }
+}
+
+.popup-layout {
+    .fade-property(background-color, @popup-background-color, 90%);
+
+    .popup {
+        .close-btn {
+            color: @popup-background-close-button-color;
+        }
+
+        & when not (@popup-background-close-button-color = null) {
+            @media (max-width: 768px), (max-height: 600px) {
+                .close-btn {
+                    color: @text-color;
+                }
+            }
+        }
+    }
+}
+
+.blockout {
+    &.active {
+        .fade-property(background-color, @popup-background-color, 90%);
+    }
+}
+
+.text-404 {
+    .title-404,
+    .page-404-hint {
+        .set-property(color, @error-page-text-color);
+    }
+
+    .button {
+        &.primary {
+            .set-property(font-size, @404-home-button-font-size);
+        }
+    }
+}
+
+.xapi-error-container {
+    h1,
+    .xapi-error-container-description {
+        .set-property(color, @error-page-text-color);
+    }
+
+    .xapi-error-container-buttons {
+        .button {
+            &:first-child {
+                .set-property(color, @xapi-error-continue-anyway-button-color);
+                .set-property(border-color, @xapi-error-continue-anyway-button-color);
+
+                &:not(.disabled) when not (@xapi-error-continue-anyway-button-color = null) {
+                    &:hover,
+                    &:focus {
+                        border-color: @main-color;
+                    }
+                }
+            }
+        }
+    }
+}

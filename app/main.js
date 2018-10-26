@@ -58,7 +58,7 @@ define(['durandal/app', 'durandal/system', 'underscore', 'bootstrapper', 'templa
                 TranslationPlugin.init(configs.translations);
                 publishSettings.init(configsFiles.publishSettings);
 
-                return modulesLoader.init(templateSettings, configsFiles.manifest, publishSettings).then(function () {
+                return modulesLoader.init(templateSettings, configsFiles.manifest, publishSettings, configsFiles.customisations).then(function () {
                     if (publishSettings.modules) {
                         return modulesInitializer.load(publishSettings.modules).then(function () {
                             initializeApp(publishSettings.publishMode, publishSettings.errorTrackingServiceUrl, templateSettings.errorTracking);

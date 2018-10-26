@@ -1,13 +1,5 @@
 <section class="header clearfix" data-bind="css: 'module-' + cssName(), style: { height: (height() ? height() + 'px' : '') }">
-    <!-- ko if: backgroundProps.image.option == 'fullscreen' -->
-    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundColor: backgroundProps.color }"></div>
-    <!-- /ko -->
-    <!-- ko if: backgroundProps.image.option == 'repeat' -->
-    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: '0 0', backgroundSize: 'auto', backgroundRepeat: 'repeat', backgroundColor: backgroundProps.color }"></div>
-    <!-- /ko -->
-    <!-- ko if: backgroundProps.image.option == 'original' -->
-    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: '0 0', backgroundSize: 'auto', backgroundRepeat: 'no-repeat', backgroundColor: backgroundProps.color }"></div>
-    <!-- /ko -->
+    <div class="header-overlay" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: { backgroundImage: 'url('+ backgroundProps.image.url +')', backgroundPosition: backgroundProps.image.backgroundPosition, backgroundSize: backgroundProps.image.backgroundSize, backgroundRepeat: backgroundProps.image.backgroundRepeat, backgroundColor: backgroundProps.color }"></div>
     <!-- ko if: backgroundProps.brightness > 0 -->
     <div class="header-brightness-holder" data-bind="css: { fullscreen: !backgroundProps.isBodyEnabled }, style: {backgroundColor: 'white', opacity: backgroundProps.brightness }"></div>
     <!-- /ko -->
@@ -18,22 +10,22 @@
         <div class="header-items-holder" data-bind="css: { 'review-attempt' : viewSettings().isInReviewAttemptMode }">
             <span class="logo-img">
                 <!-- ko if: viewSettings().rootLinkEnabled  -->
-                <!-- ko if: logoUrl -->
+                <!-- ko if: logo.url -->
                 <a href="#sections">
-                    <img alt="" src="" data-bind="attr: { src: logoUrl }">
+                    <img alt="" src="" data-bind="attr: { src: logo.url }, style: { 'max-width': logo.maxWidth, 'max-height': logo.maxHeight }">
                 </a>
                 <!-- /ko -->
-                <!-- ko ifnot: logoUrl -->
+                <!-- ko ifnot: logo.url -->
                 <a href="#sections">
                     <span class="default-logo"></span>
                 </a>
                 <!-- /ko -->
                 <!-- /ko -->
                 <!-- ko ifnot: viewSettings().rootLinkEnabled -->
-                <!-- ko if: logoUrl -->
-                <img alt="" src="" data-bind="attr: { src: logoUrl }">
+                <!-- ko if: logo.url -->
+                <img alt="" src="" data-bind="attr: { src: logo.url }, style: { 'max-width': logo.maxWidth, 'max-height': logo.maxHeight }">
                 <!-- /ko -->
-                <!-- ko ifnot: logoUrl -->
+                <!-- ko ifnot: logo.url -->
                 <span class="default-logo"></span>
                 <!-- /ko -->
                 <!-- /ko -->

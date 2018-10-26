@@ -79,10 +79,14 @@
 		TranslationPlugin.init(configs.translations);
 
 		$.getJSON('../content/data.js', function (content) {
+			var logoSettings = configs.templateSettings && configs.templateSettings.branding && configs.templateSettings.branding.logo;
+			content.logo = {};
+			content.logo.url = logoSettings && logoSettings.url ? logoSettings.url : defaultLogo;
+			content.logo.maxWidth = logoSettings && logoSettings.maxWidth ? logoSettings.maxWidth : '300px';
+			content.logo.maxHeight = logoSettings && logoSettings.maxHeight ? logoSettings.maxHeight : '100px';
 			content.filterQuestionTypes = filterQuestionTypes;
 			content.shuffleKeyValues = shuffleKeyValues;
 			content.shuffle = shuffle;
-			content.logoUrl = (configs.templateSettings && configs.templateSettings.branding && configs.templateSettings.branding.logo && configs.templateSettings.branding.logo.url) ? configs.templateSettings.branding.logo.url : defaultLogo;
 			content.isLogoUploaded = ko.observable(false);
 			content.isAvatarUploaded = ko.observable(false);
 			content.logoUploaded = function () {

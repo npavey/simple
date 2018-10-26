@@ -40,7 +40,9 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
           },
           "colors": [
             {
@@ -195,7 +197,9 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
           },
           "colors": [
             {
@@ -350,7 +354,9 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
           },
           "colors": [
             {
@@ -505,7 +511,9 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
           },
           "colors": [
             {
@@ -661,7 +669,9 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
           },
           "colors": [
             {
@@ -935,62 +945,62 @@
     }
   ],
   "defaultTemplateSettings": {
-        "masteryScore": {
-            "score": 100
+    "masteryScore": {
+      "score": 100
+    },
+    "sectionsLayout": {
+      "key": "Tiles"
+    },
+    "treeOfContent": {
+      "enabled": true
+    },
+    "xApi": {
+      "enabled": true,
+      "selectedLrs": "default",
+      "lrs": {
+        "uri": "",
+        "credentials": {
+          "username": "",
+          "password": ""
         },
-        "sectionsLayout": {
-            "key": "Tiles"
-        },
-        "treeOfContent": {
-            "enabled": true
-        },
-        "xApi": {
-            "enabled": true,
-            "selectedLrs": "default",
-            "lrs": {
-                "uri": "",
-                "credentials": {
-                    "username": "",
-                    "password": ""
-                },
-                "authenticationRequired": false
-            },
-            "allowedVerbs": [
-              "started", 
-              "stopped", 
-              "experienced", 
-              "mastered", 
-              "answered", 
-              "passed", 
-              "failed", 
-              "progressed"
-            ]
-        },
-        "languages": {
-            "selected": "en",
-            "customTranslations": {}
-        },
-        "pdfExport": {
-            "enabled": false
-        },
-       "nps": {
-            "enabled": true
-        },
-        "errorTracking": {
-            "enabled": false
-        },
-        "webhooks": {
-          "url": ""
-        },
-        "sectionsPage": {
-            "enabled": true
-        },
-        "hideContinueLaterButton": false,
-        "showConfirmationPopup": true,
-        "allowContentPagesScoring": false,
-        "allowCrossDeviceSaving": true,
-        "allowLoginViaSocialMedia": true,
-        "allowxApiSettings": true,
-        "allowAuthorsBio": false
-    }
+        "authenticationRequired": false
+      },
+      "allowedVerbs": [
+        "started", 
+        "stopped", 
+        "experienced", 
+        "mastered", 
+        "answered", 
+        "passed", 
+        "failed", 
+        "progressed"
+      ]
+    },
+    "languages": {
+      "selected": "en",
+      "customTranslations": {}
+    },
+    "pdfExport": {
+      "enabled": false
+    },
+    "nps": {
+      "enabled": true
+    },
+    "errorTracking": {
+      "enabled": false
+    },
+    "webhooks": {
+      "url": ""
+    },
+    "sectionsPage": {
+      "enabled": true
+    },
+    "hideContinueLaterButton": false,
+    "showConfirmationPopup": true,
+    "allowContentPagesScoring": false,
+    "allowCrossDeviceSaving": true,
+    "allowLoginViaSocialMedia": true,
+    "allowxApiSettings": true,
+    "allowAuthorsBio": false
+  }
 }

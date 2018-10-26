@@ -25,7 +25,7 @@
 
 <body>
     <div data-bind="template: { afterRender: renderingFinished }">
-        <img class="course-logo" data-bind="event: { load: logoUploaded, error: logoUploaded }, attr: { src: logoUrl }" />
+        <img class="course-logo" data-bind="event: { load: logoUploaded, error: logoUploaded }, attr: { src: logo.url }, style: { 'max-width': logo.maxWidth, 'max-height': logo.maxHeight }" />
 
         <h1 class="course-caption" data-bind="text: title"></h1>
         <!-- ko if: allowAuthorsBio || hasIntroductionContent -->

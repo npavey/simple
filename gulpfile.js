@@ -106,6 +106,7 @@ gulp.task('build-app', ['pre-build'], function () {
         .pipe(assets.restore())
         .pipe(useref())
         .pipe(replace('css/colors.less', 'css/colors.css'))
+        .pipe(replace('css/customisations.less', 'css/customisations.css'))
         .pipe(addBuildVersion())        
         .pipe(gulp.dest(output));
 
@@ -115,6 +116,11 @@ gulp.task('build-app', ['pre-build'], function () {
     gulp.src('css/colors.less')
         .pipe(addBuildVersion())
         .pipe(rename('colors.css'))
+        .pipe(gulp.dest(output + '/css'));
+
+    gulp.src('css/customisations.less')
+        .pipe(addBuildVersion())
+        .pipe(rename('customisations.css'))
         .pipe(gulp.dest(output + '/css'));
 
     gulp.src('css/fonts.css')
@@ -150,6 +156,9 @@ gulp.task('build-app', ['pre-build'], function () {
         .pipe(gulp.dest(output + '/lang'));
 
     gulp.src('manifest.json')
+        .pipe(gulp.dest(output));
+
+    gulp.src('customisations.json')
         .pipe(gulp.dest(output));
 
     gulp.src('preview/**')
