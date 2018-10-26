@@ -471,14 +471,16 @@
     function MasteryScore(masteryScoreSettings) {
         var that = this;
 
-        that.score = ko.observable((masteryScoreSettings && masteryScoreSettings.score) ? masteryScoreSettings.score : 100);
+        that.score = ko.observable(masteryScoreSettings && masteryScoreSettings.score || 100);
+        that.isOverall = ko.observable(!!(masteryScoreSettings && masteryScoreSettings.isOverall));
         that.getData = getData;
 
         return that;
 
         function getData() {
             return {
-                score: that.score()
+                score: that.score(),
+                isOverall: that.isOverall()
             };
         };
     }

@@ -130,6 +130,16 @@
         }
     };
 
+    ko.bindingHandlers.toggle = {
+        init: function (element, valueAccessor) {
+            var value = valueAccessor().value;
+
+            $(element).click(function() {
+                value(!value());
+            });
+        }
+    };
+
     ko.bindingHandlers.dropdown = {
         cssClasses: {
             dropdown: 'dropdown',

@@ -14,7 +14,8 @@
         "allowedVerbs":["started","stopped","experienced","mastered","answered","passed","failed","progressed"]
     },
     "masteryScore":{
-        "score":"75"
+        "score":"75",
+        "isOverall":false
     },
     "languages":{
         "selected":"en"

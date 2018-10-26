@@ -420,19 +420,34 @@
                 </div>
                 <div class="settings-section">
                     <h1 class="section-header" data-bind="localize: 'mastery score settings'"></h1>
+                    <div class="section-description-content" data-bind="localize: 'mastery score means'"></div>
+                    <div class="section-description">
+                        <div class="section-description-header" data-bind="localize: 'mastery score will for'"></div>
+                    </div>
                     <div class="section-content">
-                        <div class="settings-row">
-                            <div class="settings-caption">
-                                <div data-bind="localize: 'mastery score caption'"></div>
-                                <div class="settings-hint" data-bind="localize: 'mastery score hint'"></div>
-                            </div>
-                            <div class="settings-column">
-                                <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
-                                    <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
-                                    <input type="text" maxlength="3" id="masteryScore" class="content-text-input" autocomplete="off" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
-                                    <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
-                                    <div class="spiner-seperator"></div>
+                        <div class="settings-row mastery-setting">
+                            <div class="mastery-setting-wrapper" data-bind="css: { disabled: !masteryScore.isOverall() }">
+                                <div class="selector-item-container" data-bind="toggle: { value: masteryScore.isOverall }, css: { selected: masteryScore.isOverall }">
+                                    <div class="selector-item-btn"></div>
+                                    <div data-bind="localize: 'overall course caption'"></div>
                                 </div>
+                            </div>
+                            <div class="mastery-setting-wrapper" data-bind="css: { disabled: masteryScore.isOverall }">
+                                <div class="selector-item-container" data-bind="toggle: { value: masteryScore.isOverall }, css: { selected: !masteryScore.isOverall() }">
+                                    <div class="selector-item-btn"></div>
+                                    <div data-bind="localize: 'each section caption'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-row mastery-score-value">
+                            <div class="section-description">
+                                <div class="section-description-header" data-bind="localize: 'mastery score'"></div>
+                            </div>
+                            <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
+                                <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
+                                <input type="text" maxlength="3" id="overallCourseMasteryScore" class="content-text-input" autocomplete="off" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
+                                <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
+                                <div class="spiner-seperator"></div>
                             </div>
                         </div>
                     </div>

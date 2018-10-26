@@ -946,7 +946,8 @@
   ],
   "defaultTemplateSettings": {
     "masteryScore": {
-      "score": 100
+      "score": 100,
+      "isOverall": false
     },
     "sectionsLayout": {
       "key": "Tiles"

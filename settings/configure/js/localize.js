@@ -73,6 +73,11 @@
         'mastery score settings': 'Mastery score settings',
         'mastery score caption': 'Mastery score:',
         'mastery score hint': '(for each learning objective):',
+        'mastery score will for': 'Mastery score will be for:',
+        'mastery score means' : 'Mastery score is the score learners have to reach to pass the course successfully',
+        'overall course caption' : 'Overall course',
+        'mastery score' : 'Mastery score:',
+        'each section caption' : 'Each section',
 
         //template language
         'template language': 'Template language',
