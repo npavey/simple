@@ -36,6 +36,7 @@
                 <div class="settings-section">
                     <h1 class="section-header" data-bind="localize: 'general settings'"></h1>
                     <div class="section-content">
+                        <!-- ko if: $root.allowCrossDeviceSavingSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'save progress cross device'"></div>
@@ -55,6 +56,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
+                        <!-- ko if: $root.allowLoginViaSocialMediaSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'allow social media'"></div>
@@ -73,8 +76,9 @@
                                 </div>
                             </div>
                             <div class="preview-disabled" data-bind="visible: !allowCrossDeviceSaving()"></div>
-                        </div>                        
-                        <!-- ko if: allowxApiSettings -->
+                        </div>
+                        <!-- /ko -->                  
+                        <!-- ko if: $root.allowNpsSettings  -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'conduct learner satisfaction survey'"></div>
@@ -179,6 +183,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
+                        <!-- ko if: $root.allowxApiSettings() && $root.allowToSkipTrackingSettings() -->
                         <div class="settings-row">
                             <div class="settings-caption" data-bind="localize: 'allow user to skip option'"></div>
                             <div class="settings-column">
@@ -216,6 +222,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ko if: $root.allowContentPagesScoringSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'allow scoring of content pages'"></div>
@@ -234,6 +241,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
                         <!-- ko if: $root.allowxApiSettings -->
                         <div class="advanced-settings">
                             <div class="advanced-settings-title-container" data-bind="click: toggleAdvancedSettings">

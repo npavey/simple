@@ -1001,7 +1001,12 @@
     "allowContentPagesScoring": false,
     "allowCrossDeviceSaving": true,
     "allowLoginViaSocialMedia": true,
+    "allowAuthorsBio": false,
+    "allowNpsSettings": true,
     "allowxApiSettings": true,
-    "allowAuthorsBio": false
+    "allowToSkipTrackingSettings": true,
+    "allowCrossDeviceSavingSettings": true,
+    "allowContentPagesScoringSettings": true,
+    "allowLoginViaSocialMediaSettings": true
   }
 }

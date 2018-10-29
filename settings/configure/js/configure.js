@@ -18,10 +18,16 @@
         allowContentPagesScoring: ko.observable(false),
         allowCrossDeviceSaving: ko.observable(true),
         allowSocialLogin: ko.observable(true),
-        allowxApiSettings: ko.observable(true),
         allowCertificateDownload: ko.observable(false),
         copyright: ko.observable(''),
-        copyrightPlaceholder: ko.observable('')
+        copyrightPlaceholder: ko.observable(''),
+
+        allowNpsSettings: ko.observable(true),
+        allowxApiSettings: ko.observable(true),
+        allowToSkipTrackingSettings: ko.observable(true),
+        allowCrossDeviceSavingSettings: ko.observable(true),
+        allowContentPagesScoringSettings: ko.observable(true),
+        allowLoginViaSocialMediaSettings: ko.observable(true)
     };
 
     viewModel.getCurrentSettingsData = function (settings) {
@@ -36,10 +42,16 @@
             showConfirmationPopup: viewModel.showConfirmationPopup(),
             allowContentPagesScoring: viewModel.allowContentPagesScoring(),
             allowCrossDeviceSaving: viewModel.allowCrossDeviceSaving(),
-            allowLoginViaSocialMedia: viewModel.allowSocialLogin(),
-            allowxApiSettings: viewModel.allowxApiSettings(),
             allowCertificateDownload: viewModel.allowCertificateDownload(),
-            copyright: viewModel.copyright()
+            copyright: viewModel.copyright(),
+
+            allowNpsSettings: viewModel.allowNpsSettings(),
+            allowxApiSettings: viewModel.allowxApiSettings(),
+            allowLoginViaSocialMedia: viewModel.allowSocialLogin(),
+            allowToSkipTrackingSettings: viewModel.allowToSkipTrackingSettings(),
+            allowCrossDeviceSavingSettings: viewModel.allowCrossDeviceSavingSettings(),
+            allowContentPagesScoringSettings: viewModel.allowContentPagesScoringSettings(),
+            allowLoginViaSocialMediaSettings: viewModel.allowLoginViaSocialMediaSettings()
         });
     };
 
@@ -95,11 +107,17 @@
             initField(viewModel.allowContentPagesScoring, 'allowContentPagesScoring');
             initField(viewModel.allowCrossDeviceSaving, 'allowCrossDeviceSaving');
             initField(viewModel.authorsBio, 'allowAuthorsBio');
-            initField(viewModel.allowSocialLogin, 'allowLoginViaSocialMedia');
-            initField(viewModel.allowxApiSettings, 'allowxApiSettings');
             initField(viewModel.allowCertificateDownload, 'allowCertificateDownload');
             initField(viewModel.copyright, 'copyright', localizeCopyright);
             viewModel.copyrightPlaceholder(localizeCopyright(app.localize('copyrightPlaceholder')));
+            
+            initField(viewModel.allowNpsSettings, 'allowNpsSettings');
+            initField(viewModel.allowxApiSettings, 'allowxApiSettings');
+            initField(viewModel.allowSocialLogin, 'allowLoginViaSocialMedia');
+            initField(viewModel.allowToSkipTrackingSettings, 'allowToSkipTrackingSettings');
+            initField(viewModel.allowCrossDeviceSavingSettings, 'allowCrossDeviceSavingSettings');
+            initField(viewModel.allowContentPagesScoringSettings, 'allowContentPagesScoringSettings');
+            initField(viewModel.allowLoginViaSocialMediaSettings, 'allowLoginViaSocialMediaSettings');
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
             currentExtraData = viewModel.getCurrentExtraData();
