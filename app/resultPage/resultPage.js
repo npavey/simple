@@ -116,7 +116,7 @@ define([
 
     function downloadCertificate() {
         viewModel.isDownloadingCertificate(true);
-        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score)
+        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score, templateSettings.logoUrl)
             .then(function(url){
                 /* Fix for IE11 and Edge (files can`t saved without extension) */
                 var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
