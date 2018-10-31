@@ -1,4 +1,4 @@
-define(['plugins/router', 'q', 'constants', 'modules/progress/progressStorage/auth'], function (router, Q, constants, auth) {
+define(['plugins/router', 'q', 'constants', 'modules/progress/progressStorage/auth', 'templateSettings'], function (router, Q, constants, auth, templateSettings) {
 
     function LoginHelper() {
         this.token = '';
@@ -26,8 +26,10 @@ define(['plugins/router', 'q', 'constants', 'modules/progress/progressStorage/au
     function getLoginMethod() {
         if(this.token) {
             return constants.loginTypes.byToken;
-        } else if (this.email && this.username) {
+        } else if (this.email && this.username && templateSettings.allowCrossDeviceSaving) {
             return constants.loginTypes.byEmailAndName;
+        } else if (this.email && this.username && !templateSettings.allowCrossDeviceSaving) {
+            return constants.loginTypes.byEmailAndNameWithoutCrossDeviceSaving;
         }
 
         return constants.loginTypes.default;

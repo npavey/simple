@@ -68,6 +68,7 @@
         loginTypes: {
             byToken: 'byToken',
             byEmailAndName: 'byEmailAndName',
+            byEmailAndNameWithoutCrossDeviceSaving: 'byEmailAndNameWithoutCrossDeviceSaving',
             default: 'default'
         }
     };
