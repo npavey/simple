@@ -35,7 +35,8 @@ define([
             viewmodel.logo.maxHeight = templateSettings.logo.maxHeight || '100px';
 
             var background = templateSettings.background,
-                backgroundType = background.header.image && background.header.image.option || 'fullscreen';
+                backgroundType = background.header.image && background.header.image.option || 'fullscreen',
+                bgSettings = displaySettings.backgroundSettings[backgroundType];
 
             viewmodel.backgroundProps = {
                 brightness: background.header.brightness || 0,
@@ -43,9 +44,9 @@ define([
                 isBodyEnabled: background.body.enabled,
                 image: {
                     url: background.header.image && background.header.image.url,
-                    backgroundPosition: displaySettings.backgroundSettings[backgroundType].position || '0 0',
-                    backgroundSize: displaySettings.backgroundSettings[backgroundType].size || 'auto',
-                    backgroundRepeat: displaySettings.backgroundSettings[backgroundType].repeat || 'no-repeat'
+                    backgroundPosition: bgSettings && bgSettings.position || '0 0',
+                    backgroundSize: bgSettings && bgSettings.size || 'auto',
+                    backgroundRepeat: bgSettings && bgSettings.repeat || 'no-repeat'
                 }
             };
         }
