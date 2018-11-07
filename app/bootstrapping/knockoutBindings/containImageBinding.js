@@ -11,7 +11,7 @@ define(function () {
 
             return getImageSize(imageUrl).then(function(size){
                 var resizedImageUrl = imageUrl;
-                var backgroundSize = 'initial';
+                var backgroundSize = 'cover';
                 if(size.width >= imageWidth || size.height >= imageHeight) {
                     resizedImageUrl = getResizedSectionThumbnailUrl(imageUrl, imageWidth, imageHeight);
                     backgroundSize = 'contain';
