@@ -131,6 +131,9 @@
     "[continue course]": "Komeza isomo",
     "[submit results and logout]": "Tanga ibisubizo usohoke mu isomo",
     "[submit results and download certificate]": "Ohereza amanota maze uhabwe impamyabumenyi",
+    "[download certificate]": "akira impamyabumenyi",
+    "[certificate file name]": "Impamyabumenyi y’isomo",
+    "[preparing course certificate]": "Gutegura impamyabumenyi y’isomo",
     "[questions correct]": "Ibibazo nibyo",
     "[contents readed]": "Byasomwe",
     "[section]": "Igice",
@@ -169,5 +172,16 @@
     "[you rated this course with]": "Iri somo warihaye amanota",
     "[course score reason]": "Watubwira impamvu watanze aya manota?",
     "[download]": "Shyira iri somo kuri mudasobwa yawe",
-    "[close course and logout]": "Funga isomo"
+    "[go to results]": "Jya kureba amanota",
+    "[next section]": "ikindi gice",
+    "[review attempt]": "reba ibyo wagerageje",
+    "[start new attempt]": "ongera ugerageze",
+    "[view]": "reba hano",
+    "[success]": "Watsinze",
+    "[failed]": "Watsinzwe",
+    "[detailed summary]": "Incamake",
+    "[start new attempt dialog title]": "Ongera ugerageze?",
+    "[start new attempt dialog text]": "Niwongera kugerageza ntabwo uri bubasha kubona ibyo wari wagerageje mbere",
+    "[close course and logout]": "Funga isomo",
+    "[try to submit again key]": "Ongera ugerageze kohereza amanota"
 }

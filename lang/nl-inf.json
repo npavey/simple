@@ -180,7 +180,7 @@
     "[success]": "Gelukt",
     "[failed]": "Niet gelukt",
     "[detailed summary]": "Gedetailleerde samenvatting",
-    "[start new attempt dialog title]": "Start een nieuwe poging",
+    "[start new attempt dialog title]": "Start een nieuwe poging?",
     "[start new attempt dialog text]": "Wanneer je een nieuwe poging doet, zul je de vorige pogingen niet meer kunnen bekijken.",
     "[close course and logout]": "Sluit cursus",
     "[results send error title]": "Je voortgang is opgeslagen, maar de webhook is niet naar de auteur verzonden.",
