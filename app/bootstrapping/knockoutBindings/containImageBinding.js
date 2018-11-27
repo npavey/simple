@@ -11,13 +11,12 @@ define(function () {
 
             return getImageSize(imageUrl).then(function(size){
                 var resizedImageUrl = imageUrl;
-                var backgroundSize = 'cover';
+                var backgroundSize = 'initial';
                 if(size.width >= imageWidth || size.height >= imageHeight) {
                     resizedImageUrl = getResizedSectionThumbnailUrl(imageUrl, imageWidth, imageHeight);
                     backgroundSize = 'contain';
                 }
                 if(size.width >= imageWidth && size.height >= imageHeight) {
-                    resizedImageUrl += '&scaleBySmallerSide=true';
                     backgroundSize = 'cover';
                 }
                 $element.css('backgroundSize', backgroundSize);
