@@ -130,6 +130,10 @@
     "[survey mode answered caption]": "La réponse n'a aucun impact sur vos progrès",
     "[continue course]": "Continuer le cours",
     "[submit results and logout]": "Soumettre les résultats et fermer la session",
+    "[submit results and download certificate]": "Soumettre les résultats et télécharger le certificat",
+    "[download certificate]": "Télécharger le certificat",
+    "[certificate file name]": "Certificat du cours",
+    "[preparing course certificate]": "Certificat en cours de préparation",
     "[questions correct]": "questions correctes",
     "[contents readed]": "contenu lu",
     "[section]": "Section",
@@ -170,8 +174,13 @@
     "[download]": "Télécharger",
     "[go to results]": "Voir les résultats",
     "[next section]": "Section suivante",
+    "[start new attempt]": "Faire une nouvelle tentative",
+    "[view]": "Voir",
     "[success]": "Réussi avec succès",
     "[failed]": "Pas réussi",
     "[detailed summary]": "Récapitulatif détaillé",
-    "[close course and logout]": "Terminer le cours"
+    "[start new attempt dialog title]": "Désirez-vous faire une nouvelle tentative ?",
+    "[start new attempt dialog text]": "Quand vous procédez à une nouvelle tentative, vous ne pouvez plus voir la tentative précédente",
+    "[close course and logout]": "Fermer le cours et se déconnecter",
+    "[try to submit again key]": "Essayez de soumettre vos résultats à nouveau"
 }
