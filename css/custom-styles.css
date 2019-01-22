@@ -437,7 +437,7 @@
 /*Dk. Primary - Menu Bar Focus*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:focus, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:hover {
-    border-color: #071323;
+    border-color: #001128;
     opacity: 1;
 }
 
@@ -524,7 +524,7 @@
 /*Dk. Primary - Disabled Button*/
 .question-navigation-bar a:not(.disabled):hover:before,
 .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #071323;
+    background-color: #001128;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: all .2s linear;
