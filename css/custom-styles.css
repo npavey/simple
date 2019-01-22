@@ -809,3 +809,8 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper {
 	margin: 0 0px;
 }
+
+/*Remove this to return to default*/
+.section-progress-wrapper {
+	display: none;
+}
