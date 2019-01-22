@@ -12,7 +12,7 @@
                         <div class="overall-progress-progressbar-wrapper">
                             <div class="overall-progress-progressbar" data-bind="css: { success: isInReviewAttemptMode && isCompleted, fail: !isCompleted && isInReviewAttemptMode }">
                                 <canvas class="overall-progress-progressbar-canvas canvas-styles" width="80" height="80" data-bind="circleProgress: { progress: score(), lineWidth:2,radius:39, isMastered: isCompleted }"></canvas>
-                                <div class="overall-progress-progressbar-text" data-bind="text: score() + '%'">0%</div>
+                                <div class="overall-progress-progressbar-text" data-bind="text: score()"></div>
                             </div>
                         </div>
                     </div>
@@ -32,12 +32,16 @@
                     <!-- ko if: isInReviewAttemptMode -->
                     <button class="button small primary exit-course-button finished" data-translate-text="[go to results]" data-bind="click: finishAction, css: { disabled: isNavigationLocked }"></button>
                     <!-- /ko -->
+                    <!-- ko ifnot: hideContinueLaterButton -->
                     <div class="or-separator">
                         <span class="or-separator-text" data-translate-text="[or]"></span>
                     </div>
+                    <!-- /ko -->
                     <div class="exit-course-link-wrapper">
                         <!-- ko ifnot: isInReviewAttemptMode -->
+                        <!-- ko ifnot: hideContinueLaterButton -->
                         <a class="exit-course-link" href="#" data-translate-title="[take a break and continue later]" data-translate-text="[take a break and continue later]" data-bind="click: takeABreakAction"></a>
+                        <!-- /ko -->
                         <!-- /ko -->
                         <!-- ko if: isInReviewAttemptMode -->
                         <a class="exit-course-link" href="#" data-translate-title="[close course]" data-translate-text="[close course]" data-bind="click: takeABreakAction"></a>
@@ -49,6 +53,9 @@
         </div>
     </section>
     <!-- /ko -->
+
+    <!-- ko ifnot: hideContinueLaterButton -->
+
     <!-- ko ifnot: type() ==='extended' -->
     <section class="summary-short">
         <button class="exit-course-button" data-bind="click: takeABreakAction, css: { disabled: isNavigationLocked }">
@@ -62,7 +69,11 @@
         </button>
     </section>
 
+    <!-- /ko -->  
+    
     <!-- /ko -->    
+    
+
     <!-- ko if: continueLaterPopup.isVisible -->
         <!-- ko compose: { view: 'dialogs/continueLater', model: 'dialogs/continueLater', compositionComplete: continueLaterPopup.compositionComplete, activationData: [ continueLaterPopup.actions, continueLaterPopup.isVisible ] } --><!-- /ko -->
     <!-- /ko -->

@@ -31,6 +31,8 @@
 
 			$(element).html($output.html());
 
+			$('.spot', element).remove();
+
 			function wrapElement($element) {
 				var imageWrapper = '<figure class="image-wrapper"></figure>',
 					tableWrapper = '<figure class="table-wrapper"></figure>';
@@ -77,13 +79,21 @@
 		TranslationPlugin.init(configs.translations);
 
 		$.getJSON('../content/data.js', function (content) {
+			var logoSettings = configs.templateSettings && configs.templateSettings.branding && configs.templateSettings.branding.logo;
+			content.logo = {};
+			content.logo.url = logoSettings && logoSettings.url ? logoSettings.url : defaultLogo;
+			content.logo.maxWidth = logoSettings && logoSettings.maxWidth ? logoSettings.maxWidth : '300px';
+			content.logo.maxHeight = logoSettings && logoSettings.maxHeight ? logoSettings.maxHeight : '100px';
 			content.filterQuestionTypes = filterQuestionTypes;
 			content.shuffleKeyValues = shuffleKeyValues;
 			content.shuffle = shuffle;
-			content.logoUrl = (configs.templateSettings && configs.templateSettings.branding && configs.templateSettings.branding.logo && configs.templateSettings.branding.logo.url) ? configs.templateSettings.branding.logo.url : defaultLogo;
 			content.isLogoUploaded = ko.observable(false);
+			content.isAvatarUploaded = ko.observable(false);
 			content.logoUploaded = function () {
 				content.isLogoUploaded(true);
+			};
+			content.avatarUploaded = function () {
+				content.isAvatarUploaded(true);
 			};
 			content.isSingleSelectImageAnswersLoaded = ko.observable(false);
 			content.singleSelectImageAnswerLoaded = function () {
@@ -93,8 +103,10 @@
 				}
 			};
 			content.isContentsLoaded = ko.observable(false);
+			
 			content.isPageFullyLoaded = ko.computed(function () {
 				if (content.isLogoUploaded() &&
+					content.isAvatarUploaded() &&
 					content.isContentsLoaded() &&
 					content.isSingleSelectImageAnswersLoaded()) {
 					pageFullyLoaded();
@@ -112,7 +124,7 @@
 					});
 				}
 			};
-			$.when.apply($, loadContents(content)).done(function () {
+			$.when.apply($, loadContents(content, configs.templateSettings)).done(function () {
 				ko.applyBindings(content);
 			});
 		});
@@ -123,8 +135,12 @@
 		document.body.classList.add('page-loaded');
 	}
 
-	function loadContents(content) {
+	function loadContents(content, templateSettings) {
 		var promises = [];
+		content.allowAuthorsBio = templateSettings.allowAuthorsBio;
+		if(!content.allowAuthorsBio){
+			content.avatarUploaded();
+		}
 		if (content.hasIntroductionContent) {
 			promises.push($.get('../content/content.html', function (response) {
 				content.introductionContent = response;

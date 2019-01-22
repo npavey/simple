@@ -1,7 +1,7 @@
 define(['context', '../constants', './httpWrapper', './urlProvider',
-        './auth'
+        './auth', 'helpers/requestResender'
     ],
-    function (context, constants, httpWrapper, urlProvider, auth) {
+    function (context, constants, httpWrapper, urlProvider, auth, requestResender) {
         'use strict';
 
         function ProgressStorageProvider(courseId, templateId) {
@@ -31,11 +31,19 @@ define(['context', '../constants', './httpWrapper', './urlProvider',
             }
 
             this.saveProgress = function (progress) {
-                return httpWrapper.post(urlProvider.progressStorageUrl + 'progress', {
-                    courseId: this.courseId,
-                    templateId: this.templateId,
-                    jsonProgress: progress ? JSON.stringify(progress) : null
-                }, auth.headers);
+                var requestOptions = {
+                    url: urlProvider.progressStorageUrl + 'progress',
+                    method: 'POST',
+                    data: {
+                        courseId: this.courseId,
+                        templateId: this.templateId,
+                        jsonProgress: progress ? JSON.stringify(progress) : null
+                    },
+                    headers: auth.headers,
+                    cache: false
+                };
+
+                return requestResender.send(requestOptions);
             };
 
             this.saveResults = function (getScore, getStatus, errorMessage) {

@@ -1,4 +1,4 @@
-﻿define(['plugins/router', 'durandal/app'], function(router, app) {
+﻿define(['plugins/router', 'durandal/app', 'helpers/loginHelper'], function(router, app, loginHelper) {
 
     var _initialized = false;
 
@@ -55,8 +55,8 @@
             
             app.on('user:authenticated').then(authenticated);
 
-            var username = router.getQueryStringValue('name'),
-                email = router.getQueryStringValue('email');
+            var username = loginHelper.username,
+                email = loginHelper.email;
 
             if (username || email) {
                 context.user.email = email ? email : '';

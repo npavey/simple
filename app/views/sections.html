@@ -1,8 +1,6 @@
 ﻿<section id="sectionsPage" class="sections " data-view="views/sections" data-active-view="true" style="">
     <header class="page-header">
         <h1 class="course-title" data-bind="css: {small: courseTitle.length>100}">
-            <span class="course-label" data-translate-text="[course]">Course:</span>
-            <span>&nbsp;</span>
             <span class="course-caption" data-bind="text: courseTitle, reviewable: {type: 'course', property: 'title'}">"course_name"</span>
         </h1>
         <div class="course-action-block">
@@ -31,8 +29,8 @@
             </div>
             <!-- ko if: affectProgress -->
             <div class="section-progress" aria-hidden="true">
-                <canvas class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2, basicColor: '#fff' },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
-                <span class="section-progress-text-wrapper" data-bind="text:score+'%'"></span>
+                <canvas class="canvas-styles" width="48" height="48" data-bind="circleProgress: { progress: score, radius: 22, isMastered: isMastered, lineWidth:2 },toolTip:{progress: score, masteryScore:$parent.masteryScore}"></canvas>
+                <span class="section-progress-text-wrapper" data-bind="text:score"></span>
             </div>
             <!-- /ko -->
             <!-- ko ifnot: affectProgress -->

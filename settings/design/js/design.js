@@ -7,6 +7,7 @@
     var viewModel = {
         isError: ko.observable(false),
 
+        sectionsPage: null,
         treeOfContent: null,
         sectionsLayout:null
     };
@@ -14,7 +15,8 @@
     viewModel.getCurrentSettingsData = function (settings) {
         return $.extend({}, settings || currentSettings, {
             treeOfContent: viewModel.treeOfContent.getData(),
-            sectionsLayout: viewModel.sectionsLayout.getData()
+            sectionsLayout: viewModel.sectionsLayout.getData(),
+            sectionsPage: viewModel.sectionsPage.getData()
         });
     };
 
@@ -50,6 +52,7 @@
 
             viewModel.sectionsLayout = new app.SectionsLayoutModel(settings.sectionsLayout || defaultSettings.sectionsLayout, viewModel.saveChanges);
             viewModel.treeOfContent = new app.TreeOfContentModel(settings.treeOfContent || defaultSettings.treeOfContent, viewModel.saveChanges);
+            viewModel.sectionsPage = new app.SectionsPageModel(settings.sectionsPage || defaultSettings.sectionsPage, viewModel.saveChanges);
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
             currentExtraData = viewModel.getCurrentExtraData();

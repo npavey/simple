@@ -25,23 +25,31 @@
                     mastered: $element.css('outline-color') || valueAccessor().masteredColor || templateSettings.getColorValue('@correct-color')
                 };
     
-                cnxt.beginPath();
-                cnxt.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                cnxt.strokeStyle = colors.basic;
-                cnxt.lineWidth = lineWidth;
-                cnxt.closePath();
-                cnxt.stroke();
-    
                 if (progress > 0) {
                     cnxt.beginPath();
                     cnxt.strokeStyle = isMastered ? colors.mastered : colors.progress;
+                    cnxt.lineWidth = lineWidth;
     
                     if (progress == 1) {
                         cnxt.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                        cnxt.closePath();
+                        cnxt.stroke();
                     } else {
-                        cnxt.arc(centerX, centerY, radius, 1.5 * Math.PI, (progress * 2 - 0.5) * Math.PI);
-                    }
+                        cnxt.arc(centerX, centerY, radius, 1.5 * Math.PI, (progress * 2 - .5) * Math.PI);
+                        cnxt.stroke();       
     
+                        cnxt.beginPath();
+                        cnxt.arc(centerX, centerY, radius, (progress * 2 - .5) * Math.PI, 1.5 * Math.PI);
+                        cnxt.strokeStyle = colors.basic;
+                        cnxt.lineWidth = lineWidth;
+                        cnxt.stroke();
+                    }
+                } else {                    
+                    cnxt.beginPath();
+                    cnxt.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                    cnxt.strokeStyle = colors.basic;
+                    cnxt.lineWidth = lineWidth;
+                    cnxt.closePath();
                     cnxt.stroke();
                 }
     

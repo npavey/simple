@@ -81,8 +81,9 @@
     padding-top: 13px;    
 }
 
+/*Old margin 88px - adjusted to match new margin from commenting out code on line 130*/
 .module-account .content {
-    margin-top: 88px;
+    margin-top: 0px;
 }
 
 .course-action-block.intro .button {
@@ -123,9 +124,9 @@
 .course-label {
     display: none;
 }
-
+/*Default -100 - Set to -150*/
 .content-wrapper {
-    margin: -100px auto 20px;
+    margin: -150px auto 20px;
 }
 
 .button,
@@ -139,8 +140,9 @@
     border-radius: 0;
 }
 
+/*Adjusting margin of content to match the new margin created by commenting out code on line 130 - Previous margin 58px*/
 .module-content .content {
-    margin-top: 58px;
+    margin-top: 0px;
 }
 
 .module-introduction .content {
@@ -148,9 +150,9 @@
     -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
 }
-
+/*Update to -110 - Default -196*/
 .sections .course-action-block .summary-wrapper .summary-extended-wrapper {
-    top: -196px;
+    top: -110px;
     border-radius: 0;
 }
 
@@ -317,9 +319,9 @@
     background-color: #fff;
 }
 
-/*Primary - Menu Bar Header*/
+/*Primary - Menu Bar Header - Default font is 18px | Set to 20px*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-header {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     letter-spacing: 0.4px;
 
@@ -330,7 +332,7 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item.active .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:hover .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:focus .tree-of-content-section-title-wrapper {
-    color: #001128 ;
+    color: #001128;
     opacity: 1;
 }
 
@@ -349,15 +351,15 @@
     -webkit-box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.15);
     box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.15);
 }
-
+/*Setting the background of the active ToC to have a color - default is transparent*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-questions-wrapper .tree-of-content-question-item.active {
-    background-color: transparent;
+    background-color: #e0ebf9;
 }
-
+/*Update font size to 14 - Default is 12*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-questions-wrapper .tree-of-content-question-item.active .tree-of-content-question-title-wrapper .tree-of-content-question-title,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-section-title-wrapper .tree-of-content-question-title, .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper .tree-of-content-question-title,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-section-title-wrapper .tree-of-content-section-title {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 300;
     letter-spacing: 0.4px;
     color: #000000;    
@@ -405,7 +407,7 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:last-child:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-section-title-wrapper:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:hover .tree-of-content-question-title {
-    color: #001128 ;
+    color: #001128;
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper {
@@ -419,8 +421,8 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item.active .tree-of-content-question-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper:focus, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper:hover {
-    padding: 20px 12px 15px 2px;
-    margin: 0 8px;
+    padding: 10px 12px 10px 2px; /*Default padding: 20px 12px 15px 2px; */
+    margin: 0 0px; /*Default margin: 0 8px;*/
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item:not(:last-child) .tree-of-content-question-title-wrapper,
@@ -435,7 +437,7 @@
 /*Dk. Primary - Menu Bar Focus*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:focus, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:hover {
-    border-color: #001128;
+    border-color: #071323;
     opacity: 1;
 }
 
@@ -457,9 +459,9 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
-
+/*Remove this to revert to default*/
 .navigation-home-link-wrapper {
-    width: 65px;
+    width: none;
 }
 
 .navigation-home-link {
@@ -522,7 +524,7 @@
 /*Dk. Primary - Disabled Button*/
 .question-navigation-bar a:not(.disabled):hover:before,
 .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #001128;
+    background-color: #071323;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: all .2s linear;
@@ -573,8 +575,8 @@
 
 .question-navigation-bar .navigation-progress {
     position: relative;
-    top: 4px;
-    left: 4px;
+    /*top: 4px;
+    left: 4px;*/
     font-size: 18px;
 }
 
@@ -769,4 +771,41 @@
 
 .styled-content .table-wrapper table tbody td {
     background-color: rgba(203, 194, 187, 0.2);
+}
+
+.voiceOver {
+	margin-bottom: 10px;
+}
+
+.question .page-header {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+/*Remove 'display: none' to return to default*/
+.navigation-home-link-wrapper {
+    width: 65px;
+	display: none;
+}
+
+/*Remove to revert to default*/
+.page-header {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+/*To return to default, remove this section of code*/
+.styled-content .content-inner-wrapper .text-wrapper .text-block div.link-title.parsed {
+    height: auto;
+    white-space: normal;
+}
+
+/*Removes padding around course title on login page*/
+.course-title {
+	padding: 0px;
+}
+
+/*Remove this to return to default - Default margin: 0 8px;*/
+.tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper {
+	margin: 0 0px;
 }

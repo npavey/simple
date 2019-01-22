@@ -6,10 +6,11 @@
                 isExpanded = valueAccessor().isExpanded,
                 $animationContainer = $element.children('[data-animate]'),
                 speed = 300;
+
             if (isExpanded) {
-                $animationContainer.slideDown(speed);
+                $animationContainer.css('height', '').hide().slideDown(speed, function(){$animationContainer.css('overflow', '')});
             } else {
-                $animationContainer.slideUp(speed);
+                $animationContainer.css('overflow','hidden').animate({height: 0}, speed);
             }
         }
     }

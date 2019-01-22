@@ -2,9 +2,12 @@ define([
     'knockout', 'underscore', 'durandal/app', 'durandal/composition', 'plugins/router',
     'routing/routes', 'context', 'includedModules/modulesInitializer', 'templateSettings',
     'progressContext', 'constants', 'userContext', 'errorsHandler',
-    'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 'modules/questionsNavigation'
+    'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 
+    'modules/questionsNavigation', 'modules/lti', 'modules/webhooks', 'helpers/loginHelper',
+    'modules/progress/progressStorage/urlProvider'
 ], function (ko, _, app, composition, router, routes, context, modulesInitializer, templateSettings,
-    progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, questionsNavigation) {
+    progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, 
+    questionsNavigation, lti, webhooks, loginHelper, urlProvider) {
 
         'use strict';
         var viewmodel = {
@@ -13,7 +16,11 @@ define([
             isInReviewMode: false,
             title: '',
             createdOn: null,
-            logoUrl: '',
+            logo: {
+                url: '',
+                maxWidth: '',
+                maxHeight: '',
+            },
             pdfExportEnabled: ko.observable(false),
             isClosed: ko.observable(false),
             isNavigatingToAnotherView: ko.observable(false),
@@ -60,8 +67,12 @@ define([
         //public methods
         function activate() {
             return context.initialize()
+                .then(initializeUrlProvider)
+                .then(loginHelper.initialize)
                 .then(userContext.initialize)
+                .then(lti.initialize)
                 .then(account.enable)
+                .then(initializeWebhooks)
                 .then(initializeProgressProvider)
                 .then(initxApi)
                 .then(initApp)
@@ -69,6 +80,16 @@ define([
                 .catch(function (e) {
                     console.error(e);
                 });
+
+            function initializeUrlProvider() {
+                return urlProvider.initialize();
+            }
+
+            function initializeWebhooks() {
+                if(templateSettings.xApi.enabled) {
+                    webhooks.initialize(templateSettings.webhooks);
+                }
+            }
 
             function initxApi() {
                 return xApiInitializer.initialize(templateSettings.xApi, templateSettings.nps);
@@ -84,7 +105,9 @@ define([
 
             function initApp() {
                 return Q.fcall(function () {
-                    viewmodel.logoUrl = templateSettings.logoUrl;
+                    viewmodel.logo.url = templateSettings.logo.url;
+                    viewmodel.logo.maxWidth = templateSettings.logo.maxWidth || '300px';
+                    viewmodel.logo.maxHeight = templateSettings.logo.maxHeight || '100px';
                     viewmodel.title = app.title = context.course.title;
                     viewmodel.createdOn = context.course.createdOn;
                     progressContext.restoreProgress();

@@ -27,7 +27,7 @@
 
         return context;
 
-        function save() {
+        function save(callback) {
             if (!self.storage) {
                 return;
             }
@@ -37,13 +37,14 @@
                 && _.isFunction(savedProgressResults.fail)) {
                 savedProgressResults.then(function () {
                     context.status(statuses.saved);
+                    callback && callback();
                 }).fail(function () {
                     context.status(statuses.error);
+                    callback && callback();
                 });
             } else {
                 context.status(savedProgressResults ? statuses.saved : statuses.error);
             }
-
             saveResults();
             return savedProgressResults;
         }
@@ -92,11 +93,8 @@
 
             if (self.progress) {
                 self.progress.finished = true;
-                var promise = save();
-                if (_.isObject(promise) && _.isFunction(promise.then)) {
-                    promise.then(callback);
-                    return;
-                }
+                save(callback);
+                return;
             }
 
             callback();
@@ -199,7 +197,7 @@
                                     question.progress(progress.answers[question.shortId]);
                                 }
                                 if (progress.finished) {
-                                    question.isAnswered = true;
+                                    question.markAsAnswered();
                                 }
                             });
                         });

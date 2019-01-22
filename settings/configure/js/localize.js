@@ -14,12 +14,23 @@
         'pdf export': 'PDF export (experimental):',
         'show download as pdf button': 'Show button "Download course in PDF format"',
         'conduct learner satisfaction survey': 'Conduct learner satisfaction survey',
+        'allow users to download certificates': 'Allow users to download certificates',
 
         //results tracking tab
         'results tracking': 'Results Tracking',
 
+        'lrs': 'LRS',
+        'webhooks': 'Webhooks',
+
+        'chooseLrsLabel': 'Choose LRS <span>(Learning Record Store <a href="https://help.easygenerator.com/results-tracking/results-tracking-via-lrs" target="_blank">Learn more</a>)</span>',
         'default': 'easygenerator (recommended)',
         'custom': 'Custom LRS',
+
+        'addWebhookEndpoinLabel': 'Add a webhook endpoint: <a href="https://help.easygenerator.com/additional-features/webhooks" target="_blank">Learn more</a>',
+        'webhookUrlLabel': 'URL to be called',
+        'urlCheckButtonText': 'Check URL',
+        'checkErrorMessage': 'An error appears',
+        'checkSuccessMessage': 'URL successfully reached',
 
         'track and trace settings': 'Track and trace settings',
         'results tracking option': 'Results tracking:',
@@ -53,11 +64,20 @@
         'save progress cross device': 'Save progress cross device (requires login and password):',
         'save progress cross device hint': '(will not affect progress saving in SCORM/LMS)',
         'allow social media': 'Allow login via social media',
+        'authorsBioTooltip': 'This information will be shown to learners on the introduction page <a href="http://help.easygenerator.com/getting-started/billing-info-and-account-settings" target="blank" >Learn more</a>',
+        'about the author block:': '\'About the author\' block:',
+        'show about the author block on the introduction course page': 'The \'About the author\' block on the introduction course page',
+        'information is taken from your profile settings': '(NOTE: the information is taken from your  <a href="/#accountsettings" target="_parent">profile settings</a>)',
 
         //mastery score
         'mastery score settings': 'Mastery score settings',
         'mastery score caption': 'Mastery score:',
         'mastery score hint': '(for each learning objective):',
+        'mastery score will for': 'Mastery score will be set:',
+        'mastery score means' : 'Mastery score is the score learners have to reach to pass the course successfully',
+        'overall course caption' : 'For the entire course',
+        'mastery score' : 'Mastery score:',
+        'each section caption' : 'For each section',
 
         //template language
         'template language': 'Template language',
@@ -86,6 +106,13 @@
         'pl': 'Polish',
         'kin': 'Kinyarwanda',
         'ca': 'Catalan',
+        'ar': 'Arabic',
+        'ro': 'Romanian',
+        'cs': 'Czech',
+        'fi': 'Finnish',
+        'el': 'Greek',
+        'lv': 'Latvian',
+        'hu': 'Hungarian',
 
         'choose language for your course': 'Choose language for your course',
         'defaultText': 'Default',

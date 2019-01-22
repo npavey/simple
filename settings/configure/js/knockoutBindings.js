@@ -38,15 +38,20 @@
         init: function (element, valueAccessor) {
             var switchToggle = ko.bindingHandlers.switchToggle,
                 viewModel = switchToggle.viewModel(element, valueAccessor),
-                value = ko.unwrap(valueAccessor().value());
+                value = ko.unwrap(valueAccessor().value()),
+                onBeforeValueUpdated = valueAccessor().onBeforeValueUpdated;
 
             viewModel.setInitialValue(value);
 
             switchToggle.onClick(element, function () {
-                viewModel.toggle();
-
                 var currentValue = ko.unwrap(valueAccessor().value());
-                valueAccessor().value(!currentValue);
+                var newValue = !currentValue;
+                if(onBeforeValueUpdated && !onBeforeValueUpdated(newValue)){
+                    return;
+                }
+
+                viewModel.toggle();
+                valueAccessor().value(newValue);
             });
         },
         update: function (element, valueAccessor) {
@@ -121,6 +126,16 @@
                 }
 
                 handler();
+            });
+        }
+    };
+
+    ko.bindingHandlers.toggle = {
+        init: function (element, valueAccessor) {
+            var value = valueAccessor().value;
+
+            $(element).click(function() {
+                value(!value());
             });
         }
     };
@@ -262,4 +277,29 @@
             $element.html(app.localize(key));
         }
     };
+
+    ko.bindingHandlers.tip = {
+        init: function(element, valueAccessor){
+            var $element = $(element),
+                value = valueAccessor(),
+
+                key = ko.unwrap(value.key),
+                triggerEvent = ko.unwrap(value.triggerEvent),
+                maxWidth = ko.unwrap(value.maxWidth);
+
+            $element.on(triggerEvent, function(){
+                if(!$('.tooltip').length){
+                    $('body').append('<div class="tooltip configure-tab" role="tooltip" style="max-width: ' + maxWidth + 'px;"><div class="tooltip-arrow"></div><div class="tooltip-text">' + app.localize(key) + '</div></div>');
+
+                    var hintContentPosition = {
+                        top: $element.offset().top - $('.tooltip').outerHeight() - 4,
+                        left: $element.offset().left - ($('.tooltip').outerWidth() / 2) + ($element.outerWidth() / 2)
+                    };
+                    $('.tooltip').css({top: hintContentPosition.top, left: hintContentPosition.left}).addClass('shown');
+                }else{
+                    $('.tooltip').remove();
+                }
+            });
+        }
+    }
 })();

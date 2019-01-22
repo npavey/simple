@@ -17,7 +17,6 @@ define(function () {
                     backgroundSize = 'contain';
                 }
                 if(size.width >= imageWidth && size.height >= imageHeight) {
-                    resizedImageUrl += '&scaleBySmallerSide=true';
                     backgroundSize = 'cover';
                 }
                 $element.css('backgroundSize', backgroundSize);

@@ -1,8 +1,8 @@
 ﻿define([
-    'durandal/app', 'windowOperations', 'repositories/courseRepository', 'progressContext',
+    'durandal/app', 'helpers/appOperations', 'repositories/courseRepository', 'progressContext',
     'plugins/router', 'templateSettings', 'constants',
     'xApi/xApiInitializer', 'includedModules/modulesInitializer', 'context', 'modules/publishModeProvider','dialogs/dialog'
-], function(app, windowOperations, courseRepository, progressContext, router, templateSettings,
+], function(app, appOperations, courseRepository, progressContext, router, templateSettings,
     constants, xApiInitializer, modulesInitializer, context, publishModeProvider, Dialog) {
     "use strict";
 
@@ -28,6 +28,7 @@
         xAPIEnabled: false,
         scormEnabled: false,
         hideFinishActionButtons: false,
+        hideContinueLaterButton: false,
         activate: activate
     };
 
@@ -64,6 +65,7 @@
         viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
         viewModel.scormEnabled = publishModeProvider.isScormEnabled;
         viewModel.hideFinishActionButtons = templateSettings.hideFinishActionButtons;
+        viewModel.hideContinueLaterButton = templateSettings.hideContinueLaterButton || false;
     }
 
     function exit() {
@@ -76,7 +78,7 @@
         }
 
         course.finalize(function() {
-            windowOperations.close();
+            appOperations.close();
         });
     }
 

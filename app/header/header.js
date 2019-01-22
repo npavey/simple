@@ -1,14 +1,19 @@
 define([
-    'knockout', 'underscore', 'plugins/router', 'context', 'templateSettings', 'constants'
-], function (ko, _, router, context, templateSettings, constants) {
+    'knockout', 'underscore', 'plugins/router', 'context', 'templateSettings', 'publishSettings', 'displaySettings'
+], function (ko, _, router, context, templateSettings, publishSettings, displaySettings) {
 
         'use strict';
         var viewmodel = {
             version: '',
             title: '',
-            logoUrl: '',
+            logo: {
+                url: '',
+                maxWidth: '',
+                maxHeight: '',
+            },
             viewSettings: null,
             backgroundProps: null,
+            pdfServiceUrl: null,
             pdfExportEnabled: ko.observable(false),
             height: ko.observable(null),
 
@@ -22,11 +27,16 @@ define([
         function activate(viewSettings, pdfExportEnabled) {
             viewmodel.viewSettings = viewSettings;
             viewmodel.pdfExportEnabled = pdfExportEnabled;
+            viewmodel.pdfServiceUrl = '//' + publishSettings.pdfConverterUrl;
             viewmodel.version = context.course.id + (+new Date(context.course.createdOn));
             viewmodel.title = context.course.title;
-            viewmodel.logoUrl = templateSettings.logoUrl;
+            viewmodel.logo.url = templateSettings.logo.url;
+            viewmodel.logo.maxWidth = templateSettings.logo.maxWidth || '300px';
+            viewmodel.logo.maxHeight = templateSettings.logo.maxHeight || '100px';
 
-            var background = templateSettings.background;
+            var background = templateSettings.background,
+                backgroundType = background.header.image && background.header.image.option || 'fullscreen',
+                bgSettings = displaySettings.backgroundSettings[backgroundType];
 
             viewmodel.backgroundProps = {
                 brightness: background.header.brightness || 0,
@@ -34,7 +44,9 @@ define([
                 isBodyEnabled: background.body.enabled,
                 image: {
                     url: background.header.image && background.header.image.url,
-                    option: background.header.image && background.header.image.option || 'fullscreen'
+                    backgroundPosition: bgSettings && bgSettings.position || '0 0',
+                    backgroundSize: bgSettings && bgSettings.size || 'auto',
+                    backgroundRepeat: bgSettings && bgSettings.repeat || 'no-repeat'
                 }
             };
         }

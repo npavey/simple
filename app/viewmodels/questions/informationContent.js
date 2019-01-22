@@ -53,17 +53,18 @@
             viewModel.title = question.title;
             viewModel.learningContents = question.learningContents;
 
-
-            if ((context.course.score() === 100 && !context.isInReviewAttemptMode()) || (!viewModel.navigationContext.nextSectionUrl && viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex)) {
-                viewModel.isGoToResultsVisible(true);
-                viewModel.isGoToNextSectionVisible(false);
-            } else if (viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex){
-                viewModel.isGoToResultsVisible(false);
-                viewModel.isGoToNextSectionVisible(true);
+            if (context.course.score() === 100) {
+                viewModel.isGoToResultsVisible(!templateSettings.hideFinishActionButtons);
+                viewModel.isGoToNextSectionVisible(viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex && viewModel.navigationContext.nextSectionUrl);
             } else {
-                viewModel.isGoToResultsVisible(false);
-                viewModel.isGoToNextSectionVisible(false);
-            }  
+                if (viewModel.navigationContext.questionsCount === viewModel.navigationContext.currentQuestionIndex) {
+                    viewModel.isGoToResultsVisible(!viewModel.navigationContext.nextSectionUrl && !templateSettings.hideFinishActionButtons);
+                    viewModel.isGoToNextSectionVisible(!!viewModel.navigationContext.nextSectionUrl);
+                } else {
+                    viewModel.isGoToResultsVisible(false);
+                    viewModel.isGoToNextSectionVisible(false);
+                }
+            }
         });
     }
 });

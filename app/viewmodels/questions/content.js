@@ -104,6 +104,12 @@
 
 
                 return viewModel.question.load().then(function() {
+                    router.activeInstruction().config.title = TranslationPlugin.getTextByKey(
+                        viewModel.question.isInformationContent 
+                        ? '[content page title]' 
+                        : '[question page title]'
+                    );
+
                     viewModel.activeViewModel = getActiveContentViewModel(viewModel.question);
                 });
             });

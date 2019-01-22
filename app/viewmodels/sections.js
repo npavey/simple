@@ -1,5 +1,5 @@
-﻿define(['context', 'repositories/courseRepository', 'plugins/router', 'windowOperations', 'templateSettings'],
-    function (context, repository, router, windowOperations, templateSettings) {
+﻿define(['underscore', 'context', 'repositories/courseRepository', 'plugins/router', 'templateSettings'],
+    function (_, context, repository, router, templateSettings) {
 
         var
             sections = [],
@@ -7,6 +7,22 @@
             courseTitle = context.course.title,
             sectionsLayout = null,
             sectionThumbnail = { width: 284, height: 170 },
+            
+            canActivate = function () {
+                if (templateSettings.sectionsPage && !templateSettings.sectionsPage.enabled && !router.isNavigationLocked()) {
+                    var section = _.find(context.course.sections, function(section) {
+                        return section.questions.length > 0;
+                    });
+
+                    if(section) {
+                        return { redirect: '#section/' + section.id + '/question/' + section.questions[0].id };
+                    } else {
+                        return { redirect: '#finish' };
+                    }
+                }
+
+                return true;
+            },
 
             activate = function () {
                 var course = repository.get();
@@ -46,6 +62,7 @@
 
         return {
             activate: activate,
+            canActivate: canActivate,
             isNavigationLocked: router.isNavigationLocked,
             caption: 'Sections and questions',
             courseTitle: courseTitle,

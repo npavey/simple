@@ -35,9 +35,9 @@ define('download', function () {
 });
 
 define(['durandal/app', 'durandal/system', 'underscore', 'bootstrapper', 'templateSettings', 'publishSettings', 'includedModules/modulesInitializer',
-        'modules/index', 'modules/publishModeProvider'
+        'modules/index', 'modules/publishModeProvider', 'errorTracking/errorTracker'
     ],
-    function (app, system, _, bootstrapper, templateSettings, publishSettings, modulesInitializer, modulesLoader, publishModeProvider) {
+    function (app, system, _, bootstrapper, templateSettings, publishSettings, modulesInitializer, modulesLoader, publishModeProvider, errorTracker) {
         app.title = 'easygenerator';        
 
         system.debug(false);
@@ -58,13 +58,13 @@ define(['durandal/app', 'durandal/system', 'underscore', 'bootstrapper', 'templa
                 TranslationPlugin.init(configs.translations);
                 publishSettings.init(configsFiles.publishSettings);
 
-                return modulesLoader.init(templateSettings, configsFiles.manifest, publishSettings).then(function () {
+                return modulesLoader.init(templateSettings, configsFiles.manifest, publishSettings, configsFiles.customisations).then(function () {
                     if (publishSettings.modules) {
                         return modulesInitializer.load(publishSettings.modules).then(function () {
-                            initializeApp(publishSettings.publishMode);
+                            initializeApp(publishSettings.publishMode, publishSettings.errorTrackingServiceUrl, templateSettings.errorTracking);
                         });
                     } else {
-                        initializeApp(publishSettings.publishMode);
+                        initializeApp(publishSettings.publishMode, publishSettings.errorTrackingServiceUrl, templateSettings.errorTracking);
                     }
                 });
             }).catch(function (e) {
@@ -72,7 +72,10 @@ define(['durandal/app', 'durandal/system', 'underscore', 'bootstrapper', 'templa
             });
         });
 
-        function initializeApp(publishMode) {
+        function initializeApp(publishMode, errorTrackingServiceUrl, errorTracking) {
+            if (errorTrackingServiceUrl && errorTracking.enabled) {
+                errorTracker.init(errorTrackingServiceUrl);
+            }
             publishModeProvider.init(publishMode);
             app.setRoot('viewmodels/shell');
         }

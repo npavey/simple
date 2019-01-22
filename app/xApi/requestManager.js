@@ -1,5 +1,5 @@
-﻿define(['./configuration/xApiSettings', './base64', './errorsHandler'],
-    function (xApiSettings, base64, errorsHandler) {
+﻿define(['./configuration/xApiSettings', './base64', './errorsHandler', 'helpers/requestResender'],
+    function (xApiSettings, base64, errorsHandler, requestResender) {
 
         var states = {
             notInitialized: 0,
@@ -43,23 +43,17 @@
         }
 
         function sendStatement(statement, uri, username, password) {
-            var dfd = Q.defer();
-
             var requestOptions = createRequestOptions(statement, uri, username, password);
 
             if (!$.support.cors) {
                 requestOptions = getOptionsForIEMode(requestOptions);
             }
 
-            $.ajax(requestOptions).done(function () {
-                dfd.resolve();
-            })
-            .fail(function (request, textStatus, error) {
-                dfd.reject(getErrorMessage(request, textStatus, error));
-            });
+            return requestResender.send(requestOptions, onError);
+        }
 
-
-            return dfd.promise;
+        function onError(request, textStatus, error) {
+            return getErrorMessage(request, textStatus, error);
         }
 
         function initXDomainRequestTransport() {
@@ -182,7 +176,6 @@
                     for (var headerName in options.headers)
                         xmlHttpRequest.setRequestHeader(headerName, options.headers[headerName]);
                 }
-                options.headers = null;
             };
 
             return options;

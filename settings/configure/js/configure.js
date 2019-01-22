@@ -12,28 +12,46 @@
         languages: null,
         pdfExport: null,
         nps: null,
+        webhooks: null,
+        authorsBio: ko.observable(false),
         showConfirmationPopup: ko.observable(true),
         allowContentPagesScoring: ko.observable(false),
         allowCrossDeviceSaving: ko.observable(true),
         allowSocialLogin: ko.observable(true),
-        allowxApiSettings: ko.observable(true),
+        allowCertificateDownload: ko.observable(false),
         copyright: ko.observable(''),
-        copyrightPlaceholder: ko.observable('')
+        copyrightPlaceholder: ko.observable(''),
+
+        allowNpsSettings: ko.observable(true),
+        allowxApiSettings: ko.observable(true),
+        allowToSkipTrackingSettings: ko.observable(true),
+        allowCrossDeviceSavingSettings: ko.observable(true),
+        allowContentPagesScoringSettings: ko.observable(true),
+        allowLoginViaSocialMediaSettings: ko.observable(true)
     };
 
     viewModel.getCurrentSettingsData = function (settings) {
         return $.extend({}, settings || currentSettings, {
             pdfExport: viewModel.pdfExport.getData(),
             nps: viewModel.nps.getData(),
+            webhooks: viewModel.webhooks.getData(),
+            allowAuthorsBio: viewModel.authorsBio(),
             xApi: viewModel.trackingData.getData(),
             masteryScore: viewModel.masteryScore.getData(),
             languages: viewModel.languages.getData(),
             showConfirmationPopup: viewModel.showConfirmationPopup(),
             allowContentPagesScoring: viewModel.allowContentPagesScoring(),
             allowCrossDeviceSaving: viewModel.allowCrossDeviceSaving(),
-            allowLoginViaSocialMedia: viewModel.allowSocialLogin(),
+            allowCertificateDownload: viewModel.allowCertificateDownload(),
+            copyright: viewModel.copyright(),
+
+            allowNpsSettings: viewModel.allowNpsSettings(),
             allowxApiSettings: viewModel.allowxApiSettings(),
-            copyright: viewModel.copyright()
+            allowLoginViaSocialMedia: viewModel.allowSocialLogin(),
+            allowToSkipTrackingSettings: viewModel.allowToSkipTrackingSettings(),
+            allowCrossDeviceSavingSettings: viewModel.allowCrossDeviceSavingSettings(),
+            allowContentPagesScoringSettings: viewModel.allowContentPagesScoringSettings(),
+            allowLoginViaSocialMediaSettings: viewModel.allowLoginViaSocialMediaSettings()
         });
     };
 
@@ -58,61 +76,64 @@
             });
     };
 
+    viewModel.onBeforeCertificateDownloadUpdated = function (newValue) {
+        if (newValue && !viewModel.canUpdateAllowCertificateDownload){
+            window.egApi.showCertificatesUpgradePopup();
+            return false;
+        }
+
+        return true;
+    };
+
     viewModel.init = function () {
         var api = window.egApi;
         return api.init().then(function () {
             var manifest = api.getManifest(),
-                settings = api.getSettings();
+                settings = api.getSettings(),
+                user = api.getUser();
 
             var defaultTemplateSettings = manifest && manifest.defaultTemplateSettings ? manifest.defaultTemplateSettings : {};
-          
-            viewModel.pdfExport = new app.PdfExport(settings.pdfExport || defaultTemplateSettings.pdfExport);     
-            viewModel.nps = new app.Nps(settings.nps || defaultTemplateSettings.nps);           
-            viewModel.masteryScore = new app.MasteryScore(settings.masteryScore || defaultTemplateSettings.masteryScore);      
+
+            viewModel.pdfExport = new app.PdfExport(settings.pdfExport || defaultTemplateSettings.pdfExport);
+            viewModel.nps = new app.Nps(settings.nps || defaultTemplateSettings.nps);
+            viewModel.webhooks = new app.Webhooks(settings.webhooks || defaultTemplateSettings.webhooks);
+            viewModel.masteryScore = new app.MasteryScore(settings.masteryScore || defaultTemplateSettings.masteryScore);
             viewModel.trackingData = new app.TrackingDataModel(settings.xApi || defaultTemplateSettings.xApi);
 
             viewModel.languages = new app.LanguagesModel(manifest.languages, settings.languages || defaultTemplateSettings.languages);
-            
-            if (settings.hasOwnProperty('showConfirmationPopup')) {            
-                viewModel.showConfirmationPopup(settings.showConfirmationPopup);
-            } else if(defaultTemplateSettings.hasOwnProperty('showConfirmationPopup')){                
-                viewModel.showConfirmationPopup(defaultTemplateSettings.showConfirmationPopup);
-            }
+            viewModel.canUpdateAllowCertificateDownload = user.hasTeamAccess();
 
-            if (settings.hasOwnProperty('allowContentPagesScoring')) {
-                viewModel.allowContentPagesScoring(settings.allowContentPagesScoring);
-            } else if (defaultTemplateSettings.hasOwnProperty('allowContentPagesScoring')) {
-                viewModel.allowContentPagesScoring(defaultTemplateSettings.allowContentPagesScoring);
-            }
-
-            if (settings.hasOwnProperty('allowCrossDeviceSaving')){
-                viewModel.allowCrossDeviceSaving(settings.allowCrossDeviceSaving);
-            } else if (defaultTemplateSettings.hasOwnProperty('allowCrossDeviceSaving')){
-                viewModel.allowCrossDeviceSaving(defaultTemplateSettings.allowCrossDeviceSaving);
-            }
-            
-            if (settings.hasOwnProperty('allowLoginViaSocialMedia')) {
-                viewModel.allowSocialLogin(settings.allowLoginViaSocialMedia);
-            } else if (defaultTemplateSettings.hasOwnProperty('allowLoginViaSocialMedia')) {
-                viewModel.allowSocialLogin(defaultTemplateSettings.allowLoginViaSocialMedia);
-            }
-            
-            if (settings.hasOwnProperty('allowxApiSettings')) {
-                viewModel.allowxApiSettings(settings.allowxApiSettings);
-            } else if (defaultTemplateSettings.hasOwnProperty('allowxApiSettings')) {
-                viewModel.allowxApiSettings(defaultTemplateSettings.allowxApiSettings);
-            }
-
-            if (settings.hasOwnProperty('copyright')) {
-                viewModel.copyright(localizeCopyright(settings.copyright));
-            } else if (defaultTemplateSettings.hasOwnProperty('copyright')) {
-                viewModel.copyright(defaultTemplateSettings.copyright);
-            }
-
+            initField(viewModel.showConfirmationPopup, 'showConfirmationPopup');
+            initField(viewModel.allowContentPagesScoring, 'allowContentPagesScoring');
+            initField(viewModel.allowCrossDeviceSaving, 'allowCrossDeviceSaving');
+            initField(viewModel.authorsBio, 'allowAuthorsBio');
+            initField(viewModel.allowCertificateDownload, 'allowCertificateDownload');
+            initField(viewModel.copyright, 'copyright', localizeCopyright);
             viewModel.copyrightPlaceholder(localizeCopyright(app.localize('copyrightPlaceholder')));
+            
+            initField(viewModel.allowNpsSettings, 'allowNpsSettings');
+            initField(viewModel.allowxApiSettings, 'allowxApiSettings');
+            initField(viewModel.allowSocialLogin, 'allowLoginViaSocialMedia');
+            initField(viewModel.allowToSkipTrackingSettings, 'allowToSkipTrackingSettings');
+            initField(viewModel.allowCrossDeviceSavingSettings, 'allowCrossDeviceSavingSettings');
+            initField(viewModel.allowContentPagesScoringSettings, 'allowContentPagesScoringSettings');
+            initField(viewModel.allowLoginViaSocialMediaSettings, 'allowLoginViaSocialMediaSettings');
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
             currentExtraData = viewModel.getCurrentExtraData();
+
+            function initField(field, property, handler) {
+                var val = null;
+                if (settings.hasOwnProperty(property)) {
+                    val = settings[property];
+                } else if (defaultTemplateSettings.hasOwnProperty(property)) {
+                    val = defaultTemplateSettings[property];
+                }
+
+                if (val !== null) {
+                    field(handler ? handler(val) : val);
+                }
+            }
 
         }).fail(function () {
             viewModel.isError(true);
@@ -128,6 +149,6 @@
 
     function localizeCopyright(copyrightText) {
         return copyrightText.replace('{year}', new Date().getFullYear());
-    }    
+    }
 
 })(window.app = window.app || {});

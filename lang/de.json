@@ -130,6 +130,10 @@
     "[survey mode answered caption]": "Die Antwort wirkt sich nicht auf Ihren Fortschritt aus",
     "[continue course]": "Kurs fortsetzen",
     "[submit results and logout]": "Ergebnisse senden und abmelden",
+    "[submit results and download certificate]": "Ergebnise übermitteln und Zertifikat herunterladen",
+    "[download certificate]": "Zertifikat herunterladen",
+    "[certificate file name]": "Kurszertifikat",
+    "[preparing course certificate]": "Kurszertifikat wird geladen...",
     "[questions correct]": "richtig beantwortete Fragen",
     "[contents readed]": "Inhalt wurde gelesen",
     "[section]": "Abschnitt",
@@ -170,10 +174,14 @@
     "[download]": "Herunterladen",
     "[go to results]": "Zu den Resultaten",
     "[next section]": "Nächster Abschnitt",
+    "[review attempt]": "Versuch überprüfen",
+    "[start new attempt]": "Erneuten Versuch starten",
+    "[view]": "Anzeigen",
     "[success]": "Erfolgreich bestanden",
     "[failed]": "Nicht bestanden",
     "[detailed summary]": "Detaillierte Zusammenfassung",
     "[start new attempt dialog title]": "Einen neuen Versuch starten?",
     "[start new attempt dialog text]": "Wenn Sie einen neuen Versuch starten, können Sie Ihren vorherigen Versuch nicht mehr ansehen",
-    "[close course and logout]": "Kurs schließen"
+    "[close course and logout]": "Kurs schließen",
+    "[try to submit again key]": "Bitte die Ergebnise erneut übermitteln"
 }

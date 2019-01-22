@@ -14,7 +14,8 @@
         "allowedVerbs":["started","stopped","experienced","mastered","answered","passed","failed","progressed"]
     },
     "masteryScore":{
-        "score":"75"
+        "score":"75",
+        "isOverall":false
     },
     "languages":{
         "selected":"en"
@@ -25,9 +26,14 @@
     "treeOfContent":{
         "enabled": true
     },
-    "showConfirmationPopup":true,
+    "sectionsPage": 
+    {
+        "enabled": true
+    },
+    "showConfirmationPopup": true,
     "allowCrossDeviceSaving": true,
     "allowLoginViaSocialMedia": true,
+    "allowCertificateDownload": false,
     "hideFinishActionButtons": false,
     "copyright": "Copyright © {year} Easygenerator"
 }

@@ -1,7 +1,9 @@
 ﻿{
     "branding": {
         "logo": {
-            "url": "//cdn.easygenerator.com/logo.png"
+            "url": "//cdn.easygenerator.com/logo.png",
+            "maxWidth": "300px",
+            "maxHeight": "100px"
         },
           "colors": [
             {

@@ -36,6 +36,7 @@
                 <div class="settings-section">
                     <h1 class="section-header" data-bind="localize: 'general settings'"></h1>
                     <div class="section-content">
+                        <!-- ko if: $root.allowCrossDeviceSavingSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'save progress cross device'"></div>
@@ -55,6 +56,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
+                        <!-- ko if: $root.allowLoginViaSocialMediaSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'allow social media'"></div>
@@ -73,8 +76,9 @@
                                 </div>
                             </div>
                             <div class="preview-disabled" data-bind="visible: !allowCrossDeviceSaving()"></div>
-                        </div>                        
-                        <!-- ko if: allowxApiSettings -->
+                        </div>
+                        <!-- /ko -->                  
+                        <!-- ko if: $root.allowNpsSettings  -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'conduct learner satisfaction survey'"></div>
@@ -95,6 +99,26 @@
                         </div>
                         <!-- /ko -->
                         <div class="settings-row">
+                            <div class="settings-caption">
+                                <div class="caption-content">
+                                    <div data-bind="localize: 'allow users to download certificates'"></div>
+                                </div>
+                            </div>
+                            <div class="settings-column">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: allowCertificateDownload() }, localize: 'forbid'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: allowCertificateDownload, onBeforeValueUpdated: onBeforeCertificateDownloadUpdated }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
+                                        </div>
+                                    </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !allowCertificateDownload() }, localize: 'allow'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-row">
                             <div class="settings-caption" data-bind="localize: 'pdf export'"></div>
                             <div class="settings-content">
                                 <label class="checkbox checked" data-bind="css: {checked: pdfExport.enabled}">
@@ -111,7 +135,27 @@
                             <div class="settings-content setting-input-wrapper">
                                 <input type="text" class="settings-input" autocomplete="off" data-bind="value: copyright, valueUpdate: 'afterkeydown', event: { blur: saveChanges }, attr: { placeholder: copyrightPlaceholder }" />
                             </div>
-                        </div>        
+                        </div>    
+                        <div class="settings-row">
+                            <div class="settings-caption">
+                                <span data-bind="localize: 'show about the author block on the introduction course page'"></span>
+                                <span class="setting-tooltip" data-bind="tip: {key: 'authorsBioTooltip', maxWidth: 246, triggerEvent: 'click'}"></span>
+                                <div class="settings-hint" data-bind="localize: 'information is taken from your profile settings'"></div>
+                            </div>
+                            <div class="settings-column">
+                                <div class="switcher">
+                                    <div class="switcher-text" data-bind="css: { disabled: authorsBio() }, localize: 'hide'"></div>
+                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: authorsBio }">
+                                        <div class="switch-toggle-wrapper">
+                                            <div class="switch-toggle-on"></div>
+                                            <div class="switch-toogle-blob"></div>
+                                            <div class="switch-toggle-off"></div>
+                                        </div>
+                                    </div>
+                                    <div class="switcher-text" data-bind="css: { disabled: !authorsBio() }, localize: 'show'"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -139,6 +183,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
+                        <!-- ko if: $root.allowxApiSettings() && $root.allowToSkipTrackingSettings() -->
                         <div class="settings-row">
                             <div class="settings-caption" data-bind="localize: 'allow user to skip option'"></div>
                             <div class="settings-column">
@@ -176,6 +222,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- ko if: $root.allowContentPagesScoringSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <div data-bind="localize: 'allow scoring of content pages'"></div>
@@ -194,6 +241,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- /ko -->
                         <!-- ko if: $root.allowxApiSettings -->
                         <div class="advanced-settings">
                             <div class="advanced-settings-title-container" data-bind="click: toggleAdvancedSettings">
@@ -202,137 +250,177 @@
                             <div class="template-selector-container" data-bind="visible: advancedSettingsExpanded()">
                                 <div class="selector-items-container">
                                     <h2 class="selector-title" data-bind="localize: 'report to'"></h2>
-                                    <ul class="selector-items-wrapper unstyled" data-bind="foreach: lrsOptions">
-                                        <li class="selector-item-container" data-bind="click: $parent.selectLrs, css: { selected: isSelected }">
-                                            <div class="selector-item-btn"></div>
+                                    <ul class="selector-items-wrapper unstyled" data-bind="foreach: reportsOptions">
+                                        <li class="selector-item-container" data-bind="click: $parent.selectReports, css: { selected: isSelected }">
                                             <div class="selector-item-text" data-bind="localize: name"></div>
                                         </li>
                                     </ul>
                                     <div class="preview-disabled" data-bind="visible: !enableXAPI()"></div>
                                 </div>
-                                <div class="selector-preview-container">
-                                    <h2 class="selector-title" data-bind="localize: 'custom lrs settings'"></h2>
-                                    <div class="preview-row">
-                                        <label for="lrsUrl" class="preview-label" data-bind="localize: 'lrs url'"></label>
-                                        <div class="preview-col">
-                                            <input class="preview-text-input" id="lrsUrl" type="text" autocomplete="off" data-bind="value: lrsUrl, valueUpdate: ['afterkeydown', 'afterpaste'], enable: customLrsEnabled" />
-                                        </div>
+                                <!-- ko if: reportsOptions[0].isSelected -->
+                                <div class="selector-preview-container lrs">
+                                    <div class="selector-items-container">
+                                        <h2 class="selector-title" data-bind="localize: 'chooseLrsLabel'"></h2>
+                                        <ul class="selector-items-wrapper unstyled" data-bind="foreach: lrsOptions">
+                                            <li class="selector-item-container" data-bind="click: $parent.selectLrs, css: { selected: isSelected }">
+                                                <div class="selector-item-btn"></div>
+                                                <div class="selector-item-text" data-bind="localize: name"></div>
+                                            </li>
+                                        </ul>
+                                        <div class="preview-disabled" data-bind="visible: !enableXAPI()"></div>
                                     </div>
-                                    <div class="preview-row checkbox">
-                                        <div class="preview-col pull-right">
-                                            <label>
-                                                <span class="preview-checkbox">
-                                                    <input class="preview-checkbox-input" type="checkbox" data-bind="checked: authenticationRequired">
-                                                    <span class="preview-checkbox-checked"></span>
-                                                </span>
-                                                <span class="preview-label checkbox" data-bind="localize: 'authentication required'"></span>
-                                            </label>
+                                    <div class="selector-preview-container">
+                                        <h2 class="selector-title" data-bind="localize: 'custom lrs settings'"></h2>
+                                        <div class="preview-row">
+                                            <label for="lrsUrl" class="preview-label" data-bind="localize: 'lrs url'"></label>
+                                            <div class="preview-col">
+                                                <input class="preview-text-input" id="lrsUrl" type="text" autocomplete="off" data-bind="value: lrsUrl, valueUpdate: ['afterkeydown', 'afterpaste'], enable: customLrsEnabled" />
+                                            </div>
                                         </div>
-                                        <div class="clearfix"></div>
+                                        <div class="preview-row checkbox">
+                                            <div class="preview-col pull-right">
+                                                <label>
+                                                    <span class="preview-checkbox">
+                                                        <input class="preview-checkbox-input" type="checkbox" data-bind="checked: authenticationRequired">
+                                                        <span class="preview-checkbox-checked"></span>
+                                                    </span>
+                                                    <span class="preview-label checkbox" data-bind="localize: 'authentication required'"></span>
+                                                </label>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <div class="preview-row">
+                                            <label for="lapLogin" class="preview-label" data-bind="localize: 'lap login'"></label>
+                                            <div class="preview-col">
+                                                <input class="preview-text-input" type="text" id="lapLogin" autocomplete="off" data-bind="value: lapLogin, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
+                                            </div>
+                                        </div>
+                                        <div class="preview-row">
+                                            <label for="lapPassword" class="preview-label" data-bind="localize: 'lap password'"></label>
+                                            <div class="preview-col">
+                                                <input class="preview-text-input" type="text" id="lapPassword" autocomplete="off" data-bind="value: lapPassword, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
+                                            </div>
+                                        </div>
+                                        <div class="preview-row statements">
+                                            <div class="statements-title" data-bind="localize: 'use statements'"></div>
+                                            <div class="statements-container">
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.started }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'started'"></div>
+                                                </div>
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.stopped }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'stopped'"></div>
+                                                </div>
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.passed }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'passed'"></div>
+                                                </div>
+                                            </div>
+                                            <div class="statements-container">
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.answered }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'answered'"></div>
+                                                </div>
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.mastered }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'mastered'"></div>
+                                                </div>
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.progressed }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'progressed'"></div>
+                                                </div>
+                                            </div>
+                                            <div class="statements-container">
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.experienced }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'experienced'"></div>
+                                                </div>
+                                                <div class="switcher statement">
+                                                    <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.failed }">
+                                                        <div class="switch-toggle-wrapper">
+                                                            <div class="switch-toggle-on"></div>
+                                                            <div class="switch-toogle-blob"></div>
+                                                            <div class="switch-toggle-off"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="switcher-text" data-bind="localize: 'failed'"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="preview-disabled" data-bind="visible: !customLrsEnabled()"></div>
                                     </div>
-                                    <div class="preview-row">
-                                        <label for="lapLogin" class="preview-label" data-bind="localize: 'lap login'"></label>
-                                        <div class="preview-col">
-                                            <input class="preview-text-input" type="text" id="lapLogin" autocomplete="off" data-bind="value: lapLogin, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
-                                        </div>
-                                    </div>
-                                    <div class="preview-row">
-                                        <label for="lapPassword" class="preview-label" data-bind="localize: 'lap password'"></label>
-                                        <div class="preview-col">
-                                            <input class="preview-text-input" type="text" id="lapPassword" autocomplete="off" data-bind="value: lapPassword, valueUpdate: ['afterkeydown', 'afterpaste'], enable: credentialsEnabled" />
-                                        </div>
-                                    </div>
-                                    <div class="preview-row statements">
-                                        <div class="statements-title" data-bind="localize: 'use statements'"></div>
-                                        <div class="statements-container">
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.started }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'started'"></div>
-                                            </div>
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.stopped }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'stopped'"></div>
-                                            </div>
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.passed }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'passed'"></div>
-                                            </div>
-                                        </div>
-                                        <div class="statements-container">
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.answered }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'answered'"></div>
-                                            </div>
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.mastered }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'mastered'"></div>
-                                            </div>
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.progressed }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'progressed'"></div>
-                                            </div>
-                                        </div>
-                                        <div class="statements-container">
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.experienced }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'experienced'"></div>
-                                            </div>
-                                            <div class="switcher statement">
-                                                <div class="switch-toggle-slider" data-bind="switchToggle: { value: statements.failed }">
-                                                    <div class="switch-toggle-wrapper">
-                                                        <div class="switch-toggle-on"></div>
-                                                        <div class="switch-toogle-blob"></div>
-                                                        <div class="switch-toggle-off"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="switcher-text" data-bind="localize: 'failed'"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="preview-disabled" data-bind="visible: !customLrsEnabled()"></div>
                                 </div>
+                                <!-- /ko -->
+                                <!-- ko if: reportsOptions[1].isSelected -->
+                                <div class="selector-preview-container webhooks">
+                                    <h2 class="selector-title" data-bind="localize: 'addWebhookEndpoinLabel'"></h2>
+                                    <div class="preview-row">
+                                        <label for="webhookUrl" class="preview-label" data-bind="localize: 'webhookUrlLabel'"></label>
+                                        <div class="preview-col">
+                                            <input class="preview-text-input" type="text" id="webhookUrl" autocomplete="off" data-bind="value: $parent.webhooks.url, valueUpdate: ['afterkeydown', 'afterpaste']" />
+                                        </div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="unstyled button url-chech" data-bind="click: $parent.webhooks.checkUrl, disable: !$parent.webhooks.url(), css: { disabled: !$parent.webhooks.url(), progress: $parent.webhooks.isChecking }">
+                                            <!-- ko if: $parent.webhooks.isChecking -->
+                                            <span class="operation-progress"></span>
+                                            <!-- /ko -->
+                                            <!-- ko ifnot: $parent.webhooks.isChecking -->
+                                            <span data-bind="localize: 'urlCheckButtonText'"></span>
+                                            <!-- /ko -->
+                                        </button>
+                                        <!-- ko if: $parent.webhooks.checkStatus() === $parent.webhooks.statuses.error -->
+                                        <span class="check-result-message error" data-bind="localize: 'checkErrorMessage'"></span>
+                                        <!-- /ko -->
+                                        <!-- ko if: $parent.webhooks.checkStatus() === $parent.webhooks.statuses.success -->
+                                        <span class="check-result-message success" data-bind="localize: 'checkSuccessMessage'"></span>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
+                                <!-- /ko -->
                             </div>
                         </div>
                         <!-- /ko -->
@@ -340,19 +428,34 @@
                 </div>
                 <div class="settings-section">
                     <h1 class="section-header" data-bind="localize: 'mastery score settings'"></h1>
+                    <div class="section-description-content" data-bind="localize: 'mastery score means'"></div>
+                    <div class="section-description">
+                        <div class="section-description-header" data-bind="localize: 'mastery score will for'"></div>
+                    </div>
                     <div class="section-content">
-                        <div class="settings-row">
-                            <div class="settings-caption">
-                                <div data-bind="localize: 'mastery score caption'"></div>
-                                <div class="settings-hint" data-bind="localize: 'mastery score hint'"></div>
-                            </div>
-                            <div class="settings-column">
-                                <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
-                                    <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
-                                    <input type="text" maxlength="3" id="masteryScore" class="content-text-input" autocomplete="off" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
-                                    <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
-                                    <div class="spiner-seperator"></div>
+                        <div class="settings-row mastery-setting">
+                            <div class="mastery-setting-wrapper" data-bind="css: { disabled: !masteryScore.isOverall() }">
+                                <div class="selector-item-container" data-bind="toggle: { value: masteryScore.isOverall }, css: { selected: masteryScore.isOverall }">
+                                    <div class="selector-item-btn"></div>
+                                    <div data-bind="localize: 'overall course caption'"></div>
                                 </div>
+                            </div>
+                            <div class="mastery-setting-wrapper" data-bind="css: { disabled: masteryScore.isOverall }">
+                                <div class="selector-item-container" data-bind="toggle: { value: masteryScore.isOverall }, css: { selected: !masteryScore.isOverall() }">
+                                    <div class="selector-item-btn"></div>
+                                    <div data-bind="localize: 'each section caption'"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-row mastery-score-value">
+                            <div class="section-description">
+                                <div class="section-description-header" data-bind="localize: 'mastery score'"></div>
+                            </div>
+                            <div data-trigger="spinner" class="spinner" data-bind="spinner: masteryScore.score">
+                                <a class="spinner-button spinner-down" data-spin="down" data-bind="disableDragNDrop: {}"></a>
+                                <input type="text" maxlength="3" id="overallCourseMasteryScore" class="content-text-input" autocomplete="off" data-rule="quantity" data-max="100" data-min="0" data-bind="value: masteryScore.score, valueUpdate: ['afterkeydown', 'afterpaste'], number: {}">
+                                <a class="spinner-button spinner-up" data-spin="up" data-bind="disableDragNDrop: {}"></a>
+                                <div class="spiner-seperator"></div>
                             </div>
                         </div>
                     </div>

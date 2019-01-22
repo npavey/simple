@@ -37,19 +37,16 @@
                 app.trigger(events.courseStarted, data);
             },
 
-            courseEvaluated = function (data, callbacks) {
-                if (!_.isObject(callbacks))
-                    callbacks = {};
-
-                return executeAfterSubscribersDone(events.courseEvaluated, data, callbacks.success, callbacks.fail, callbacks.fin);
+            courseEvaluated = function (data) {
+                return executeAfterSubscribersDone(events.courseEvaluated, data);
             },
 
-            courseFinished = function (data, callback) {
-                return executeAfterSubscribersDone(events.courseFinished, data, callback);
+            courseFinished = function (data) {
+                return executeAfterSubscribersDone(events.courseFinished, data);
             },
 
-            courseFinalized = function (callback) {
-                return executeAfterSubscribersDone(events.courseFinalized, {}, callback);
+            courseFinalized = function () {
+                return executeAfterSubscribersDone(events.courseFinalized, {});
             },
 
             answersSubmitted = function (data, sendParentProgress) {
@@ -60,13 +57,9 @@
                 app.trigger(events.learningContentExperienced, data, spentTime);
             },
             
-            executeAfterSubscribersDone = function (event, eventData, successCallback, failCallback, finCallback) {
+            executeAfterSubscribersDone = function (event, eventData) {
                 if (_.isNullOrUndefined(app.callbacks) || _.isNullOrUndefined(app.callbacks[event])) {
-                    return Q.fcall(function () {
-                        if (_.isFunction(successCallback)) {
-                            successCallback();
-                        }
-                    });
+                    return Q();
                 }
 
                 var promises = [];
@@ -80,19 +73,7 @@
                     }
                 });
 
-                return Q.all(promises).then(function () {
-                    if (_.isFunction(successCallback)) {
-                        successCallback();
-                    }
-                }).fail(function (reason) {
-                    if (_.isFunction(failCallback)) {
-                        failCallback(reason);
-                    }
-                }).fin(function() {
-                    if (_.isFunction(finCallback)) {
-                        finCallback();
-                    }
-                });
+                return Q.all(promises);
             };
 
         return {

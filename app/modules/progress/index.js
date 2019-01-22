@@ -1,7 +1,7 @@
 define(['q', 'underscore', 'context', 'userContext', 'templateSettings', './localStorage/index', './progressStorage/index',
-        './progressStorage/auth', 'account/limitAccess/accessLimiter'
+        './progressStorage/auth', 'account/limitAccess/accessLimiter', 'helpers/loginHelper'
     ],
-    function (Q, _, context, userContext, templateSettings, LocalStorageProvider, ProgressStorageProvider, auth, accessLimiter) {
+    function (Q, _, context, userContext, templateSettings, LocalStorageProvider, ProgressStorageProvider, auth, accessLimiter, loginHelper) {
         'use strict';
         var _psProvider = null,
             _lsProvider = null;
@@ -23,7 +23,7 @@ define(['q', 'underscore', 'context', 'userContext', 'templateSettings', './loca
             }
 
             if (templateSettings.allowCrossDeviceSaving) {
-                var token = auth.getValueFromUrl('token');
+                var token = loginHelper.token;
 
                 if (!_.isNull(token)) {
                     auth.setToken(token);

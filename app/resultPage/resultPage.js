@@ -1,9 +1,11 @@
 define([
     'repositories/courseRepository', 'templateSettings', 'plugins/router', 'progressContext',
-    'userContext', 'xApi/xApiInitializer', 'includedModules/modulesInitializer',
-    'windowOperations', 'constants', 'modules/progress/progressStorage/auth', 'modules/publishModeProvider', 'dialogs/dialog'
+    'userContext', 'xApi/xApiInitializer', 'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth',
+    'modules/publishModeProvider', 'dialogs/dialog', 'modules/progress/progressStorage/certificateProvider',
+    'helpers/fileDownloader', 'localizationManager', 'modules/webhooks'
 ], function(courseRepository, templateSettings, router, progressContext, userContext,
-    xApiInitializer, modulesInitializer, windowOperations, constants, auth, publishModeProvider, Dialog) {
+    xApiInitializer, appOperations, constants, auth, publishModeProvider, 
+    Dialog, certificateProvider, fileDownloader, localizationManager, webhooks) {
     "use strict";
 
     var course = courseRepository.get();
@@ -12,6 +14,7 @@ define([
 
     var statuses = {
         readyToFinish: 'readyToFinish',
+        preparingCertificate: 'preparingCertificate',
         sendingRequests: 'sendingRequests',
         finished: 'finished'
     };
@@ -25,16 +28,21 @@ define([
         activate: activate,
         close: close,
         finish: finish,
+        isDownloadingCertificate: ko.observable(false),
+        downloadCertificate: downloadCertificate,
         npsDialog: new Dialog(),
         newAttemptDialog: new Dialog(),
-        isInReviewAttemptMode: course.isFinished,
+        resendResultsDialog: new Dialog(),
 
         //properties
+        isInReviewAttemptMode: false,
         isCompleted: false,
         crossDeviceEnabled: false,
         allowContentPagesScoring: false,
         xAPIEnabled: false,
         scormEnabled: false,
+        canDownloadCertificate: false,
+        certificateDownloaded: false,
         stayLoggedIn: ko.observable(false),
 
         //methods
@@ -44,9 +52,14 @@ define([
     return viewModel;
 
     function activate() {
+        viewModel.isInReviewAttemptMode = course.isFinished;
         viewModel.npsDialog.isVisible(false);
         viewModel.newAttemptDialog.isVisible(false);
+        viewModel.resendResultsDialog.isVisible(false);
         viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
+        viewModel.canDownloadCertificate =  templateSettings.allowCrossDeviceSaving 
+                                                && templateSettings.allowCertificateDownload 
+                                                && course.isCompleted();
         
         viewModel.allowContentPagesScoring = templateSettings.allowContentPagesScoring;
 
@@ -73,25 +86,86 @@ define([
             return;
         }
 
+        if(viewModel.canDownloadCertificate && !viewModel.certificateDownloaded){
+            viewModel.status(statuses.preparingCertificate);
+            downloadCertificate().always(doFinishCourse);
+            return;
+        }
+
+        doFinishCourse();
+    }
+
+    function doFinishCourse(){
         if (templateSettings.xApi.enabled && xApiInitializer.isLrsReportingInitialized) {
             viewModel.status(statuses.sendingRequests);
         }
 
-        var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
-            progressContext.finish : progressContext.remove;
-            
-        course.setFinishedStatus();
-        finishHandler(function() {
-            course.finish(onCourseFinished);
-        });
+        if(course.getStatus() === constants.course.statuses.inProgress) {
+            var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
+                progressContext.finish : progressContext.remove;
+                
+            course.setFinishedStatus();
+            return finishHandler(function() {
+                progressContext.status(progressStatuses.ignored);
+                course.finish(sendWebhooks);
+            });
+        }
+
+        sendWebhooks();
+    }
+
+    function downloadCertificate() {
+        viewModel.isDownloadingCertificate(true);
+        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score, templateSettings.logo.url)
+            .then(function(url){
+                /* Fix for IE11 and Edge (files can`t saved without extension) */
+                var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
+                return fileDownloader.downloadFile(url, filename);
+            })
+            .always(function(){
+                viewModel.isDownloadingCertificate(false);
+                viewModel.certificateDownloaded = true;
+            });
+    }
+
+    function sendWebhooks() {
+        if (webhooks.initialized) {
+            return webhooks.sendResults(course)
+                .then(function() {
+                    onCourseFinished();
+                })
+                .catch(function() {
+                    viewModel.status(statuses.readyToFinish);
+                    viewModel.resendResultsDialog.resultsSendErrorTitleKey = constants.dialogs.resendResults.webhooks.resultsSendErrorTitleKey;
+                    viewModel.resendResultsDialog.endpointNameKey = constants.dialogs.resendResults.webhooks.endpointNameKey;
+                    viewModel.resendResultsDialog.show({
+                        resend: webhooks.sendResults.bind(webhooks),
+                        next: onCourseFinished, 
+                    });
+                });
+        } 
+
+        onCourseFinished();
+    }
+
+    function downloadCertificate() {
+        viewModel.isDownloadingCertificate(true);
+        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score)
+            .then(function(url){
+                /* Fix for IE11 and Edge (files can`t saved without extension) */
+                var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
+                return fileDownloader.downloadFile(url, filename);
+            })
+            .always(function(){
+                viewModel.isDownloadingCertificate(false);
+            });
     }
 
     function onCourseFinished() {
         viewModel.status(statuses.finished);
-        progressContext.status(progressStatuses.ignored);
 
         if (templateSettings.nps.enabled && xApiInitializer.isNpsReportingInitialized) {
-            viewModel.npsDialog.show({
+            return viewModel.npsDialog.show({
                 closed: function() {
                    finalize({close: true});
                 },
@@ -99,8 +173,6 @@ define([
                    finalize({close: false});
                 }
             });
-
-            return;
         }
 
         finalize({close: true});
@@ -112,8 +184,11 @@ define([
             auth.signout();
 
         course.finalize(function() {
-            if (params.close)
-                windowOperations.close();
+            if (params.close){
+                appOperations.close({ 
+                    shouldCloseWindow: !viewModel.canDownloadCertificate 
+                });
+            }
         });
     }
 

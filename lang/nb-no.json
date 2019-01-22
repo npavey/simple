@@ -130,6 +130,10 @@
     "[survey mode answered caption]": "Svaret påvirker ikke framdriften din",
     "[continue course]": "Forsett kurset",
     "[submit results and logout]": "Send inn svar og logg ut",
+    "[submit results and download certificate]": "Send resultatene og last ned kursbevis",
+    "[download certificate]": "Last ned kursbevis",
+    "[certificate file name]": "Kursbevis",
+    "[preparing course certificate]": "Lager kursbevis…",
     "[questions correct]": "Spørsmålene er rettet",
     "[contents readed]": "Innholdet ble lest",
     "[section]": "Kapittel",
@@ -140,6 +144,7 @@
     "[OK, email are correct]": "OK, eposten er riktig",
     "[type your password]": "Skriv inn passordet",
     "[OK, go to the course]": "OK, åpne kurset",
+    "[back]": "Tilbake",
     "[set your name and password]": "Skriv navn og passord",
     "[no spaces]": "Ingen mellomrom",
     "[at least 7 characters]": "Minst 7 karakterer",
@@ -171,5 +176,9 @@
     "[review attempt]": "Se om igjen",
     "[start new attempt]": "Prøv igjen",
     "[success]": "Bestått",
-    "[failed]": "Ikke bestått"
+    "[failed]": "Ikke bestått",
+    "[detailed summary]": "Detaljert sammendrag",
+    "[start new attempt dialog title]": "Start et nytt forsøk",
+    "[start new attempt dialog text]": "Når du starter på nytt, vil du ikke lenger kunne se dine tidligere forsøk.",
+    "[close course and logout]": "Avslutt kurset og logg ut"
 }

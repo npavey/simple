@@ -62,7 +62,8 @@
 	        var contentUrl = 'content/' + self.question.sectionId + '/' + self.question.id + '/content.html';
 	        return http.get(contentUrl)
                 .then(function (response) {
-                    self.content = response;
+					self.content = response;
+					self.question.content = response;
                 })
                 .fail(function () {
                     self.content = '';

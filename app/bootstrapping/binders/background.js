@@ -1,4 +1,4 @@
-define(['templateSettings'], function (templateSettings) {
+define(['templateSettings', 'displaySettings'], function (templateSettings, displaySettings) {
     'use strict';
 
     ko.bindingHandlers.secondaryBackground = {
@@ -46,7 +46,7 @@ define(['templateSettings'], function (templateSettings) {
         };
 
         if (background.body.texture && background.body.texture.length) {
-            applyImage(elementsClasses.body.element, background.body.texture, "repeat");
+            applyImage(elementsClasses.body.element, background.body.texture);
         };
 
         if (background.body.color && background.body.color.length) {
@@ -72,20 +72,13 @@ define(['templateSettings'], function (templateSettings) {
     }
 
     function applyImage(element, url, type) {
+        type = type || "repeat";
+
         var $element = $(element),
             image = new Image(),
-            position = '0 0',
-            repeat = 'no-repeat',
-            size = 'auto';
-
-        if (type === 'repeat') {
-            repeat = 'repeat';
-        };
-
-        if (type === 'fullscreen') {
-            size = 'cover';
-            position = 'center';
-        };
+            position = displaySettings.backgroundSettings[type].position || '0 0',
+            repeat = displaySettings.backgroundSettings[type].repeat || 'no-repeat',
+            size = displaySettings.backgroundSettings[type].size || 'auto';
 
         image.onload = function () {
             $element.css({
