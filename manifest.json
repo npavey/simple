@@ -230,8 +230,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "//cdn.easygenerator.com/images/11.jpg",
-                "option": "repeat"
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
+                "option": "fullscreen"
               }
             },
             "body": {
@@ -387,8 +387,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "//cdn.easygenerator.com/images/13.jpg",
-                "option": "repeat"
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
+                "option": "fullscreen"
               }
             },
             "body": {
@@ -544,8 +544,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "//cdn.easygenerator.com/images/4.jpg",
-                "option": "repeat"
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
+                "option": "fullscreen"
               }
             },
             "body": {
@@ -701,8 +701,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "//cdn.easygenerator.com/images/12.jpg",
-                "option": "repeat"
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
+                "option": "fullscreen"
               }
             },
             "body": {
