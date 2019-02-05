@@ -89,10 +89,10 @@
   content: "\e909";
 }
 .icon-google:before {
-  content: "\e90a";
+  content: "\e913";
 }
 .icon-facebook:before {
-  content: "\e90b";
+  content: "\e914";
 }
 .icon-twitter:before {
   content: "\e90c";
@@ -110,19 +110,10 @@
   content: "\e910";
 }
 .icon-linkedin:before {
-  content: "\e911";
+  content: "\e915";
 }
 .icon-link:before {
   content: "\e912";
-}
-.icon-google2:before {
-  content: "\e913";
-}
-.icon-facebook2:before {
-  content: "\e914";
-}
-.icon-linkedin2:before {
-  content: "\e915";
 }
 .icon-email:before {
   content: "\e916";
