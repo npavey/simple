@@ -13,6 +13,10 @@ define(['localizationManager', 'constants'], function (localizationManager, cons
             var documentSizeString = getSize(documentData.size);
             var downloadBtnText = downloadText + ' (' + documentSizeString + ')';
 
+            if(documentData.type === constants.documents.types.zip) {
+                $container.addClass(documentData.type);
+            }
+
             $output.find(constants.documents.downloadBtnSelector)
                 .text(downloadBtnText);
 
