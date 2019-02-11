@@ -156,6 +156,7 @@
     "[introduction page title]": "Einführung",
     "[not found page title]": "Nicht gefunden",
     "[question page title]": "Frage",
+    "[content page title]": "Inhalt",
     "[sections page title]": "Abschnitte",
     "[login page title]": "Anmeldung",
     "[limited access page title]": "Eingeschränkter Zugriff",
@@ -183,5 +184,12 @@
     "[start new attempt dialog title]": "Einen neuen Versuch starten?",
     "[start new attempt dialog text]": "Wenn Sie einen neuen Versuch starten, können Sie Ihren vorherigen Versuch nicht mehr ansehen",
     "[close course and logout]": "Kurs schließen",
-    "[try to submit again key]": "Bitte die Ergebnise erneut übermitteln"
+    "[results send error title]": "Der Fortschritt wurde gespeichert, aber der WebHook wurde NICHT an den Autor gesendet",
+    "[try to submit again key]": "Bitte die Ergebnisse erneut übermitteln",
+    "[contanct with author key]": "Wenn das Problem weiterhin besteht, wende dich an den Kursautor",
+    "[general-message-key]": "Fehlermeldung",
+    "[error-message-key]": "Keine Verbindung zum Host",
+    "[resend-results-key]": "Ergebnisse erneut übermitteln",
+    "[close without reporting results]": "Kurs beenden, ohne die Ergebnisse zu übermitteln {endpointName}",
+    "[webhooks endpoint name key]": "Die WebHooks"
 }
