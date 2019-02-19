@@ -70,6 +70,7 @@
     "[download course in pdf format]": "Ladda ner kursen i PDF-format.",
     "[scenario has been passed successfully]": "Du har klarat scenariot med godkänt resultat",
     "[scenario has not been passed successfully]": "Du har INTE klarat scenariot med godkänt resultat.",
+    "By clicking the \"Start and report my results\" button you agree to your results and scores being stored. These results will only be visible to the organizer (author) of the course.": "Genom att klicka på knappen \"Starta och spara mina resultat\" godkänner du att dina poäng och resultat sparas. Dessa kan bara ses av den som tillhandahåller kursen.",
     "[download as pdf]": "Ladda ner som PDF",
     "[download as pdf preparing]": "förbereder…",
     "[download as pdf error]": "Något gick fel",

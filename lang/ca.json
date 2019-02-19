@@ -69,6 +69,7 @@
     "[download course in pdf format]": "Descarrega el curs en format PDF",
     "[scenario has been passed successfully]": "S'ha superat l'activitat amb èxit",
     "[scenario has not been passed successfully]": "L'activitat NO s'ha superat correctament",
+    "By clicking the \"Start and report my results\" button you agree to your results and scores being stored. These results will only be visible to the organizer (author) of the course.": "En fer clic al botó \"Inicia i informeu els meus resultats\", accepteu que els resultats i les puntuacions estiguin emmagatzemades. Aquests resultats només seran visibles per a l'organitzador (autor) del curs.",
     "[download as pdf]": "Baixa-ho com a PDF",
     "[download as pdf preparing]": "preparant …",
     "[download as pdf error]": "Alguna cosa ha anat malament",

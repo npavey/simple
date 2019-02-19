@@ -70,6 +70,7 @@
     "[download course in pdf format]": "Kurzus letöltés PDF formátumban.",
     "[scenario has been passed successfully]": "A jelenet sikeresen be lett fejezve",
     "[scenario has not been passed successfully]": "A jelenet NEM lett sikeresen befejezve",
+    "By clicking the \"Start and report my results\" button you agree to your results and scores being stored. These results will only be visible to the organizer (author) of the course.": "A \"Kezdés és az eredményeim jelentése\" gombra kattintva beleegyezel abba, hogy az eredményeid és a pontszámaid elmentésre kerülnek. Ezek az eredmények csak a kurzus szervezőjének (készítőjének) lesznek elérhetők.",
     "[download as pdf]": "Letöltés PDF-ként",
     "[download as pdf preparing]": "előkészítés...",
     "[download as pdf error]": "Valami hiba történt",
