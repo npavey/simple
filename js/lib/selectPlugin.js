@@ -119,8 +119,13 @@
                     })
                     .append(getOptionsMarkup()))
                     .appendTo('body');
-
-            container.find('ul li').first().focus();
+                  
+            $.each(container.find('ul li'), function(index, value){
+                var $currentValue = $element.find('.' + cssClasses.value)[0].title
+                if ($currentValue === value.textContent){
+                    value.focus();
+                }
+            })
 
             var handler = function () {
                 container.remove();
