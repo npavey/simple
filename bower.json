@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
+    "knockout": "3.4.2",
     "components-webfontloader": "~1.6.3",
     "easygenerator-plugins": "*",
     "has": "*",
