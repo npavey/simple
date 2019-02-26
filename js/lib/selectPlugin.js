@@ -18,6 +18,8 @@
         this.init();
     };
 
+    var activeItemIndex = 0;
+
     Select.prototype = {
         init: function () {
             var that = this,
@@ -60,7 +62,6 @@
         },
         show: function ($element, options, callback) {
             var $html = $('html');
-
             if ($element.hasClass(cssClasses.active)) {
                 return;
             }
@@ -77,13 +78,12 @@
                 .append($('<ul tabindex="-1" role="listbox" />')
                     .on('click', 'li', function () {
                         var text = $(this).text();
+                        activeItemIndex = $(this).attr("aria-posinset");
                         $element.find('.' + cssClasses.current)
                             .text(text)
                             .removeClass(cssClasses.default);
-
                         $element.find('.' + cssClasses.default)
                             .removeClass(cssClasses.default);
-
                         if (callback) {
                             callback(text);
                         }
@@ -119,9 +119,9 @@
                     })
                     .append(getOptionsMarkup()))
                     .appendTo('body');
-
-            container.find('ul li').first().focus();
-
+            if(activeItemIndex){
+                container.find('ul li')[activeItemIndex - 1].focus()
+            }
             var handler = function () {
                 container.remove();
                 $element.removeClass(cssClasses.active);

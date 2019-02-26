@@ -29,13 +29,28 @@
                 font-size: 15px;
                 font-weight: 400;
             }
-            .social-button {
-                display: inline-block;
-                font-size: 42px;
-                margin-right: 17px;
-                transition: color .2s linear;
-                &:last-child {
-                    margin-right: 0;
+            .link-wrapper {
+                display: flex;
+                justify-content: center;
+
+                .social-button {
+                    display: flex;
+                    width: 42px;
+                    height: 42px;
+                    font-size: 20px;
+                    margin-right: 17px;
+                    border-radius: 50%;
+                    align-items: center;
+                    justify-content: center;
+                    transition: background-color .2s linear;
+                    
+                    &.google {
+                        font-size: 18px;
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
                 }
             }
         }
