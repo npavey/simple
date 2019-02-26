@@ -1451,10 +1451,11 @@ body {
 
         .social-container{
             .social-button{
-                color: fade(@main-color, 70%);
+                background-color: fade(@main-color, 70%);
+                color: @button-text-color;
 
                 &:hover, &:focus {
-                    color: @main-color;
+                    background-color: @main-color;
                 }
             }
         }

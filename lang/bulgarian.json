@@ -70,6 +70,7 @@
     "[download course in pdf format]": "Изтеглете курса в PDF формат",
     "[scenario has been passed successfully]": "Курсът е изпратен успешно",
     "[scenario has not been passed successfully]": "Курсът НЕ е изпратен успешно",
+    "By clicking the \"Start and report my results\" button you agree to your results and scores being stored. These results will only be visible to the organizer (author) of the course.": "Кликвайки бутона \"Стартирай и изпрати резултатите ми\", Вие се съгласявате резултатите и точките Ви да се съхраняват. Тези резултати ще бъдат видими само за организатора на курса.",
     "[download as pdf]": "Изтегли в PDF",
     "[download as pdf preparing]": "подготовка...",
     "[download as pdf error]": "Нещо се обърка",
@@ -156,6 +157,7 @@
     "[introduction page title]": "Въведение",
     "[not found page title]": "Не е намерено",
     "[question page title]": "Въпрос",
+    "[content page title]": "Съдържание",
     "[sections page title]": "Раздели",
     "[login page title]": "Вписване",
     "[limited access page title]": "Ограничен достъп",
@@ -189,5 +191,6 @@
     "[general-message-key]": "Съобщение за грешка:",
     "[error-message-key]": "неуспешно свързване с хоста",
     "[resend-results-key]": "Изпратете резултатите отново",
-    "[close without reporting results]": "Затвори курса, без да докладваш {endpointName}"
+    "[close without reporting results]": "Затвори курса, без да докладваш {endpointName}",
+    "[webhooks endpoint name key]": "webhooks"
 }
