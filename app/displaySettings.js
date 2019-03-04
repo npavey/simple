@@ -33,6 +33,9 @@ define(function() {
       },
       rightBottom: {
         position: "right bottom"
+      },
+      cover: {
+        size: "cover"
       }
     }
   };
