@@ -1,5 +1,5 @@
-define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/requestResender'],
-    function (eventManager, auth, requestResender) {
+define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/requestResender', 'errorTracking/errorTracker'],
+    function (eventManager, auth, requestResender, errorTracker) {
         'use strict';
         
         var constants = {
@@ -36,7 +36,10 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
             return requestResender.send(requestOptions, onError);
         }
 
-        function onError() {
+        function onError(response, textStatus, error) {
+            errorTracker.trackError(new Error('Error while sending LTI request. Status: ' 
+                + textStatus + '. Error: ' + error + '. Response code: ' + response.status));
+
             return constants.errorMessage;
         }
     }
