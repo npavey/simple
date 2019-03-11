@@ -981,7 +981,7 @@
       "enabled": true
     },
     "errorTracking": {
-      "enabled": false
+      "enabled": true
     },
     "webhooks": {
       "url": ""
