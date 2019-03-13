@@ -5,7 +5,7 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
         var constants = {
             resultCallbackUrlParameterName: 'ltiResultCallbackUrl',
             errorMessage: 'Something went wrong and your final score has not been reported ' + 
-                '(reason: LTI reporting failed). Please contact the author of the course.'
+                '({reason}). Please contact the author of the course.'
         };
 
         return {
@@ -23,24 +23,27 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
         }
 
         function onCourseFinished(resultCallbackUrl, course) {
-            var url = resultCallbackUrl + '?score=' + course.score() / 100;
-
             var requestOptions = {
-                url: url,
-                dataType: 'jsonp',
+                url: resultCallbackUrl,
+                method: 'POST',
+                dataType: 'json',
                 xhrFields: {
                     withCredentials: true
+                },
+                data: {
+                    score: course.score() / 100
                 }
             };
 
             return requestResender.send(requestOptions, onError);
         }
 
-        function onError(response, textStatus, error) {
-            errorTracker.trackError(new Error('Error while sending LTI request. Status: ' 
-                + textStatus + '. Error: ' + error + '. Response code: ' + response.status));
+        function onError(response) {
+            var errorMessage = 'LTI reporting failed. Code: ' + response.status + ', Reason: ' + response.responseText;
 
-            return constants.errorMessage;
+            errorTracker.trackError(new Error(errorMessage));
+            
+            return constants.errorMessage.replace('{reason}', errorMessage);
         }
     }
 );
