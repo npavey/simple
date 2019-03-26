@@ -1,4 +1,5 @@
-define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/requestResender', 'errorTracking/errorTracker'],
+define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/requestResender', 
+    'errorTracking/errorTracker'],
     function (eventManager, auth, requestResender, errorTracker) {
         'use strict';
         
@@ -25,6 +26,9 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
         function onCourseFinished(resultCallbackUrl, course) {
             var requestOptions = {
                 url: resultCallbackUrl,
+                headers: {
+                    Authorization: 'Bearer ' + auth.getToken()
+                },
                 method: 'POST',
                 dataType: 'json',
                 xhrFields: {

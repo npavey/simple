@@ -47,6 +47,10 @@ define(['./httpWrapper', './urlProvider'], function (httpWrapper, urlProvider) {
         }
     };
 
+    auth.getToken = function () {
+        return _private.getToken();
+    };
+
     auth.exists = function (email) {
         return httpWrapper.post(urlProvider.progressStorageUrl + 'user/exists', {
             email: email
