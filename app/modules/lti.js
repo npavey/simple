@@ -26,9 +26,6 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
         function onCourseFinished(resultCallbackUrl, course) {
             var requestOptions = {
                 url: resultCallbackUrl,
-                headers: {
-                    Authorization: 'Bearer ' + auth.getToken()
-                },
                 method: 'POST',
                 dataType: 'json',
                 xhrFields: {
@@ -38,6 +35,13 @@ define(['eventManager', 'modules/progress/progressStorage/auth', 'helpers/reques
                     score: course.score() / 100
                 }
             };
+
+            var token = auth.getToken();
+            if (token) {
+                requestOptions.headers = {
+                    Authorization: 'Bearer ' + token
+                };
+            }
 
             return requestResender.send(requestOptions, onError);
         }
