@@ -293,7 +293,7 @@ textarea {
     &.progress {
         .button-caption-loader {
             position: absolute;
-            top: 50%; 
+            top: 50%;
             left: 50%;
             width: 16px;
             height: 16px;
@@ -648,7 +648,7 @@ textarea {
                             }
                         }
                     }
-                    
+
                     .document-title {
                         padding: 7px 20px 0 0;
                         font-size: 14px;
@@ -657,7 +657,7 @@ textarea {
                         word-break: break-all; /*Fix for IE11*/
                     }
                 }
-            
+
                 .download-document-btn-container {
                     display: flex;
 
@@ -675,7 +675,7 @@ textarea {
             .document-editor-frame-wrapper {
                 padding-top: 15px;
             }
-            
+
             .document-block-iframe-wrapper {
                 max-height: 550px;
                 -webkit-overflow-scrolling: touch;
@@ -880,7 +880,7 @@ textarea {
                 margin: auto;
                 align-items: center;
                 justify-content: center;
-                
+
                 * {
                     margin: auto;
                     height: auto;
@@ -1009,7 +1009,7 @@ textarea {
     top: 0;
     left: 0;
     height: 435px;
-    
+
     transition: height .2s ease-out;
 
     .header-items-holder-wrapper {
@@ -3113,11 +3113,11 @@ textarea {
         height: 40px;
         top: 62px;
         left: 50%;
-        margin-left: -59px;  
+        margin-left: -59px;
         border-radius: 0;
         z-index: 11;
         opacity: 0;
-        
+
         transition: .2s;
 	    transition-property: background, opacity, color, border;
     }
@@ -3454,7 +3454,7 @@ textarea {
                 display:none;
                 max-height: 60px;
                 &.clamped{
-                    position: relative; 
+                    position: relative;
                     display: block;
                     padding-right: 10px;
                     overflow: hidden;
@@ -3505,7 +3505,7 @@ textarea {
                         }
                     }
                 }
-                
+
             }
         }
     }
@@ -3681,7 +3681,7 @@ textarea {
     margin-bottom: 30px;
 }
 
-.learning-contents {    
+.learning-contents {
     .styled-content:first-child{
         margin-top: 30px;
     }
@@ -3877,7 +3877,7 @@ textarea {
         display: inline-block;
         cursor: pointer;
     }
-    
+
     .overlay-close-button-subtext {
         display: block;
         margin-top: -10px;
@@ -4215,7 +4215,7 @@ textarea {
 
 .download-course-wrapper {
     position: relative;
-    margin: 0px 15px;
+    margin: 0 15px;
 }
 
 .download-as-pdf-button {
@@ -4232,7 +4232,8 @@ textarea {
     cursor: default;
 }
 
-.download-course-wrapper.default .download-as-pdf-button:after {
+.download-course-wrapper.default .download-as-pdf-button:after,
+.download-course-wrapper.disabled .download-as-pdf-button:after {
     content: '';
     position: absolute;
     top: 11px;
@@ -4294,8 +4295,8 @@ textarea {
     cursor: default;
 }
 
-.download-course-wrapper:hover .download-as-pdf-status-wrapper,
-.download-course-wrapper:focus .download-as-pdf-status-wrapper,
+.download-course-wrapper.default:hover .download-as-pdf-status-wrapper,
+.download-course-wrapper.default:focus .download-as-pdf-status-wrapper,
 .download-course-wrapper.proggress .download-as-pdf-status-wrapper,
 .download-course-wrapper.error .download-as-pdf-status-wrapper,
 .download-course-wrapper.server-error .download-as-pdf-status-wrapper {

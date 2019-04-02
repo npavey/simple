@@ -935,6 +935,14 @@
     {
       "code": "hu",
       "url": "lang/hu.json"
+    },
+    {
+      "code": "bg",
+      "url": "lang/bg.json"
+    },
+    {
+      "code": "sl",
+      "url": "lang/sl.json"
     }
   ],
   "defaultTemplateSettings": {
@@ -981,7 +989,7 @@
       "enabled": true
     },
     "errorTracking": {
-      "enabled": false
+      "enabled": true
     },
     "webhooks": {
       "url": ""

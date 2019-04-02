@@ -192,5 +192,5 @@
     "[error-message-key]": "не вдалося підключитися до хоста",
     "[resend-results-key]": "Відправити результати ще раз",
     "[close without reporting results]": "Завершити курс без відправки {endpointName}",
-    "[webhooks endpoint name key]": "вебхукі"
+    "[webhooks endpoint name key]": "вебхуки"
 }
