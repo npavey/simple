@@ -826,7 +826,7 @@
 /* Primary & Dk. Primary - Button Hover */
 .button.primary:not(.disabled):hover, .button.primary:not(.disabled):focus {
     background-color: #990000;
-    border-color: #12315a;
+    border-color: #4c0000;
 }
 
 /* Focus on logo button */
