@@ -142,10 +142,18 @@
 			content.avatarUploaded();
 		}
 		if (content.hasIntroductionContent) {
-			promises.push($.get('../content/content.html', function (response) {
-				content.introductionContent = response;
-				calcImages(response);
-			}));
+			ko.utils.arrayForEach(content.introductions, function (introduction){
+				promises.push($.get('../content/introduction/'+ introduction.id +'.html', function (response) {
+					introduction.html = response;
+					calcImages(response);
+				}));
+				ko.utils.arrayForEach(introduction.children, function (child) {
+					promises.push($.get('../content/introduction'+ child.id +'.html', function (response) {
+						child.html = response;
+						calcImages(response);
+					}));
+				});
+			});
 		}
 		ko.utils.arrayForEach(content.sections, function (section) {
 			ko.utils.arrayForEach(section.questions, function (question) {

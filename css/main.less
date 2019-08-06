@@ -340,7 +340,6 @@ textarea {
 
 
 /*#region styled content*/
-
 .styled-content {
     .margin-bottom() {
         &:not(:last-child) {
@@ -894,6 +893,21 @@ textarea {
     /*#endregion*/
 }
 
+.introduction-item {
+    .styled-content {
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+    ul, ol {
+        & > li {
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
 
 /*#endregion*/
 
