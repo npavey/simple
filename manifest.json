@@ -1,5 +1,5 @@
 ﻿{
-  "name": "FDU: Simple course",
+  "name": "CU: Simple course",
   "goal": "Teach",
   "shortDescription": "A basic eLearning course template designed for The Learning House\n\nDetails:\nThe simple course will allow you to create a course that is divided into several parts (sections or learning objectives). Each section can contain both content items and questions. This way you can create a basic 'simple' eLearning course.",
   "thumbnail": "preview/thumbnail.png",
@@ -34,7 +34,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -45,11 +45,11 @@
             },
             {
               "key": "@main-color",
-              "value": "#002f6c"
+              "value": "#872434"
             },
             {
               "key": "@secondary-color",
-              "value": "#d8bec2"
+              "value": "#bcd4e0"
             },
             {
               "key": "@button-text-color",
@@ -73,31 +73,32 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
-                "option": "fullscreen"
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-background.png",
+                "option": "repeat"
               }
             },
             "body": {
               "switchable": true,
               "enabled": true,
               "brightness": 0,
-              "color": "#fff",
+              "color": "#ececed",
               "texture": null
             }
           }
         },
         "fonts": [
           {
-            "place": "custom",
+            "place": "google",
             "key": "main-font",
             "fontFamily": "ProximaNovaA"
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Heading1",
             "size": 32,
-            "fontFamily": "ProximaNovaA"
-            "fontWeight": "normal",
+            "fontFamily": "ProximaNovaA",
+            "color": "#000",
+            "fontWeight": "700",
             "textDecoration": "none",
             "fontStyle": "normal",
             "textBackgroundColor": null,
@@ -105,12 +106,12 @@
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Heading2",
             "size": 28,
             "fontFamily": "ProximaNovaA",
             "color": "#000",
-            "fontWeight": "normal",
+            "fontWeight": "700",
             "textDecoration": "none",
             "fontStyle": "normal",
             "textBackgroundColor": null,
@@ -118,12 +119,12 @@
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Heading3",
             "size": 24,
             "fontFamily": "ProximaNovaA",
             "color": "#000",
-            "fontWeight": "normal",
+            "fontWeight": "700",
             "textDecoration": "none",
             "fontStyle": "normal",
             "textBackgroundColor": null,
@@ -131,7 +132,7 @@
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Normal",
             "size": 18,
             "fontFamily": "ProximaNovaA",
@@ -144,10 +145,10 @@
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Quote",
             "size": 18,
-            "fontFamily": "ProximaNovaA"
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -157,7 +158,7 @@
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "Highlighted",
             "size": 18,
             "fontFamily": "ProximaNovaA",
@@ -165,16 +166,16 @@
             "fontWeight": "normal",
             "textDecoration": "none",
             "fontStyle": "normal",
-            "textBackgroundColor": "#002f6c",
+            "textBackgroundColor": "#872434",
             "isGeneralSelected": true,
             "isGeneralColorSelected": true
           },
           {
-            "place": "custom",
+            "place": "google",
             "key": "links",
             "size": 18,
             "fontFamily": "ProximaNovaA",
-            "color": "#002f6c",
+            "color": "#872434",
             "fontWeight": "normal",
             "textDecoration": "underline",
             "fontStyle": "normal",
@@ -190,7 +191,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -229,8 +230,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
-                "option": "fullscreen"
+                "url": "//cdn.easygenerator.com/images/11.jpg",
+                "option": "repeat"
               }
             },
             "body": {
@@ -246,13 +247,13 @@
           {
             "place": "google",
             "key": "main-font",
-            "fontFamily": "Roboto Slab"
+            "fontFamily": "ProximaNovaA"
           },
           {
             "place": "google",
             "key": "Heading1",
-            "size": 28,
-            "fontFamily": "Roboto Slab",
+            "size": 32,
+            "fontFamily": "ProximaNovaA",
             "color": "#d7d7d7",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -264,8 +265,8 @@
           {
             "place": "google",
             "key": "Heading2",
-            "size": 26,
-            "fontFamily": "Roboto Slab",
+            "size": 28,
+            "fontFamily": "ProximaNovaA",
             "color": "#d7d7d7",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -278,7 +279,7 @@
             "place": "google",
             "key": "Heading3",
             "size": 24,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#d7d7d7",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -291,7 +292,7 @@
             "place": "google",
             "key": "Normal",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#d7d7d7",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -304,7 +305,7 @@
             "place": "google",
             "key": "Quote",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#d7d7d7",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -317,7 +318,7 @@
             "place": "google",
             "key": "Highlighted",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#fff",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -330,7 +331,7 @@
             "place": "google",
             "key": "links",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#336577",
             "fontWeight": "normal",
             "textDecoration": "underline",
@@ -347,7 +348,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -386,8 +387,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
-                "option": "fullscreen"
+                "url": "//cdn.easygenerator.com/images/13.jpg",
+                "option": "repeat"
               }
             },
             "body": {
@@ -403,13 +404,13 @@
           {
             "place": "google",
             "key": "main-font",
-            "fontFamily": "Roboto Slab"
+            "fontFamily": "ProximaNovaA"
           },
           {
             "place": "google",
             "key": "Heading1",
-            "size": 28,
-            "fontFamily": "Roboto Slab",
+            "size": 32,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -421,8 +422,8 @@
           {
             "place": "google",
             "key": "Heading2",
-            "size": 26,
-            "fontFamily": "Roboto Slab",
+            "size": 28,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -435,7 +436,7 @@
             "place": "google",
             "key": "Heading3",
             "size": 24,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -448,7 +449,7 @@
             "place": "google",
             "key": "Normal",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -461,7 +462,7 @@
             "place": "google",
             "key": "Quote",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -474,7 +475,7 @@
             "place": "google",
             "key": "Highlighted",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#fff",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -487,7 +488,7 @@
             "place": "google",
             "key": "links",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#2fa6d1",
             "fontWeight": "normal",
             "textDecoration": "underline",
@@ -504,7 +505,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -543,8 +544,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
-                "option": "fullscreen"
+                "url": "//cdn.easygenerator.com/images/4.jpg",
+                "option": "repeat"
               }
             },
             "body": {
@@ -560,13 +561,13 @@
           {
             "place": "google",
             "key": "main-font",
-            "fontFamily": "Roboto Slab"
+            "fontFamily": "ProximaNovaA"
           },
           {
             "place": "google",
             "key": "Heading1",
-            "size": 28,
-            "fontFamily": "Roboto Slab",
+            "size": 32,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -578,8 +579,8 @@
           {
             "place": "google",
             "key": "Heading2",
-            "size": 26,
-            "fontFamily": "Roboto Slab",
+            "size": 28,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -592,7 +593,7 @@
             "place": "google",
             "key": "Heading3",
             "size": 24,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -605,7 +606,7 @@
             "place": "google",
             "key": "Normal",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -618,7 +619,7 @@
             "place": "google",
             "key": "Quote",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -631,7 +632,7 @@
             "place": "google",
             "key": "Highlighted",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#fff",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -644,7 +645,7 @@
             "place": "google",
             "key": "links",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#3b6998",
             "fontWeight": "normal",
             "textDecoration": "underline",
@@ -661,7 +662,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -700,8 +701,8 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
-                "option": "fullscreen"
+                "url": "//cdn.easygenerator.com/images/12.jpg",
+                "option": "repeat"
               }
             },
             "body": {
@@ -717,13 +718,13 @@
           {
             "place": "google",
             "key": "main-font",
-            "fontFamily": "Roboto Slab"
+            "fontFamily": "ProximaNovaA"
           },
           {
             "place": "google",
             "key": "Heading1",
-            "size": 28,
-            "fontFamily": "Roboto Slab",
+            "size": 32,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -735,8 +736,8 @@
           {
             "place": "google",
             "key": "Heading2",
-            "size": 26,
-            "fontFamily": "Roboto Slab",
+            "size": 28,
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -749,7 +750,7 @@
             "place": "google",
             "key": "Heading3",
             "size": 24,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "700",
             "textDecoration": "none",
@@ -762,7 +763,7 @@
             "place": "google",
             "key": "Normal",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -775,7 +776,7 @@
             "place": "google",
             "key": "Quote",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#000",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -788,7 +789,7 @@
             "place": "google",
             "key": "Highlighted",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#fff",
             "fontWeight": "normal",
             "textDecoration": "none",
@@ -801,7 +802,7 @@
             "place": "google",
             "key": "links",
             "size": 18,
-            "fontFamily": "Roboto Slab",
+            "fontFamily": "ProximaNovaA",
             "color": "#46a24a",
             "fontWeight": "normal",
             "textDecoration": "underline",
@@ -934,6 +935,14 @@
     {
       "code": "hu",
       "url": "lang/hu.json"
+    },
+    {
+      "code": "bg",
+      "url": "lang/bg.json"
+    },
+    {
+      "code": "sl",
+      "url": "lang/sl.json"
     }
   ],
   "defaultTemplateSettings": {
@@ -1152,8 +1161,8 @@
         "[start new attempt dialog title]": "Start a new attempt?",
         "[start new attempt dialog text]": "When you start a new attempt - you won't be able to review your previous attempt any more.",
         "[close course and logout]": "Close the lesson and logout"
-    }
-    },
+		}
+	},
     "pdfExport": {
       "enabled": false
     },
@@ -1161,7 +1170,7 @@
       "enabled": true
     },
     "errorTracking": {
-      "enabled": false
+      "enabled": true
     },
     "webhooks": {
       "url": ""
@@ -1171,7 +1180,7 @@
     },
     "hideContinueLaterButton": false,
     "showConfirmationPopup": true,
-    "allowContentPagesScoring": true,
+    "allowContentPagesScoring": false,
     "allowCrossDeviceSaving": false,
     "allowLoginViaSocialMedia": false,
     "allowAuthorsBio": false,
