@@ -22,7 +22,7 @@
 .popup-layout .popup article footer .button-wrapper button {
     font-size: 18px;
     height: 46px;
-    border: 2px solid #003da5;
+    border: 2px solid #0067b1;
 }
 
 .popup-layout .popup {
@@ -55,7 +55,7 @@
 .popup-layout .popup article:not(.without-note) section {
     background-image: none;
     background-color: rgba(238, 238, 238, .4);
-    border-top: 4px solid #003da5;
+    border-top: 4px solid #0067b1;
     padding: 32px 24px;
     width: 368px;
     height: 224px;
@@ -207,7 +207,7 @@
 
     background: #fff;
     border-color: #fff;
-    color: #003da5;
+    color: #0067b1;
 
     transition-property: opacity, background, color, border;
 }
@@ -215,8 +215,8 @@
 /*Main buttons - Primary*/
 .Tiles .section-image-holder .button:not(.disabled):hover,
 .Tiles .section-image-holder .button:not(.disabled):focus {
-    background: #003da5;
-    border-color: #003da5;
+    background: #0067b1;
+    border-color: #0067b1;
     color: #fff;
 }
 
@@ -276,7 +276,7 @@
 /*Primary - ?*/
 .Tiles .section-progress .mastered-score-tooltip:not(.mastered) {
     background-color: #fff;
-    color: #003da5;
+    color: #0067b1;
 }
 
 /*Default Gray - Take a break button*/
@@ -312,7 +312,7 @@
 
 /*Primary - Menu Bar Icon*/
 .tree-of-content-panel.expanded .tree-of-content-panel-tail .tree-of-content-panel-tail-icon {
-    color: #003da5;
+    color: #0067b1;
 }
 
 .tree-of-content-panel .tree-of-content-container {
@@ -325,14 +325,14 @@
     font-weight: 300;
     letter-spacing: 0.4px;
 
-    color: #003da5;    
+    color: #0067b1;    
 }
 
 /*Dk. Primary - Menu Bar hover*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item.active .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:hover .tree-of-content-section-title-wrapper,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item:focus .tree-of-content-section-title-wrapper {
-    color: #00225e;
+    color: #00355c;
     opacity: 1;
 }
 
@@ -342,7 +342,7 @@
     font-weight: 300;
     letter-spacing: 0.4px;
 
-    color: #003da5;    
+    color: #0067b1;    
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-questions-wrapper {
@@ -378,7 +378,7 @@
     position: absolute;
     left: 0;
     opacity: .7;
-    color: #003da5;
+    color: #0067b1;
 }
 
 /*Primary - Menu Bar*/
@@ -388,13 +388,13 @@
     position: absolute;
     left: 0;
     opacity: .7;
-    color: #003da5;
+    color: #0067b1;
 }
 
 /*Menu Bar borders*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item.active .tree-of-content-question-title-wrapper .tree-of-content-question-title-icon:not(.question)::after,
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item.active .tree-of-content-question-title-wrapper .tree-of-content-question-title-icon.question::after { 
-    color: #003da5;
+    color: #0067b1;
     opacity: 1;
 }    
 
@@ -407,7 +407,7 @@
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:last-child:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-section-title-wrapper:hover .tree-of-content-question-title, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-title-wrapper:hover .tree-of-content-question-title {
-    color: #00225e;
+    color: #00355c;
 }
 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper {
@@ -437,7 +437,7 @@
 /*Dk. Primary - Menu Bar Focus*/
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:focus, 
 .tree-of-content-panel .tree-of-content-container .tree-of-content .tree-of-content-section-item .tree-of-content-question-item .tree-of-content-question-title-wrapper.navigatable:hover {
-    border-color: #00225e;
+    border-color: #00355c;
     opacity: 1;
 }
 
@@ -452,7 +452,7 @@
 
 /*Tail Icon - Primary*/
 .tree-of-content-panel .tree-of-content-panel-tail .tree-of-content-panel-tail-icon {
-    color: #003da5;
+    color: #0067b1;
 }
 
 .tree-of-content-panel:not(.expanded) .tree-of-content-panel-tail:focus {
@@ -486,8 +486,8 @@
 /*Primary - Navigation Hover*/
 .navigation-home-link:not(.disabled):hover, 
 .navigation-home-link:not(.disabled):focus {
-    border-color: #003da5;
-    color: #003da5;
+    border-color: #0067b1;
+    color: #0067b1;
     opacity: 1;
 
     background-color: transparent;
@@ -499,7 +499,7 @@
     border-radius: 0;
     height: 30px;
     width: 30px;
-    background-color: #003da5;
+    background-color: #0067b1;
     transition: all .2s linear;
 }
 
@@ -524,7 +524,7 @@
 /*Dk. Primary - Disabled Button*/
 .question-navigation-bar a:not(.disabled):hover:before,
 .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #00225e;
+    background-color: #00355c;
     -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
     transition: all .2s linear;
@@ -544,7 +544,7 @@
 
 /*Primary - Question Nav visited link*/
 .page-header .question-navigation-bar a:after {    
-    border-color: #003da5;
+    border-color: #0067b1;
 }
 
 .question-navigation-bar a.next:after {
@@ -559,7 +559,7 @@
 /*Primary - Button Hover/Focus*/
 .page-header .question-navigation-bar a:not(.disabled):hover:before,
 .page-header .question-navigation-bar a:not(.disabled):focus:before {
-    background-color: #003da5;
+    background-color: #0067b1;
 }
 
 .question-navigation-bar a.disabled:after, 
@@ -593,7 +593,7 @@
 /*Primary*/
 .information-content-title {
     font-size: 32px;
-    color: #003da5 ;
+    color: #0067b1 ;
 }
 
 .styled-content p {
@@ -644,7 +644,7 @@
 /*Primary - Title*/
 .learning-content .learning-content-title {
     border-top-left-radius: 0px;
-	background-color: #003da5;
+	background-color: #0067b1;
 }
 
 .content-container.module-resultPage {
@@ -689,7 +689,7 @@
     font-size: 18px;
     font-weight: bold;
     letter-spacing: 0.4px;
-    border-color: #003da5;
+    border-color: #0067b1;
 }
 
 .content-container.module-resultPage #content .result-header .button.small {
@@ -705,7 +705,7 @@
 .content-container.module-resultPage #content .result-header .button.check:hover::before, 
 .content-container.module-resultPage #content .result-header .button.check:focus::before,
 .content-container.module-resultPage #content .result-header .button.check.active::before {
-    border-color: #003da5;
+    border-color: #0067b1;
 }
 
 .content-container.module-resultPage #content .result-header .result-buttons .button-wrapper .button.default {    
@@ -718,7 +718,7 @@
 
 /*Primary - Result Page*/
 .content-container.module-resultPage #content .result-header .result-buttons .button-wrapper .button.default:hover {
-    color: #003da5;
+    color: #0067b1;
     background: #fff;
     opacity: 1;
 }
@@ -735,7 +735,7 @@
 /*Primary*/
 .content-container.module-resultPage #content .result-page-content .section-header .section-header-label,
 .content-container.module-resultPage #content .result-page-content .section-header .section-header-analytic {
-    color: #003da5;
+    color: #0067b1;
 }
 
 .text-404 .title-404 {
@@ -825,23 +825,23 @@
 
 /* Primary & Dk. Primary - Button Hover */
 .button.primary:not(.disabled):hover, .button.primary:not(.disabled):focus {
-    background-color: #003da5;
-    border-color: #00225e;
+    background-color: #0067b1;
+    border-color: #00355c;
 }
 
 /* Focus on logo button */
 .logo-img a:focus { 
-    outline: 1px dotted #003da5 !important;
+    outline: 1px dotted #0067b1 !important;
 }
 
 /* Focus on Reference */
 .expand-button.expand:focus {
-    outline: 1px dotted #003da5;
+    outline: 1px dotted #0067b1;
 }
 
 /* Dk. Primary - Table Heading Style */
 .styled-content .table-wrapper table th {
-    background-color: #00225e;
+    background-color: #00355c;
     color: #fff !important;
     font-weight: 700 !important;
 }
@@ -865,6 +865,6 @@
 
 /* Primary & Dk. Primary - Dropdown Fill in the Blank dropdown */
 .select-container ul li:hover, .select-container ul li:focus {
-    background-color: #003da5;
-    border-color: #00225e;
+    background-color: #0067b1;
+    border-color: #00355c;
 }

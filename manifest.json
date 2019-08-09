@@ -45,7 +45,7 @@
             },
             {
               "key": "@main-color",
-              "value": "#003da5"
+              "value": "#0067b1"
             },
             {
               "key": "@secondary-color",
@@ -166,7 +166,7 @@
             "fontWeight": "normal",
             "textDecoration": "none",
             "fontStyle": "normal",
-            "textBackgroundColor": "#003da5",
+            "textBackgroundColor": "#0067b1",
             "isGeneralSelected": true,
             "isGeneralColorSelected": true
           },
@@ -175,7 +175,7 @@
             "key": "links",
             "size": 18,
             "fontFamily": "ProximaNovaA",
-            "color": "#003da5",
+            "color": "#0067b1",
             "fontWeight": "normal",
             "textDecoration": "underline",
             "fontStyle": "normal",
