@@ -68,7 +68,18 @@
                     </div>
                 <!-- /ko -->
                 <!-- ko if: hasIntroductionContent -->
-                    <div data-bind="loadHtml: introductionContent"></div>
+                    <!-- ko foreach: introductions -->
+                        <div data-bind="loadHtml: html"></div>
+                        <!-- ko if: children.length -->
+                        <div class="expandable-block-wrapper">
+                                <ul class="expandable-block-items">
+                                    <!-- ko foreach: children -->
+                                    <li class="expandable-block-item styled-content" data-bind="loadHtml: html"></li>
+                                    <!-- /ko -->
+                                </ul>
+                            </div>
+                        <!-- /ko -->
+                    <!-- /ko -->
                 <!-- /ko -->
             </div>
         <!-- /ko -->

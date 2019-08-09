@@ -340,7 +340,6 @@ textarea {
 
 
 /*#region styled content*/
-
 .styled-content {
     .margin-bottom() {
         &:not(:last-child) {
@@ -894,6 +893,21 @@ textarea {
     /*#endregion*/
 }
 
+.introduction-item {
+    .styled-content {
+        &:not(:last-child) {
+            margin-bottom: 50px;
+        }
+    }
+
+    ul, ol {
+        & > li {
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
 
 /*#endregion*/
 
@@ -2729,7 +2743,7 @@ textarea {
 
 .content-wrapper {
     max-width: @content-width;
-    margin: -182px auto 20px;
+    margin: -170px auto 20px;
     position: relative;
 
     &.review-mode {
@@ -4042,6 +4056,12 @@ textarea {
 .tl-wrapper {
     font-size: 16px;
     color: #fff;
+}
+
+@media (max-width: 500px) {
+    .tl-wrapper {
+        width: 280px;
+    }
 }
 
 .hotspot-container {

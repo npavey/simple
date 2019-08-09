@@ -15,9 +15,9 @@ define(function() {
       self.raven.config(errorTrackingServiceUrl, {
         logger: 'javascript',
         ignoreErrors: [
-          'LMSSetValue',
-          'LMSInitialize',
-          'LMSCommit'
+          /LMSSetValue/,
+          /LMSInitialize/,
+          /LMSCommit/
         ],
         ignoreUrls: [
           /vendor\.min\.js/

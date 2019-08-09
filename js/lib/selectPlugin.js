@@ -127,11 +127,13 @@
                 $element.removeClass(cssClasses.active);
                 $html.off('click', handler);
                 $(window).off('resize', handler);
+                window.removeEventListener('hashchange', handler);
             };
 
             setTimeout(function () {
                 $html.on('click', handler);
                 $(window).on('resize', handler);
+                window.addEventListener('hashchange', handler);
             }, 0);
 
             function getOptionsMarkup() {
