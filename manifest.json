@@ -1,5 +1,5 @@
 ﻿{
-  "name": "CU: Simple course",
+  "name": "FDU: Simple course",
   "goal": "Teach",
   "shortDescription": "A basic eLearning course template designed for The Learning House\n\nDetails:\nThe simple course will allow you to create a course that is divided into several parts (sections or learning objectives). Each section can contain both content items and questions. This way you can create a basic 'simple' eLearning course.",
   "thumbnail": "preview/thumbnail.png",
@@ -34,7 +34,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -45,11 +45,11 @@
             },
             {
               "key": "@main-color",
-              "value": "#872434"
+              "value": "#002f6c"
             },
             {
               "key": "@secondary-color",
-              "value": "#bcd4e0"
+              "value": "#d8bec2"
             },
             {
               "key": "@button-text-color",
@@ -73,7 +73,7 @@
               "brightness": 0,
               "color": null,
               "image": {
-                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-background.png",
+                "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-background.png",
                 "option": "repeat"
               }
             },
@@ -166,7 +166,7 @@
             "fontWeight": "normal",
             "textDecoration": "none",
             "fontStyle": "normal",
-            "textBackgroundColor": "#872434",
+            "textBackgroundColor": "#002f6c",
             "isGeneralSelected": true,
             "isGeneralColorSelected": true
           },
@@ -175,7 +175,7 @@
             "key": "links",
             "size": 18,
             "fontFamily": "ProximaNovaA",
-            "color": "#872434",
+            "color": "#002f6c",
             "fontWeight": "normal",
             "textDecoration": "underline",
             "fontStyle": "normal",
@@ -191,7 +191,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -348,7 +348,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -505,7 +505,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
@@ -662,7 +662,7 @@
       "settings": {
         "branding": {
           "logo": {
-            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/cu/cu-logo.png",
+            "url": "https://content.learninghouse.com/clients/_easygenerator/_template-assets/fdu/fdu-logo.png",
             "maxWidth": "300px",
             "maxHeight": "100px"
           },
