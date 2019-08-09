@@ -46,8 +46,18 @@
                     </div>
                 </div>
             <!-- /ko -->
-            <!-- ko if: content -->
-                <div data-bind="html: content,  elementsWrap: {}, reviewable: {type: 'course', property: 'introduction'}"></div>
+            <!-- ko if: introduction -->
+                <div data-bind="elementsWrap: {}, reviewable: {type: 'course', property: 'introduction'}">
+                    <!-- ko foreach: introduction -->
+                        <!-- ko ifnot: children.length -->
+                            <div class="introduction-item styled-content" data-bind="contentBlock: content"></div>
+                        <!-- /ko -->
+                        <!-- ko if: children.length -->
+                            <div class="introduction-item expandable-block-wrapper" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></div>
+                        <!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                
             <!-- /ko -->
             <!-- ko if: copyright --> 
             <div class="copyright-text" data-bind="text: copyright"></div>
