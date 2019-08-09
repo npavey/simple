@@ -13,7 +13,15 @@ define(function() {
       }
 
       self.raven.config(errorTrackingServiceUrl, {
-        logger: "javascript",
+        logger: 'javascript',
+        ignoreErrors: [
+          /LMSSetValue/,
+          /LMSInitialize/,
+          /LMSCommit/
+        ],
+        ignoreUrls: [
+          /vendor\.min\.js/
+        ],
         autoBreadcrumbs: {
           xhr: true,
           console: false,

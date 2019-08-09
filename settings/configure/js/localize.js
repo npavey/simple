@@ -85,7 +85,7 @@
         'xx': 'Custom',
         'cn': 'Chinese',
         'de': 'German',
-        'da':'Danish',
+        'da': 'Danish',
         'en': 'English',
         'fr': 'French',
         'it': 'Italian',
@@ -113,6 +113,8 @@
         'el': 'Greek',
         'lv': 'Latvian',
         'hu': 'Hungarian',
+        'bg': 'Bulgarian',
+        'sl': 'Slovenian',
 
         'choose language for your course': 'Choose language for your course',
         'defaultText': 'Default',

@@ -18,6 +18,7 @@
       authorAvatarUrl: spec.authorAvatarUrl,
 
       hasIntroductionContent: spec.hasIntroductionContent,
+      introductions: spec.introductions,
       sections: spec.sections,
       isFinished: false
     };

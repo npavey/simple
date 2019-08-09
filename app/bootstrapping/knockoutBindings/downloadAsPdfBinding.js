@@ -14,12 +14,12 @@
                 filename = getFullPdfFilename((valueAccessor().title || $element.attr('title'))),
                 serviceUrl = valueAccessor().serviceUrl,
                 version = valueAccessor().version;
-            
+
             if (location.href.indexOf('/preview/') !== -1) {
                 disableLink($element);
                 return;
             }
-            
+
             var Url = function (url) {
                 var that = this;
                 that.value = url || '',
@@ -45,7 +45,7 @@
                     clearTimeout(timeoutId);
                     timeoutId = null;
                 }
-                
+
                 setStatus($element, buttonStatuses.proggress);
 
                 fileDownloader.downloadFile(convertionUrl.value, filename)
@@ -80,15 +80,14 @@
         var now = new Date();
         return now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
     }
-    
+
     function disableLink($link) {
         $link.css({
-            'pointer-events': 'none',
             'opacity': '0.5'
         });
-        $link.parent().addClass('disabled');
+        $link.addClass('disabled').removeClass('default');
     }
-    
+
     function getBaseUrl() {
         var baseUrl = location.href.replace(location.hash, '');
         baseUrl = baseUrl.replace('#', '');
