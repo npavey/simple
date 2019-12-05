@@ -14,11 +14,10 @@
         this.element = element;
         this.options = $.extend({}, opt);
         this.isEnabled = true;
+        this.activeItemIndex = 0;
 
         this.init();
     };
-
-    var activeItemIndex = 0;
 
     Select.prototype = {
         init: function () {
@@ -61,6 +60,7 @@
             });
         },
         show: function ($element, options, callback) {
+            var that = this;
             var $html = $('html');
             if ($element.hasClass(cssClasses.active)) {
                 return;
@@ -78,7 +78,7 @@
                 .append($('<ul tabindex="-1" role="listbox" />')
                     .on('click', 'li', function () {
                         var text = $(this).text();
-                        activeItemIndex = $(this).attr("aria-posinset");
+                        that.activeItemIndex = $(this).attr("aria-posinset");
                         $element.find('.' + cssClasses.current)
                             .text(text)
                             .removeClass(cssClasses.default);
@@ -119,8 +119,8 @@
                     })
                     .append(getOptionsMarkup()))
                     .appendTo('body');
-            if(activeItemIndex){
-                container.find('ul li')[activeItemIndex - 1].focus()
+            if(that.activeItemIndex){
+                container.find('ul li')[that.activeItemIndex - 1].focus()
             }
             var handler = function () {
                 container.remove();
