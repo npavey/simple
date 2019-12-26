@@ -44,13 +44,20 @@
             $table.wrap($wrapper);
         });
 
-        $('.audio-editor iframe', $element).each(function (index, iframe) {
-            var $iframe = $(iframe);
-            var src = $iframe.attr('src');
+        $(
+          ".audio-editor iframe, .video-editor iframe," +
+            'iframe[data-media-type="old-editor-video"], iframe[data-media-type="old-editor-audio"]',
+          $element
+        ).each(function(index, iframe) {
+          var $iframe = $(iframe);
+          var src = $iframe.attr("src");
 
-            src = new Url(src).addQueryStringParam('style_variables', getStyles()).toString();
-
-            $iframe.attr('src', src);
+          $iframe.attr(
+            "src",
+            new Url(src)
+              .addQueryStringParam("style_variables", getStyles())
+              .toString()
+          );
         });
     }
 
