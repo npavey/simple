@@ -15,7 +15,7 @@ define(['modules/progress/progressStorage/auth', 'context', 'userContext', 'temp
         return viewModel;
 
         function sendSecretLink() {
-            auth.sendSecreLink(userContext.user.email, context.course.title).then(function () {
+            auth.sendSecretLink(context.course.id).then(function () {
                 viewModel.isSecretLinkSent(true);
             });
         }
@@ -25,12 +25,12 @@ define(['modules/progress/progressStorage/auth', 'context', 'userContext', 'temp
             auth.shortTermAccess = !userContext.user.keepMeLoggedIn;
         }
 
-        function activate(data) {
+        async function activate(data) {
             if (data) {
                 viewModel.close = data.close;
-                viewModel.exit = function () {
+                viewModel.exit = async function () {
                     if (!userContext.user.keepMeLoggedIn) {
-                        auth.signout();
+                        await auth.signout();
                     }
                     data.exit();
                 };

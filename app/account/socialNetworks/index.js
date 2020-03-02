@@ -3,17 +3,17 @@ define(function () {
 
     var _instance = null;
 
-    var _getAuthLink = function (courseTitle, progressStorageUrl, socialNetwork) {
-        return progressStorageUrl + 'auth/' + socialNetwork +
-            '?courseLink=' + encodeURIComponent(window.location.href) +
-            '&courseTitle=' + encodeURIComponent(courseTitle);
+    var _getAuthLink = function (courseTitle, authServiceUrl, socialNetwork) {
+        return authServiceUrl + '/api/auth/' + socialNetwork +
+            '?callbackLink=' + encodeURIComponent(window.location.href) +
+            '&callbackTitle=' + encodeURIComponent(courseTitle);
     };
 
-    function SocialNetworks(courseTitle, progressStorageUrl) {
+    function SocialNetworks(courseTitle, authServiceUrl) {
         if (_instance) {
 			return _instance;
 		}
-        var getAuthLink = _getAuthLink.bind(this, courseTitle, progressStorageUrl);
+        var getAuthLink = _getAuthLink.bind(this, courseTitle, authServiceUrl);
         this.facebookAuthLink = getAuthLink('facebook');
         this.linkedinAuthLink = getAuthLink('linkedin');
         this.googleAuthLink = getAuthLink('google');

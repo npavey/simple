@@ -98,7 +98,7 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
             if (viewmodel.requestProcessing() || viewmodel.isSecretLinkSent()) {
                 return;
             }
-            auth.sendSecreLink(userContext.user.email, context.course.title).then(function () {
+            auth.sendSecretLink(context.course.id).then(function () {
                 viewmodel.isRestorePasswordEmailSent(false);
                 viewmodel.isSecretLinkSent(true);
                 toggleValueAfterSomeTime(viewmodel.isSecretLinkSent, 5000);

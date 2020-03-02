@@ -3,6 +3,9 @@
     "browser": true,
     "jquery": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
   "globals": {
     "angular": false,
     "$": false,
