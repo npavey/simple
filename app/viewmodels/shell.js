@@ -1,11 +1,11 @@
 define([
-    'knockout', 'underscore', 'durandal/app', 'durandal/composition', 'plugins/router',
+    'knockout', 'underscore', 'durandal/app', 'modules/progress/progressStorage/auth', 'durandal/composition', 'plugins/router',
     'routing/routes', 'context', 'includedModules/modulesInitializer', 'templateSettings',
     'progressContext', 'constants', 'userContext', 'errorsHandler',
     'modules/progress/index', 'account/index', 'xApi/xApiInitializer', 'modules/publishModeProvider', 
     'modules/questionsNavigation', 'modules/lti', 'modules/webhooks', 'helpers/loginHelper',
     'modules/progress/progressStorage/urlProvider'
-], function (ko, _, app, composition, router, routes, context, modulesInitializer, templateSettings,
+], function (ko, _, app, auth, composition, router, routes, context, modulesInitializer, templateSettings,
     progressContext, constants, userContext, errorsHandler, progressProvider, account, xApiInitializer, publishModeProvider, 
     questionsNavigation, lti, webhooks, loginHelper, urlProvider) {
 
@@ -68,6 +68,7 @@ define([
         function activate() {
             return context.initialize()
                 .then(initializeUrlProvider)
+                .then(auth.authorize)
                 .then(loginHelper.initialize)
                 .then(userContext.initialize)
                 .then(lti.initialize)

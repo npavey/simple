@@ -2,8 +2,9 @@ define(["q", "publishSettings"], function(Q, publishSettings) {
   "use strict";
 
   function UrlProvider() {
-    this.progressStorageUrl = '';
-    this.courseLink = '';
+    this.authServiceUrl = "";
+    this.learnServiceUrl = "";
+    this.courseLink = "";
   }
 
   UrlProvider.prototype.initialize = initialize;
@@ -15,16 +16,19 @@ define(["q", "publishSettings"], function(Q, publishSettings) {
   function initialize() {
     var self = this;
     return Q.fcall(function() {
-      self.progressStorageUrl = publishSettings.progressStorageUrl
-        ? '//' + publishSettings.progressStorageUrl + '/'
-        : '//progress-storage.easygenerator.com/';
+      self.authServiceUrl = publishSettings.authServiceUrl
+        ? publishSettings.authServiceUrl
+        : "https://auth-staging.easygenerator.com";
+      self.learnServiceUrl = publishSettings.learnServiceUrl
+        ? publishSettings.learnServiceUrl
+        : "https://learn-staging.easygenerator.com";
 
       self.courseLink =
         window.location.protocol +
-        '//' +
+        "//" +
         window.location.host +
         window.location.pathname +
-        '#/';
+        "#/";
     });
   }
 });
