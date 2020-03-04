@@ -2,13 +2,9 @@ define([
   "./httpWrapper",
   "./urlProvider",
   "../constants",
-  "helpers/idToUuid",
-  "helpers/query"
-], function(httpWrapper, urlProvider, constants, idToUuid, Query) {
+  "helpers/idToUuid"
+], function(httpWrapper, urlProvider, constants, idToUuid) {
   "use strict";
-
-  const learnToken = Query.getValueFromUrl("token");
-  Query.removeQueryStringParam("token");
 
   var _private = {
     tokenKey: "token.learn",
@@ -62,7 +58,7 @@ define([
     return httpWrapper
       .get(
         urlProvider.authServiceUrl + "/api/account/exists",
-        { email },
+        { email: email },
         {
           "Content-Type": constants.contentTypeJson
         },
@@ -73,45 +69,33 @@ define([
       });
   };
 
-  auth.authorize = async function() {
-    try {
-      if (learnToken || auth.getToken()) {
-        auth.setToken(learnToken);
-      } else {
-        const { token } = await httpWrapper.get(
-          urlProvider.authServiceUrl + "/api/account/token",
-          {},
-          {},
-          true
-        );
-        auth.setToken(token);
-      }
-    } catch (fail) {
-      if (fail.status === 401) {
-        auth.signout();
-      } else {
+  auth.authorize = function() {
+    return httpWrapper
+      .get(urlProvider.authServiceUrl + "/api/account/token", {}, {}, true)
+      .then(function(response) {
+        auth.setToken(response.token);
+      })
+      .fail(function(fail) {
         console.error(fail);
-      }
-    }
+      });
   };
 
-  auth.identify = async function() {
-    try {
-      return await httpWrapper.get(
+  auth.identify = function() {
+    return httpWrapper
+      .get(
         urlProvider.learnServiceUrl + "/api/learner/me",
         {},
         {
           Authorization: "Bearer " + auth.getToken()
         },
         false
-      );
-    } catch (fail) {
-      if (fail.status === 401) {
-        auth.signout();
-      } else {
+      )
+      .fail(function(fail) {
+        if (fail.status === 401) {
+          return auth.signout();
+        }
         console.error("User info request fails with error: ", fail);
-      }
-    }
+      });
   };
 
   auth.signin = function(email, password, rememberMe) {

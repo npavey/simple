@@ -31,7 +31,7 @@ define([
     clearLocalStorage: clearLocalStorage
   };
 
-  async function initialize() {
+  function initialize() {
     var defer = Q.defer();
     _psProvider = new ProgressStorageProvider(
       context.course.id,
@@ -53,7 +53,7 @@ define([
         auth.setToken(token);
       }
       if (auth.authenticated) {
-        await initProgressStorage(resolve);
+        initProgressStorage(resolve);
       } else {
         resolve(_lsProvider);
       }
@@ -68,9 +68,8 @@ define([
     }
   }
 
-  async function initProgressStorage(callback) {
-    try {
-      await auth
+  function initProgressStorage(callback) {
+    auth
       .identify()
       .then(function(user) {
         userContext.user.email = user.email;
@@ -79,7 +78,6 @@ define([
           callback(_lsProvider);
           return false;
         }
-
         userContext.user.email = user.email;
         userContext.user.username = user.name;
         userContext.user.keepMeLoggedIn = !auth.shortTermAccess;
@@ -100,15 +98,15 @@ define([
           callback(_psProvider);
         });
       })
-    } catch (failed) {
-      if (failed.status === 404) {
-        _psProvider.startNewAttempt().then(function(newProgress) {
-          callback(_psProvider);
-        });
-      } else {
-        callback(_lsProvider);
-      }
-    }
+      .fail(function(failed) {
+        if (failed.status === 404) {
+          _psProvider.startNewAttempt().then(function(newProgress) {
+            callback(_psProvider);
+          });
+        } else {
+          callback(_lsProvider);
+        }
+      });
   }
 
   function clearLocalStorage() {
