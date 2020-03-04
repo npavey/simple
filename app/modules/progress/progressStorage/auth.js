@@ -2,9 +2,13 @@ define([
   "./httpWrapper",
   "./urlProvider",
   "../constants",
-  "helpers/idToUuid"
-], function(httpWrapper, urlProvider, constants, idToUuid) {
+  "helpers/idToUuid",
+  "helpers/query"
+], function(httpWrapper, urlProvider, constants, idToUuid, Query) {
   "use strict";
+
+  const learnToken = Query.getValueFromUrl("token");
+  Query.removeQueryStringParam("token");
 
   var _private = {
     tokenKey: "token.learn",
@@ -45,7 +49,7 @@ define([
   });
 
   auth.setToken = function(value) {
-    if (typeof value !== "undefined") {
+    if (typeof value !== "undefined" && value !== null) {
       sessionStorage.setItem(_private.tokenKey, value);
     }
   };
@@ -71,13 +75,17 @@ define([
 
   auth.authorize = async function() {
     try {
-      const { token } = await httpWrapper.get(
-        urlProvider.authServiceUrl + "/api/account/token",
-        {},
-        {},
-        true
-      );
-      auth.setToken(token);
+      if (learnToken || auth.getToken()) {
+        auth.setToken(learnToken);
+      } else {
+        const { token } = await httpWrapper.get(
+          urlProvider.authServiceUrl + "/api/account/token",
+          {},
+          {},
+          true
+        );
+        auth.setToken(token);
+      }
     } catch (fail) {
       if (fail.status === 401) {
         auth.signout();
@@ -102,7 +110,6 @@ define([
         auth.signout();
       } else {
         console.error("User info request fails with error: ", fail);
-        return fail;
       }
     }
   };
