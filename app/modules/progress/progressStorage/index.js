@@ -90,7 +90,6 @@ define([
           false
         )
         .then(function(newProgress) {
-          console.log("New attempt starts");
           return newProgress.jsonProgress;
         });
     };

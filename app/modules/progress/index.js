@@ -42,10 +42,6 @@ define([
       context.course.templateId
     );
 
-    if (userContext.user.email) {
-      auth.signout();
-    }
-
     if (templateSettings.allowCrossDeviceSaving) {
       var token = loginHelper.token;
 
