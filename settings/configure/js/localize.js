@@ -15,6 +15,7 @@
         'show download as pdf button': 'Show button "Download course in PDF format"',
         'conduct learner satisfaction survey': 'Conduct learner satisfaction survey',
         'allow users to download certificates': 'Allow users to download certificates',
+        'available when save progress disabled hint': 'Is not available when ‘save progress cross device’ is disabled',
 
         //results tracking tab
         'results tracking': 'Results Tracking',
