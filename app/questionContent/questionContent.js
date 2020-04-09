@@ -19,8 +19,8 @@ define(['knockout', 'plugins/router', 'constants', 'modules/questionsNavigation'
 
             this.learningContents = [];
             this.questionInstructions = [];
-            this.correctFeedback = ko.observable(null);
-            this.incorrectFeedback = ko.observable(null);
+            this.correctFeedback = [];
+            this.incorrectFeedback = [];
             this.feedbackResultText = ko.observable('');
             this.feedbackView = '';
             this.submitViewModel = '';
@@ -128,8 +128,8 @@ define(['knockout', 'plugins/router', 'constants', 'modules/questionsNavigation'
 
             this.learningContents = this.question.learningContents;
             this.questionInstructions = this.question.questionInstructions;
-            this.correctFeedback(this.question.feedback.correct);
-            this.incorrectFeedback(this.question.feedback.incorrect);
+            this.correctFeedback = this.question.correctFeedback;
+            this.incorrectFeedback = this.question.incorrectFeedback;
             this.updateFeedbackResultText();
 
             this.activeQuestionViewModel = questionViewModelFactory.getViewModel(this.question.type);
