@@ -1,8 +1,8 @@
 ﻿(function (app) {
 
     var
-        currentSettings = null,
-        currentExtraData = null;
+      currentSettings = null,
+      currentExtraData = null;
 
     var viewModel = {
         isError: ko.observable(false),
@@ -61,19 +61,19 @@
 
     viewModel.saveChanges = function () {
         var settings = viewModel.getCurrentSettingsData(),
-            extraData = viewModel.getCurrentExtraData(),
-            newSettings = JSON.stringify(settings),
-            newExtraData = JSON.stringify(extraData);
+          extraData = viewModel.getCurrentExtraData(),
+          newSettings = JSON.stringify(settings),
+          newExtraData = JSON.stringify(extraData);
 
         if (JSON.stringify(currentSettings) === newSettings && JSON.stringify(currentExtraData) === newExtraData) {
             return;
         }
 
         window.egApi.saveSettings(newSettings, newExtraData, app.localize('changes are saved'), app.localize('changes are not saved'))
-            .done(function () {
-                currentSettings = settings;
-                currentExtraData = extraData;
-            });
+          .done(function () {
+              currentSettings = settings;
+              currentExtraData = extraData;
+          });
     };
 
     viewModel.onBeforeCertificateDownloadUpdated = function (newValue) {
@@ -89,8 +89,8 @@
         var api = window.egApi;
         return api.init().then(function () {
             var manifest = api.getManifest(),
-                settings = api.getSettings(),
-                user = api.getUser();
+              settings = api.getSettings(),
+              user = api.getUser();
 
             var defaultTemplateSettings = manifest && manifest.defaultTemplateSettings ? manifest.defaultTemplateSettings : {};
 
@@ -110,7 +110,7 @@
             initField(viewModel.allowCertificateDownload, 'allowCertificateDownload');
             initField(viewModel.copyright, 'copyright', localizeCopyright);
             viewModel.copyrightPlaceholder(localizeCopyright(app.localize('copyrightPlaceholder')));
-            
+
             initField(viewModel.allowNpsSettings, 'allowNpsSettings');
             initField(viewModel.allowxApiSettings, 'allowxApiSettings');
             initField(viewModel.allowSocialLogin, 'allowLoginViaSocialMedia');
