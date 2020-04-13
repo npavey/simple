@@ -33,7 +33,13 @@
                 score: 0,
                 voiceOver: question.voiceOver,
                 hasCorrectFeedback: question.hasCorrectFeedback,
-                hasIncorrectFeedback: question.hasIncorrectFeedback
+                hasIncorrectFeedback: question.hasIncorrectFeedback,
+                correctFeedback: _.map(question.questionCorrectFeedbacks, function(correctFeedback) {
+                    return mapContentBlock(correctFeedback, sectionId, question.id);
+                }),
+                incorrectFeedback: _.map(question.questionIncorrectFeedbacks, function(incorrectFeedback) {
+                    return mapContentBlock(incorrectFeedback, sectionId, question.id);
+                })
             };
 
             if (question.hasOwnProperty('isSurvey')) {
