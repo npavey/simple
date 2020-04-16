@@ -5,8 +5,7 @@ define(function () {
 
     var _getAuthLink = function (courseTitle, authServiceUrl, socialNetwork) {
         return authServiceUrl + '/api/auth/' + socialNetwork +
-            '?callbackLink=' + encodeURIComponent(window.location.href) +
-            '&callbackTitle=' + encodeURIComponent(courseTitle);
+            '?callbackUrl=' + encodeURIComponent(window.location.href);
     };
 
     function SocialNetworks(courseTitle, authServiceUrl) {
