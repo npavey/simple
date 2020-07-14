@@ -2,7 +2,16 @@
     <!-- ko if: isCorrectAnswered -->
     <div class="result-block-wrapper" data-bind="scrollIntoView: isAnswered, autofocus">
         <div class="question-result-block" data-translate-text="[scenario has been passed successfully]" data-translate-title="[scenario has been passed successfully]">Scenario has been passed successfully</div>
-        <div class="question-feedback-holder styled-content" data-bind="visible: correctFeedback, html: correctFeedback, elementsWrap: {}"></div>
+        <ul class="question-feedback-holder unstyled" data-bind="visible: correctFeedback">
+            <!--ko foreach: correctFeedback-->
+             <!-- ko ifnot: children.length -->
+             <li class="styled-content" data-bind="contentBlock: content"></li>
+             <!-- /ko -->
+             <!-- ko if: children.length -->
+             <li class="expandable-block-wrapper" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
+             <!-- /ko -->
+            <!--/ko-->
+        </ul>
         <div class="result-btn-holder">
             <!-- ko if: navigationContext.nextQuestionUrl -->
             <button class="button medium primary autofocus" data-bind="click: navigateNext, css: { disabled: isNavigationLocked }" data-translate-text="[next]" data-translate-title="[next]">Next</button>
@@ -19,7 +28,16 @@
     <!-- ko if: isWrongAnswered -->
     <div class="result-block-wrapper" data-bind="scrollIntoView: isAnswered, autofocus">
         <div class="question-result-block incorrect" data-translate-text="[scenario has not been passed successfully]" data-translate-title="[scenario has not been passed successfully]">Scenario has NOT been passed successfully</div>
-        <div class="question-feedback-holder styled-content" data-bind="visible: incorrectFeedback, html: incorrectFeedback, elementsWrap: {}"></div>
+        <ul class="question-feedback-holder unstyled" data-bind="visible: incorrectFeedback">
+            <!--ko foreach: incorrectFeedback-->
+             <!-- ko ifnot: children.length -->
+             <li class="styled-content" data-bind="contentBlock: content"></li>
+             <!-- /ko -->
+             <!-- ko if: children.length -->
+             <li class="expandable-block-wrapper" data-bind="compose: { model:'viewmodels/questions/expandableBlock', activationData: $data }"></li>
+             <!-- /ko -->
+            <!--/ko-->
+        </ul>
         <div class="result-btn-holder">
             <!-- ko if: hideTryAgain -->
             <!-- ko if: navigationContext.nextQuestionUrl -->
