@@ -15,6 +15,7 @@
         'show download as pdf button': 'Show button "Download course in PDF format"',
         'conduct learner satisfaction survey': 'Conduct learner satisfaction survey',
         'allow users to download certificates': 'Allow users to download certificates',
+        'available when save progress disabled hint': 'Is not available when ‘save progress cross device’ is disabled',
 
         //results tracking tab
         'results tracking': 'Results Tracking',
@@ -26,7 +27,7 @@
         'default': 'easygenerator (recommended)',
         'custom': 'Custom LRS',
 
-        'addWebhookEndpoinLabel': 'Add a webhook endpoint: <a href="https://help.easygenerator.com/additional-features/webhooks" target="_blank">Learn more</a>',
+        'addWebhookEndpoinLabel': 'Add a webhook endpoint:',
         'webhookUrlLabel': 'URL to be called',
         'urlCheckButtonText': 'Check URL',
         'checkErrorMessage': 'An error appears',

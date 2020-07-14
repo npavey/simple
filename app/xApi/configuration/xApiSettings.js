@@ -25,11 +25,11 @@
         };
 
 
-        var lrsHost = publishSettings.defaultLRSUrl || 'reports.easygenerator.com';
+        var lrsHost = publishSettings.defaultLRSUrl || 'https://reports.easygenerator.com';
 
         var defaultXapi = {
             lrs: {
-                uri: '//' + lrsHost + '/xApi/statements',
+                uri: lrsHost + '/xApi/statements',
                 authenticationRequired: false,
                 credentials: {
                     username: '',
@@ -39,11 +39,11 @@
             allowedVerbs: ['started', 'stopped', 'experienced', 'mastered', 'answered', 'passed', 'failed', 'progressed']
         };
 
-        var npsHost = publishSettings.defaultNpsUrl || 'nps.easygenerator.com';
+        var npsHost = publishSettings.defaultNpsUrl || 'https://nps.easygenerator.com';
 
         var defaultNps = {
             nps: {
-                uri: '//' + npsHost + '/xApi/statements',
+                uri: npsHost + '/xApi/statements',
                 authenticationRequired: false,
                 credentials: {
                     username: '',
