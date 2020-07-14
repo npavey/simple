@@ -1,238 +1,275 @@
 define([
-    'repositories/courseRepository', 'templateSettings', 'plugins/router', 'progressContext',
-    'userContext', 'xApi/xApiInitializer', 'helpers/appOperations', 'constants', 'modules/progress/progressStorage/auth',
-    'modules/publishModeProvider', 'dialogs/dialog', 'modules/progress/progressStorage/certificateProvider',
-    'helpers/fileDownloader', 'localizationManager', 'modules/webhooks'
-], function(courseRepository, templateSettings, router, progressContext, userContext,
-    xApiInitializer, appOperations, constants, auth, publishModeProvider, 
-    Dialog, certificateProvider, fileDownloader, localizationManager, webhooks) {
-    "use strict";
+  "repositories/courseRepository",
+  "templateSettings",
+  "plugins/router",
+  "progressContext",
+  "userContext",
+  "xApi/xApiInitializer",
+  "helpers/appOperations",
+  "constants",
+  "modules/progress/progressStorage/auth",
+  "modules/publishModeProvider",
+  "dialogs/dialog",
+  "modules/progress/progressStorage/certificateProvider",
+  "helpers/fileDownloader",
+  "localizationManager",
+  "modules/webhooks"
+], function(
+  courseRepository,
+  templateSettings,
+  router,
+  progressContext,
+  userContext,
+  xApiInitializer,
+  appOperations,
+  constants,
+  auth,
+  publishModeProvider,
+  Dialog,
+  certificateProvider,
+  fileDownloader,
+  localizationManager,
+  webhooks
+) {
+  "use strict";
 
-    var course = courseRepository.get();
+  var course = courseRepository.get();
 
-    var progressStatuses = constants.progressContext.statuses;
+  var progressStatuses = constants.progressContext.statuses;
 
-    var statuses = {
-        readyToFinish: 'readyToFinish',
-        preparingCertificate: 'preparingCertificate',
-        sendingRequests: 'sendingRequests',
-        finished: 'finished'
-    };
+  var statuses = {
+    readyToFinish: "readyToFinish",
+    preparingCertificate: "preparingCertificate",
+    sendingRequests: "sendingRequests",
+    finished: "finished"
+  };
 
-    var viewModel = {
-        score: course.score,
-        title: course.title,
-        sections: [],
-        status: ko.observable(statuses.readyToFinish),
-        statuses: statuses,
-        activate: activate,
-        close: close,
-        finish: finish,
-        isDownloadingCertificate: ko.observable(false),
-        downloadCertificate: downloadCertificate,
-        npsDialog: new Dialog(),
-        newAttemptDialog: new Dialog(),
-        resendResultsDialog: new Dialog(),
+  var viewModel = {
+    score: course.score,
+    title: course.title,
+    sections: [],
+    status: ko.observable(statuses.readyToFinish),
+    statuses: statuses,
+    activate: activate,
+    close: close,
+    finish: finish,
+    isDownloadingCertificate: ko.observable(false),
+    downloadCertificate: downloadCertificate,
+    npsDialog: new Dialog(),
+    newAttemptDialog: new Dialog(),
+    resendResultsDialog: new Dialog(),
 
-        //properties
-        isInReviewAttemptMode: false,
-        isCompleted: false,
-        crossDeviceEnabled: false,
-        allowContentPagesScoring: false,
-        xAPIEnabled: false,
-        scormEnabled: false,
-        canDownloadCertificate: false,
-        certificateDownloaded: false,
-        stayLoggedIn: ko.observable(false),
+    //properties
+    isInReviewAttemptMode: false,
+    isCompleted: false,
+    crossDeviceEnabled: false,
+    allowContentPagesScoring: false,
+    xAPIEnabled: false,
+    scormEnabled: false,
+    canDownloadCertificate: false,
+    certificateDownloaded: false,
+    stayLoggedIn: ko.observable(false),
 
-        //methods
-        toggleStayLoggedIn: toggleStayLoggedIn
-    };
+    //methods
+    toggleStayLoggedIn: toggleStayLoggedIn
+  };
 
-    return viewModel;
+  return viewModel;
 
-    function activate() {
-        viewModel.isInReviewAttemptMode = course.isFinished;
-        viewModel.npsDialog.isVisible(false);
-        viewModel.newAttemptDialog.isVisible(false);
-        viewModel.resendResultsDialog.isVisible(false);
-        viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
-        viewModel.canDownloadCertificate =  templateSettings.allowCrossDeviceSaving 
-                                                && templateSettings.allowCertificateDownload 
-                                                && course.isCompleted();
-        
-        viewModel.allowContentPagesScoring = templateSettings.allowContentPagesScoring;
+  function activate() {
+    viewModel.isInReviewAttemptMode = course.isFinished;
+    viewModel.npsDialog.isVisible(false);
+    viewModel.newAttemptDialog.isVisible(false);
+    viewModel.resendResultsDialog.isVisible(false);
+    viewModel.crossDeviceEnabled = templateSettings.allowCrossDeviceSaving;
+    viewModel.canDownloadCertificate =
+      templateSettings.allowCrossDeviceSaving &&
+      templateSettings.allowCertificateDownload &&
+      course.isCompleted();
 
-        viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
-        viewModel.scormEnabled = publishModeProvider.isScormEnabled;
+    viewModel.allowContentPagesScoring =
+      templateSettings.allowContentPagesScoring;
 
-        viewModel.stayLoggedIn(userContext.user.keepMeLoggedIn);
-        viewModel.sections = _.chain(course.sections)
-            .filter(function(section) {
-                return section.affectProgress || section.hasSurveyQuestions;
-            })
-            .map(mapSection)
-            .value();
+    viewModel.xAPIEnabled = xApiInitializer.isLrsReportingInitialized;
+    viewModel.scormEnabled = publishModeProvider.isScormEnabled;
 
-        viewModel.isCompleted = course.isCompleted();
-    }
-    
-    function close() {
-        router.navigate("#sections");
-    }
+    viewModel.stayLoggedIn(userContext.user.keepMeLoggedIn);
+    viewModel.sections = _.chain(course.sections)
+      .filter(function(section) {
+        return section.affectProgress || section.hasSurveyQuestions;
+      })
+      .map(mapSection)
+      .value();
 
-    function finish() {
-        if (router.isNavigationLocked() || viewModel.status() !== statuses.readyToFinish) {
-            return;
-        }
+    viewModel.isCompleted = course.isCompleted();
+  }
 
-        if(viewModel.canDownloadCertificate && !viewModel.certificateDownloaded){
-            viewModel.status(statuses.preparingCertificate);
-            downloadCertificate().always(doFinishCourse);
-            return;
-        }
+  function close() {
+    router.navigate("#sections");
+  }
 
-        doFinishCourse();
-    }
-
-    function doFinishCourse(){
-        if (templateSettings.xApi.enabled && xApiInitializer.isLrsReportingInitialized) {
-            viewModel.status(statuses.sendingRequests);
-        }
-
-        if(course.getStatus() === constants.course.statuses.inProgress) {
-            var finishHandler = (viewModel.crossDeviceEnabled || viewModel.scormEnabled) ?
-                progressContext.finish : progressContext.remove;
-                
-            course.setFinishedStatus();
-            return finishHandler(function() {
-                progressContext.status(progressStatuses.ignored);
-                course.finish(sendWebhooks);
-            });
-        }
-
-        sendWebhooks();
-    }
-
-    function downloadCertificate() {
-        viewModel.isDownloadingCertificate(true);
-        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score, templateSettings.logo.url)
-            .then(function(url){
-                /* Fix for IE11 and Edge (files can`t saved without extension) */
-                var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
-                return fileDownloader.downloadFile(url, filename);
-            })
-            .always(function(){
-                viewModel.isDownloadingCertificate(false);
-                viewModel.certificateDownloaded = true;
-            });
+  function finish() {
+    if (
+      router.isNavigationLocked() ||
+      viewModel.status() !== statuses.readyToFinish
+    ) {
+      return;
     }
 
-    function sendWebhooks() {
-        if (webhooks.initialized) {
-            return webhooks.sendResults(course)
-                .then(function() {
-                    onCourseFinished();
-                })
-                .catch(function() {
-                    viewModel.status(statuses.readyToFinish);
-                    viewModel.resendResultsDialog.resultsSendErrorTitleKey = constants.dialogs.resendResults.webhooks.resultsSendErrorTitleKey;
-                    viewModel.resendResultsDialog.endpointNameKey = constants.dialogs.resendResults.webhooks.endpointNameKey;
-                    viewModel.resendResultsDialog.show({
-                        resend: webhooks.sendResults.bind(webhooks),
-                        next: onCourseFinished, 
-                    });
-                });
-        } 
-
-        onCourseFinished();
+    if (viewModel.canDownloadCertificate && !viewModel.certificateDownloaded) {
+      viewModel.status(statuses.preparingCertificate);
+      doFinishCourse();
+      downloadCertificate();
+      return;
     }
 
-    function downloadCertificate() {
-        viewModel.isDownloadingCertificate(true);
-        return certificateProvider.getCertificateUrl(course.id, course.templateId, course.title, course.score)
-            .then(function(url){
-                /* Fix for IE11 and Edge (files can`t saved without extension) */
-                var filename = localizationManager.getLocalizedText('[certificate file name]') + '.pdf';
-                return fileDownloader.downloadFile(url, filename);
-            })
-            .always(function(){
-                viewModel.isDownloadingCertificate(false);
-            });
+    doFinishCourse();
+  }
+
+  function doFinishCourse() {
+    if (
+      templateSettings.xApi.enabled &&
+      xApiInitializer.isLrsReportingInitialized
+    ) {
+      viewModel.status(statuses.sendingRequests);
     }
 
-    function onCourseFinished() {
-        viewModel.status(statuses.finished);
+    if (course.getStatus() === constants.course.statuses.inProgress) {
+      var finishHandler =
+        viewModel.crossDeviceEnabled || viewModel.scormEnabled
+          ? progressContext.finish
+          : progressContext.remove;
 
-        if (templateSettings.nps.enabled && xApiInitializer.isNpsReportingInitialized) {
-            return viewModel.npsDialog.show({
-                closed: function() {
-                   finalize({close: true});
-                },
-                finalized: function() {
-                   finalize({close: false});
-                }
-            });
-        }
-
-        finalize({close: true});
+      course.setFinishedStatus();
+      return finishHandler(function() {
+        progressContext.status(progressStatuses.ignored);
+        course.finish(sendWebhooks);
+      });
     }
 
-    function finalize(params) {
-        params = params || {};
-        if (auth.authenticated && !viewModel.stayLoggedIn())
-            auth.signout();
+    sendWebhooks();
+  }
 
-        course.finalize(function() {
-            if (params.close){
-                appOperations.close({ 
-                    shouldCloseWindow: !viewModel.canDownloadCertificate 
-                });
-            }
+  function downloadCertificate() {
+    viewModel.isDownloadingCertificate(true);
+    return certificateProvider
+      .getCertificateUrl(
+        course.id,
+        course.templateId,
+        templateSettings.logo.url
+      )
+      .then(function(url) {
+        /* Fix for IE11 and Edge (files can`t saved without extension) */
+        var filename =
+          localizationManager.getLocalizedText("[certificate file name]") +
+          ".pdf";
+        return fileDownloader.downloadFile(url, filename);
+      })
+      .always(function() {
+        viewModel.isDownloadingCertificate(false);
+        viewModel.certificateDownloaded = true;
+      });
+  }
+
+  function sendWebhooks() {
+    if (webhooks.initialized) {
+      return webhooks
+        .sendResults(course)
+        .then(function() {
+          onCourseFinished();
+        })
+        .catch(function() {
+          viewModel.status(statuses.readyToFinish);
+          viewModel.resendResultsDialog.resultsSendErrorTitleKey =
+            constants.dialogs.resendResults.webhooks.resultsSendErrorTitleKey;
+          viewModel.resendResultsDialog.endpointNameKey =
+            constants.dialogs.resendResults.webhooks.endpointNameKey;
+          viewModel.resendResultsDialog.show({
+            resend: webhooks.sendResults.bind(webhooks),
+            next: onCourseFinished
+          });
         });
     }
 
-    function toggleStayLoggedIn() {
-        viewModel.stayLoggedIn(userContext.user.keepMeLoggedIn = !viewModel.stayLoggedIn());
-        auth.shortTermAccess = !userContext.user.keepMeLoggedIn;
+    onCourseFinished();
+  }
+
+  function onCourseFinished() {
+    viewModel.status(statuses.finished);
+
+    if (
+      templateSettings.nps.enabled &&
+      xApiInitializer.isNpsReportingInitialized
+    ) {
+      return viewModel.npsDialog.show({
+        closed: function() {
+          finalize({ close: true });
+        },
+        finalized: function() {
+          finalize({ close: false });
+        }
+      });
     }
 
-    function mapSection(entity) {
-        var section = {};
+    finalize({ close: true });
+  }
 
-        section.id = entity.id;
-        section.title = entity.title;
-        section.score = entity.score();
+  function finalize(params) {
+    params = params || {};
+    if (auth.authenticated && !viewModel.stayLoggedIn()) auth.signout();
 
-        section.readedContents = _.filter(entity.questions, function(question) {
-                return !isQuestion(question) && question.isAnswered;
-            })
-            .length;
-
-        section.questions = _.filter(entity.questions, function(question) {
-            return isQuestion(question);
+    course.finalize(function() {
+      if (params.close) {
+        appOperations.close({
+          shouldCloseWindow: !viewModel.canDownloadCertificate
         });
+      }
+    });
+  }
 
-        section.amountOfQuestions = _.filter(section.questions, function(question) {
-                return !question.isSurvey;
-            })
-            .length;
+  function toggleStayLoggedIn() {
+    viewModel.stayLoggedIn(
+      (userContext.user.keepMeLoggedIn = !viewModel.stayLoggedIn())
+    );
+    auth.shortTermAccess = !userContext.user.keepMeLoggedIn;
+  }
 
-        section.correctQuestions = _.filter(section.questions, function(question) {
-                return question.isAnswered && question.isCorrectAnswered && !question.isSurvey;
-            })
-            .length;
+  function mapSection(entity) {
+    var section = {};
 
-        section.amountOfContents = entity.questions.length - section.questions.length;
-        section.affectProgress = entity.affectProgress;
-        section.title = entity.title;
+    section.id = entity.id;
+    section.title = entity.title;
+    section.score = entity.score();
 
-        section.isCorrect = entity.isCompleted();
+    section.readedContents = _.filter(entity.questions, function(question) {
+      return !isQuestion(question) && question.isAnswered;
+    }).length;
 
-        return section;
-    }
+    section.questions = _.filter(entity.questions, function(question) {
+      return isQuestion(question);
+    });
 
-    function isQuestion(question) {
-        return question.type !== constants.questionTypes.informationContent;
-    }
+    section.amountOfQuestions = _.filter(section.questions, function(question) {
+      return !question.isSurvey;
+    }).length;
+
+    section.correctQuestions = _.filter(section.questions, function(question) {
+      return (
+        question.isAnswered && question.isCorrectAnswered && !question.isSurvey
+      );
+    }).length;
+
+    section.amountOfContents =
+      entity.questions.length - section.questions.length;
+    section.affectProgress = entity.affectProgress;
+    section.title = entity.title;
+
+    section.isCorrect = entity.isCompleted();
+
+    return section;
+  }
+
+  function isQuestion(question) {
+    return question.type !== constants.questionTypes.informationContent;
+  }
 });

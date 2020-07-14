@@ -13,7 +13,8 @@
     var
         baseUrl = location.protocol + '//' + location.host,
         identifyUrl = baseUrl + '/auth/identity',
-        settingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId'),
+        designSettingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/settings/design',
+        configurationSettingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/settings/configuration',
 
         templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/')) + '/',
         manifestUrl = templateUrl + 'manifest.json', //TODO: Change way of resolving manifest file path
@@ -25,8 +26,10 @@
         init: init,
         getManifest: getManifest,
         getUser: getUser,
-        getSettings: getSettings,
-        saveSettings: saveSettings,
+        getDesignSettings: getDesignSettings,
+        getConfigurationSettings: getConfigurationSettings,
+        saveDesignSettings: saveDesignSettings,
+        saveConfigurationSettings: saveConfigurationSettings,
         sendNotificationToEditor: sendNotificationToEditor,
         showSettings: showSettings,
         showCertificatesUpgradePopup: showCertificatesUpgradePopup
@@ -42,6 +45,8 @@
         /* DEBUG */
         var userDataPromise = $.Deferred().resolve([{ data: { subscription: { accessType: 1, expirationDate: new Date(2020, 1, 1) } } }]);
         var settingsPromise = $.getJSON('../../settings.js').then(function (response) { return [{ settings: JSON.stringify(response) }]; });
+        var designSettingsPromise = settingsPromise;
+        var configurationSettingsPromise = settingsPromise;
         var manifestPromise = $.getJSON(manifestUrl);
         /* END_DEBUG */
 
@@ -55,8 +60,16 @@
             dataType: 'json'
         });
 
-        var settingsPromise = $.ajax({
-            url: settingsUrl,
+        var designSettingsPromise = $.ajax({
+            url: designSettingsUrl,
+            headers: headers,
+            cache: false,
+            contentType: 'application/json',
+            dataType: 'json'
+        });
+
+        var configurationSettingsPromise = $.ajax({
+            url: configurationSettingsUrl,
             headers: headers,
             cache: false,
             contentType: 'application/json',
@@ -72,12 +85,14 @@
         });
         END_RELEASE */
 
-        return $.when(manifestPromise, userDataPromise, settingsPromise).done(function (manifestResponse, userDataResponse, settingsResponse) {
-            apiData.manifest = getManifestModel(manifestResponse[0]);
-            apiData.user = getUserModel(userDataResponse[0]);
-            apiData.settings = getSettingsModel(settingsResponse[0]);
-            apiData.isInited = true;
-        });
+        return $.when(manifestPromise, userDataPromise, designSettingsPromise, configurationSettingsPromise)
+            .done(function (manifestResponse, userDataResponse, designSettingsResponse, configurationSettingsResponse) {
+                apiData.manifest = getManifestModel(manifestResponse[0]);
+                apiData.user = getUserModel(userDataResponse[0]);
+                apiData.designSettings = getSettingsModel(designSettingsResponse[0]);
+                apiData.configurationSettings = getSettingsModel(configurationSettingsResponse[0]);
+                apiData.isInited = true;
+            });
     }
 
     function isInitedGuard() {
@@ -96,9 +111,14 @@
         return apiData.user;
     }
 
-    function getSettings() {
+    function getDesignSettings() {
         isInitedGuard();
-        return apiData.settings;
+        return apiData.designSettings;
+    }
+
+    function getConfigurationSettings() {
+        isInitedGuard();
+        return apiData.configurationSettings;
     }
 
     function getManifestModel(manifestData) {
@@ -140,16 +160,28 @@
         return param === null ? null : decodeURI(param[1]);
     }
 
-    function saveSettings(settings, extraSettings, successSaveMessage, failSaveMessage) {
-        freezeEditor();
-
+    function saveDesignSettings(settings, extraSettings, successSaveMessage, failSaveMessage) {
         var data = {
             settings: settings,
             extraSettings: extraSettings
         };
 
+        return saveSettings(designSettingsUrl, data, successSaveMessage, failSaveMessage);
+    }
+
+    function saveConfigurationSettings(settings, successSaveMessage, failSaveMessage) {
+        var data = {
+            settings: settings
+        };
+
+        return saveSettings(configurationSettingsUrl, data, successSaveMessage, failSaveMessage);
+    }
+
+    function saveSettings(url, data, successSaveMessage, failSaveMessage) {
+        freezeEditor();
+
         var requestArgs = {
-            url: settingsUrl,
+            url: url,
             type: 'POST',
             headers: headers,
             cache: false,

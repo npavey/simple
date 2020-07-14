@@ -297,7 +297,7 @@ input[type="text"] {
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-align-items: baseline;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .settings-row.mastery-setting {
@@ -440,11 +440,11 @@ input[type="text"] {
     }
 
 
-    .section-description {        
+    .section-description {
         margin-top: 26px;
     }
 
-    .section-description-header {        
+    .section-description-header {
         font-size: 13px;
         font-weight: 600;
         color: #42515f;
