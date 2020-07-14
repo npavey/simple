@@ -134,7 +134,7 @@ define([
       viewModel.status(statuses.sendingRequests);
     }
 
-	if (course.getStatus() === constants.course.statuses.inProgress) {
+    if (course.getStatus() === constants.course.statuses.inProgress) {
       var finishHandler =
         viewModel.crossDeviceEnabled || viewModel.scormEnabled
           ? progressContext.finish

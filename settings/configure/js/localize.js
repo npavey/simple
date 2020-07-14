@@ -27,7 +27,7 @@
         'default': 'easygenerator (recommended)',
         'custom': 'Custom LRS',
 
-        'addWebhookEndpoinLabel': 'Add a webhook endpoint: <a href="https://help.easygenerator.com/additional-features/webhooks" target="_blank">Learn more</a>',
+        'addWebhookEndpoinLabel': 'Add a webhook endpoint:',
         'webhookUrlLabel': 'URL to be called',
         'urlCheckButtonText': 'Check URL',
         'checkErrorMessage': 'An error appears',

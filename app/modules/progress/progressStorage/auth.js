@@ -76,6 +76,7 @@ define([
         auth.setToken(response.token);
       })
       .fail(function(fail) {
+        auth.setToken("");
         console.error(fail);
       });
   };

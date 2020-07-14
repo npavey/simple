@@ -179,5 +179,13 @@
     "[detailed summary]": "Részletes összegzés",
     "[start new attempt dialog title]": "Új próbálkozás elkezdése?",
     "[start new attempt dialog text]": "Amikor új próbálkozást teszel - nem leszel kéeps megtekinteni az előző próbálkozáodat.",
-    "[close course and logout]": "Kurzus bezárása és kijelentkezés"
+    "[close course and logout]": "Kurzus bezárása és kijelentkezés",
+    "[results send error title]": "Az előrehaladás mentve, de nincs átküldve a szerzőnek",
+    "[try to submit again key]": "Kérem küldje el a végeredményt ismét",
+    "[contanct with author key]": "Lépjen kapcsolatba a szerzővel ha probléma lép fel",
+    "[general-message-key]": "Hibaüzenet:",
+    "[error-message-key]": "Kapcsolati hiba",
+    "[resend-results-key]": "Hagyja jóvá a végeredményt",
+    "[close without reporting results]": "Oktatás lezárása riport nélkül",
+    "[webhooks endpoint name key]": "webhook"
 }
