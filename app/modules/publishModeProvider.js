@@ -10,7 +10,7 @@
     };
 
     function init(publishMode) {
-        if (publishMode === 'Lms') {
+        if (publishMode === 'Lms' || publishMode === 'Lms2004') {
             viewmodel.isScormEnabled = modulesInitializer.hasModule('lms');
             templateSettings.allowCrossDeviceSaving = false;
         }
