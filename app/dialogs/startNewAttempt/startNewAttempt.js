@@ -34,6 +34,7 @@
             viewModel.isStartingNewAttempt(true);
             progressContext.remove(function() {
                 window.location = window.location.href.split("#")[0];
+                viewModel.isStartingNewAttempt(false);
             });
         }
     });

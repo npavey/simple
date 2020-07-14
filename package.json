@@ -8,6 +8,7 @@
     "lint": "node_modules/.bin/eslint -c .eslintrc app/",
     "postinstall": "node_modules/.bin/bower install",
     "start": "node_modules/.bin/gulp webserver",
+    "build": "node_modules/.bin/gulp build",
     "resources": "call easyresources generate --worksheetName \"Simple course\" --outputPath \"lang\" --excludeLocalizations \"\""
   },
   "repository": {
