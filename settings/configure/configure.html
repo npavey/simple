@@ -77,7 +77,7 @@
                             </div>
                             <div class="preview-disabled" data-bind="visible: !allowCrossDeviceSaving()"></div>
                         </div>
-                        <!-- /ko -->                  
+                        <!-- /ko -->
                         <!-- ko if: $root.allowNpsSettings  -->
                         <div class="settings-row">
                             <div class="settings-caption">
@@ -102,6 +102,7 @@
                             <div class="settings-caption">
                                 <div class="caption-content">
                                     <div data-bind="localize: 'allow users to download certificates'"></div>
+                                    <div class="settings-hint" data-bind="localize: 'available when save progress disabled hint'"></div>
                                 </div>
                             </div>
                             <div class="settings-column">
@@ -117,6 +118,7 @@
                                     <div class="switcher-text" data-bind="css: { disabled: !allowCertificateDownload() }, localize: 'allow'"></div>
                                 </div>
                             </div>
+                            <div class="preview-disabled" data-bind="visible: !allowCrossDeviceSaving()"></div>
                         </div>
                         <div class="settings-row">
                             <div class="settings-caption" data-bind="localize: 'pdf export'"></div>
@@ -135,7 +137,7 @@
                             <div class="settings-content setting-input-wrapper">
                                 <input type="text" class="settings-input" autocomplete="off" data-bind="value: copyright, valueUpdate: 'afterkeydown', event: { blur: saveChanges }, attr: { placeholder: copyrightPlaceholder }" />
                             </div>
-                        </div>    
+                        </div>
                         <div class="settings-row">
                             <div class="settings-caption">
                                 <span data-bind="localize: 'show about the author block on the introduction course page'"></span>
@@ -162,7 +164,7 @@
             <div class="settings-tab-container track-and-trace" data-tab="track-and-trace">
                 <div class="settings-section" data-bind="with: trackingData">
                     <h1 class="section-header" data-bind="localize: 'track and trace settings'"></h1>
-                    <div class="section-content"> 
+                    <div class="section-content">
                         <!-- ko if: $root.allowxApiSettings -->
                         <div class="settings-row">
                             <div class="settings-caption">

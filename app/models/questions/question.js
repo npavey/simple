@@ -18,6 +18,8 @@
         this.isCorrectAnswered = false;
         this.affectProgress = true;
         this.isInformationContent = spec.type === constants.questionTypes.informationContent;
+        this.correctFeedback = spec.correctFeedback;
+        this.incorrectFeedback = spec.incorrectFeedback;
 
         if(spec.hasOwnProperty('isSurvey')){
             this.isSurvey = spec.isSurvey;
@@ -99,25 +101,14 @@
     }
 
     function loadFeedback() {
-        var
-            that = this,
-            requests = [],
-            feedbackUrlPath = 'content/' + that.sectionId + '/' + that.id + '/',
-            correctFeedbackContentUrl = feedbackUrlPath + 'correctFeedback.html',
-            incorrectFeedbackContentUrl = feedbackUrlPath + 'incorrectFeedback.html';
 
-        if (that.feedback.hasCorrect) {
-            requests.push(loadPage(correctFeedbackContentUrl).then(function (content) {
-                that.feedback.correct = content;
-            }));
-        }
-        if (that.feedback.hasIncorrect) {
-            requests.push(loadPage(incorrectFeedbackContentUrl).then(function (content) {
-                that.feedback.incorrect = content;
-            }));
+        if (this.feedback.hasIncorrect) {
+            this.loadContent(this.incorrectFeedback)
         }
 
-        return Q.allSettled(requests);
+        if (this.feedback.hasCorrect) {
+            this.loadContent(this.correctFeedback)
+        }
     }
 
     function loadContent(items) {
