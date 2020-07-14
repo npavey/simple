@@ -157,7 +157,6 @@
         }
 
         function onInitializationFailed(reason) {
-            console.log(reason);
             deactivate();
             if (self.xApiSettings.enabled)
                 errorsHandler.handleError(reason);

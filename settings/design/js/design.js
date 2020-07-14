@@ -35,7 +35,7 @@
             return;
         }
 
-        window.egApi.saveSettings(newSettings, newExtraData, app.localize('changes are saved'), app.localize('changes are not saved'))
+        window.egApi.saveDesignSettings(newSettings, newExtraData, app.localize('changes are saved'), app.localize('changes are not saved'))
             .done(function () {
                 currentSettings = settings;
                 currentExtraData = extraData;
@@ -48,7 +48,7 @@
             var manifest = api.getManifest();
 
             var defaultSettings = manifest.defaultTemplateSettings;
-            var settings = api.getSettings();
+            var settings = api.getDesignSettings();
 
             viewModel.sectionsLayout = new app.SectionsLayoutModel(settings.sectionsLayout || defaultSettings.sectionsLayout, viewModel.saveChanges);
             viewModel.treeOfContent = new app.TreeOfContentModel(settings.treeOfContent || defaultSettings.treeOfContent, viewModel.saveChanges);
