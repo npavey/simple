@@ -1,4 +1,4 @@
-﻿define(['knockout', 'jquery', 'durandal/composition'], function (ko, $, composition) {
+﻿define(['knockout', 'jquery', 'durandal/composition', 'helpers/url'], function (ko, $, composition, Url) {
 
     ko.bindingHandlers.elementsWrap = {
         init: function (element) {
@@ -44,11 +44,20 @@
             $table.wrap($wrapper);
         });
 
-        $('.audio-editor iframe', $element).each(function (index, iframe) {
-            var $iframe = $(iframe);
+        $(
+          ".audio-editor iframe, .video-editor iframe," +
+            'iframe[data-media-type="old-editor-video"], iframe[data-media-type="old-editor-audio"]',
+          $element
+        ).each(function(index, iframe) {
+          var $iframe = $(iframe);
+          var src = $iframe.attr("src");
 
-            var src = $iframe.attr('src');
-            $iframe.attr('src', src + '&style_variables=' + encodeURIComponent(getStyles()));
+          $iframe.attr(
+            "src",
+            new Url(src)
+              .addQueryStringParam("style_variables", getStyles())
+              .toString()
+          );
         });
     }
 
