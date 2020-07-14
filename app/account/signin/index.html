@@ -32,19 +32,13 @@
             <!-- /ko -->
         </button>
         <div class="account-hint">
-            <span data-translate-text="[or]"></span>&nbsp;
-            <a tabindex="0"  data-bind="click: sendSecretLink, submitOnEnter" data-translate-text="[request a secret link]"></a>&nbsp;
-            <span data-translate-text="[to your progress via email]"></span>
         </div>
-        <!-- ko if: isSecretLinkSent() || isRestorePasswordEmailSent() -->
+        <!-- ko if: isRestorePasswordEmailSent() -->
         <div class="secret-link-confirm-container show">
             <span class="secret-link-confirm-wrapper">
                 <span class="icon-envelope"></span>
                 <!-- ko if: isRestorePasswordEmailSent -->
                 <span class="secret-link-confirm-text" data-translate-text="[forgot password email sent]" data-translate-title="[forgot password email sent]"></span>
-                <!-- /ko -->
-                <!-- ko if: isSecretLinkSent -->
-                <span class="secret-link-confirm-text" data-translate-text="[the letter has been successfully sent]" data-translate-title="[the letter has been successfully sent]"></span>
                 <!-- /ko -->
             </span>
         </div>
