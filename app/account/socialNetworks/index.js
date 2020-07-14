@@ -4,9 +4,10 @@ define(function () {
     var _instance = null;
 
     var _getAuthLink = function (courseTitle, authServiceUrl, socialNetwork) {
+        const addTokenQueryParam =
+          window.location.host.indexOf('easygenerator.com') === -1 ? '&addTokenQuery=true' : '';
         return authServiceUrl + '/api/auth/' + socialNetwork +
-            '?callbackLink=' + encodeURIComponent(window.location.href) +
-            '&callbackTitle=' + encodeURIComponent(courseTitle);
+            '?callbackUrl=' + encodeURIComponent(window.location.href) + addTokenQueryParam;
     };
 
     function SocialNetworks(courseTitle, authServiceUrl) {

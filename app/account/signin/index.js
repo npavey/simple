@@ -76,7 +76,7 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
                     });
                 }).fail(function (reason) {
                     viewmodel.requestProcessing(false);
-                    if (reason.status == 403) {
+                    if (reason.status == 401) {
                         viewmodel.emailPasswordCombination(true);
                     }
                 })

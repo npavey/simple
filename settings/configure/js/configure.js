@@ -1,8 +1,7 @@
 ﻿(function (app) {
 
     var
-      currentSettings = null,
-      currentExtraData = null;
+      currentSettings = null;
 
     var viewModel = {
         isError: ko.observable(false),
@@ -55,24 +54,17 @@
         });
     };
 
-    viewModel.getCurrentExtraData = function () {
-        return {};
-    };
-
     viewModel.saveChanges = function () {
         var settings = viewModel.getCurrentSettingsData(),
-          extraData = viewModel.getCurrentExtraData(),
-          newSettings = JSON.stringify(settings),
-          newExtraData = JSON.stringify(extraData);
+          newSettings = JSON.stringify(settings);
 
-        if (JSON.stringify(currentSettings) === newSettings && JSON.stringify(currentExtraData) === newExtraData) {
+        if (JSON.stringify(currentSettings) === newSettings) {
             return;
         }
 
-        window.egApi.saveSettings(newSettings, newExtraData, app.localize('changes are saved'), app.localize('changes are not saved'))
+        window.egApi.saveConfigurationSettings(newSettings, app.localize('changes are saved'), app.localize('changes are not saved'))
           .done(function () {
               currentSettings = settings;
-              currentExtraData = extraData;
           });
     };
 
@@ -89,7 +81,7 @@
         var api = window.egApi;
         return api.init().then(function () {
             var manifest = api.getManifest(),
-              settings = api.getSettings(),
+              settings = api.getConfigurationSettings(),
               user = api.getUser();
 
             var defaultTemplateSettings = manifest && manifest.defaultTemplateSettings ? manifest.defaultTemplateSettings : {};
@@ -120,7 +112,6 @@
             initField(viewModel.allowLoginViaSocialMediaSettings, 'allowLoginViaSocialMediaSettings');
 
             currentSettings = viewModel.getCurrentSettingsData(settings);
-            currentExtraData = viewModel.getCurrentExtraData();
 
             function initField(field, property, handler) {
                 var val = null;
