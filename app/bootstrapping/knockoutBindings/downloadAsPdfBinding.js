@@ -1,4 +1,4 @@
-﻿define(['helpers/fileDownloader'], function (fileDownloader) {
+﻿define(['helpers/fileDownloader', 'helpers/url'], function (fileDownloader, Url) {
     var buttonStatuses = {
         default: 'default',
         proggress: 'proggress',
@@ -20,23 +20,9 @@
                 return;
             }
 
-            var Url = function (url) {
-                var that = this;
-                that.value = url || '',
-                that.addQueryStringParam = function (key, value) {
-                    that.value += that.value.substr(-1) === "/" ? '?' : '&';
-                    that.value += key;
-                    if (value) {
-                        that.value += '=' + encodeURIComponent(value);
-                    }
-
-                    return that;
-                }
-            };
-
             var convertionUrl = new Url(serviceUrl + '/convert/')
                 .addQueryStringParam('url', getBaseUrl() + '/pdf/index.html')
-                .addQueryStringParam('version', version);
+                .addQueryStringParam('version', version).toString();
 
             var timeoutId;
 
@@ -48,7 +34,7 @@
 
                 setStatus($element, buttonStatuses.proggress);
 
-                fileDownloader.downloadFile(convertionUrl.value, filename)
+                fileDownloader.downloadFile(convertionUrl, filename)
                     .then(function(){
                         setStatus($element, buttonStatuses.default);
                     })

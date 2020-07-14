@@ -3,17 +3,18 @@ define(function () {
 
     var _instance = null;
 
-    var _getAuthLink = function (courseTitle, progressStorageUrl, socialNetwork) {
-        return progressStorageUrl + 'auth/' + socialNetwork +
-            '?courseLink=' + encodeURIComponent(window.location.href) +
-            '&courseTitle=' + encodeURIComponent(courseTitle);
+    var _getAuthLink = function (courseTitle, authServiceUrl, socialNetwork) {
+        const addTokenQueryParam =
+          window.location.host.indexOf('easygenerator.com') === -1 ? '&addTokenQuery=true' : '';
+        return authServiceUrl + '/api/auth/' + socialNetwork +
+            '?callbackUrl=' + encodeURIComponent(window.location.href) + addTokenQueryParam;
     };
 
-    function SocialNetworks(courseTitle, progressStorageUrl) {
+    function SocialNetworks(courseTitle, authServiceUrl) {
         if (_instance) {
 			return _instance;
 		}
-        var getAuthLink = _getAuthLink.bind(this, courseTitle, progressStorageUrl);
+        var getAuthLink = _getAuthLink.bind(this, courseTitle, authServiceUrl);
         this.facebookAuthLink = getAuthLink('facebook');
         this.linkedinAuthLink = getAuthLink('linkedin');
         this.googleAuthLink = getAuthLink('google');
