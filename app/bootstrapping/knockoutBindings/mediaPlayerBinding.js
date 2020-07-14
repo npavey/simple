@@ -1,4 +1,4 @@
-﻿define(function () {
+﻿define(['helpers/url'], function (Url) {
     ko.bindingHandlers.mediaPlayer = {
         init: function (element, valueAccessor) {
 
@@ -28,7 +28,7 @@
                     src = $iframe.attr(srcAttrName),
                     variablesList = getVariablesList();
 
-                src += '&style_variables=' + encodeURIComponent(variablesList);
+                src = new Url(src).addQueryStringParam('style_variables', variablesList).toString();
 
                 $iframe.attr(srcAttrName, src);
                 return $container.html();
