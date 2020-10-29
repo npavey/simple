@@ -9,7 +9,8 @@
     "postinstall": "node_modules/.bin/bower install",
     "start": "node_modules/.bin/gulp webserver",
     "build": "node_modules/.bin/gulp build",
-    "resources": "call easyresources generate --worksheetName \"Simple course\" --outputPath \"lang\" --excludeLocalizations \"\""
+    "resources": "call easyresources generate --worksheetName \"Simple course\" --outputPath \"lang\" --excludeLocalizations \"\"",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
