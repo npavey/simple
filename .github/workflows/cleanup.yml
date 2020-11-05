@@ -1,0 +1,18 @@
+name: Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  BUCKET_NAME: "easygenerator-templates-staging"
+  TEMPLATE_NAME: "simple"
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: cleanup
+        run: aws s3 rm --recursive s3://${BUCKET_NAME}/${TEMPLATE_NAME}/${{ github.head_ref }}

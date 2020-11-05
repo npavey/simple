@@ -1,0 +1,62 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  BUCKET_NAME: "easygenerator-templates-staging"
+  TEMPLATE_NAME: "simple"
+  OUTPUT_FOLDER: "./.output"
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Extract git reference
+        id: extractref
+        shell: bash
+        run: |
+          echo ::set-output name=ref::${GITHUB_REF#refs/*/}
+          echo "Setting ref parameter to ${GITHUB_REF#refs/*/}"
+      - name: Check for previous build
+        id: ifbuildexists
+        run: |
+          if aws s3api head-object --bucket ${BUCKET_NAME} --key ${TEMPLATE_NAME}/tmp/${GITHUB_SHA}/build.info
+          then
+            echo "Found existing build; skipping current..."
+            echo ::set-output name=exists::true
+          else
+            echo "Build not found; starting new build..."
+            echo ::set-output name=exists::false
+          fi
+      - name: Checkout sources
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        uses: actions/checkout@v2
+      - name: Setup Node environment
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10'
+      - name: Install dependencies
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        run: npm ci
+      - name: Build
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        run: npm run build
+      - name: Add build info
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        run: |
+          echo "COMMIT_SHA: ${GITHUB_SHA}" > ${OUTPUT_FOLDER}/build.info
+          echo "GIT_REFERENCE: ${{ steps.extractref.outputs.ref }}" >> ${OUTPUT_FOLDER}/build.info
+          echo "GITHUB_RUN_ID: ${{ github.run_id }}" >> ${OUTPUT_FOLDER}/build.info
+      - name: Upload to S3
+        if: steps.ifbuildexists.outputs.exists == 'false'
+        run: aws s3 sync --delete ${OUTPUT_FOLDER} s3://${BUCKET_NAME}/${TEMPLATE_NAME}/tmp/${GITHUB_SHA}
+      - name: Deploy in S3
+        run: aws s3 sync --delete s3://${BUCKET_NAME}/${TEMPLATE_NAME}/tmp/${GITHUB_SHA} s3://${BUCKET_NAME}/${TEMPLATE_NAME}/${{ steps.extractref.outputs.ref }}
