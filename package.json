@@ -6,6 +6,7 @@
   "scripts": {
     "precommit": "npm run lint",
     "lint": "node_modules/.bin/eslint -c .eslintrc app/",
+    "preinstall": "npx npm-force-resolutions",
     "postinstall": "node_modules/.bin/bower install",
     "start": "node_modules/.bin/gulp webserver",
     "build": "node_modules/.bin/gulp build",
@@ -47,5 +48,8 @@
   },
   "dependencies": {
     "gulp-install": "^1.1.0"
+  },
+  "resolutions": {
+    "graceful-fs": "^4.2.4"
   }
 }
