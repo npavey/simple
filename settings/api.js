@@ -13,8 +13,8 @@
     var
         baseUrl = location.protocol + '//' + location.host,
         identifyUrl = baseUrl + '/auth/identity',
-        designSettingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/settings/design',
-        configurationSettingsUrl = baseUrl + '/api/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/settings/configuration',
+        designSettingsUrl = baseUrl + '/api/v1/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/design/settings',
+        configurationSettingsUrl = baseUrl + '/api/v1/course/' + getURLParameter('courseId') + '/template/' + getURLParameter('templateId') + '/configuration/settings',
 
         templateUrl = location.toString().substring(0, location.toString().indexOf('/settings/')) + '/',
         manifestUrl = templateUrl + 'manifest.json', //TODO: Change way of resolving manifest file path
@@ -53,7 +53,7 @@
         /* RELEASE
         var userDataPromise = $.ajax({
             url: identifyUrl,
-            headers: headers,
+            headers: { 'Authorization': 'Bearer ' + getCookie('token.auth') },
             cache: false,
             type: 'POST',
             contentType: 'application/json',
@@ -62,7 +62,7 @@
 
         var designSettingsPromise = $.ajax({
             url: designSettingsUrl,
-            headers: headers,
+            headers: { 'Authorization': 'Bearer ' + getCookie('token.api') },
             cache: false,
             contentType: 'application/json',
             dataType: 'json'
@@ -70,7 +70,7 @@
 
         var configurationSettingsPromise = $.ajax({
             url: configurationSettingsUrl,
-            headers: headers,
+            headers: { 'Authorization': 'Bearer ' + getCookie('token.api') },
             cache: false,
             contentType: 'application/json',
             dataType: 'json'
@@ -239,7 +239,7 @@
     }
 
     function User(accessType){
-        this.accessType = accessType,
+        this.accessType = accessType;
         this.hasTeamAccess= function() {
             return this.accessType >= accessTypes.team && this.accessType !== accessTypes.academy;
         };
