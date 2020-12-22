@@ -70,7 +70,8 @@
             }
         }
 
-        function authenticated(user) {
+      function authenticated(user) {
+            delete user.password;
             self.progress.user = user;
         }
 

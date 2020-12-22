@@ -56,10 +56,9 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
                 viewmodel.password.markAsModified();
                 return;
             }
-            userContext.user.password = viewmodel.password();
             viewmodel.requestProcessing(true);
             auth.signin(userContext.user.email,
-                    userContext.user.password,
+                    viewmodel.password(),
                     userContext.user.keepMeLoggedIn)
                 .then(function (response) {
                     return progressProvider.initProgressStorage(function (provider) {

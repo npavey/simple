@@ -16,7 +16,6 @@
         this.account = null;
         this.email = '';
         this.username = '';
-        this.password = null;
         this.keepMeLoggedIn = false;
     }
 

@@ -68,7 +68,6 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
                 viewmodel.password.markAsModified();
                 return;
             } else if (viewmodel.crossDeviceEnabled && viewmodel.password.isValid()) {
-                userContext.user.password = viewmodel.password();
                 register();
             } else {
                 activateXapi(function () {
@@ -97,7 +96,7 @@ define(['knockout', 'plugins/router', 'context', 'userContext', '../header/index
         function register() {
             viewmodel.requestProcessing(true);
             auth.register(userContext.user.email,
-                    userContext.user.password,
+                    viewmodel.password(),
                     userContext.user.username,
                     userContext.user.keepMeLoggedIn)
                 .then(function (response) {
