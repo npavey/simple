@@ -131,6 +131,19 @@ gulp.task('build-app', ['pre-build'], function () {
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output + '/css'));
 
+    gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
+        .pipe(gulp.dest(output + '/font-awesome/css'));
+
+    gulp.src([
+        'node_modules/font-awesome/fonts/fontawesome-webfont.eot',
+        'node_modules/font-awesome/fonts/fontawesome-webfont.svg',
+        'node_modules/font-awesome/fonts/fontawesome-webfont.ttf',
+        'node_modules/font-awesome/fonts/fontawesome-webfont.woff',
+        'node_modules/font-awesome/fonts/fontawesome-webfont.woff2',
+        'node_modules/font-awesome/fonts/FontAwesome.otf'
+    ])
+        .pipe(gulp.dest(output + '/font-awesome/fonts'));
+
     gulp.src('css/ie.css')
         .pipe(addBuildVersion())
         .pipe(gulp.dest(output + '/css'));
