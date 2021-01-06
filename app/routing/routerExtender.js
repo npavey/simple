@@ -31,7 +31,7 @@
 
         router.getQueryStringValue = function (key) {
             var urlParams = window.location.href;
-            var regex = new RegExp("[\\?&]" + key + "=([^&#]*)");
+            var regex = new RegExp("(?:\\|\?|&|&amp;)" + key + "=([^&#]*)");
             var results = regex.exec(urlParams);
             return results === null ? null : decodeURIComponent(results[1].replace(/\+/g, " "));
         };

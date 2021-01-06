@@ -12,6 +12,7 @@
             return;
 
         var reviewApiUrl = router.getQueryStringValue('reviewApiUrl');
+        var authoringToolDomain = router.getQueryStringValue('authoringToolDomain');
         if (!reviewApiUrl)
             return;
 
@@ -23,6 +24,7 @@
             var reviewPlugin = new ReviewPlugin();
             reviewPlugin.init({
                 reviewApiUrl: decodeURIComponent(reviewApiUrl),
+                authoringToolDomain: decodeURIComponent(authoringToolDomain),
                 courseId: context.course.id
             });
 
