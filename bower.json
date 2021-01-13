@@ -19,7 +19,7 @@
   "dependencies": {
     "knockout": "3.4.2",
     "components-webfontloader": "~1.6.3",
-    "easygenerator-plugins": "2.12.6",
+    "easygenerator-plugins": "2.12.7",
     "has": "*",
     "knockout-dragula": "~0.2.2",
     "perfect-scrollbar": "~0.6.10",
