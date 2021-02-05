@@ -176,9 +176,11 @@
 
         function restore(user) {
             var progress = self.storage.getProgress();
-            if (!_.isEmpty(progress) &&
-                _.isString(progress.attemptId) &&
-                ((!user) || (!progress.user) || (user.username == progress.user.username && user.email == progress.user.email))) {
+            var isProgressNotEmpty = !_.isEmpty(progress);
+            var isProgressString = isProgressNotEmpty && _.isString(progress.attemptId);
+            var isSuitableProgress = isProgressString && (!user || !progress.user || user.email === progress.user.email);
+
+            if (isSuitableProgress) {
                 self.progress = progress;
             }
         }
