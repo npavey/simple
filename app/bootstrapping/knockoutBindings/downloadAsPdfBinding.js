@@ -21,7 +21,7 @@
             }
 
             var convertionUrl = new Url(serviceUrl + '/convert/')
-                .addQueryStringParam('url', getBaseUrl() + '/pdf/index.html')
+                .addQueryStringParam('url', getBaseUrl() + 'pdf/index.html')
                 .addQueryStringParam('version', version).toString();
 
             var timeoutId;
