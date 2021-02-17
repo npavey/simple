@@ -1,6 +1,6 @@
 {
   "name": "simple",
-  "version": "3.1.8",
+  "version": "3.1.9",
   "description": "This template is a basic course format",
   "main": "gulpfile.js",
   "scripts": {
