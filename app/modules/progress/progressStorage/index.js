@@ -1,21 +1,13 @@
 define([
-  "context",
-  "../constants",
-  "./httpWrapper",
-  "./urlProvider",
-  "./auth",
-  "helpers/requestResender",
-  "helpers/idToUuid"
-], function(
-  context,
-  constants,
-  httpWrapper,
-  urlProvider,
-  auth,
-  requestResender,
-  idToUuid
-) {
-  "use strict";
+  'context',
+  '../constants',
+  'requester/httpWrapper',
+  './urlProvider',
+  './auth',
+  'helpers/requestResender',
+  'helpers/idToUuid'
+], function (context, constants, httpWrapper, urlProvider, auth, requestResender, idToUuid) {
+  'use strict';
 
   function ProgressStorageProvider(courseId, templateId) {
     var _progress = null;
@@ -26,113 +18,107 @@ define([
     this.progressKey = constants.progressKey + this.courseId + this.templateId;
     this.resultKey = constants.resultKey + this.courseId + this.templateId;
 
-    this.getCourseStatus = function() {
-      if (context.course.getStatus() === "completed") {
-        return "PASSED";
-      } else if (context.course.getStatus() === "failed") {
-        return "FAILED";
+    this.getCourseStatus = function () {
+      if (context.course.getStatus() === 'completed') {
+        return 'PASSED';
+      } else if (context.course.getStatus() === 'failed') {
+        return 'FAILED';
       }
-      return "IN_PROGRESS";
+      return 'IN_PROGRESS';
     };
 
-    this.getProgress = function() {
+    this.getProgress = function () {
       return _progress;
     };
 
-    this.setProgress = function(progress) {
+    this.setProgress = function (progress) {
       _progress = progress;
     };
 
-    this.getProgressFromServer = function() {
+    this.getProgressFromServer = function () {
       if (!auth.authenticated) {
         return false;
       }
       return httpWrapper
-        .get(
-          urlProvider.learnServiceUrl +
-            constants.learnerCoursesApi +
-            idToUuid(this.courseId) +
-            "/attempts/last",
-          {
+        .get({
+          url: urlProvider.learnServiceUrl + constants.learnerCoursesApi + idToUuid(this.courseId) + '/attempts/last',
+          query: {
             templateId: this.templateId
           },
-          { Authorization: "Bearer " + auth.getToken() },
-          false
-        )
-        .then(function(response) {
+          headers: { Authorization: 'Bearer ' + auth.getToken() },
+          withCredentials: false
+        })
+        .then(function (response) {
           _progress = JSON.parse(response.jsonProgress);
           return response.jsonProgress;
         })
-        .fail(function(fail) {
-          console.error("Get progress from server fails with error: ", fail);
+        .fail(function (fail) {
+          console.error('Get progress from server fails with error: ', fail);
           return fail;
         });
     };
 
-    this.startNewAttempt = function() {
+    this.startNewAttempt = function () {
       return httpWrapper
-        .post(
-          urlProvider.learnServiceUrl +
-            constants.learnerCoursesApi +
-            idToUuid(self.courseId) +
-            "/attempts",
-          {
+        .post({
+          url: urlProvider.learnServiceUrl + constants.learnerCoursesApi + idToUuid(self.courseId) + '/attempts',
+          data: {
             templateId: self.templateId,
-            jsonProgress: "{}",
+            jsonProgress: '{}',
             score: 0,
-            status: "IN_PROGRESS",
+            status: 'IN_PROGRESS',
             courseUrl: urlProvider.courseLink
           },
-          {
-            "Content-Type": constants.contentTypeJson,
-            Authorization: "Bearer " + auth.getToken()
+          headers: {
+            'Content-Type': constants.contentTypeJson,
+            Authorization: 'Bearer ' + auth.getToken()
           },
-          false
-        )
-        .then(function(newProgress) {
+          withCredentials: false
+        })
+        .then(function (newProgress) {
           return newProgress.jsonProgress;
         });
     };
 
-    this.saveProgress = function(progress) {
+    this.saveProgress = function (progress) {
       var requestOptions = {
         url:
           urlProvider.learnServiceUrl +
           constants.learnerCoursesApi +
           idToUuid(this.courseId) +
-          "/attempts/last" +
-          "?templateId=" +
+          '/attempts/last' +
+          '?templateId=' +
           this.templateId,
 
-        method: "PUT",
+        method: 'PUT',
         data: JSON.stringify({
-          jsonProgress: progress ? JSON.stringify(progress) : "{}",
+          jsonProgress: progress ? JSON.stringify(progress) : '{}',
           score: context.course.score(),
           status: this.getCourseStatus()
         }),
         headers: {
-          "Content-Type": constants.contentTypeJson,
-          Authorization: "Bearer " + auth.getToken()
+          'Content-Type': constants.contentTypeJson,
+          Authorization: 'Bearer ' + auth.getToken()
         },
         cache: false
       };
 
       return requestResender
         .send(requestOptions)
-        .then(function(response) {
+        .then(function (response) {
           return response;
         })
-        .fail(function(failedResponse) {
+        .fail(function (failedResponse) {
           if (failedResponse.status === 401) {
             return auth.signout();
           }
 
-          console.error("Save progress failed with error: ", failedResponse);
+          console.error('Save progress failed with error: ', failedResponse);
           return false;
         });
     };
 
-    this.saveResults = function(getScore, getStatus, errorMessage) {
+    this.saveResults = function (getScore, getStatus, errorMessage) {
       //TODO: now we use only localStorage for save results
       var result = {
         score: context.course.score(),
@@ -142,33 +128,28 @@ define([
       try {
         localStorage.setItem(this.resultKey, JSON.stringify(result));
       } catch (e) {
-        console.error(
-          TranslationPlugin.getTextByKey("[not enough memory to save progress]")
-        );
+        console.error(TranslationPlugin.getTextByKey('[not enough memory to save progress]'));
         return false;
       }
       return true;
     };
 
-    this.removeProgress = function(callback) {
-      return httpWrapper.post(
-        urlProvider.learnServiceUrl +
-          constants.learnerCoursesApi +
-          idToUuid(this.courseId) +
-          "/attempts",
-        {
+    this.removeProgress = function (callback) {
+      return httpWrapper.post({
+        url: urlProvider.learnServiceUrl + constants.learnerCoursesApi + idToUuid(this.courseId) + '/attempts',
+        data: {
           templateId: this.templateId,
-          jsonProgress: "{}",
+          jsonProgress: '{}',
           score: 0,
-          status: "IN_PROGRESS",
+          status: 'IN_PROGRESS',
           courseUrl: urlProvider.courseLink
         },
-        {
-          "Content-Type": constants.contentTypeJson,
-          Authorization: "Bearer " + auth.getToken()
+        headers: {
+          'Content-Type': constants.contentTypeJson,
+          Authorization: 'Bearer ' + auth.getToken()
         },
-        false
-      );
+        withCredentials: false
+      });
     };
   }
 

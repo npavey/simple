@@ -1,11 +1,10 @@
 ﻿define([
-  "models/course",
-  "models/section",
-  "publishSettings",
-  "models/questions/questionsFactory"
-], function(Course, Section, publishSettings, questionsFactory) {
-  var _response;
-
+  'models/course',
+  'models/section',
+  'publishSettings',
+  'models/questions/questionsFactory',
+  'requester/resourceLoader'
+], function (Course, Section, publishSettings, questionsFactory, resourceLoader) {
   function mapCourse(response) {
     var questionShortIds = publishSettings.questionShortIds || {};
 
@@ -15,10 +14,10 @@
       title: response.title,
       hasIntroductionContent: response.hasIntroductionContent,
       introductions: _.chain(response.introductions)
-        .filter(function(item) {
+        .filter(function (item) {
           return !_.isNullOrUndefined(item.id);
         })
-        .map(function(item) {
+        .map(function (item) {
           return {
             id: item.id,
             children: item.children
@@ -26,25 +25,19 @@
         })
         .value(),
       sections: _.chain(response.sections)
-        .filter(function(item) {
-          return (
-            !_.isNullOrUndefined(item.questions) && item.questions.length > 0
-          );
+        .filter(function (item) {
+          return !_.isNullOrUndefined(item.questions) && item.questions.length > 0;
         })
-        .map(function(section) {
+        .map(function (section) {
           return new Section({
             id: section.id,
             title: section.title,
             imageUrl: section.imageUrl,
             questions: _.chain(section.questions)
-              .map(function(question) {
-                return questionsFactory.createQuestion(
-                  section.id,
-                  question,
-                  questionShortIds[question.id]
-                );
+              .map(function (question) {
+                return questionsFactory.createQuestion(section.id, question, questionShortIds[question.id]);
               })
-              .filter(function(question) {
+              .filter(function (question) {
                 return question != null;
               })
               .value()
@@ -61,31 +54,28 @@
   }
 
   var course = {},
-    initialize = function() {
+    initialize = function () {
       var that = this;
-
-      if (_response) {
-        mapCourse.call(that, _response);
-        return;
-      }
 
       var dfd = Q.defer();
 
-      $.ajax({
-        url: "content/data.js",
-        contentType: "application/json",
-        dataType: "json",
-        cache: false
-      })
-        .done(function(response) {
-          _response = JSON.parse(JSON.stringify(response));
-          mapCourse.call(that, _response);
+      resourceLoader
+        .getLocalResource({
+          url: 'content/data.js',
+          requestOptions: {
+            contentType: 'application/json',
+            dataType: 'json'
+          }
+        })
+        .done(function (response) {
+          resourceLoader.cacheBuster = response.createdOn;
+          mapCourse.call(that, response);
           dfd.resolve({
             course: that.course
           });
         })
-        .fail(function() {
-          dfd.reject("Unable to load data.js");
+        .fail(function () {
+          dfd.reject('Unable to load data.js');
         });
 
       return dfd.promise;
@@ -94,7 +84,7 @@
   return {
     initialize: initialize,
     course: course,
-    isInReviewAttemptMode: function() {
+    isInReviewAttemptMode: function () {
       return !!this.course.isFinished;
     }
   };

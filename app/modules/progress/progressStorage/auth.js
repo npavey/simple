@@ -1,196 +1,197 @@
-define([
-  "./httpWrapper",
-  "./urlProvider",
-  "../constants",
-  "helpers/idToUuid"
-], function(httpWrapper, urlProvider, constants, idToUuid) {
-  "use strict";
+define(['requester/httpWrapper', './urlProvider', '../constants', 'helpers/idToUuid'], function (
+  httpWrapper,
+  urlProvider,
+  constants,
+  idToUuid
+) {
+  'use strict';
 
   var _private = {
-    tokenKey: "token.learn",
-    shortTermAccessKey: "shortTermAccess.auth.template",
-    getToken: function() {
+    tokenKey: 'token.learn',
+    shortTermAccessKey: 'shortTermAccess.auth.template',
+    getToken: function () {
       return sessionStorage.getItem(_private.tokenKey);
     },
-    removeToken: function() {
+    removeToken: function () {
       sessionStorage.removeItem(_private.tokenKey);
     }
   };
 
   var auth = {};
 
-  Object.defineProperty(auth, "headers", {
-    get: function() {
+  Object.defineProperty(auth, 'headers', {
+    get: function () {
       return {};
     }
   });
 
-  Object.defineProperty(auth, "authenticated", {
-    get: function() {
+  Object.defineProperty(auth, 'authenticated', {
+    get: function () {
       return _private.getToken() !== null;
     }
   });
 
-  Object.defineProperty(auth, "shortTermAccess", {
-    get: function() {
-      return sessionStorage.getItem(_private.shortTermAccessKey) === "true";
+  Object.defineProperty(auth, 'shortTermAccess', {
+    get: function () {
+      return sessionStorage.getItem(_private.shortTermAccessKey) === 'true';
     },
-    set: function(value) {
-      if (typeof value !== "undefined" && value !== "") {
+    set: function (value) {
+      if (typeof value !== 'undefined' && value !== '') {
         sessionStorage.setItem(_private.shortTermAccessKey, value);
-      } else if (value === "") {
+      } else if (value === '') {
         sessionStorage.removeItem(_private.shortTermAccessKey);
       }
     }
   });
 
-  auth.setToken = function(value) {
-    if (typeof value !== "undefined" && value !== null) {
+  auth.setToken = function (value) {
+    if (typeof value !== 'undefined' && value !== null) {
       sessionStorage.setItem(_private.tokenKey, value);
     }
   };
 
-  auth.getToken = function() {
+  auth.getToken = function () {
     return _private.getToken();
   };
 
-  auth.exists = function(email) {
+  auth.exists = function (email) {
     return httpWrapper
-      .get(
-        urlProvider.authServiceUrl + "/api/account/exists",
-        { email: email },
-        {
-          "Content-Type": constants.contentTypeJson
+      .get({
+        url: urlProvider.authServiceUrl + '/api/account/exists',
+        query: { email: email },
+        headers: {
+          'Content-Type': constants.contentTypeJson
         },
-        true
-      )
-      .then(function(response) {
+        withCredentials: true
+      })
+      .then(function (response) {
         return response.exists;
       });
   };
 
-  auth.authorize = function() {
+  auth.authorize = function () {
     return httpWrapper
-      .get(urlProvider.authServiceUrl + "/api/account/token", {}, {}, true)
-      .then(function(response) {
+      .get({
+        url: urlProvider.authServiceUrl + '/api/account/token',
+        withCredentials: true
+      })
+      .then(function (response) {
         auth.setToken(response.token);
       })
-      .fail(function(fail) {
-        auth.setToken("");
+      .fail(function (fail) {
+        auth.setToken('');
         console.error(fail);
       });
   };
 
-  auth.identify = function() {
+  auth.identify = function () {
     return httpWrapper
-      .get(
-        urlProvider.learnServiceUrl + "/api/learner/me",
-        {},
-        {
-          Authorization: "Bearer " + auth.getToken()
+      .get({
+        url: urlProvider.learnServiceUrl + '/api/learner/me',
+        headers: {
+          Authorization: 'Bearer ' + auth.getToken()
         },
-        false
-      )
-      .fail(function(fail) {
+        withCredentials: false
+      })
+      .fail(function (fail) {
         if (fail.status === 401) {
           return auth.signout();
         }
-        console.error("User info request fails with error: ", fail);
+        console.error('User info request fails with error: ', fail);
       });
   };
 
-  auth.signin = function(email, password, rememberMe) {
+  auth.signin = function (email, password, rememberMe) {
     return httpWrapper
-      .post(
-        urlProvider.authServiceUrl + "/api/auth/credentials",
-        {
+      .post({
+        url: urlProvider.authServiceUrl + '/api/auth/credentials',
+        data: {
           email: email,
           password: password,
           shortTermAccess: !rememberMe
         },
-        {
-          "Content-Type": constants.contentTypeJson
+        headers: {
+          'Content-Type': constants.contentTypeJson
         },
-        true
-      )
-      .then(function(response) {
+        withCredentials: true
+      })
+      .then(function (response) {
         auth.setToken(response.token);
         auth.shortTermAccess = !rememberMe;
       });
   };
 
-  auth.register = function(email, password, name, rememberMe) {
+  auth.register = function (email, password, name, rememberMe) {
     return httpWrapper
-      .post(
-        urlProvider.authServiceUrl + "/api/credentials/register",
-        {
+      .post({
+        url: urlProvider.authServiceUrl + '/api/credentials/register',
+        data: {
           email: email,
           password: password,
           name: name,
           shortTermAccess: !rememberMe
         },
-        {
-          "Content-Type": constants.contentTypeJson
+        headers: {
+          'Content-Type': constants.contentTypeJson
         },
-        true
-      )
-      .then(function(response) {
+        withCredentials: true
+      })
+      .then(function (response) {
         auth.setToken(response.token);
         auth.shortTermAccess = !rememberMe;
       });
   };
 
-  auth.getValueFromUrl = function(key) {
-    key = key || "token";
+  auth.getValueFromUrl = function (key) {
+    key = key || 'token';
     var url = window.location.href,
-      regex = new RegExp("[?&]" + key + "(=([^&#]*)|&|#|$)", "i"),
+      regex = new RegExp('[?&]' + key + '(=([^&#]*)|&|#|$)', 'i'),
       result = regex.exec(url);
 
     if (!result || !result[2]) {
       return null;
     }
 
-    return decodeURIComponent(result[2].replace(/\+/g, " "));
+    return decodeURIComponent(result[2].replace(/\+/g, ' '));
   };
 
-  auth.signout = function() {
+  auth.signout = function () {
     return httpWrapper
-      .post(urlProvider.authServiceUrl + "/api/account/logout", {}, {}, true)
-      .then(function(response) {
-        _private.removeToken();
-        auth.shortTermAccess = "";
+      .post({
+        url: urlProvider.authServiceUrl + '/api/account/logout',
+        withCredentials: true
       })
-      .fail(function(fail) {
-        console.error("Logout failed with error: ", fail);
+      .then(function (response) {
+        _private.removeToken();
+        auth.shortTermAccess = '';
+      })
+      .fail(function (fail) {
+        console.error('Logout failed with error: ', fail);
       });
   };
 
-  auth.sendSecretLink = function(courseId) {
-    return httpWrapper.post(
-      urlProvider.learnServiceUrl +
-        "/api/learner/me/courses/" +
-        idToUuid(courseId) +
-        "/send-secret-link",
-      {},
-      {
-        "Content-Type": constants.contentTypeJson,
-        Authorization: "Bearer " + _private.getToken()
+  auth.sendSecretLink = function (courseId) {
+    return httpWrapper.post({
+      url: urlProvider.learnServiceUrl + '/api/learner/me/courses/' + idToUuid(courseId) + '/send-secret-link',
+      headers: {
+        'Content-Type': constants.contentTypeJson,
+        Authorization: 'Bearer ' + _private.getToken()
       },
-      false
-    );
+      withCredentials: false
+    });
   };
 
-  auth.forgotpassword = function(email) {
-    return httpWrapper.post(
-      urlProvider.authServiceUrl + "/api/credentials/forgot-password",
-      {
+  auth.forgotpassword = function (email) {
+    return httpWrapper.post({
+      url: urlProvider.authServiceUrl + '/api/credentials/forgot-password',
+      data: {
         email: email,
         returnUrl: urlProvider.courseLink
       },
-      {
-        "Content-Type": constants.contentTypeJson
+      headers: {
+        'Content-Type': constants.contentTypeJson
       }
-    );
+    });
   };
 
   return auth;

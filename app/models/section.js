@@ -29,7 +29,7 @@
             });
 
             section.isCompleted = ko.computed(function () {
-                return section.score() >= templateSettings.masteryScore.score;
+                return templateSettings && templateSettings.masteryScore ? section.score() >= templateSettings.masteryScore.score : false;
             });
 
             return section;
