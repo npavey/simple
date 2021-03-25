@@ -68,7 +68,6 @@
           }
         })
         .done(function (response) {
-          resourceLoader.cacheBuster = response.createdOn;
           mapCourse.call(that, response);
           dfd.resolve({
             course: that.course
